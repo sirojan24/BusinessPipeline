@@ -1,0 +1,7 @@
+task_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TaskBundle:Default:index }
+    
+task_savetask:    
+    path:     /savetask
+    defaults: { _controller: TaskBundle:Default:savetask }
