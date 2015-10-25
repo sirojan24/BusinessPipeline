@@ -17,87 +17,112 @@ class __TwigTemplate_439bbdededba1ddd1507c14784e98f1720b2d1dc2dbd8f164cb0d72339e
     {
         // line 1
         echo "<head>
+\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\" />
+\t\t<meta charset=\"utf-8\" />
+\t\t<title>pipeline ninety-nine</title>
 
-    <meta charset=\"utf-8\">
-    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-    <meta name=\"description\" content=\"\">
-    <meta name=\"author\" content=\"\">
+\t\t<meta name=\"description\" content=\"top menu &amp; navigation\" />
+\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0\" />
 
-    <title>pipline 99</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href=\"";
+\t\t<!-- bootstrap & fontawesome -->
+                <link rel=\"stylesheet\" href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/bootstrap.css"), "html", null, true);
+        echo "\" />
+                <link rel=\"stylesheet\" href=\"";
+        // line 11
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/font-awesome.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
         // line 12
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/bootstrap/dist/css/bootstrap.min.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\">
-
-    <!-- MetisMenu CSS -->
-   <!-- <link href=\"../bower_components/metisMenu/dist/metisMenu.min.css\" rel=\"stylesheet\"> -->
-
-    <!-- Timeline CSS -->
-    <link href=\"";
-        // line 18
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/timeline.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\">
-
-    <!-- Custom CSS -->
-    <link href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/ace-fonts.css"), "html", null, true);
+        echo "\" />
+                <link rel=\"stylesheet\" href=\"";
+        // line 13
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/dropzone.css"), "html", null, true);
+        echo "\" />
+                <link rel=\"stylesheet\" href=\"";
+        // line 14
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/ace.css"), "html", null, true);
+        echo "\" class=\"ace-main-stylesheet\" id=\"main-ace-style\"/>
+                <link rel=\"stylesheet\" href=\"";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/ace-rtl.css"), "html", null, true);
+        echo "\" />
+\t\t
+                <link rel=\"stylesheet\" href=\"";
+        // line 17
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/parsley.css"), "html", null, true);
+        echo "\" />
+                
+                
+                <link rel=\"stylesheet\" href=\"";
+        // line 20
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/jquery-ui.custom.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
         // line 21
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/sb-admin-2.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\">
-
-    <!-- Morris Charts CSS -->
-    <link href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/chosen.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 22
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/datepicker.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 23
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/bootstrap-timepicker.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
         // line 24
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\">
-
-    <!-- Custom Fonts -->
-    <link href=\"";
-        // line 27
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/font-awesome/css/font-awesome.min.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\" type=\"text/css\">
-\t<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <link href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/daterangepicker.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 25
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/bootstrap-datetimepicker.css"), "html", null, true);
+        echo "\" />
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 26
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/colorpicker.css"), "html", null, true);
+        echo "\" />
+\t\t
+\t\t<link rel=\"stylesheet\" href=\"";
+        // line 28
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/bootstrap-duallistbox.css"), "html", null, true);
+        echo "\" />
+                <link rel=\"stylesheet\" href=\"";
         // line 29
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/custom.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\" type=\"text/css\">
-\t
-\t<style type=\"text/css\">
-\t\t.main-text
-\t\t{
-\t\t\tposition: absolute;
-\t\t\ttop: 50px;
-\t\t\twidth: 96.66666666666666%;
-\t\t\tcolor: #FFF;
-\t\t}
-\t\t.btn-min-block
-\t\t{
-\t\t\tmin-width: 170px;
-\t\t\tline-height: 26px;
-\t\t}
-\t\t.btn-clear
-\t\t{
-\t\t\tcolor: #FFF;
-\t\t\tbackground-color: transparent;
-\t\t\tborder-color: #FFF;
-\t\t\tmargin-right: 15px;
-\t\t}
-\t\t.btn-clear:hover
-\t\t{
-\t\t\tcolor: #000;
-\t\t\tbackground-color: #FFF;
-\t\t}
-\t</style>
-\t
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>
-        <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>
-    <![endif]-->
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/bootstrap-multiselect.css"), "html", null, true);
+        echo "\" />
+                <link rel=\"stylesheet\" href=\"";
+        // line 30
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/select2.css"), "html", null, true);
+        echo "\" />
+                
+                <!--[if lte IE 9]>
+\t\t\t<link rel=\"stylesheet\" href=\"../assets/css/ace-part2.css\" class=\"ace-main-stylesheet\" />
+\t\t<![endif]-->
 
+\t\t<!--[if lte IE 9]>
+\t\t  <link rel=\"stylesheet\" href=\"../assets/css/ace-ie.css\" />
+\t\t<![endif]-->
+
+\t\t<!-- inline styles related to this page -->
+                <style type=\"text/css\">
+                a:hover {
+                    cursor:pointer;
+                }
+                </style>
+\t\t<!-- ace settings handler -->
+                <script src=\"";
+        // line 47
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/ace/ace-extra.js"), "html", null, true);
+        echo "\"></script>
+\t\t<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+\t\t<!--[if lte IE 8]>
+\t\t<script src=\"../assets/js/html5shiv.js\"></script>
+\t\t<script src=\"../assets/js/respond.js\"></script>
+\t\t<![endif]-->
 </head>";
     }
 
@@ -113,6 +138,6 @@ class __TwigTemplate_439bbdededba1ddd1507c14784e98f1720b2d1dc2dbd8f164cb0d72339e
 
     public function getDebugInfo()
     {
-        return array (  64 => 29,  59 => 27,  53 => 24,  47 => 21,  41 => 18,  32 => 12,  19 => 1,);
+        return array (  118 => 47,  98 => 30,  94 => 29,  90 => 28,  85 => 26,  81 => 25,  77 => 24,  73 => 23,  69 => 22,  65 => 21,  61 => 20,  55 => 17,  50 => 15,  46 => 14,  42 => 13,  38 => 12,  34 => 11,  30 => 10,  19 => 1,);
     }
 }
