@@ -1,3 +1,7 @@
+home_homepage:
+    path:     /
+    defaults: { _controller: LoginLoginBundle:Default:home }
+    
 login_login_homepage:
     path:     /signin
     defaults: { _controller: LoginLoginBundle:Default:index }
@@ -5,6 +9,10 @@ login_login_homepage:
 login_login_signup:
     path:     /signup
     defaults: { _controller: LoginLoginBundle:Default:signup }
+    
+login_login_signupV2:
+    path:     /signupV2
+    defaults: { _controller: LoginLoginBundle:Default:signupV2 }
     
 login_login_uservalidateajax:
     path:     /uservalidateajax

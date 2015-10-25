@@ -9,6 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Login\LoginBundle\Modals\Login;
 class DefaultController extends Controller
 {
+    public function homeAction(Request $request)
+    {
+        return $this->render('LoginLoginBundle:Default:landing.html.twig');
+    }
+    
     public function indexAction(Request $request)
     {
         if ($request->getMethod() == 'POST') {
@@ -106,6 +111,10 @@ class DefaultController extends Controller
            
         }
         return $this->render('LoginLoginBundle:Default:signIn.html.twig');
+    }
+    
+    public function signupV2Action(Request $request) {
+        return $this->render('LoginLoginBundle:Default:signup.html.twig');
     }
     
     public function uservalidateajaxAction(Request $request){

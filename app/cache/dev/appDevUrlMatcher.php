@@ -128,6 +128,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/hel')) {
+            // web_homepage
+            if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'web_homepage')), array (  '_controller' => 'webBundle\\Controller\\DefaultController::indexAction',));
+            }
+
             // help_homepage
             if ($pathinfo === '/help') {
                 return array (  '_controller' => 'HelpBundle\\Controller\\DefaultController::indexAction',  '_route' => 'help_homepage',);
@@ -482,15 +487,32 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_filteredopportunities')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::filteredopportunitiesAction',));
         }
 
+        // home_homepage
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'home_homepage');
+            }
+
+            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::homeAction',  '_route' => 'home_homepage',);
+        }
+
         if (0 === strpos($pathinfo, '/sign')) {
             // login_login_homepage
             if ($pathinfo === '/signin') {
                 return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => 'login_login_homepage',);
             }
 
-            // login_login_signup
-            if ($pathinfo === '/signup') {
-                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupAction',  '_route' => 'login_login_signup',);
+            if (0 === strpos($pathinfo, '/signup')) {
+                // login_login_signup
+                if ($pathinfo === '/signup') {
+                    return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupAction',  '_route' => 'login_login_signup',);
+                }
+
+                // login_login_signupV2
+                if ($pathinfo === '/signupV2') {
+                    return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupV2Action',  '_route' => 'login_login_signupV2',);
+                }
+
             }
 
         }
@@ -598,15 +620,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::saveconfigAction',  '_route' => 'login_login_saveconfig',);
             }
 
-        }
-
-        // homepage
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'homepage');
-            }
-
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
         // _welcome
