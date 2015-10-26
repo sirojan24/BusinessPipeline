@@ -496,23 +496,33 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::homeAction',  '_route' => 'home_homepage',);
         }
 
-        if (0 === strpos($pathinfo, '/sign')) {
+        if (0 === strpos($pathinfo, '/signin')) {
             // login_login_homepage
             if ($pathinfo === '/signin') {
                 return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => 'login_login_homepage',);
             }
 
-            if (0 === strpos($pathinfo, '/signup')) {
-                // login_login_signup
-                if ($pathinfo === '/signup') {
-                    return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupAction',  '_route' => 'login_login_signup',);
-                }
+            // login_login_signin
+            if ($pathinfo === '/signinV2') {
+                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signinAction',  '_route' => 'login_login_signin',);
+            }
 
-                // login_login_signupV2
-                if ($pathinfo === '/signupV2') {
-                    return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupV2Action',  '_route' => 'login_login_signupV2',);
-                }
+        }
 
+        // login_login_forgetPassword
+        if ($pathinfo === '/password') {
+            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::forgetPasswordAction',  '_route' => 'login_login_forgetPassword',);
+        }
+
+        if (0 === strpos($pathinfo, '/signup')) {
+            // login_login_signup
+            if ($pathinfo === '/signup') {
+                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupAction',  '_route' => 'login_login_signup',);
+            }
+
+            // login_login_signupV2
+            if ($pathinfo === '/signupV2') {
+                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DefaultController::signupV2Action',  '_route' => 'login_login_signupV2',);
             }
 
         }

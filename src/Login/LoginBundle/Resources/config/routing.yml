@@ -5,6 +5,14 @@ home_homepage:
 login_login_homepage:
     path:     /signin
     defaults: { _controller: LoginLoginBundle:Default:index }
+    
+login_login_signin:
+    path:     /signinV2
+    defaults: { _controller: LoginLoginBundle:Default:signin }
+
+login_login_forgetPassword:
+    path:     /password
+    defaults: { _controller: LoginLoginBundle:Default:forgetPassword }
 
 login_login_signup:
     path:     /signup

@@ -40,7 +40,10 @@ class __TwigTemplate_90655fe42f3f2eb9544e871c7245cacbe2c65bd1d6f682c751f20c61445
 \t\t\t\t\t\t<a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Pricing\"><i class=\"fa fa-usd\"></i></a>
 \t\t\t\t\t</li>
 \t\t\t\t\t<li>
-\t\t\t\t\t\t<a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Login\"><i class=\"fa fa-sign-in\"></i></a>
+\t\t\t\t\t\t<a href=\"";
+        // line 25
+        echo $this->env->getExtension('routing')->getPath("login_login_signin");
+        echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Login\"><i class=\"fa fa-sign-in\"></i></a>
 \t\t\t\t\t</li>
 \t\t\t\t\t<li>
 \t\t\t\t\t\t<a href=\"";
@@ -69,6 +72,6 @@ class __TwigTemplate_90655fe42f3f2eb9544e871c7245cacbe2c65bd1d6f682c751f20c61445
 
     public function getDebugInfo()
     {
-        return array (  48 => 28,  19 => 1,);
+        return array (  51 => 28,  45 => 25,  19 => 1,);
     }
 }

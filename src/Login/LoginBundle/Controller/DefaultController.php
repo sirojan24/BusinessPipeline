@@ -14,6 +14,11 @@ class DefaultController extends Controller
         return $this->render('LoginLoginBundle:Default:landing.html.twig');
     }
     
+    public function signinAction(Request $request)
+    {
+        return $this->render('LoginLoginBundle:Default:signinV2.html.twig');
+    }
+    
     public function indexAction(Request $request)
     {
         if ($request->getMethod() == 'POST') {
@@ -54,6 +59,11 @@ class DefaultController extends Controller
 			return $this->render('LoginLoginBundle:Default:signIn.html.twig');
 			
 		} 
+    }
+    
+    public function forgetPasswordAction(Request $request)
+    {
+        return $this->render('LoginLoginBundle:Default:forgetPassword.html.twig');
     }
     
     public function signupAction(Request $request) {
