@@ -51,18 +51,18 @@ class __TwigTemplate_291a6e2a33c967fd29e144eb820c4140b58d59958f98450047dd1e5f7e1
 \t\t\t\t\t</div>
                                         <div class=\"text-center\">
                                             <div class=\"form-group\">
-                                                <label for=\"forgetPassword\">
+                                                
                                                     <a href=\"";
         // line 37
         echo $this->env->getExtension('routing')->getPath("login_login_forgetPassword");
-        echo "\"><small>Forgot Password?</small></a>
-                                                </label>
-                                                <label for=\"forgetPassword\">
-                                                    <small>Don't you have an account yet? <a href=\"";
+        echo "\">Forgot Password?</a>
+                                                
+                                                    <br>
+                                                    Don't you have an account yet? <a href=\"";
         // line 40
         echo $this->env->getExtension('routing')->getPath("login_login_signupV2");
-        echo "\">Sign Up</a></small>
-                                                </label>
+        echo "\">Sign Up</a>
+                                                
                                             </div>
 \t\t\t\t\t</div>
                                 </form>

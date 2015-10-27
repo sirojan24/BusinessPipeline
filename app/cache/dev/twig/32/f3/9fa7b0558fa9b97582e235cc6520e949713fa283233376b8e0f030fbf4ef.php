@@ -63,7 +63,10 @@ class __TwigTemplate_32f39fa7b0558fa9b97582e235cc6520e949713fa283233376b8e0f030f
         // line 29
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/custom.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
-\t
+    <link href=\"";
+        // line 30
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/css/scrolling-nav.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\">
 \t<style type=\"text/css\">
 \t\t.main-text
 \t\t{
@@ -113,6 +116,6 @@ class __TwigTemplate_32f39fa7b0558fa9b97582e235cc6520e949713fa283233376b8e0f030f
 
     public function getDebugInfo()
     {
-        return array (  64 => 29,  59 => 27,  53 => 24,  47 => 21,  41 => 18,  32 => 12,  19 => 1,);
+        return array (  68 => 30,  64 => 29,  59 => 27,  53 => 24,  47 => 21,  41 => 18,  32 => 12,  19 => 1,);
     }
 }

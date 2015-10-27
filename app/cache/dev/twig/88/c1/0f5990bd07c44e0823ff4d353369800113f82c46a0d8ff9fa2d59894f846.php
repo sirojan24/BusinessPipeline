@@ -23,25 +23,23 @@ class __TwigTemplate_88c10f5990bd07c44e0823ff4d353369800113f82c46a0d8ff9fa2d5989
         // line 4
         $this->env->loadTemplate("LoginLoginBundle:Default:head_v2.html.twig")->display($context);
         echo "\t\t
-
+                
 <body>
-
-    <div id=\"wrapper\">
-
+    
+    
         <!-- Navigation -->
 \t";
-        // line 11
+        // line 10
         $this->env->loadTemplate("LoginLoginBundle:Default:navigation.html.twig")->display($context);
-        // line 12
+        // line 11
         echo "\t\t<!-- Second Menu -->\t\t
 \t";
-        // line 13
+        // line 12
         $this->env->loadTemplate("LoginLoginBundle:Default:secondmenu.html.twig")->display($context);
-        // line 14
+        // line 13
         echo "
-        <!-- Page Wrapper -->
-        <div id=\"page-wrapper\">
-            <div class=\"container-fluid\">
+    <section id=\"intro\" class=\"intro-section\">
+        <div id=\"cont\" class=\"container-fluid\">
                 <div class=\"row\">
                     <div class=\"col-md-4\">
                     </div>
@@ -57,13 +55,11 @@ class __TwigTemplate_88c10f5990bd07c44e0823ff4d353369800113f82c46a0d8ff9fa2d5989
                     <div class=\"col-md-4\">
                     </div>
                     <div class=\"col-md-4\">
-\t\t\t\t\t\t
-                            ";
-        // line 34
+                        ";
+        // line 31
         $this->env->loadTemplate("LoginLoginBundle:Default:signinform.html.twig")->display($context);
-        // line 35
-        echo "\t\t\t\t\t\t\t
-\t\t\t\t\t\t<!-- /.panel-default -->
+        // line 32
+        echo "                        <!-- /.panel-default -->
                     </div>
                     <div class=\"col-md-4\">
                     </div>
@@ -72,38 +68,50 @@ class __TwigTemplate_88c10f5990bd07c44e0823ff4d353369800113f82c46a0d8ff9fa2d5989
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-        </div>
-\t\t
-        <!-- /#page-wrapper -->
-\t\t
-\t";
-        // line 49
-        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 50
-        echo "
+    </section>
+        <!-- Page Wrapper -->
+    \t\t
+    <div class=\"container-fluid hidden-lg hidden-md\">
+            <div class=\"row\">
+                    <div class=\"col-lg-12\" style=\"height: 200px;z-index: -1;\">
+                        
+                    </div>
+            </div>
     </div>
-    <!-- /#wrapper -->
+        
+        <!-- /#page-wrapper -->
+    <section id=\"about\" class=\"about-section\">
+            <div class=\"container-fluid\">
+                <div class=\"row\">
+                    <div class=\"col-lg-12\" style=\"padding-left: 0;padding-right: 0\">
+                        ";
+        // line 57
+        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
+        // line 58
+        echo "                    </div>
+                </div>
+            </div>
+    </section>
 
     ";
-        // line 54
+        // line 63
         $this->env->loadTemplate("LoginLoginBundle:Default:scripts.html.twig")->display($context);
-        // line 55
-        echo "\t\t<script src=\"";
+        // line 64
+        echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
-\t\t<script src=\"";
-        // line 56
+    <script src=\"";
+        // line 65
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
-\t\t<script src=\"";
-        // line 57
+    <script src=\"";
+        // line 66
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
-\t\t<script src=\"";
-        // line 58
+    <script src=\"";
+        // line 67
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
-\t\t
 </body>
 
 </html>";
@@ -121,6 +129,6 @@ class __TwigTemplate_88c10f5990bd07c44e0823ff4d353369800113f82c46a0d8ff9fa2d5989
 
     public function getDebugInfo()
     {
-        return array (  104 => 58,  100 => 57,  96 => 56,  91 => 55,  89 => 54,  83 => 50,  81 => 49,  65 => 35,  63 => 34,  41 => 14,  39 => 13,  36 => 12,  34 => 11,  24 => 4,  19 => 1,);
+        return array (  113 => 67,  109 => 66,  105 => 65,  100 => 64,  98 => 63,  91 => 58,  89 => 57,  62 => 32,  60 => 31,  40 => 13,  38 => 12,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

@@ -23,10 +23,10 @@ class __TwigTemplate_ddf7b9a252128b5536787be0336458fe46ae390ad7b1ae5ea9eaae9681f
                                         <div class=\"row\">
 \t\t\t\t\t\t<div>\t\t\t\t
 \t\t\t\t\t\t\t<div class=\"form-group\">
-\t\t\t\t\t\t\t\t<label class='text-justify'>
-                                                                <small>Please provide your email address and we'll send you instructions 
-                                                                on how to change your password</small>
-                                                                </label>
+\t\t\t\t\t\t\t\t
+                                                                Please provide your email address and we'll send you instructions 
+                                                                on how to change your password
+                                                                
                                                         </div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
@@ -45,18 +45,18 @@ class __TwigTemplate_ddf7b9a252128b5536787be0336458fe46ae390ad7b1ae5ea9eaae9681f
 \t\t\t\t\t</div>
                                         <div class=\"text-center\">
                                             <div class=\"form-group\">
-                                                <label for=\"forgetPassword\">
-                                                    <small>Back to <a href=\"";
+                                                
+                                                    Back to <a href=\"";
         // line 31
         echo $this->env->getExtension('routing')->getPath("login_login_signin");
-        echo "\">log in</a></small>
-                                                </label><br>
-                                                <label for=\"forgetPassword\">
-                                                    <small>Don't you have an account yet? <a href=\"";
+        echo "\">log in</a>
+                                                <br>
+                                                
+                                                Don't you have an account yet? <a href=\"";
         // line 34
         echo $this->env->getExtension('routing')->getPath("login_login_signupV2");
-        echo "\">Sign Up</a></small>
-                                                </label>
+        echo "\">Sign Up</a>
+                                                
                                             </div>
 \t\t\t\t\t</div>
                                 </form>

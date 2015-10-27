@@ -2,19 +2,17 @@
 <html lang="en">
 
 		{% include 'LoginLoginBundle:Default:head_v2.html.twig' %}		
-
+                
 <body>
-
-    <div id="wrapper">
-
+    
+    
         <!-- Navigation -->
 	{% include 'LoginLoginBundle:Default:navigation.html.twig' %}
 		<!-- Second Menu -->		
 	{% include 'LoginLoginBundle:Default:secondmenu.html.twig' %}
 
-        <!-- Page Wrapper -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
+    <section id="intro" class="intro-section">
+        <div id="cont" class="container-fluid">
                 <div class="row">
                     <div class="col-md-4">
                     </div>
@@ -30,10 +28,8 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4">
-						
-                            {% include 'LoginLoginBundle:Default:signinform.html.twig' %}
-							
-						<!-- /.panel-default -->
+                        {% include 'LoginLoginBundle:Default:signinform.html.twig' %}
+                        <!-- /.panel-default -->
                     </div>
                     <div class="col-md-4">
                     </div>
@@ -42,21 +38,33 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-        </div>
-		
-        <!-- /#page-wrapper -->
-		
-	{% include 'LoginLoginBundle:Default:footer_v2.html.twig' %}
-
+    </section>
+        <!-- Page Wrapper -->
+    		
+    <div class="container-fluid hidden-lg hidden-md">
+            <div class="row">
+                    <div class="col-lg-12" style="height: 200px;z-index: -1;">
+                        
+                    </div>
+            </div>
     </div>
-    <!-- /#wrapper -->
+        
+        <!-- /#page-wrapper -->
+    <section id="about" class="about-section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12" style="padding-left: 0;padding-right: 0">
+                        {% include 'LoginLoginBundle:Default:footer_v2.html.twig' %}
+                    </div>
+                </div>
+            </div>
+    </section>
 
     {% include 'LoginLoginBundle:Default:scripts.html.twig' %}
-		<script src="{{asset('bundles_v2.0/dist/js/sb-admin-2.js')}}"></script>
-		<script src="{{asset('bundles_v2.0/bower_components/raphael/raphael-min.js')}}"></script>
-		<script src="{{asset('bundles_v2.0/bower_components/morrisjs/morris.js')}}"></script>
-		<script src="{{asset('bundles_v2.0/js/morris-data.js')}}"></script>
-		
+    <script src="{{asset('bundles_v2.0/dist/js/sb-admin-2.js')}}"></script>
+    <script src="{{asset('bundles_v2.0/bower_components/raphael/raphael-min.js')}}"></script>
+    <script src="{{asset('bundles_v2.0/bower_components/morrisjs/morris.js')}}"></script>
+    <script src="{{asset('bundles_v2.0/js/morris-data.js')}}"></script>
 </body>
 
 </html>
