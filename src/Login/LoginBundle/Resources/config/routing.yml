@@ -22,6 +22,14 @@ login_login_signupV2:
     path:     /signupV2
     defaults: { _controller: LoginLoginBundle:Default:signupV2 }
     
+login_login_termsofService:
+    path:     /termsofService
+    defaults: { _controller: LoginLoginBundle:Default:termsofService }
+   
+login_login_privacy:
+    path:     /privacy
+    defaults: { _controller: LoginLoginBundle:Default:privacy }
+    
 login_login_uservalidateajax:
     path:     /uservalidateajax
     defaults: { _controller: LoginLoginBundle:Default:uservalidateajax }
