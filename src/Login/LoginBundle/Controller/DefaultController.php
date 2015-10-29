@@ -221,5 +221,13 @@ class DefaultController extends Controller
         return $this->render('LoginLoginBundle:Default:signIn.html.twig');
         
     }
+    
+    public function termsofServiceAction(Request $request){
+        return $this->render('LoginLoginBundle:Default:termsofService.html.twig');
+    }
+    
+    public function privacyAction(Request $request){
+         return $this->render('LoginLoginBundle:Default:privacy.html.twig');
+    }
 
 }
