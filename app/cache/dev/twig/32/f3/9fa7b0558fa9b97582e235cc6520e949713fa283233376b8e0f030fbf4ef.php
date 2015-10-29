@@ -34,37 +34,42 @@ class __TwigTemplate_32f39fa7b0558fa9b97582e235cc6520e949713fa283233376b8e0f030f
 
     <!-- MetisMenu CSS -->
    <!-- <link href=\"../bower_components/metisMenu/dist/metisMenu.min.css\" rel=\"stylesheet\"> -->
+   
+    <link href=\"";
+        // line 17
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/jasny-bootstrap.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\">
 
     <!-- Timeline CSS -->
     <link href=\"";
-        // line 18
+        // line 20
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/timeline.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
 
     <!-- Custom CSS -->
     <link href=\"";
-        // line 21
+        // line 23
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/sb-admin-2.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
 
     <!-- Morris Charts CSS -->
     <link href=\"";
-        // line 24
+        // line 26
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
 
     <!-- Custom Fonts -->
     <link href=\"";
-        // line 27
+        // line 29
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/font-awesome/css/font-awesome.min.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
 \t<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link href=\"";
-        // line 29
+        // line 31
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/custom.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
     <link href=\"";
-        // line 30
+        // line 32
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/css/scrolling-nav.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
 \t<style type=\"text/css\">
@@ -116,6 +121,6 @@ class __TwigTemplate_32f39fa7b0558fa9b97582e235cc6520e949713fa283233376b8e0f030f
 
     public function getDebugInfo()
     {
-        return array (  68 => 30,  64 => 29,  59 => 27,  53 => 24,  47 => 21,  41 => 18,  32 => 12,  19 => 1,);
+        return array (  73 => 32,  69 => 31,  64 => 29,  58 => 26,  52 => 23,  46 => 20,  40 => 17,  32 => 12,  19 => 1,);
     }
 }

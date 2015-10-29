@@ -33,7 +33,9 @@ class __TwigTemplate_6e652c8594b6728b34c4c79efc648092c350aa92343fdcdaeb5681205be
         // line 11
         $this->env->loadTemplate("AppBundle:Default:navigation.html.twig")->display($context);
         // line 12
-        echo "
+        echo "            
+            
+
             <div class=\"alert alert-success alert-dismissable\" id=\"successmsg\" style=\"display: none\">
                 <button type=\"button\" class=\"close bigger-200\" data-dismiss=\"alert\" aria-hidden=\"true\">
                     &times;
@@ -54,7 +56,7 @@ class __TwigTemplate_6e652c8594b6728b34c4c79efc648092c350aa92343fdcdaeb5681205be
             </div>
 
             <!-- Page Content -->\t\t
-            <div id=\"page-wrapper\">
+            <div id=\"page-wrapper\" class=\"no-padding\">
                 <div class=\"container-fluid\">
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
@@ -68,9 +70,9 @@ class __TwigTemplate_6e652c8594b6728b34c4c79efc648092c350aa92343fdcdaeb5681205be
                         <div class=\"col-xs-10\" style=\"float: none; margin-left: auto;margin-right: auto;\">
 
                             <form action=\"";
-        // line 46
+        // line 48
         echo $this->env->getExtension('routing')->getPath("login_login_upload");
-        echo "\" class=\"dropzone\" id=\"dropzone\">
+        echo "\" method = \"POST\" class=\"dropzone\" id=\"dropzone\">
                                 <div class=\"fallback\">
                                     <input name=\"file\" type=\"file\" multiple=\"\" />
                                 </div>
@@ -81,30 +83,30 @@ class __TwigTemplate_6e652c8594b6728b34c4c79efc648092c350aa92343fdcdaeb5681205be
             </div>
             <br><br><br>
             ";
-        // line 56
+        // line 58
         $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 57
+        // line 59
         echo "
         </div>
         <!-- /#wrapper -->
 
         ";
-        // line 61
+        // line 63
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 62
+        // line 64
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 63
+        // line 65
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 64
+        // line 66
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 65
+        // line 67
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -125,6 +127,6 @@ class __TwigTemplate_6e652c8594b6728b34c4c79efc648092c350aa92343fdcdaeb5681205be
 
     public function getDebugInfo()
     {
-        return array (  108 => 65,  104 => 64,  100 => 63,  95 => 62,  93 => 61,  87 => 57,  85 => 56,  72 => 46,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  110 => 67,  106 => 66,  102 => 65,  97 => 64,  95 => 63,  89 => 59,  87 => 58,  74 => 48,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }
