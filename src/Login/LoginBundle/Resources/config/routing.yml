@@ -105,7 +105,3 @@ login_login_selecteduseropportunities:
 login_login_saveconfig:
     path:     /saveconfig
     defaults: { _controller: LoginLoginBundle:Dashboard:saveconfig }
-    
-login_login_saveconfig_v2:
-    path:     /saveconfig_v2
-    defaults: { _controller: LoginLoginBundle:Dashboard:saveconfig_v2 }
