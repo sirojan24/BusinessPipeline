@@ -44,7 +44,7 @@ class DefaultController extends Controller
 
 
 
-                    return $this->render('ContactsContactsBundle:Default:snapshotContact.html.twig', array('name' => $user->getUsername(),'role' => $user->getRole(),'fullname'=>$fullname));
+                    return $this->render('LoginLoginBundle:Default:addusers_v2.html.twig', array('name' => $user->getUsername(),'role' => $user->getRole(),'fullname'=>$fullname));
                 }else{
                     return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Oh snap! You are not an active user'));
 		

@@ -1,0 +1,11 @@
+a279bc,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/,1446109964,
+676433,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/signinV2,1446109972,
+ddb606,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446109980,133434
+133434,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446109980,
+1bb936,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446110008,
+47fade,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446110134,
+84bad4,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446110430,
+f5eac3,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446111196,
+5ffc6a,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446111201,
+902946,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446111238,
+7a320d,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446111268,
