@@ -55,16 +55,21 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         // line 24
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
+    
+    <link href=\"";
+        // line 26
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/dropzone.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\">
 
     <!-- Custom Fonts -->
     <link href=\"";
-        // line 27
+        // line 29
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/font-awesome/css/font-awesome.min.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
 \t<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 \t
     <link href=\"";
-        // line 30
+        // line 32
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/custom.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
 
@@ -90,6 +95,6 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
 
     public function getDebugInfo()
     {
-        return array (  68 => 30,  62 => 27,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
+        return array (  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
     }
 }

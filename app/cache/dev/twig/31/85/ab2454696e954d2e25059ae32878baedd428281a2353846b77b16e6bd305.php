@@ -37,6 +37,11 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
     <script src=\"";
         // line 10
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/jasny-bootstrap.js"), "html", null, true);
+        echo "\"></script>
+    
+    <script src=\"";
+        // line 12
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/dropzone.js"), "html", null, true);
         echo "\"></script>";
     }
 
@@ -52,6 +57,6 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
 
     public function getDebugInfo()
     {
-        return array (  39 => 10,  34 => 8,  28 => 5,  22 => 2,  19 => 1,);
+        return array (  44 => 12,  39 => 10,  34 => 8,  28 => 5,  22 => 2,  19 => 1,);
     }
 }
