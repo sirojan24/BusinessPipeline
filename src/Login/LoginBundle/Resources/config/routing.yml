@@ -70,6 +70,10 @@ login_login_manageUsers:
     path:     /manageUsers
     defaults: { _controller: LoginLoginBundle:Dashboard:manageUsers }
     
+login_login_userTableData:
+    path:     /userTableData
+    defaults: { _controller: LoginLoginBundle:Dashboard:userTableData }
+    
 login_login_edituserpage:
     path:     /editsingleuser/{id}
     defaults: { _controller: LoginLoginBundle:Dashboard:editsingleuser }

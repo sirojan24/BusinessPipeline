@@ -16,15 +16,12 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<div id=\"toolbar\">
-    <button id=\"button\" class=\"btn btn-default\">append</button>
-</div>
+        echo "
 <div class=\"panel panel-default\">
     <div class=\"panel-body\">
         <div style=\"padding:25px\">
             <table id=\"table\"
                    data-toggle=\"table\"
-                   data-toolbar=\"#toolbar\"
                    data-height=\"460\"
                    data-detail-view=\"true\"
                    data-search=\"true\"
@@ -50,7 +47,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
                         <th data-field=\"won_deals\" data-sortable=\"true\" class=\"col-md-1\">Won Deals</th>
                         <th data-field=\"lost_deals\" data-sortable=\"true\" class=\"col-md-1\">Lost Deals</th>
                         <th data-field=\"user_status\" data-sortable=\"true\" class=\"col-md-1\">User Status</th>
-                        <th data-field=\"user_status\" data-sortable=\"true\" class=\"col-md-1\">User Level</th>
+                        <th data-field=\"user_level\" data-sortable=\"true\" class=\"col-md-1\">User Level</th>
                         <th data-field=\"action\" class=\"col-md-1\">Action</th>
                     </tr>
                 </thead>
@@ -60,7 +57,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
     </div>
 </div>
 ";
-        // line 44
+        // line 41
         $this->env->loadTemplate("LoginLoginBundle:Default:manageUserTableScript.html.twig")->display($context);
     }
 
@@ -76,6 +73,6 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
 
     public function getDebugInfo()
     {
-        return array (  64 => 44,  19 => 1,);
+        return array (  61 => 41,  19 => 1,);
     }
 }

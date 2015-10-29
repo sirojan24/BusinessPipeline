@@ -315,6 +315,59 @@ class DashboardController extends Controller{
         return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig');
     }
     
+    public function userTableDataAction(Request $request) {
+        
+        $token = $request->getSession()->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        
+        $admin = $repository->findOneBy(array('username' => $token->getUsername()));
+        $role = $token->getRole();
+        if($role == 'Admin' || $role == 'Regular'){
+            
+            $admin_companyName = $admin->getCompanyname();
+        
+            $users = $repository->findBy(array('companyname' => $admin_companyName,'status'=>'Active'));
+            foreach ($users as $user) {
+                $user = $this->revenueAndForecastCalculation($em,$user);
+               
+            }
+        }else if($role == 'Master Admin'){
+            $users = $repository->findAll();
+            foreach ($users as $user) {
+                $user = $this->revenueAndForecastCalculation($em,$user);
+            }
+        }
+        
+        
+        if($admin){
+             $fullname = $admin->getFirstname()." ".$admin->getLastname();
+             //echo json_encode($response);exit;
+             
+             $userArray = array();
+             //serialize user obects to array
+             foreach ($users as $tempUser) {
+                 $arrElement["firstname"] = $tempUser->getFirstname();
+                 $arrElement["lastname"] = $tempUser->getLastname();
+                 $arrElement["username"] = $tempUser->getUsername();
+                 $arrElement["id"] = $tempUser->getId();
+                 $arrElement["projectedRevenue"] = $tempUser->getProjectedrevenue();
+                 $arrElement["individualForecast"] = $tempUser->getIndividualforecast();
+                 $arrElement["status"] = $tempUser->getStatus();
+                 $arrElement["role"] = $tempUser->getRole();
+                 array_push($userArray, $arrElement);
+             }
+             
+             $response = array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $userArray,'fullname'=> $fullname,'manageview'=>$admin->getUserview());
+             //echo json_encode($response);exit;
+             return new Response(json_encode($response));
+             //return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
+        }else{
+            return new Response("error");
+             //return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
+    
     public function usersAction(Request $request){
       
         $token = $request->getSession()->get('token');

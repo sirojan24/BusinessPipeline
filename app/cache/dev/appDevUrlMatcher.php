@@ -595,6 +595,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::manageUsersAction',  '_route' => 'login_login_manageUsers',);
         }
 
+        // login_login_userTableData
+        if ($pathinfo === '/userTableData') {
+            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::userTableDataAction',  '_route' => 'login_login_userTableData',);
+        }
+
         // login_login_edituserpage
         if (0 === strpos($pathinfo, '/editsingleuser') && preg_match('#^/editsingleuser/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'login_login_edituserpage')), array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::editsingleuserAction',));
