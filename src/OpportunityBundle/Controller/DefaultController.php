@@ -554,6 +554,10 @@ class DefaultController extends Controller
         }
     }
     
+    public function manageopportunityV2Action(Request $request){
+        return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig');
+    }
+    
     public function updateopportunityAction(Request $request){
         
         $token = $request->getSession()->get('token');
