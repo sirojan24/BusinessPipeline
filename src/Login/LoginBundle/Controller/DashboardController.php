@@ -311,6 +311,10 @@ class DashboardController extends Controller{
         
     }
     
+    public function manageUsersAction(Request $request){
+        return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig');
+    }
+    
     public function usersAction(Request $request){
       
         $token = $request->getSession()->get('token');

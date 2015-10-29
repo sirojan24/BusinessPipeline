@@ -66,6 +66,10 @@ login_login_users:
     path:     /users
     defaults: { _controller: LoginLoginBundle:Dashboard:users }
     
+login_login_manageUsers:
+    path:     /manageUsers
+    defaults: { _controller: LoginLoginBundle:Dashboard:manageUsers }
+    
 login_login_edituserpage:
     path:     /editsingleuser/{id}
     defaults: { _controller: LoginLoginBundle:Dashboard:editsingleuser }
