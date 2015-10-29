@@ -80,6 +80,28 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>
     <![endif]-->
 
+    <script src=\"";
+        // line 41
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/jquery.js"), "html", null, true);
+        echo "\"></script>
+    
+    <!-- Table -->
+    <link rel=\"stylesheet\" href=\"";
+        // line 44
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/table-customization.css"), "html", null, true);
+        echo "\">
+    <link rel=\"stylesheet\" href=\"";
+        // line 45
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/src/bootstrap-table.css"), "html", null, true);
+        echo "\">
+    <script src=\"";
+        // line 46
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/src/bootstrap-table.js"), "html", null, true);
+        echo "\"></script>
+    <script src=\"";
+        // line 47
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/ga.js"), "html", null, true);
+        echo "\"></script>
 </head>";
     }
 
@@ -95,6 +117,6 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
 
     public function getDebugInfo()
     {
-        return array (  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
+        return array (  103 => 47,  99 => 46,  95 => 45,  91 => 44,  85 => 41,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
     }
 }

@@ -2,12 +2,12 @@
 <html lang="en">
 
     {% include 'AppBundle:Default:head.html.twig' %}
-
+    
 <body>
 
     <div id="wrapper">
 
-                <!-- Navigation -->
+        <!-- Navigation -->
 	{% include 'AppBundle:Default:navigation.html.twig' %}
 		
 
@@ -17,6 +17,12 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class = "page-header">Manage Users</h1>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            {% include 'LoginLoginBundle:Default:manageUsersTable.html.twig' %}
                         </div>
                     </div>
                 </div>

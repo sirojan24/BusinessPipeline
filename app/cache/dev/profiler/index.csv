@@ -50,3 +50,5 @@ a0bf33,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/upload,14461193
 e05392,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/upload,1446119375,2dd2e0
 2dd2e0,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/upload,1446119375,
 998d47,::1,POST,http://localhost/BusinessPipeline/web/app_dev.php/signin,1446120148,
+b698a8,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/manageUsers,1446125681,
+68a2c8,::1,GET,http://localhost/BusinessPipeline/web/app_dev.php/manageUsers,1446125720,
