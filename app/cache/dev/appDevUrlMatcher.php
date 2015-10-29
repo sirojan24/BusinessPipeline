@@ -643,17 +643,9 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'login_login_selecteduseropportunities')), array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::selecteduseropportunitiesAction',));
             }
 
-            if (0 === strpos($pathinfo, '/saveconfig')) {
-                // login_login_saveconfig
-                if ($pathinfo === '/saveconfig') {
-                    return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::saveconfigAction',  '_route' => 'login_login_saveconfig',);
-                }
-
-                // login_login_saveconfig_v2
-                if ($pathinfo === '/saveconfig_v2') {
-                    return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::saveconfig_v2Action',  '_route' => 'login_login_saveconfig_v2',);
-                }
-
+            // login_login_saveconfig
+            if ($pathinfo === '/saveconfig') {
+                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::saveconfigAction',  '_route' => 'login_login_saveconfig',);
             }
 
         }
