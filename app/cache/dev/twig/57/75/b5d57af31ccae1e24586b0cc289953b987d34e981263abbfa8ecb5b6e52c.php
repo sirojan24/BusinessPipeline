@@ -17,12 +17,14 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
     {
         // line 1
         echo "<script>
+    var \$table = \$('#table');
+
     \$( document ).ready(function() {
         \$table.bootstrapTable('showLoading');
     });
     
     \$.post('";
-        // line 6
+        // line 8
         echo $this->env->getExtension('routing')->getPath("login_login_userTableData");
         echo "', null,
             function (response) {
@@ -35,20 +37,6 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
             }
     );
 
-
-    var \$table = \$('#table'),
-            \$button = \$('#button'),
-            \$button2 = \$('#button2');
-
-    \$(function () {
-        \$button.click(function () {
-            \$table.bootstrapTable('expandRow', 1);
-        });
-        \$button2.click(function () {
-            \$table.bootstrapTable('collapseRow', 1);
-        });
-    });
-
     function detailFormatter(index, row) {
         var html = [];
         html.push('<div class\"row\"><div class=\"col-md-4\">ffff</div><div class=\"col-md-4\">ffffds</div></div>');
@@ -58,16 +46,6 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
         });
         return html.join('');
     }
-
-    var \$table = \$('#table'),
-            \$button = \$('#button');
-
-    \$(function () {
-        \$button.click(function () {
-            \$table.bootstrapTable('append', randomData());
-            \$table.bootstrapTable('scrollTo', 'bottom');
-        });
-    });
 
     function convertData(response) {
         var jsonString = JSON.parse(response);
@@ -91,10 +69,10 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
                 action: '<div class=\"keep-open btn-group\">' +
                         '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                         '<i class=\"glyphicon glyphicon-chevron-down\"></i></button>' +
-                        '<ul class=\"dropdown-menu\" role=\"menu\">' +
-                        '<li><a href=\"#\">Edit</a></li>' +
-                        '<li><a href=\"#\">Notes</a></li>' +
-                        '<li><a href=\"#\">Tasks</a></li>' +
+                        '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
+                        '<li><a href=\"#\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
+                        '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                        '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                         '</ul>' +
                         '</div>'
 
@@ -102,6 +80,7 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
         }
         return rows;
     }
+    
     function priceSorter(a, b) {
         a = +a.substring(1); // remove \$
         b = +b.substring(1);
@@ -112,6 +91,16 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
         return 0;
     }
 
+    function rowStyle(row, index) {
+        var classes = ['active'];
+
+        if (index % 2 === 0) {
+            return {
+                classes: classes[0]
+            };
+        }
+        return {};
+    }
 </script>";
     }
 
@@ -127,6 +116,6 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
 
     public function getDebugInfo()
     {
-        return array (  26 => 6,  19 => 1,);
+        return array (  28 => 8,  19 => 1,);
     }
 }
