@@ -18,7 +18,7 @@ class DashboardController extends Controller{
               $user = $repository->findOneBy(array('username' => $token->getUsername()));
               $fullname = $user->getFirstname()." ".$user->getLastname();
             
-             return $this->render('LoginLoginBundle:Default:addUsers.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'fullname'=> $fullname)); 
+             return $this->render('LoginLoginBundle:Default:addusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'fullname'=> $fullname)); 
         }else{
             
              return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

@@ -29,7 +29,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
                                data-toggle=\"table\"
                                data-detail-view=\"true\"
                                data-search=\"true\"
-                               data-classes=\"table table-no-bordered\"
+                               
                                data-page-size=\"25\"
                                data-pagination=\"true\"
                                data-show-columns=\"true\"
