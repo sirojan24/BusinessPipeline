@@ -1225,7 +1225,8 @@
             }
 
             $.each(pageList, function (i, page) {
-                if (!that.options.smartDisplay || i === 0 || pageList[i - 1] <= that.options.totalRows) {
+                //if (!that.options.smartDisplay || i === 0 || pageList[i - 1] <= that.options.totalRows){ //changed
+                if (!that.options.smartDisplay || i === 0 || true) {
                     var active;
                     if ($allSelected) {
                         active = page === that.options.formatAllRows() ? ' class="active"' : '';
@@ -1294,10 +1295,10 @@
             }
             if (this.options.smartDisplay) {
                 if (this.totalPages <= 1) {
-                    this.$pagination.find('div.pagination').hide();
+                    //this.$pagination.find('div.pagination').hide(); changed
                 }
                 if (pageList.length < 2 || this.options.totalRows <= pageList[0]) {
-                    this.$pagination.find('span.page-list').hide();
+                    //this.$pagination.find('span.page-list').hide(); changed
                 }
 
                 // when data is empty, hide the pagination
@@ -1612,6 +1613,7 @@
                 $tr.next().remove();
                 that.trigger('collapse-row', index, row);
             } else {
+                $table.bootstrapTable('collapseAllRows', false);
                 $this.find('i').attr('class', sprintf('%s %s', that.options.iconsPrefix, that.options.icons.detailClose));
                 $tr.after(sprintf('<tr class="detail-view"><td colspan="%s">%s</td></tr>',
                     $tr.find('td').length, calculateObjectValue(that.options,
