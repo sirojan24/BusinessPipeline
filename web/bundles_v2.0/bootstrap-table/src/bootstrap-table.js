@@ -238,7 +238,7 @@
     };
 
     BootstrapTable.DEFAULTS = {
-        classes: 'table table-hover',
+        classes: 'table',  //changed
         locale: undefined,
         height: undefined,
         undefinedText: '-',
@@ -1343,7 +1343,7 @@
         this.options.pageSize = $this.text().toUpperCase() === this.options.formatAllRows().toUpperCase() ?
             this.options.formatAllRows() : +$this.text();
         this.$toolbar.find('.page-size').text(this.options.pageSize);
-
+        storePageSize(this.options.pageSize); //changed
         this.updatePagination(event);
     };
 

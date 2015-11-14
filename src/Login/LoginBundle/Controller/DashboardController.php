@@ -347,6 +347,7 @@ class DashboardController extends Controller{
              $userArray = array();
              //serialize user obects to array
              foreach ($users as $tempUser) {
+                 
                  $arrElement["firstname"] = $tempUser->getFirstname();
                  $arrElement["lastname"] = $tempUser->getLastname();
                  $arrElement["username"] = $tempUser->getUsername();
@@ -355,6 +356,19 @@ class DashboardController extends Controller{
                  $arrElement["individualForecast"] = $tempUser->getIndividualforecast();
                  $arrElement["status"] = $tempUser->getStatus();
                  $arrElement["role"] = $tempUser->getRole();
+                 
+                 $arrElement["title"] = $tempUser->getJobtitle();
+                 $arrElement["company"] = $tempUser->getCompanyname();
+                 $arrElement["email"] = $tempUser->getEmail();
+                 $arrElement["telephone"] = $tempUser->getTelephoneoffice();
+                 $arrElement["cellphone"] = $tempUser->getTelephonemobile();
+                 $arrElement["originator"] = $tempUser->getCommissionoriginator();
+                 $arrElement["nonOriginator"] = $tempUser->getCommissionnonoriginator();
+                 $arrElement["drawAgainstCommission"] = $tempUser->getAnnualdraw();
+                 $arrElement["earningGoals"] = $tempUser->getEarninggoal();
+                 
+                 $arrElement["dob"] = $tempUser->getDob();
+                 
                  array_push($userArray, $arrElement);
              }
              

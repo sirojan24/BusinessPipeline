@@ -20,7 +20,27 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
 <div class=\"panel panel-default\">
     <div class=\"panel-body\">
         <div style=\"padding:25px\">
-
+            <div class=\"row\">
+                <div class=\"col-lg-12\">
+                    <div class=\"pull-right\">
+                        <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
+                            <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
+                        </span>
+                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                        </span>
+                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-text-o fa-lg\"></i></a>
+                        </span>
+                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
+                        </span>
+                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
 
             <div class=\"row\">
                 <div class=\"col-lg-12\">
@@ -29,7 +49,10 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
                                data-toggle=\"table\"
                                data-detail-view=\"true\"
                                data-search=\"true\"
-                               data-page-size=\"25\"
+                               data-page-size=\"";
+        // line 34
+        echo twig_escape_filter($this->env, (isset($context["manageview"]) ? $context["manageview"] : $this->getContext($context, "manageview")), "html", null, true);
+        echo "\"
                                data-page-list=\"[10,25,50]\"
                                data-pagination=\"true\"
                                data-show-columns=\"true\"
@@ -46,8 +69,6 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
                                     <th data-field=\"weighted_forecast\" data-sortable=\"true\">Weighted<br> Forecast</th>
                                     <th data-field=\"won_deals\" data-sortable=\"true\">Won<br> Deals</th>
                                     <th data-field=\"lost_deals\" data-sortable=\"true\">Lost<br> Deals</th>
-                                    <th data-field=\"user_status\" data-sortable=\"true\">User<br> Status</th>
-                                    <th data-field=\"user_level\" data-sortable=\"true\">User<br> Level</th>
                                     <th data-field=\"action\">Take Action</th>
                                 </tr>
                             </thead>
@@ -60,7 +81,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
     </div>
 </div>
 ";
-        // line 44
+        // line 62
         $this->env->loadTemplate("LoginLoginBundle:Default:manageUserTableScript.html.twig")->display($context);
     }
 
@@ -76,6 +97,6 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
 
     public function getDebugInfo()
     {
-        return array (  64 => 44,  19 => 1,);
+        return array (  85 => 62,  54 => 34,  19 => 1,);
     }
 }

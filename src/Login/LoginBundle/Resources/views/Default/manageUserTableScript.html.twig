@@ -1,34 +1,86 @@
 <script>
     var $table = $('#table');
+    var extendColData = [];
 
     $(document).ready(function () {
-        $table.bootstrapTable('showLoading');
+        fillTableData();
     });
 
-    $.post('{{path('login_login_userTableData')}}', null,
-            function (response) {
-                if (response) {
-                    $table.bootstrapTable('hideLoading');
-                    $table.bootstrapTable('append', convertData(response));
-                } else {
+    function refreshTable() {
+        $table.bootstrapTable('removeAll');
+        fillTableData();
+    }
 
+    function fillTableData() {
+        $table.bootstrapTable('showLoading');
+        $.post('{{path('login_login_userTableData')}}', null,
+                function (response) {
+                    if (response) {
+                        $table.bootstrapTable('hideLoading');
+                        $table.bootstrapTable('append', convertData(response));
+                    } else {
+
+                    }
                 }
+        );
+    }
+
+    function storePageSize(size) {
+        $.post('{{path('login_login_saveconfig')}}',
+                {name: 'userview', value: size},
+        function (response) {
+            if (response !== "false") {
+                
+            } else {
+                console.log("error occured in getting the manage view number in contacts", response);
             }
-    );
+        });
+    }
 
     function detailFormatter(index, row) {
+
+        var title = extendColData[index].title;
+        var company = extendColData[index].company;
+        var email = extendColData[index].email;
+        var telephone = extendColData[index].telephone;
+        var cellphone = extendColData[index].cellphone;
+
+        var originator = extendColData[index].originator;
+        var nonOriginator = extendColData[index].nonOriginator;
+        var earningGoals = extendColData[index].earningGoals;
+        var drawAgainstCommission = extendColData[index].drawAgainstCommission;
+        var dob = extendColData[index].dob;
+
         var html = [];
         html.push('<div class"row">' +
-                    '<div class="col-md-6">' + 
-                        'ffff' +
-                    '</div>' +
-                    '<div class="col-md-6">' +
-                        'ffffds' +
-                    '</div>' +
+                '<div class="col-xs-4">' +
+                '<table class="table" style="margin-left:42px; border: none !important;line-height: 5px;">' +
+                '<tr style="padding:0px;margin:0px;">' +
+                '<td style="border: none !important;line-height: 5px;width:30%"><small>Title</small></td>' +
+                '<td style="border: none !important;line-height: 5px;"><small>' + title + '</small></td>' +
+                '</tr>' +
+                '<tr style="padding:0px;margin:0px;">' +
+                '<td style="border: none !important;line-height: 5px;"><small>Company</small></td>' +
+                '<td style="border: none !important;line-height: 5px;"><small>' + company + '</small></td>' +
+                '</tr>' +
+                '<tr style="padding:0px;margin:0px;">' +
+                '<td style="border: none !important;line-height: 5px;"><small>Email</small></td>' +
+                '<td style="border: none !important;line-height: 5px;"><small>' + email + '</small></td>' +
+                '</tr>' +
+                '<tr style="padding:0px;margin:0px;">' +
+                '<td style="border: none !important;line-height: 5px;"><small>Telephone</small></td>' +
+                '<td style="border: none !important;line-height: 5px;"><small>' + telephone + '</small></td>' +
+                '</tr>' +
+                '<tr style="padding:0px;margin:0px;">' +
+                '<td style="border: none !important;line-height: 5px;"><small>Cell Phone</small></td>' +
+                '<td style="border: none !important;line-height: 5px;"><small>' + cellphone + '</small></td>' +
+                '</tr>' +
+                '</table>' +
+                '</div>' +
                 '</div>');
-        html.push('<div class"row">' + index + '</div>');
+        //html.push('<div class"row">' + index + '</div>');
         $.each(row, function (key, value) {
-            html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+            //html.push('<p><b>' + key + ':</b> ' + value + '</p>');
         });
         return html.join('');
     }
@@ -41,52 +93,67 @@
 
     {#for (var i = 0; i < jsonString.users.length; i++) {
         var tempUser = jsonString.users[i];#}
-                    for (var i = 0; i < jsonString.users.length; i++) {
-                        var tempUser = jsonString.users[i];
-                        rows.push({
-                            first_name: tempUser.firstname,
-                            last_name: tempUser.lastname,
-                            username: tempUser.username,
-                            open_deal: '0',
-                            projected_revenue: tempUser.projectedRevenue,
-                            weighted_forecast: tempUser.individualForecast,
-                            won_deals: '0',
-                            lost_deals: '0',
-                            user_status: tempUser.status,
-                            user_level: tempUser.role,
-                            action: '<div class="keep-open btn-group">' +
-                                    '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
-                                    '<i class="glyphicon glyphicon-chevron-down"></i></button>' +
-                                    '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                                    '<li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
-                                    '<li><a href="#"><i class="fa fa-file-o"></i> Notes</a></li>' +
-                                    '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
-                                    '</ul>' +
-                                    '</div>'
+                for (var i = 0; i < jsonString.users.length; i++) {
+                    var tempUser = jsonString.users[i];
 
-                        });
-                    }
-                    return rows;
+                    extendColData.push({
+                        title: tempUser.title,
+                        company: tempUser.company,
+                        email: tempUser.email,
+                        telephone: tempUser.telephone,
+                        cellphone: tempUser.cellphone,
+                        originator: tempUser.originator,
+                        nonOriginator: tempUser.nonOriginator,
+                        earningGoals: tempUser.nonOriginator,
+                        drawAgainstCommission: tempUser.drawAgainstCommission,
+                        dob: tempUser.dob
+                    });
+
+                    rows.push({
+                        first_name: tempUser.firstname,
+                        last_name: tempUser.lastname,
+                        username: tempUser.username,
+                        open_deal: '0',
+                        projected_revenue: tempUser.projectedRevenue,
+                        weighted_forecast: tempUser.individualForecast,
+                        won_deals: '0',
+                        lost_deals: '0',
+                        action: '<div>' +
+                                '<div class="keep-open btn-group">' +
+                                '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
+                                '<i class="glyphicon glyphicon-chevron-down"></i>' +
+                                '</button>' +
+                                '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
+                                '<li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
+                                '<li><a href="#"><i class="fa fa-file-o"></i> Notes</a></li>' +
+                                '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
+                                '</ul>' +
+                                '</div>' +
+                                '</div>'
+
+                    });
                 }
+                return rows;
+            }
 
-                function priceSorter(a, b) {
-                    a = +a.substring(1); // remove $
-                    b = +b.substring(1);
-                    if (a > b)
-                        return 1;
-                    if (a < b)
-                        return -1;
-                    return 0;
+            function priceSorter(a, b) {
+                a = +a.substring(1); // remove $
+                b = +b.substring(1);
+                if (a > b)
+                    return 1;
+                if (a < b)
+                    return -1;
+                return 0;
+            }
+
+            function rowStyle(row, index) {
+                var classes = ['active'];
+
+                if (index % 2 === 0) {
+                    return {
+                        classes: classes[0]
+                    };
                 }
-
-                function rowStyle(row, index) {
-                    var classes = ['active'];
-
-                    if (index % 2 === 0) {
-                        return {
-                            classes: classes[0]
-                        };
-                    }
-                    return {};
-                }
+                return {};
+            }
 </script>
