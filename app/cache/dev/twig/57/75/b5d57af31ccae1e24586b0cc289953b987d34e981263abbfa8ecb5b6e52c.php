@@ -39,7 +39,14 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
 
     function detailFormatter(index, row) {
         var html = [];
-        html.push('<div class\"row\"><div class=\"col-md-4\">ffff</div><div class=\"col-md-4\">ffffds</div></div>');
+        html.push('<div class\"row\">' +
+                    '<div class=\"col-md-6\">' + 
+                        'ffff' +
+                    '</div>' +
+                    '<div class=\"col-md-6\">' +
+                        'ffffds' +
+                    '</div>' +
+                '</div>');
         html.push('<div class\"row\">' + index + '</div>');
         \$.each(row, function (key, value) {
             html.push('<p><b>' + key + ':</b> ' + value + '</p>');
@@ -54,7 +61,7 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
                 rows = [];
 
     ";
-        // line 37
+        // line 44
         echo "                    for (var i = 0; i < jsonString.users.length; i++) {
                         var tempUser = jsonString.users[i];
                         rows.push({
@@ -67,7 +74,7 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
                             won_deals: '0',
                             lost_deals: '0',
                             user_status: tempUser.status,
-                            user_level: 'NA',
+                            user_level: tempUser.role,
                             action: '<div class=\"keep-open btn-group\">' +
                                     '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                                     '<i class=\"glyphicon glyphicon-chevron-down\"></i></button>' +
@@ -118,6 +125,6 @@ class __TwigTemplate_5775b5d57af31ccae1e24586b0cc289953b987d34e981263abbfa8ecb5b
 
     public function getDebugInfo()
     {
-        return array (  58 => 37,  28 => 8,  19 => 1,);
+        return array (  65 => 44,  28 => 8,  19 => 1,);
     }
 }

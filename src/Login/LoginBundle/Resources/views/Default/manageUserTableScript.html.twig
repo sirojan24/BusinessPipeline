@@ -18,7 +18,14 @@
 
     function detailFormatter(index, row) {
         var html = [];
-        html.push('<div class"row"><div class="col-md-4">ffff</div><div class="col-md-4">ffffds</div></div>');
+        html.push('<div class"row">' +
+                    '<div class="col-md-6">' + 
+                        'ffff' +
+                    '</div>' +
+                    '<div class="col-md-6">' +
+                        'ffffds' +
+                    '</div>' +
+                '</div>');
         html.push('<div class"row">' + index + '</div>');
         $.each(row, function (key, value) {
             html.push('<p><b>' + key + ':</b> ' + value + '</p>');
@@ -46,7 +53,7 @@
                             won_deals: '0',
                             lost_deals: '0',
                             user_status: tempUser.status,
-                            user_level: 'NA',
+                            user_level: tempUser.role,
                             action: '<div class="keep-open btn-group">' +
                                     '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
                                     '<i class="glyphicon glyphicon-chevron-down"></i></button>' +
