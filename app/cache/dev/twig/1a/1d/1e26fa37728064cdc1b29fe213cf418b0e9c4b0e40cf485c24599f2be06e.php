@@ -54,7 +54,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 {name: 'userview', value: size},
         function (response) {
             if (response !== \"false\") {
-                
+
             } else {
                 console.log(\"error occured in getting the manage view number in contacts\", response);
             }
@@ -152,7 +152,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         cellphone: tempUser.cellphone,
                         originator: tempUser.originator,
                         nonOriginator: tempUser.nonOriginator,
-                        earningGoals: tempUser.nonOriginator,
+                        earningGoals: tempUser.earningGoals,
                         drawAgainstCommission: tempUser.drawAgainstCommission,
                         dob: tempUser.dob
                     });
@@ -161,11 +161,11 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         first_name: tempUser.firstname,
                         last_name: tempUser.lastname,
                         username: tempUser.username,
-                        open_deal: '0',
+                        open_deal:  tempUser.openDeals,
                         projected_revenue: tempUser.projectedRevenue,
                         weighted_forecast: tempUser.individualForecast,
-                        won_deals: '0',
-                        lost_deals: '0',
+                        won_deals: tempUser.wonDeals,
+                        lost_deals: tempUser.lossDeals,
                         user_status: tempUser.status,
                         user_level: tempUser.role,
                         action: '<div class=\"keep-open btn-group\">' +

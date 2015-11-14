@@ -34,7 +34,7 @@ class DashboardController extends Controller{
               $user = $repository->findOneBy(array('username' => $token->getUsername()));
               $fullname = $user->getFirstname()." ".$user->getLastname();
             
-             return $this->render('LoginLoginBundle:Default:importUsers.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'fullname'=> $fullname)); 
+             return $this->render('LoginLoginBundle:Default:importusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'fullname'=> $fullname)); 
         }else{
             
              return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -193,6 +193,16 @@ class DashboardController extends Controller{
          $admin = $session->get('token');
         
         if($request->getMethod() == 'POST' && ($admin->getRole() == 'Admin' || $admin->getRole() == 'Master Admin')){
+            $profileimage = $request->files->get('profileimage');
+            
+            
+            if($profileimage!=null && $profileimage->isValid()){
+                $profilestore = $profileimage->move("bundles/loginlogin/images" , $request->get('username').".".split('/',$profileimage->getMimeType())[1]);
+                
+            }else{
+                $profilestore = '';
+            }
+            
             $username = $request->get('username');
             $firstname = $request->get('firstname');
             $lastname = $request->get('lastname');
@@ -262,6 +272,7 @@ class DashboardController extends Controller{
                 $user->setCompanysize($companysize);
                 $user->setPassword($password);
                 $user->setStatus($status);
+                $user->setImage($profilestore);
                 $fullname = $adminuser->getFirstname()." ".$adminuser->getLastname();
                 try{
                     $em->persist($user);
@@ -320,6 +331,7 @@ class DashboardController extends Controller{
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
+        $repository1 = $em->getRepository("OpportunityBundle:Opportunities");
         
         $admin = $repository->findOneBy(array('username' => $token->getUsername()));
         $role = $token->getRole();
@@ -329,6 +341,39 @@ class DashboardController extends Controller{
         
             $users = $repository->findBy(array('companyname' => $admin_companyName,'status'=>'Active'));
             foreach ($users as $user) {
+                $originOpportunities = $repository1->findBy(array('username' => $user->getUsername(),'status'=>'Active'));
+                $ownedOpportunityCount = count($originOpportunities);
+                $wonOpportunities = $repository1->findBy(array('username' => $user->getUsername(),'status'=>'Active','stage'=>'6'));
+                $wonOpportunityCount = count($wonOpportunities);
+                $lossOpportunities = $repository1->findBy(array('username' => $user->getUsername(),'status'=>'Active','stage'=>'7'));
+                $lossOpportunityCount = count($lossOpportunities);
+                $allOpprtunities = $repository1->findBy(array('status' => 'Active'));
+                $totalCount = 0;
+                $wonCount = 0;
+                $lossCount = 0;
+                foreach ($allOpprtunities as $opportunity) {
+                    $sharingString = $opportunity->getSharing();
+                    if($sharingString != ''){
+                        $splitedArray = split(':',$sharingString);
+                        foreach ($splitedArray as $sharedname){
+                            if(strtolower($user->getUsername()) == strtolower($sharedname) ){
+                                $totalCount++;
+                                if($opportunity->getStage() == '6'){
+                                   $wonCount++; 
+                                }
+                                if($opportunity->getStage() == '7'){
+                                   $lossCount++; 
+                                }
+                            }
+                        }
+                    }
+                }
+                $totalWonOpportunityCount =  intval($wonOpportunityCount) +  intval($wonCount);
+                $totalLossOpportunityCount = intval($lossOpportunityCount) + intval($lossCount);
+                $totalOpportunityCount = intval($ownedOpportunityCount) + intval($totalCount);
+                $user->setWondealcount($totalWonOpportunityCount);
+                $user->setLossdealcount($totalLossOpportunityCount);
+                $user->setOpendealcount($totalOpportunityCount - $totalWonOpportunityCount - $totalLossOpportunityCount);
                 $user = $this->revenueAndForecastCalculation($em,$user);
                
             }
@@ -338,6 +383,8 @@ class DashboardController extends Controller{
                 $user = $this->revenueAndForecastCalculation($em,$user);
             }
         }
+        
+       
         
         
         if($admin){
@@ -366,8 +413,11 @@ class DashboardController extends Controller{
                  $arrElement["nonOriginator"] = $tempUser->getCommissionnonoriginator();
                  $arrElement["drawAgainstCommission"] = $tempUser->getAnnualdraw();
                  $arrElement["earningGoals"] = $tempUser->getEarninggoal();
-                 
+                 $arrElement["openDeals"] = $tempUser->getOpendealcount();
+                 $arrElement["lossDeals"] = $tempUser->getLossdealcount();
+                 $arrElement["wonDeals"] = $tempUser->getWondealcount();
                  $arrElement["dob"] = $tempUser->getDob();
+                 
                  
                  array_push($userArray, $arrElement);
              }

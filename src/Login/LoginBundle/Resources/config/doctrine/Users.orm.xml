@@ -33,6 +33,7 @@
     <field name="linkedin" type="string" column="linkedin" length="50" nullable="true"/>  
     <field name="userview" type="integer" column="userview"  nullable="true"/>  
     <field name="contactview" type="integer" column="contactview" nullable="true"/>  
-    <field name="opportunityview" type="integer" column="opportunityview"  nullable="true"/>      
+    <field name="opportunityview" type="integer" column="opportunityview"  nullable="true"/>  
+    <field name="image" type="string" column="image"  nullable="true"/>      
   </entity>
 </doctrine-mapping>

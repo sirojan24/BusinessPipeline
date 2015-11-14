@@ -24,10 +24,16 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                 <div class=\"col-lg-12\">
                     <div class=\"pull-right\" style=\"padding-right: 40px;\">  
                         <span calss=\"pull-right\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-user-plus\"></i> Add Users</a>
+                            <a href=\"";
+        // line 9
+        echo $this->env->getExtension('routing')->getPath("login_login_adduser");
+        echo "\" style=\"color: black;\"><i class=\"fa fa-user-plus\"></i> Add Users</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-users\"></i> Import Users</a>
+                            <a href=\"";
+        // line 12
+        echo $this->env->getExtension('routing')->getPath("login_login_importuser");
+        echo "\" style=\"color: black;\"><i class=\"fa fa-users\"></i> Import Users</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
@@ -105,6 +111,6 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
 
     public function getDebugInfo()
     {
-        return array (  93 => 70,  60 => 40,  19 => 1,);
+        return array (  99 => 70,  66 => 40,  35 => 12,  29 => 9,  19 => 1,);
     }
 }

@@ -95,6 +95,50 @@ class Users
     
     private $contactview;
     
+    private $wondealcount;
+   
+    private $lossdealcount;
+    
+    private $opendealcount;
+    
+    private $image;
+    
+    public function getImage(){
+        return $this->image;
+    }
+    
+    public function setImage($image){
+        $this->image = $image;
+        return $this;
+    }
+    
+    public function getWondealcount(){
+        return $this->wondealcount;
+    }
+    
+    public function setWondealcount($count){
+        $this->wondealcount =$count;
+        return $this;
+    }
+    
+    public function getLossdealcount(){
+        return $this->lossdealcount;
+    }
+    
+    public function setLossdealcount($count){
+        $this->lossdealcount = $count;
+        return $this;
+    }
+
+    public function getOpendealcount(){
+        return $this->opendealcount;
+    }
+    
+    public function setOpendealcount($count){
+        $this->opendealcount = $count;
+        return $this;
+    }
+
     public function getUserview(){
         return $this->userview;
     }
