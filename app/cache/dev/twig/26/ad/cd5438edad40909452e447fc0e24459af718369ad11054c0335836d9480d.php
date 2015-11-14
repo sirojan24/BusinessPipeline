@@ -22,7 +22,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
         <div style=\"padding:25px\">
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <div class=\"pull-right\">  
+                    <div class=\"pull-right\" style=\"padding-right: 40px;\">  
                         <span calss=\"pull-right\">
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-user-plus\"></i> Add Users</a>
                         </span>
@@ -50,7 +50,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
 
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
+                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;padding-right: 40px;\">
                         <table id=\"table\"
                                data-toggle=\"table\"
                                data-detail-view=\"true\"
@@ -77,7 +77,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                                     <th data-field=\"lost_deals\" data-sortable=\"true\">Lost<br> Deals</th>
                                     <th data-field=\"user_status\" data-sortable=\"true\">User<br> Status</th>
                                     <th data-field=\"user_level\" data-sortable=\"true\">User<br> Level</th>
-                                    <th data-field=\"action\">Take Action</th>
+                                    <th data-field=\"action\">Action</th>
                                 </tr>
                             </thead>
                         </table>

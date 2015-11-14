@@ -22,7 +22,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
         <div style=\"padding:25px\">
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <div class=\"pull-right\">
+                    <div class=\"pull-right\" style=\"padding-right: 25px;\">
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
@@ -44,7 +44,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
 
             <div class=\"row\">
                 <div class=\"col-lg-12\">
-                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
+                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;padding-right: 25px;\">
                         <table id=\"table\"
                                data-toggle=\"table\"
                                data-detail-view=\"true\"
@@ -69,7 +69,7 @@ class __TwigTemplate_073579b7af09827a3a4976af7ae8807cf165f8cf05720b499419ecea9d3
                                     <th data-field=\"weighted_forecast\" data-sortable=\"true\">Weighted<br> Forecast</th>
                                     <th data-field=\"won_deals\" data-sortable=\"true\">Won<br> Deals</th>
                                     <th data-field=\"lost_deals\" data-sortable=\"true\">Lost<br> Deals</th>
-                                    <th data-field=\"action\">Take Action</th>
+                                    <th data-field=\"action\">Action</th>
                                 </tr>
                             </thead>
                         </table>

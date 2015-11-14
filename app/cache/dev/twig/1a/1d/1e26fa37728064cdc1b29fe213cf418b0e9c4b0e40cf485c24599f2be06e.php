@@ -104,7 +104,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 '<div class=\"col-xs-4\">' +
                 '<table class=\"table\" style=\"margin-left:5px; border: none !important;line-height: 5px;\">' +
                 '<tr style=\"padding:0px;margin:0px;\">' +
-                '<td style=\"border: none !important;line-height: 5px;width:50%\"><small>Commissions Originator</small></td>' +
+                '<td style=\"border: none !important;line-height: 5px;width:60%\"><small>Commissions Originator</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + originator + '</small></td>' +
                 '</tr>' +
                 '<tr style=\"padding:0px;margin:0px;\">' +
