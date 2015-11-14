@@ -48,17 +48,17 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
                         <div class=\"col-lg-12\">
                             ";
         // line 25
-        if (((isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")) == "Admin")) {
+        if (((isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")) == "Regular")) {
             // line 26
             echo "                                ";
-            $this->env->loadTemplate("LoginLoginBundle:Default:adminManageUsersTable.html.twig")->display($context);
+            $this->env->loadTemplate("LoginLoginBundle:Default:manageUsersTable.html.twig")->display($context);
             // line 27
             echo "                            ";
         } else {
             echo "    
                                 ";
             // line 28
-            $this->env->loadTemplate("LoginLoginBundle:Default:manageUsersTable.html.twig")->display($context);
+            $this->env->loadTemplate("LoginLoginBundle:Default:adminManageUsersTable.html.twig")->display($context);
             // line 29
             echo "                            ";
         }

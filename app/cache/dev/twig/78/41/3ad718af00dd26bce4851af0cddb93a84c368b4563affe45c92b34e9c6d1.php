@@ -176,7 +176,7 @@ class __TwigTemplate_78413ad718af00dd26bce4851af0cddb93a84c368b4563affe45c92b34e
                                 </div>
                                 <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"max-width: 200px; max-height: 150px;\"></div>
                                 <div>
-                                    <span class=\"btn btn-default btn-file\"><span class=\"fileinput-new\">Select image</span><span class=\"fileinput-exists\">Change</span><input type=\"file\" name=\"profileimage\"></span>
+                                    <span class=\"btn btn-default btn-file\"><span class=\"fileinput-new\">Select image</span><span class=\"fileinput-exists\">Change</span><input type=\"file\" name=\"img\"></span>
                                     <a href=\"#\" class=\"btn btn-default fileinput-exists\" data-dismiss=\"fileinput\">Remove</a>
                                 </div>
                             </div>

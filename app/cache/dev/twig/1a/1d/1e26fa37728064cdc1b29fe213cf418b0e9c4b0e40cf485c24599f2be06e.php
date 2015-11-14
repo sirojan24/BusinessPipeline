@@ -61,19 +61,31 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         });
     }
 
+    function checkAndSetValue(value, blankValue, scale, pre){
+        if(value === ''){
+            return blankValue;
+        }else{
+            if(pre === true){
+                return scale + '' + value;
+            }else{
+                return value + '' + scale;
+            }
+        }
+    }
+    
     function detailFormatter(index, row) {
 
-        var title = extendColData[index].title;
-        var company = extendColData[index].company;
-        var email = extendColData[index].email;
-        var telephone = extendColData[index].telephone;
-        var cellphone = extendColData[index].cellphone;
+        var title = checkAndSetValue(extendColData[index].title, '-', '', true);
+        var company = checkAndSetValue(extendColData[index].company, '-', '', true);
+        var email = checkAndSetValue(extendColData[index].email, '-', '', true);
+        var telephone = checkAndSetValue(extendColData[index].telephone, '-', '', true);
+        var cellphone = checkAndSetValue(extendColData[index].cellphone, '-', '', true);
 
-        var originator = extendColData[index].originator;
-        var nonOriginator = extendColData[index].nonOriginator;
-        var earningGoals = extendColData[index].earningGoals;
-        var drawAgainstCommission = extendColData[index].drawAgainstCommission;
-        var dob = extendColData[index].dob;
+        var originator = checkAndSetValue(extendColData[index].originator, '-', '%', false);
+        var nonOriginator = checkAndSetValue(extendColData[index].nonOriginator, '-', '%', false);
+        var earningGoals = checkAndSetValue(extendColData[index].earningGoals, '-', '\$', true);
+        var drawAgainstCommission = checkAndSetValue(extendColData[index].drawAgainstCommission, '-', '\$', true);
+        var dob = checkAndSetValue(extendColData[index].dob, '-', '', true);
 
         var html = [];
         html.push('<div class\"row\">' +
@@ -102,7 +114,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 '</table>' +
                 '</div>' +
                 '<div class=\"col-xs-4\">' +
-                '<table class=\"table\" style=\"margin-left:5px; border: none !important;line-height: 5px;\">' +
+                '<table class=\"table\" style=\"margin-left:22px; border: none !important;line-height: 5px;\">' +
                 '<tr style=\"padding:0px;margin:0px;\">' +
                 '<td style=\"border: none !important;line-height: 5px;width:60%\"><small>Commissions Originator</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + originator + '</small></td>' +
@@ -140,7 +152,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 rows = [];
 
     ";
-        // line 120
+        // line 132
         echo "                for (var i = 0; i < jsonString.users.length; i++) {
                     var tempUser = jsonString.users[i];
 
@@ -162,10 +174,10 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         last_name: tempUser.lastname,
                         username: tempUser.username,
                         open_deal:  tempUser.openDeals,
-                        projected_revenue: tempUser.projectedRevenue,
-                        weighted_forecast: tempUser.individualForecast,
-                        won_deals: tempUser.wonDeals,
-                        lost_deals: tempUser.lossDeals,
+                        projected_revenue: '\$' + tempUser.projectedRevenue,
+                        weighted_forecast: '\$' + tempUser.individualForecast,
+                        won_deals: '\$' + tempUser.wonDeals,
+                        lost_deals: '\$' + tempUser.lossDeals,
                         user_status: tempUser.status,
                         user_level: tempUser.role,
                         action: '<div class=\"keep-open btn-group\">' +
@@ -219,6 +231,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  144 => 120,  52 => 29,  36 => 16,  19 => 1,);
+        return array (  156 => 132,  52 => 29,  36 => 16,  19 => 1,);
     }
 }

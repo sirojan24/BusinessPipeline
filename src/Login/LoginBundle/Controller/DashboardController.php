@@ -193,12 +193,10 @@ class DashboardController extends Controller{
          $admin = $session->get('token');
         
         if($request->getMethod() == 'POST' && ($admin->getRole() == 'Admin' || $admin->getRole() == 'Master Admin')){
-            $profileimage = $request->files->get('profileimage');
-            
+            $profileimage = $request->files->get('img');
             
             if($profileimage!=null && $profileimage->isValid()){
                 $profilestore = $profileimage->move("bundles/loginlogin/images" , $request->get('username').".".split('/',$profileimage->getMimeType())[1]);
-                
             }else{
                 $profilestore = '';
             }
@@ -273,6 +271,9 @@ class DashboardController extends Controller{
                 $user->setPassword($password);
                 $user->setStatus($status);
                 $user->setImage($profilestore);
+                $user->setUserview(10);
+                $user->setContactview(10);
+                $user->setOpportunityview(10);
                 $fullname = $adminuser->getFirstname()." ".$adminuser->getLastname();
                 try{
                     $em->persist($user);
