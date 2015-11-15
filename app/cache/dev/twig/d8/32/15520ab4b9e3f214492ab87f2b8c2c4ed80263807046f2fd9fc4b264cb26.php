@@ -72,7 +72,12 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         // line 32
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/custom.css"), "html", null, true);
         echo "\" rel=\"stylesheet\" type=\"text/css\">
-
+    
+   
+    <link rel=\"stylesheet\" href=\"";
+        // line 35
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/jquery-ui.custom.css"), "html", null, true);
+        echo "\" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -81,27 +86,32 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
     <![endif]-->
 
     <script src=\"";
-        // line 41
+        // line 43
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/jquery.js"), "html", null, true);
         echo "\"></script>
     
     <!-- Table -->
     <link rel=\"stylesheet\" href=\"";
-        // line 44
+        // line 46
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/table-customization.css"), "html", null, true);
         echo "\">
     <link rel=\"stylesheet\" href=\"";
-        // line 45
+        // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/src/bootstrap-table.css"), "html", null, true);
         echo "\">
     <script src=\"";
-        // line 46
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/src/bootstrap-table.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 47
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/ga.js"), "html", null, true);
         echo "\"></script>
+    
+     <link rel=\"stylesheet\" href=\"";
+        // line 51
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/parsley.css"), "html", null, true);
+        echo "\" />
 </head>";
     }
 
@@ -117,6 +127,6 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
 
     public function getDebugInfo()
     {
-        return array (  103 => 47,  99 => 46,  95 => 45,  91 => 44,  85 => 41,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
+        return array (  113 => 51,  108 => 49,  104 => 48,  100 => 47,  96 => 46,  90 => 43,  79 => 35,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
     }
 }

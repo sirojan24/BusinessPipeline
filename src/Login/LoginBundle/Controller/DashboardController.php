@@ -290,7 +290,7 @@ class DashboardController extends Controller{
                     $mailer->send($message);
                     $em->flush();
                      
-                    return $this->render('LoginLoginBundle:Default:addUsers.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'fullname'=>$fullname,'successmsg' => 'Regular User Created'));
+                    return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'fullname'=>$fullname,'manageview'=>$user->getUserView(),'successmsg' => 'Regular User Created'));
                 } catch(Doctrine\ORM\ORMInvalidArgumentException $e){
 
                     return $this->render('LoginLoginBundle:Default:addUsers.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'fullname'=>$fullname,'errormsg' => 'Invalid Arguments. Try Again'));
