@@ -432,9 +432,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_homepage')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::indexAction',));
         }
 
-        // contacts_contacts_managecontacts
-        if ($pathinfo === '/contacts') {
-            return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::managecontactsAction',  '_route' => 'contacts_contacts_managecontacts',);
+        if (0 === strpos($pathinfo, '/contacts')) {
+            // contacts_contacts_managecontacts
+            if ($pathinfo === '/contacts') {
+                return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::managecontactsAction',  '_route' => 'contacts_contacts_managecontacts',);
+            }
+
+            // contacts_contacts_contacts
+            if ($pathinfo === '/contactsV2') {
+                return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::managecontactsV2Action',  '_route' => 'contacts_contacts_contacts',);
+            }
+
         }
 
         // contacts_contacts_addcontact
@@ -493,6 +501,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // contacts_contacts_filteredopportunities
         if (0 === strpos($pathinfo, '/filteredopportunities') && preg_match('#^/filteredopportunities/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_filteredopportunities')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::filteredopportunitiesAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/contactTableData')) {
+            // contacts_contacts_table_data
+            if ($pathinfo === '/contactTableData') {
+                return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::contactTableDataAction',  '_route' => 'contacts_contacts_table_data',);
+            }
+
+            // contacts_contacts_table_data_username_filter
+            if (0 === strpos($pathinfo, '/contactTableDataUsernameFilter') && preg_match('#^/contactTableDataUsernameFilter/(?P<username>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_table_data_username_filter')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::contactTableDataUsernameFilterAction',));
+            }
+
         }
 
         // home_homepage

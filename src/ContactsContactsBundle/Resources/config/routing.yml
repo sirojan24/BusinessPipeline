@@ -6,6 +6,10 @@ contacts_contacts_managecontacts:
     path:     /contacts
     defaults: { _controller: ContactsContactsBundle:Contacts:managecontacts }
     
+contacts_contacts_contacts:
+    path:     /contactsV2
+    defaults: { _controller: ContactsContactsBundle:Contacts:managecontactsV2 }
+    
 contacts_contacts_addcontact:
     path:     /addcontact
     defaults: { _controller: ContactsContactsBundle:Contacts:addcontact }
@@ -50,7 +54,13 @@ contacts_contacts_filteredopportunities:
    path:     /filteredopportunities/{name}
    defaults: { _controller: ContactsContactsBundle:Contacts:filteredopportunities }
    
-
+contacts_contacts_table_data:
+   path:     /contactTableData
+   defaults: { _controller: ContactsContactsBundle:Contacts:contactTableData }
+   
+contacts_contacts_table_data_username_filter:
+   path:     /contactTableDataUsernameFilter/{username}
+   defaults: { _controller: ContactsContactsBundle:Contacts:contactTableDataUsernameFilter }
 
     
     

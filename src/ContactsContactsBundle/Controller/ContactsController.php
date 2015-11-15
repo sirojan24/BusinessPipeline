@@ -10,77 +10,210 @@ use Login\LoginBundle\Entity\Users;
 use Symfony\Component\HttpFoundation\FileBag;
 use ContactsContactsBundle\Entity\Contacts;
 use ContactsContactsBundle\Modals\ExposedContact;
-class ContactsController extends Controller
-{
-    public function indexAction($name)
-    {
+
+class ContactsController extends Controller {
+
+    public function indexAction($name) {
         return $this->render('ContactsContactsBundle:Default:index.html.twig', array('name' => $name));
     }
-    
-    public function managecontactsAction(Request $request){
+
+    public function managecontactsAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
-        if($token){
-        $em = $this->getDoctrine()->getManager();
-        $repository1 = $em->getRepository("LoginLoginBundle:Users");
-        $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-         $fullname = $user->getFirstname()." ".$user->getLastname();
-        $currentCompany = $user->getCompanyname();
-        $repository = $em->getRepository("ContactsContactsBundle:Contacts");
-        $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
-        $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
+            $repository1 = $em->getRepository("LoginLoginBundle:Users");
+            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $user->getFirstname() . " " . $user->getLastname();
+            $currentCompany = $user->getCompanyname();
+            $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
             }
-            
-        
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'contacts'=>$contacts,'fullname'=>$fullname,'manageview'=>$user->getContactview()));
-       
-        }else{
+
+
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+        } else {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
+
+    public function managecontactsV2Action(Request $request) {
+        
+        $session = $request->getSession();
+        $token = $session->get('token');
+        
+        if ($token) {
+            
+            $em = $this->getDoctrine()->getManager();
+            $repository1 = $em->getRepository("LoginLoginBundle:Users");
+            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+            
+            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'manageview' => $user->getContactview()));
+        } else {
+            
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
+
+    public function contactTableDataAction(Request $request) {
+        $session = $request->getSession();
+        $token = $session->get('token');
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
+            $repository1 = $em->getRepository("LoginLoginBundle:Users");
+            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $user->getFirstname() . " " . $user->getLastname();
+            $currentCompany = $user->getCompanyname();
+            $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            $contactArray = array();
+            
+            foreach ($contacts as $contact) {
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
+                
+                //serialize contact obects to array
+                $arrElement["name"] = $contact->getName();
+                $arrElement["company"] = $contact->getCompany();
+                $arrElement["open_deal"] = 0;
+                $arrElement["projected_revenue"] = $contact->getProjectedrevenue();
+                $arrElement["weighted_forecast"] = $contact->getWeightedforecast();
+                $arrElement["won_deals"] = 0;
+                $arrElement["lost_deals"] = 0;
+                $arrElement["owner"] = $contact->getFirstname() . " " . $contact->getLastname();
+                $arrElement["id"] = $contact->getId();
+                $arrElement["email"] = $contact->getEmail0();
+                $arrElement["telephone"] = $contact->getPhone0();
+                $arrElement["tags"] = $contact->getTags();
+                $arrElement["username"] = $contact->getUsername();
+                array_push($contactArray, $arrElement);
+            }
+            $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $user->getContactview());
+            return new Response(json_encode($response));
+            //return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+        } else {
+            return new Response("error");
+            //return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
     
-    public function addcontactAction(Request $request){
+    public function contactTableDataUsernameFilterAction(Request $request, $username){
+        $session = $request->getSession();
+        $token = $session->get('token');
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
+            $repository1 = $em->getRepository("LoginLoginBundle:Users");
+            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $user->getFirstname() . " " . $user->getLastname();
+            $currentCompany = $user->getCompanyname();
+            $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany, 'username' => $username));
+            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            $contactArray = array();
+            
+            foreach ($contacts as $contact) {
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
+                
+                //serialize contact obects to array
+                $arrElement["name"] = $contact->getName();
+                $arrElement["company"] = $contact->getCompany();
+                $arrElement["open_deal"] = 0;
+                $arrElement["projected_revenue"] = $contact->getProjectedrevenue();
+                $arrElement["weighted_forecast"] = $contact->getWeightedforecast();
+                $arrElement["won_deals"] = 0;
+                $arrElement["lost_deals"] = 0;
+                $arrElement["owner"] = $contact->getFirstname() . " " . $contact->getLastname();
+                $arrElement["id"] = $contact->getId();
+                $arrElement["email"] = $contact->getEmail0();
+                $arrElement["telephone"] = $contact->getPhone0();
+                $arrElement["tags"] = $contact->getTags();
+                $arrElement["username"] = $contact->getUsername();
+                array_push($contactArray, $arrElement);
+            }
+            $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $user->getContactview());
+            return new Response(json_encode($response));
+            //return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+        } else {
+            return new Response("error");
+            //return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
+    
+    public function addcontactAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
         $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
-        $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
+        $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
         $currentCompany = $currentUser->getCompanyname();
         $users = $repository->findBy(array('companyname' => $currentCompany));
-        if($token){
-            return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'users'=> $users,'companyname'=>$currentCompany,'fullname'=>$fullname));
-       
-        }else{
+        if ($token) {
+            return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'fullname' => $fullname));
+        } else {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
-        
         }
-        
     }
-    
-    public function createcontactAction(Request $request){
+
+    public function createcontactAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
@@ -88,11 +221,11 @@ class ContactsController extends Controller
         $repository1 = $em->getRepository("LoginLoginBundle:Users");
         $users = $repository1->findAll();
         $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-        $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
-        
-        
-        if($token){
-            
+        $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+
+
+        if ($token) {
+
             $name = $request->get('name');
             $email = array();
             $email[0] = $request->get('email0');
@@ -149,31 +282,29 @@ class ContactsController extends Controller
             $phonetype[7] = $request->get('phonetype7');
             $phonetype[8] = $request->get('phonetype8');
             $phonetype[9] = $request->get('phonetype9');
-            
-            for($i=0 ; $i<10;$i++){
-                if($email[$i] != null && $email[$i] != ''){
-                    $email[$i] = $emailtype[$i].':'.$email[$i];
+
+            for ($i = 0; $i < 10; $i++) {
+                if ($email[$i] != null && $email[$i] != '') {
+                    $email[$i] = $emailtype[$i] . ':' . $email[$i];
                 }
             }
-            
-            for($j=0;$j<10;$j++){
-                if($phone[$j] != null && $phone[$j] != ''){
-                    $phone[$j] = $phonetype[$j].':'.$phone[$j];
+
+            for ($j = 0; $j < 10; $j++) {
+                if ($phone[$j] != null && $phone[$j] != '') {
+                    $phone[$j] = $phonetype[$j] . ':' . $phone[$j];
                 }
-                
             }
-            
+
             $profileimage = $request->files->get('profileimage');
-            
-            
-            if($profileimage!=null && $profileimage->isValid()){
-                $profilestore = $profileimage->move("bundles/contactscontacts/contactimages" ,  split('@', split(':',$email[0])[1])[0].str_replace(' ','',split(':',$phone[0])[1]).".".split('/',$profileimage->getMimeType())[1]);
-                
-            }else{
+
+
+            if ($profileimage != null && $profileimage->isValid()) {
+                $profilestore = $profileimage->move("bundles/contactscontacts/contactimages", split('@', split(':', $email[0])[1])[0] . str_replace(' ', '', split(':', $phone[0])[1]) . "." . split('/', $profileimage->getMimeType())[1]);
+            } else {
                 $profilestore = '';
             }
-            
-            $newcontact =  new Contacts();
+
+            $newcontact = new Contacts();
             $newcontact->setUsername($username);
             $newcontact->setImage($profilestore);
             $newcontact->setName($name);
@@ -209,42 +340,41 @@ class ContactsController extends Controller
             $newcontact->setContactnotes($notes);
             $newcontact->setStatus('Active');
             $newcontact->setOwnedcompany($currentUser->getCompanyname());
-            try{
+            try {
                 $em->persist($newcontact);
                 $em->flush();
                 $repository1 = $em->getRepository("LoginLoginBundle:Users");
                 $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
                 $currentCompany = $currentUser->getCompanyname();
-                 
+
                 $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
                 $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
-            }
-                
-                if($request->get('opportunityflag') == 'true'){
-                     
-           
+
+                foreach ($contacts as $contact) {
+
+                    $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                    $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                    $count = 0;
+                    $projectedrevenue = 0;
+                    $weightedforecast = 0;
+                    if ($opportunities) {
+
+                        foreach ($opportunities as $opportunity) {
+                            $count++;
+                            $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                            $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                        }
+                    }
+                    $contact->setNoofopportunities($count);
+                    $contact->setProjectedrevenue(number_format($projectedrevenue));
+                    $contact->setWeightedforecast(number_format($weightedforecast));
+                    $contact->setFirstname($currentUser->getFirstname());
+                    $contact->setLastname($currentUser->getLastname());
+                }
+
+                if ($request->get('opportunityflag') == 'true') {
+
+
                     $repository = $em->getRepository("LoginLoginBundle:Users");
                     $repository1 = $em->getRepository("SettingsBundle:Accounttypes");
                     $repository2 = $em->getRepository("SettingsBundle:Stages");
@@ -252,10 +382,10 @@ class ContactsController extends Controller
                     $repository4 = $em->getRepository("SettingsBundle:Opportunitysources");
 
                     $user = $repository->findOneBy(array('username' => $token->getUsername()));
-                    $accounttypes = $repository1->findBy(array('companyname' =>  $user->getCompanyname()));
-                    $stages = $repository2->findBy(array('companyname' =>  $user->getCompanyname()));
-                    $producttypes = $repository3->findBy(array('companyname' =>  $user->getCompanyname()));
-                    $opportunitysources = $repository4->findBy(array('companyname' =>  $user->getCompanyname()));
+                    $accounttypes = $repository1->findBy(array('companyname' => $user->getCompanyname()));
+                    $stages = $repository2->findBy(array('companyname' => $user->getCompanyname()));
+                    $producttypes = $repository3->findBy(array('companyname' => $user->getCompanyname()));
+                    $opportunitysources = $repository4->findBy(array('companyname' => $user->getCompanyname()));
 
 
                     $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
@@ -263,50 +393,44 @@ class ContactsController extends Controller
                     $users = $repository->findBy(array('companyname' => $currentCompany));
 
 
-                     return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'accounttypes'=>$accounttypes ,'stages'=>$stages,'producttypes'=>$producttypes,'opportunitysources'=>$opportunitysources,'users'=>$users,'successmsg' => 'Well done! You succesfully add that contact.Continue with the add opportunity','personname'=>$name,'organizationname'=> $companyname,'fullname'=>$fullname)); 
-
-                }     
+                    return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'successmsg' => 'Well done! You succesfully add that contact.Continue with the add opportunity', 'personname' => $name, 'organizationname' => $companyname, 'fullname' => $fullname));
+                }
                 $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-                return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'successmsg' => 'Well done! You succesfully add a contact','contacts'=>$contacts,'fullname'=>$fullname,'manageview'=>$user->getContactview()));
-            } catch(Doctrine\ORM\ORMInvalidArgumentException $e){
+                return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'successmsg' => 'Well done! You succesfully add a contact', 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+            } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                 $repository1 = $em->getRepository("LoginLoginBundle:Users");
                 $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
                 $currentCompany = $currentUser->getCompanyname();
-                $users = $repository1->findBy(array('companyname' => $currentCompany));     
-                return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'users'=>$users,'companyname'=>$currentCompany,'errormsg' => 'Oh snap! Something went wrong. Try Again','fullname'=>$fullname));
-       
+                $users = $repository1->findBy(array('companyname' => $currentCompany));
+                return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'errormsg' => 'Oh snap! Something went wrong. Try Again', 'fullname' => $fullname));
             }
-            
-           
-            
-        }else{
+        } else {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
-         
         }
     }
-    
-    public function contactvalidateAction(Request $request){
+
+    public function contactvalidateAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
         $email = $request->get('email');
         $tel = $request->get('tel');
-        $contact = $repository->findOneBy(array('email0' => $email,'phone0'=>$tel));
-        if($contact){
+        $contact = $repository->findOneBy(array('email0' => $email, 'phone0' => $tel));
+        if ($contact) {
             return new Response("true");
-        }else{
+        } else {
             return new Response("false");
         }
     }
-    
-    public function editcontactpageAction(Request $request,$id){
+
+    public function editcontactpageAction(Request $request, $id) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
         $contact = $repository->findOneBy(array('id' => $id));
-       
+
         $tele = array();
-       
+
         $tele[0] = $contact->getPhone0();
         $tele[1] = $contact->getPhone1();
         $tele[2] = $contact->getPhone2();
@@ -317,72 +441,67 @@ class ContactsController extends Controller
         $tele[7] = $contact->getPhone7();
         $tele[8] = $contact->getPhone8();
         $tele[9] = $contact->getPhone9();
-        
-        for($i=0;$i<10;$i++){
-            if($tele[$i] != null){
-                $tele[$i] = split(":",$tele[$i])[1];
-                $tele[$i] = str_replace('(','', $tele[$i]);
-                $tele[$i] = str_replace(')','', $tele[$i]);
-                $tele[$i] = str_replace('-','', $tele[$i]);
-                $tele[$i] = str_replace(' ','', $tele[$i]);
-                $tele[$i] = str_replace('Ext.','', $tele[$i]);
-            }else{
+
+        for ($i = 0; $i < 10; $i++) {
+            if ($tele[$i] != null) {
+                $tele[$i] = split(":", $tele[$i])[1];
+                $tele[$i] = str_replace('(', '', $tele[$i]);
+                $tele[$i] = str_replace(')', '', $tele[$i]);
+                $tele[$i] = str_replace('-', '', $tele[$i]);
+                $tele[$i] = str_replace(' ', '', $tele[$i]);
+                $tele[$i] = str_replace('Ext.', '', $tele[$i]);
+            } else {
                 $tele[$i] = '';
             }
-            
         }
         $repository1 = $em->getRepository("LoginLoginBundle:Users");
         $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-        $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
+        $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
         $currentCompany = $currentUser->getCompanyname();
         $users = $repository1->findBy(array('companyname' => $currentCompany));
-        
-        if($token && strtolower($contact->getUsername()) == strtolower($token->getUsername())){
-            return $this->render('ContactsContactsBundle:Default:editContacts.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'contact'=>$contact,'tele'=>$tele,'users'=>$users,'fullname'=>$fullname));
-            
-        }else{
+
+        if ($token && strtolower($contact->getUsername()) == strtolower($token->getUsername())) {
+            return $this->render('ContactsContactsBundle:Default:editContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contact' => $contact, 'tele' => $tele, 'users' => $users, 'fullname' => $fullname));
+        } else {
             $repository2 = $em->getRepository("LoginLoginBundle:Users");
             $currentUser = $repository2->findOneBy(array('username' => $token->getUsername()));
             $currentCompany = $currentUser->getCompanyname();
-                 
+
             $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
             $repository3 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository3->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository3->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
             }
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'errormsg' => 'You should be the owner of the contact to do this action','contacts'=>$contacts,'fullname'=>$fullname,'manageview'=>$user->getContactview()));
-            
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'errormsg' => 'You should be the owner of the contact to do this action', 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
         }
-        
     }
-    
-    public function updatecontactAction(Request $request){
+
+    public function updatecontactAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
-        if($token && $request->getMethod() == "POST"){
+        if ($token && $request->getMethod() == "POST") {
             $id = $request->get('id');
             $email = array();
             $email[0] = $request->get('email0');
@@ -395,7 +514,7 @@ class ContactsController extends Controller
             $email[7] = $request->get('email7');
             $email[8] = $request->get('email8');
             $email[9] = $request->get('email9');
-            
+
             $phone = array();
             $phone[0] = $request->get('phone0');
             $phone[1] = $request->get('phone1');
@@ -407,7 +526,7 @@ class ContactsController extends Controller
             $phone[7] = $request->get('phone7');
             $phone[8] = $request->get('phone8');
             $phone[9] = $request->get('phone9');
-            
+
             $emailtype = array();
             $emailtype[0] = $request->get('emailtype0');
             $emailtype[1] = $request->get('emailtype1');
@@ -430,20 +549,19 @@ class ContactsController extends Controller
             $phonetype[7] = $request->get('phonetype7');
             $phonetype[8] = $request->get('phonetype8');
             $phonetype[9] = $request->get('phonetype9');
-            
-            for($i=0 ; $i<10;$i++){
-                if($email[$i] != null && $email[$i] != ''){
-                    $email[$i] = $emailtype[$i].':'.$email[$i];
+
+            for ($i = 0; $i < 10; $i++) {
+                if ($email[$i] != null && $email[$i] != '') {
+                    $email[$i] = $emailtype[$i] . ':' . $email[$i];
                 }
             }
-            
-            for($j=0;$j<10;$j++){
-                if($phone[$j] != null && $phone[$j] != ''){
-                    $phone[$j] = $phonetype[$j].':'.$phone[$j];
+
+            for ($j = 0; $j < 10; $j++) {
+                if ($phone[$j] != null && $phone[$j] != '') {
+                    $phone[$j] = $phonetype[$j] . ':' . $phone[$j];
                 }
-                
             }
-            
+
             $contact = $repository->findOneBy(array('id' => $id));
             $contact->setName($request->get('name'));
             $contact->setCompany($request->get('companyname'));
@@ -476,286 +594,271 @@ class ContactsController extends Controller
             $contact->setTags($request->get('tags'));
             $contact->setContactnotes($request->get('notes'));
             $profileimage = $request->files->get('profileimage');
-            
-            
-            if($profileimage!=null && $profileimage->isValid()){
-                $profilestore = $profileimage->move("bundles/contactscontacts/contactimages" ,  split('@', split(':',$email[0])[1])[0].str_replace(' ','',split(':',$phone[0])[1]).".".split('/',$profileimage->getMimeType())[1]);
-                 $contact->setImage($profilestore);
+
+
+            if ($profileimage != null && $profileimage->isValid()) {
+                $profilestore = $profileimage->move("bundles/contactscontacts/contactimages", split('@', split(':', $email[0])[1])[0] . str_replace(' ', '', split(':', $phone[0])[1]) . "." . split('/', $profileimage->getMimeType())[1]);
+                $contact->setImage($profilestore);
             }
-           
-            try{
+
+            try {
                 $em->flush();
                 $repository1 = $em->getRepository("LoginLoginBundle:Users");
                 $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-                $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
+                $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
                 $currentCompany = $currentUser->getCompanyname();
-                 
+
                 $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
                 $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
-            }
-                $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-                return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'successmsg'=>'Well done ! you succesfully update your contact','contacts'=>$contacts,'manageview'=>$user->getContactview()));
-            
-            }catch(Doctrine\ORM\ORMInvalidArgumentException $e){
-                $repository1 = $em->getRepository("LoginLoginBundle:Users");
-                $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-                $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
-                $currentCompany = $currentUser->getCompanyname();
-                 
-                $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
-                 $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-                foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
+
+                foreach ($contacts as $contact) {
+
+                    $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                    $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                    $count = 0;
+                    $projectedrevenue = 0;
+                    $weightedforecast = 0;
+                    if ($opportunities) {
+
+                        foreach ($opportunities as $opportunity) {
+                            $count++;
+                            $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                            $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                        }
+                    }
+                    $contact->setNoofopportunities($count);
+                    $contact->setProjectedrevenue(number_format($projectedrevenue));
+                    $contact->setWeightedforecast(number_format($weightedforecast));
+                    $contact->setFirstname($currentUser->getFirstname());
+                    $contact->setLastname($currentUser->getLastname());
                 }
                 $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-                return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'errormsg'=>'Oh snap ! Something went wrong.Try Again.','contacts'=>$contacts,'manageview'=>$user->getContactview()));
-             
+                return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => 'Well done ! you succesfully update your contact', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
+            } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+                $repository1 = $em->getRepository("LoginLoginBundle:Users");
+                $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+                $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+                $currentCompany = $currentUser->getCompanyname();
+
+                $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+                $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+                foreach ($contacts as $contact) {
+
+                    $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                    $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                    $count = 0;
+                    $projectedrevenue = 0;
+                    $weightedforecast = 0;
+                    if ($opportunities) {
+
+                        foreach ($opportunities as $opportunity) {
+                            $count++;
+                            $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                            $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                        }
+                    }
+                    $contact->setNoofopportunities($count);
+                    $contact->setProjectedrevenue(number_format($projectedrevenue));
+                    $contact->setWeightedforecast(number_format($weightedforecast));
+                    $contact->setFirstname($currentUser->getFirstname());
+                    $contact->setLastname($currentUser->getLastname());
+                }
+                $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+                return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Oh snap ! Something went wrong.Try Again.', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
             }
-            
-        }else{
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.')); 
+        } else {
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
-    public function activateAction(Request $request,$id){
+
+    public function activateAction(Request $request, $id) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
         $contact = $repository->findOneBy(array('id' => $id));
-        if($token && ($token->getUsername() == $contact->getUsername())){
+        if ($token && ($token->getUsername() == $contact->getUsername())) {
             $contact->setStatus('Active');
             $em->flush();
-           $repository1 = $em->getRepository("LoginLoginBundle:Users");
-           $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-           $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
-           $currentCompany = $currentUser->getCompanyname();
-                 
-           $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
-            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
-            }
-            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'successmsg'=>'Well done ! you succesfully activate your contact','contacts'=>$contacts,'manageview'=>$user->getContactview()));
-             
-        }else{
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-            $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
             $currentCompany = $currentUser->getCompanyname();
-                 
+
             $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
-             $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
+            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
             }
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'errormsg'=>'Oh snap ! You should be the owner of the contact to do this action','contacts'=>$contacts,'manageview'=>$user->getContactview()));
-             
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => 'Well done ! you succesfully activate your contact', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
+        } else {
+            $repository1 = $em->getRepository("LoginLoginBundle:Users");
+            $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+            $currentCompany = $currentUser->getCompanyname();
+
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
+            }
+            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Oh snap ! You should be the owner of the contact to do this action', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
         }
     }
-    
-    public function deletecontactAction(Request $request,$id){
+
+    public function deletecontactAction(Request $request, $id) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
         $contact = $repository->findOneBy(array('id' => $id));
-         if($token && ($token->getUsername() == $contact->getUsername())){
+        if ($token && ($token->getUsername() == $contact->getUsername())) {
             $contact->setStatus('Inactive');
             $em->flush();
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-            $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
             $currentCompany = $currentUser->getCompanyname();
-                 
+
             $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
             $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
             }
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'successmsg'=>"Well done! You have successfully deleted a contact. If you've accidently deleted contacts you can restore them. To learn on how to restore a Contact go to the Support section",'contacts'=>$contacts,'manageview'=>$user->getContactview()));
-             
-        }else{
-           $repository1 = $em->getRepository("LoginLoginBundle:Users");
-           $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-           $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
-           $currentCompany = $currentUser->getCompanyname();
-                 
-           $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done! You have successfully deleted a contact. If you've accidently deleted contacts you can restore them. To learn on how to restore a Contact go to the Support section", 'contacts' => $contacts, 'manageview' => $user->getContactview()));
+        } else {
+            $repository1 = $em->getRepository("LoginLoginBundle:Users");
+            $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+            $currentCompany = $currentUser->getCompanyname();
+
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
             $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-        
-            foreach($contacts as $contact){
-                
-                   $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                   $opportunities = $repository2->findBy(array('personname' => $contact->getName(),'status'=> 'Active'));
-                   $count = 0;
-                   $projectedrevenue = 0;
-                   $weightedforecast = 0;
-                   if($opportunities){
-                       
-                       foreach($opportunities as $opportunity){
-                          $count++;
-                          $projectedrevenue += intval(str_replace(',','', $opportunity->getProjectedrevenue()));
-                          $weightedforecast += intval(str_replace(',','', $opportunity->getForecast()));
-                       }
-                      
-                   }
-                   $contact ->setNoofopportunities ($count);
-                   $contact ->setProjectedrevenue (number_format($projectedrevenue));
-                   $contact ->setWeightedforecast (number_format($weightedforecast));
-                   $contact->setFirstname($currentUser->getFirstname());
-                   $contact->setLastname($currentUser->getLastname());
-            } 
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
+            }
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'errormsg'=>'Oh snap ! You should be the owner of the contact to do this action','contacts'=>$contacts,'manageview'=>$user->getContactview()));
-             
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Oh snap ! You should be the owner of the contact to do this action', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
         }
-        
     }
-    
-    public function uploadcontactAction(Request $request){
+
+    public function uploadcontactAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
         $repository1 = $em->getRepository("LoginLoginBundle:Users");
         $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-        $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
+        $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
         $currentCompany = $currentUser->getCompanyname();
-        
+
         $file = $request->files->get('file');
-        $fileOpen = fopen($file,"r");
+        $fileOpen = fopen($file, "r");
         $data = array();
-        
-        
+
+
         $flag = true;
         $errorlist = array();
         $count = 0;
-        while(($data =  fgetcsv($fileOpen,1000,",")) !== FALSE ){
-            if($flag){
-                
+        while (($data = fgetcsv($fileOpen, 1000, ",")) !== FALSE) {
+            if ($flag) {
+
                 $flag = false;
                 continue;
-                    
             }
             // need to do after the decision
             $contact = new Contacts();
             $contact->setName($data[0]);
             $contact->setCompany($data[1]);
-            $contact->setEmail0("Primary:".$data[2]);
-            $contact->setPhone0("Work-Primary:".$data[3]);
+            $contact->setEmail0("Primary:" . $data[2]);
+            $contact->setPhone0("Work-Primary:" . $data[3]);
             $contact->setVisibility("public");
             $contact->setUsername($token->getUsername());
             $contact->setStatus('Active');
             $contact->setOwnedcompany($currentCompany);
-            
-            $exist = $repository->findOneBy(array('email0' => "Primary:".$data[2],'phone0' => "Work-Primary:".$data[3]));
-            if($exist){
+
+            $exist = $repository->findOneBy(array('email0' => "Primary:" . $data[2], 'phone0' => "Work-Primary:" . $data[3]));
+            if ($exist) {
                 $exposedContact = new ExposedContact();
                 $exposedContact->email = $data[2];
                 $exposedContact->officetel = $data[3];
@@ -763,63 +866,55 @@ class ContactsController extends Controller
                 $count++;
                 continue;
             }
-             
-            try{
-                $em->persist($contact);
-                    
-                $em->flush();
-                    
-            } catch(Doctrine\ORM\ORMInvalidArgumentException $e){
 
-                return $this->render('ContactsContactsBundle:Default:importContacts.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname,'errormsg'=>'Oh snap! Invalid Arguments,Try Again'));
-       
+            try {
+                $em->persist($contact);
+
+                $em->flush();
+            } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+
+                return $this->render('ContactsContactsBundle:Default:importContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Oh snap! Invalid Arguments,Try Again'));
             }
-            
         }
-        if(empty($errorlist)){
+        if (empty($errorlist)) {
             return new Response('Success');
-        }else{
+        } else {
             return new Response(json_encode($errorlist));
-           // return $this->render('ContactsContactsBundle:Default:importContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'errormsg' => 'Some duplicate contacts found, Unique contacts imported sucessfully ','errorlist'=>$errorlist));
-       
+            // return $this->render('ContactsContactsBundle:Default:importContact.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'errormsg' => 'Some duplicate contacts found, Unique contacts imported sucessfully ','errorlist'=>$errorlist));
         }
-        
-        
     }
-    
-    public function importcontactsAction(Request $request){
+
+    public function importcontactsAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
-        if($token){
+        if ($token) {
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
-            $fullname = $currentUser->getFirstname()." ".$currentUser->getLastname();
-             return $this->render('ContactsContactsBundle:Default:importContacts.html.twig', array('name'=>$token->getUsername(),'role' => $token->getRole(),'fullname'=>$fullname));
-       
-        }else{
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.')); 
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+            return $this->render('ContactsContactsBundle:Default:importContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
+        } else {
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
-    public function contactavailabilityAction(Request $request){
-         $personname = $request->get('personname');
-         
-             
-         $em = $this->getDoctrine()->getManager();
-         $repository = $em->getRepository("ContactsContactsBundle:Contacts");
-            
-         $user = $repository->findOneBy(array('name' => $personname));
-         
-         if($user){  
-            return new Response($user->getCompany()); 
-         }else{
+
+    public function contactavailabilityAction(Request $request) {
+        $personname = $request->get('personname');
+
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+
+        $user = $repository->findOneBy(array('name' => $personname));
+
+        if ($user) {
+            return new Response($user->getCompany());
+        } else {
             return new Response("false");
-             
-         }
+        }
     }
-    
-    public function filteredopportunitiesAction (Request $request, $name){
+
+    public function filteredopportunitiesAction(Request $request, $name) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
         $repository1 = $em->getRepository("OpportunityBundle:Opportunities");
@@ -827,129 +922,117 @@ class ContactsController extends Controller
         $repository3 = $em->getRepository("SettingsBundle:Accounttypes");
         $repository4 = $em->getRepository("SettingsBundle:Producttypes");
         $repository5 = $em->getRepository("SettingsBundle:Opportunitysources");
-        
+
         $session = $request->getSession();
         $token = $session->get('token');
-        if($token){
+        if ($token) {
             $currentuser = $repository->findOneBy(array('username' => $token->getUsername()));
-            $fullname = $currentuser->getFirstname()." ".$currentuser->getLastname();
-            $opportunities = $repository1->findBy(array('personname' => $name,'status'=> 'Active'));
+            $fullname = $currentuser->getFirstname() . " " . $currentuser->getLastname();
+            $opportunities = $repository1->findBy(array('personname' => $name, 'status' => 'Active'));
             $selectedopportunities = array();
             $count = 0;
-             if($opportunities){
+            if ($opportunities) {
 
                 foreach ($opportunities as $opportunity) {
                     $ownedUser = $repository->findOneBy(array('username' => $opportunity->getUsername()));
-                    $ownedUserfullname = $ownedUser->getFirstname()." ".$ownedUser->getLastname();
+                    $ownedUserfullname = $ownedUser->getFirstname() . " " . $ownedUser->getLastname();
                     $opportunity->setOwnerfullname($ownedUserfullname);
                     $stage = $repository2->findOneBy(array('id' => $opportunity->getStage()));
-                    if($stage){
+                    if ($stage) {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if($opportunity->getStage() == '6'){
+                    if ($opportunity->getStage() == '6') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if($opportunity->getStage() == '7'){
+                    if ($opportunity->getStage() == '7') {
                         $opportunity->setChanceofsale('0');
                     }
-                    
-                     $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
-                        if($accounttype){
-                            $opportunity->setAccounttype($accounttype->getName());
-                        }
-                        
-                        $producttype = $repository4->findOneBy(array('id' => $opportunity->getProducttype()));
-                        if($producttype){
-                            $opportunity->setProducttype($producttype->getName());
-                        }
-                        
-                        $opportunitysource = $repository5->findOneBy(array('id' => $opportunity->getOpportunitysource()));
-                        if($opportunitysource){
-                            $opportunity->setOpportunitysource($opportunitysource->getName());
-                        }
-                        
+
+                    $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
+                    if ($accounttype) {
+                        $opportunity->setAccounttype($accounttype->getName());
+                    }
+
+                    $producttype = $repository4->findOneBy(array('id' => $opportunity->getProducttype()));
+                    if ($producttype) {
+                        $opportunity->setProducttype($producttype->getName());
+                    }
+
+                    $opportunitysource = $repository5->findOneBy(array('id' => $opportunity->getOpportunitysource()));
+                    if ($opportunitysource) {
+                        $opportunity->setOpportunitysource($opportunitysource->getName());
+                    }
+
                     $isselected = false;
                     $shareduserstring = $opportunity->getSharing();
-                    $sharedusers = explode(":",$shareduserstring);
+                    $sharedusers = explode(":", $shareduserstring);
                     $sharedPercentage = 0;
                     $individualforecast = -1;
-                    if($shareduserstring != ''){
-                        foreach ($sharedusers as $shareduser){
+                    if ($shareduserstring != '') {
+                        foreach ($sharedusers as $shareduser) {
 
-                           $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                           $sharedPercentage += $sharingUser->getCommissionnonoriginator();
-
-
+                            $sharingUser = $repository->findOneBy(array('username' => $shareduser));
+                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                         }
 
-                        if($opportunity->getUsername()== $currentuser->getUsername()){
-                            if(($sharedPercentage + $currentuser->getCommissionoriginator()) >= 100 ){
-                                $individualforecast = (str_replace(",", "", $opportunity->getForecast())* $currentuser->getCommissionoriginator())/100;
+                        if ($opportunity->getUsername() == $currentuser->getUsername()) {
+                            if (($sharedPercentage + $currentuser->getCommissionoriginator()) >= 100) {
+                                $individualforecast = (str_replace(",", "", $opportunity->getForecast()) * $currentuser->getCommissionoriginator()) / 100;
                                 //$individualforecast = 1200;
                                 $decimalCount = explode(".", $individualforecast);
                                 //echo count($decimalCount);
                                 //exit;
-                                if(count($decimalCount)>1){
-                                    $individualforecast = number_format(floor($individualforecast),  0).'.'.$decimalCount[1];
-                                }else{
-                                    $individualforecast = number_format($individualforecast,  0);
+                                if (count($decimalCount) > 1) {
+                                    $individualforecast = number_format(floor($individualforecast), 0) . '.' . $decimalCount[1];
+                                } else {
+                                    $individualforecast = number_format($individualforecast, 0);
                                 }
                                 $isselected = true;
-
-                            }else{
-                                $individualforecast = (str_replace(",", "", $opportunity->getForecast()) *  ($currentuser->getCommissionoriginator()+ (100 - ($sharedPercentage + $currentuser->getCommissionoriginator()))))/100;
+                            } else {
+                                $individualforecast = (str_replace(",", "", $opportunity->getForecast()) * ($currentuser->getCommissionoriginator() + (100 - ($sharedPercentage + $currentuser->getCommissionoriginator())))) / 100;
                                 $decimalCount = explode(".", $individualforecast);
-                                if(count($decimalCount)>1){
-                                    $individualforecast = number_format(floor($individualforecast),  0).'.'.$decimalCount[1];
-                                }else{
-                                    $individualforecast = number_format($individualforecast,  0);
+                                if (count($decimalCount) > 1) {
+                                    $individualforecast = number_format(floor($individualforecast), 0) . '.' . $decimalCount[1];
+                                } else {
+                                    $individualforecast = number_format($individualforecast, 0);
                                 }
-                                 $isselected = true;
+                                $isselected = true;
                             }
-                        }else if(in_array($currentuser->getUsername(), $sharedusers)){
-                            if(($sharedPercentage + $ownedUser->getCommissionoriginator()) > 100 ){
-                                 $individualforecast = (str_replace(",", "", $opportunity->getForecast()) * ($currentuser->getCommissionnonoriginator()- ((($sharedPercentage + $ownedUser->getCommissionoriginator())- 100 )/count($sharedusers))))/100;
-                                 $decimalCount = explode(".", $individualforecast);
-                                 if(count($decimalCount)>1){
-                                    $individualforecast = number_format(floor($individualforecast),  0).'.'.$decimalCount[1];
-                                }else{
-                                    $individualforecast = number_format($individualforecast,  0);
-                                }
-                                 $isselected = true;
-                            }else{
-                                $individualforecast = (str_replace(",", "", $opportunity->getForecast()) * $currentuser->getCommissionnonoriginator())/100; 
+                        } else if (in_array($currentuser->getUsername(), $sharedusers)) {
+                            if (($sharedPercentage + $ownedUser->getCommissionoriginator()) > 100) {
+                                $individualforecast = (str_replace(",", "", $opportunity->getForecast()) * ($currentuser->getCommissionnonoriginator() - ((($sharedPercentage + $ownedUser->getCommissionoriginator()) - 100 ) / count($sharedusers)))) / 100;
                                 $decimalCount = explode(".", $individualforecast);
-                                 if(count($decimalCount)>1){
-                                    $individualforecast = number_format(floor($individualforecast),  0).'.'.$decimalCount[1];
-                                }else{
-                                    $individualforecast = number_format($individualforecast,  0);
+                                if (count($decimalCount) > 1) {
+                                    $individualforecast = number_format(floor($individualforecast), 0) . '.' . $decimalCount[1];
+                                } else {
+                                    $individualforecast = number_format($individualforecast, 0);
                                 }
-                                 $isselected = true;
+                                $isselected = true;
+                            } else {
+                                $individualforecast = (str_replace(",", "", $opportunity->getForecast()) * $currentuser->getCommissionnonoriginator()) / 100;
+                                $decimalCount = explode(".", $individualforecast);
+                                if (count($decimalCount) > 1) {
+                                    $individualforecast = number_format(floor($individualforecast), 0) . '.' . $decimalCount[1];
+                                } else {
+                                    $individualforecast = number_format($individualforecast, 0);
+                                }
+                                $isselected = true;
                             }
                         }
-                        
-                        
-                    }else{
-                         
-                             $isselected = true;
-                         
+                    } else {
+
+                        $isselected = true;
                     }
                     $opportunity->setCurrentuserforecast($individualforecast);
-                    if($isselected){
+                    if ($isselected) {
                         $selectedopportunities[$count] = $opportunity;
                         $count++;
                     }
-
-
-                } 
-                return $this->render('OpportunityBundle:Default:manageOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'opportunities'=>$selectedopportunities,'fullname'=>$fullname,'manageview'=>$currentuser->getOpportunityview() )); 
+                }
+                return $this->render('OpportunityBundle:Default:manageOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunities' => $selectedopportunities, 'fullname' => $fullname, 'manageview' => $currentuser->getOpportunityview()));
             }
-            
         }
     }
-    
-    
-        
-    
+
 }

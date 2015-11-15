@@ -62,7 +62,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
     }
 
     function checkAndSetValue(value, blankValue, scale, pre){
-        if(value === ''){
+        if(value === '' || value === null){
             return blankValue;
         }else{
             if(pre === true){
@@ -180,7 +180,8 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         lost_deals: '\$' + tempUser.lossDeals,
                         user_status: tempUser.status,
                         user_level: tempUser.role,
-                        action: '<div class=\"keep-open btn-group\">' +
+                        action: '<div class=\"pull-right\">' +
+                                '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                                 '</button>' +
@@ -189,6 +190,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                                 '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
+                                '</div>' +
                                 '</div>'
 
                     });

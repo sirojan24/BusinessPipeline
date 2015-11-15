@@ -182,9 +182,6 @@ class DashboardController extends Controller{
       
     }
     
-    
-
-    
     public function fullsignupAction(Request $request){
         
          $em = $this->getDoctrine()->getManager();
