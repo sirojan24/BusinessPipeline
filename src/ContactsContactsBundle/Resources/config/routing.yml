@@ -13,6 +13,10 @@ contacts_contacts_contacts:
 contacts_contacts_addcontact:
     path:     /addcontact
     defaults: { _controller: ContactsContactsBundle:Contacts:addcontact }
+    
+contacts_contacts_addcontactV2:
+    path:     /addcontactV2
+    defaults: { _controller: ContactsContactsBundle:Contacts:addcontactV2 }
 
 contacts_contacts_createcontact:
     path:     /createcontact

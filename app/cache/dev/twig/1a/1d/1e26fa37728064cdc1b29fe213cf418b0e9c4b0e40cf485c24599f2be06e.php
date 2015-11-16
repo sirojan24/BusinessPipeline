@@ -19,11 +19,24 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
-
+\$(\"#tableDiv\").show();
     \$(document).ready(function () {
-        fillTableData();
+        
+        iniFillTableData();
     });
-
+    
+    function iniFillTableData() {
+        \$table.bootstrapTable('showLoading');
+        var data = '";
+        // line 12
+        echo twig_escape_filter($this->env, (isset($context["userArray"]) ? $context["userArray"] : $this->getContext($context, "userArray")), "html", null, true);
+        echo "';
+        var newString = data.replace(/&quot;/g, '\"');
+        //var newString = JSON.parse(data);
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(newString));
+    }
+    
     function refreshTable() {
         \$table.bootstrapTable('removeAll');
         fillTableData();
@@ -32,7 +45,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 16
+        // line 26
         echo $this->env->getExtension('routing')->getPath("login_login_userTableData");
         echo "', null,
                 function (response) {
@@ -48,7 +61,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     function storePageSize(size) {
         \$.post('";
-        // line 29
+        // line 39
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'userview', value: size},
@@ -152,7 +165,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 rows = [];
 
     ";
-        // line 132
+        // line 142
         echo "                for (var i = 0; i < jsonString.users.length; i++) {
                     var tempUser = jsonString.users[i];
 
@@ -169,7 +182,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         dob: tempUser.dob
                     });
                     var editPath = '";
-        // line 147
+        // line 157
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
@@ -238,6 +251,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  173 => 147,  156 => 132,  52 => 29,  36 => 16,  19 => 1,);
+        return array (  186 => 157,  169 => 142,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
     }
 }

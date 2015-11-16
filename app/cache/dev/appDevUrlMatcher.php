@@ -445,9 +445,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // contacts_contacts_addcontact
-        if ($pathinfo === '/addcontact') {
-            return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::addcontactAction',  '_route' => 'contacts_contacts_addcontact',);
+        if (0 === strpos($pathinfo, '/addcontact')) {
+            // contacts_contacts_addcontact
+            if ($pathinfo === '/addcontact') {
+                return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::addcontactAction',  '_route' => 'contacts_contacts_addcontact',);
+            }
+
+            // contacts_contacts_addcontactV2
+            if ($pathinfo === '/addcontactV2') {
+                return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::addcontactV2Action',  '_route' => 'contacts_contacts_addcontactV2',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/c')) {

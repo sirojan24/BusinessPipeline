@@ -212,6 +212,28 @@ class ContactsController extends Controller {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
+    
+    public function addcontactV2Action(Request $request) {
+        $session = $request->getSession();
+        $token = $session->get('token');
+        
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        
+        $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
+        
+        $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+        
+        $currentCompany = $currentUser->getCompanyname();
+        
+        $users = $repository->findBy(array('companyname' => $currentCompany));
+        
+        if ($token) {
+            return $this->render('ContactsContactsBundle:Default:addContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'fullname' => $fullname));
+        } else {
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
 
     public function createcontactAction(Request $request) {
         $session = $request->getSession();

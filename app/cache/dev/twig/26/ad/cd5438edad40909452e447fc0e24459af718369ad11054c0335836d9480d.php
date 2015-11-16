@@ -54,9 +54,9 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                 </div>
             </div>
 
-            <div class=\"row\">
+            <div class=\"row\" id=\"tableDiv\" style=\"display: none\">
                 <div class=\"col-lg-12\">
-                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
+                    <div class=\"table-responsive\" style=\"min-height: 360px;\">
                         <table id=\"table\"
                                data-toggle=\"table\"
                                data-detail-view=\"true\"

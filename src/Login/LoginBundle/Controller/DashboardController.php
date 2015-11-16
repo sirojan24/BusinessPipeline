@@ -389,7 +389,7 @@ class DashboardController extends Controller{
                
             }
         }else if($role == 'Master Admin'){
-            $users = $repository->findAll();
+                $users = $repository->findAll();
             foreach ($users as $user) {
                 $user = $this->revenueAndForecastCalculation($em,$user);
             }
@@ -405,7 +405,7 @@ class DashboardController extends Controller{
              $userArray = array();
              //serialize user obects to array
              foreach ($users as $tempUser) {
-                 
+                
                  $arrElement["firstname"] = $tempUser->getFirstname();
                  $arrElement["lastname"] = $tempUser->getLastname();
                  $arrElement["username"] = $tempUser->getUsername();
@@ -448,29 +448,134 @@ class DashboardController extends Controller{
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
-        
+        $repository1 = $em->getRepository("OpportunityBundle:Opportunities");
         $admin = $repository->findOneBy(array('username' => $token->getUsername()));
         $role = $token->getRole();
+        
+        $userArray = array();
         if($role == 'Admin' || $role == 'Regular'){
             
             $admin_companyName = $admin->getCompanyname();
         
             $users = $repository->findBy(array('companyname' => $admin_companyName,'status'=>'Active'));
-            foreach ($users as $user) {
-                $user = $this->revenueAndForecastCalculation($em,$user);
+            
+            $userArray = array();
+            foreach ($users as $tempUser) {
+                $wonAmount = 0;
+                $lossAmount =0;
+                $originOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(),'status'=>'Active'));
+                $ownedOpportunityCount = count($originOpportunities);
+                $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(),'status'=>'Active','stage'=>'6'));
+                $wonOpportunityCount = count($wonOpportunities);
+                foreach ($wonOpportunities as $wonOpportunity){
+                    $wonAmount += intval(str_replace(",", "", $wonOpportunity->getProjectedrevenue()));
+                }
+                $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(),'status'=>'Active','stage'=>'7'));
+                $lossOpportunityCount = count($lossOpportunities);
+                foreach ($lossOpportunities as $lossOpportunity){
+                    $lossAmount += intval(str_replace(",", "", $lossOpportunity->getProjectedrevenue()));
+                }
+                $allOpprtunities = $repository1->findBy(array('status' => 'Active'));
+                $totalCount = 0;
+                $wonCount = 0;
+                
+                $lossCount = 0;
+                foreach ($allOpprtunities as $opportunity) {
+                    $sharingString = $opportunity->getSharing();
+                    if($sharingString != ''){
+                        $splitedArray = split(':',$sharingString);
+                        foreach ($splitedArray as $sharedname){
+                            if(strtolower($tempUser->getUsername()) == strtolower($sharedname) ){
+                                $totalCount++;
+                                if($opportunity->getStage() == '6'){
+                                   $wonCount++; 
+                                   $wonAmount += intval(str_replace(",", "", $opportunity->getRevenue()));
+                                   
+                                }
+                                if($opportunity->getStage() == '7'){
+                                   $lossCount++;
+                                   $lossAmount += intval(str_replace(",", "", $opportunity->getProjectedrevenue()));
+                                   
+                                }
+                            }
+                        }
+                    }
+                }
+                $totalWonOpportunityCount =  intval($wonOpportunityCount) +  intval($wonCount);
+                $totalLossOpportunityCount = intval($lossOpportunityCount) + intval($lossCount);
+                $totalOpportunityCount = intval($ownedOpportunityCount) + intval($totalCount);
+                $tempUser->setWondealcount(number_format($wonAmount));
+                $tempUser->setLossdealcount(number_format($lossAmount));
+                $tempUser->setOpendealcount($totalOpportunityCount - $totalWonOpportunityCount - $totalLossOpportunityCount);
+                
+                $tempUser = $this->revenueAndForecastCalculation($em,$tempUser);
                
+                 $arrElement["firstname"] = $tempUser->getFirstname();
+                 $arrElement["lastname"] = $tempUser->getLastname();
+                 $arrElement["username"] = $tempUser->getUsername();
+                 $arrElement["id"] = $tempUser->getId();
+                 $arrElement["projectedRevenue"] = $tempUser->getProjectedrevenue();
+                 $arrElement["individualForecast"] = $tempUser->getIndividualforecast();
+                 $arrElement["status"] = $tempUser->getStatus();
+                 $arrElement["role"] = $tempUser->getRole();
+                 
+                 $arrElement["title"] = $tempUser->getJobtitle();
+                 $arrElement["company"] = $tempUser->getCompanyname();
+                 $arrElement["email"] = $tempUser->getEmail();
+                 $arrElement["telephone"] = $tempUser->getTelephoneoffice();
+                 $arrElement["cellphone"] = $tempUser->getTelephonemobile();
+                 $arrElement["originator"] = $tempUser->getCommissionoriginator();
+                 $arrElement["nonOriginator"] = $tempUser->getCommissionnonoriginator();
+                 $arrElement["drawAgainstCommission"] = $tempUser->getAnnualdraw();
+                 $arrElement["earningGoals"] = $tempUser->getEarninggoal();
+                 $arrElement["openDeals"] = $tempUser->getOpendealcount();
+                 $arrElement["lossDeals"] = $tempUser->getLossdealcount();
+                 $arrElement["wonDeals"] = $tempUser->getWondealcount();
+                 $arrElement["dob"] = $tempUser->getDob();
+                 
+                 
+                 array_push($userArray, $arrElement);
             }
         }else if($role == 'Master Admin'){
             $users = $repository->findAll();
-            foreach ($users as $user) {
-                $user = $this->revenueAndForecastCalculation($em,$user);
+            
+            $userArray = array();
+            foreach ($users as $tempUser) {
+                $tempUser = $this->revenueAndForecastCalculation($em,$tempUser);
+                $arrElement["firstname"] = $tempUser->getFirstname();
+                 $arrElement["lastname"] = $tempUser->getLastname();
+                 $arrElement["username"] = $tempUser->getUsername();
+                 $arrElement["id"] = $tempUser->getId();
+                 $arrElement["projectedRevenue"] = $tempUser->getProjectedrevenue();
+                 $arrElement["individualForecast"] = $tempUser->getIndividualforecast();
+                 $arrElement["status"] = $tempUser->getStatus();
+                 $arrElement["role"] = $tempUser->getRole();
+                 
+                 $arrElement["title"] = $tempUser->getJobtitle();
+                 $arrElement["company"] = $tempUser->getCompanyname();
+                 $arrElement["email"] = $tempUser->getEmail();
+                 $arrElement["telephone"] = $tempUser->getTelephoneoffice();
+                 $arrElement["cellphone"] = $tempUser->getTelephonemobile();
+                 $arrElement["originator"] = $tempUser->getCommissionoriginator();
+                 $arrElement["nonOriginator"] = $tempUser->getCommissionnonoriginator();
+                 $arrElement["drawAgainstCommission"] = $tempUser->getAnnualdraw();
+                 $arrElement["earningGoals"] = $tempUser->getEarninggoal();
+                 $arrElement["openDeals"] = $tempUser->getOpendealcount();
+                 $arrElement["lossDeals"] = $tempUser->getLossdealcount();
+                 $arrElement["wonDeals"] = $tempUser->getWondealcount();
+                 $arrElement["dob"] = $tempUser->getDob();
+                 
+                 
+                 array_push($userArray, $arrElement);
             }
         }
         
-        
+        $response = array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $userArray, 'manageview'=>$admin->getUserview());
+        //echo json_encode($response);exit;
         if($admin){
              $fullname = $admin->getFirstname()." ".$admin->getLastname();
-             return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
+             return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users, 'userArray'=> json_encode($response) ,'fullname'=> $fullname,'manageview'=>$admin->getUserview()));
+             //return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users, 'userArray'=> $userArray ,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
         }else{
             
              return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
