@@ -168,7 +168,12 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         drawAgainstCommission: tempUser.drawAgainstCommission,
                         dob: tempUser.dob
                     });
-
+                    var editPath = '";
+        // line 147
+        echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
+        echo "';
+                    editPath = editPath.substring(0, editPath.length - 1);
+                    
                     rows.push({
                         first_name: tempUser.firstname,
                         last_name: tempUser.lastname,
@@ -186,7 +191,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                                '<li><a href=\"#\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
+                                '<li><a href=\"' + editPath + tempUser.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
@@ -233,6 +238,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  156 => 132,  52 => 29,  36 => 16,  19 => 1,);
+        return array (  173 => 147,  156 => 132,  52 => 29,  36 => 16,  19 => 1,);
     }
 }

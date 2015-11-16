@@ -144,7 +144,9 @@
                         drawAgainstCommission: tempUser.drawAgainstCommission,
                         dob: tempUser.dob
                     });
-
+                    var editPath = '{{ path('login_login_edituserpage',{'id':0} )}}';
+                    editPath = editPath.substring(0, editPath.length - 1);
+                    
                     rows.push({
                         first_name: tempUser.firstname,
                         last_name: tempUser.lastname,
@@ -162,7 +164,7 @@
                                 '<i class="glyphicon glyphicon-chevron-down"></i>' +
                                 '</button>' +
                                 '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                                '<li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
+                                '<li><a href="' + editPath + tempUser.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
                                 '<li><a href="#"><i class="fa fa-file-o"></i> Notes</a></li>' +
                                 '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
                                 '</ul>' +

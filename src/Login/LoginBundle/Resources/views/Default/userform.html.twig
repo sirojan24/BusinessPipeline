@@ -5,7 +5,7 @@
                 <div class="row">			
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label for="firstname">First Name</label>
+                            <label for="firstname">First Name <span style="color:#FF0000;">*</span></label>
                             <input type="text" name="firstname" class="form-control" id="firstname"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup" required/>
                         </div>
                     </div>
@@ -13,7 +13,7 @@
                 <div class="row">			
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label for="Last Name">Last Name</label>
+                            <label for="Last Name">Last Name <span style="color:#FF0000;">*</span></label>
                             <input type="text" name="lastname" class="form-control" id="lastname" placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup" required/>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-xs-6">				
                         <div class="form-group">
-                            <label for="username">Username</label>
+                            <label for="username">Username <span style="color:#FF0000;">*</span></label>
                             <input type="text" name="username"  class="form-control" id="username"  onkeyup="usernameAvailability()" placeholder="" pattern="^[a-zA-Z0-9_ ]*$" data-parsley-pattern="^[a-zA-Z0-9_ ]*$"  data-parsley-trigger="keyup" required/>
                             <div id="usernameerror"></div>
                         </div>
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">Email <span style="color:#FF0000;">*</span></label>
                             <input type="email"  name="email" class="form-control" id="email" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-xs-3">
                         <div class="form-group">
-                            <label for="telephonework">Telephone Work</label>
+                            <label for="telephonework">Telephone Work <span style="color:#FF0000;">*</span></label>
                             <input type="tel" name="officetel" class="form-control" id="officetel" required="*" placeholder="(XXX) XXX-XXXX Ext.XXXX" data-parsley-trigger="change">
                         </div>
                     </div>
@@ -127,13 +127,13 @@
                 <div class="row">			
                     <div class="col-xs-3">
                         <div class="form-group">	
-                            <label for="commorigin">Commission Originator</label>
+                            <label for="commorigin">Commission Originator <span style="color:#FF0000;">*</span></label>
                             <input type="text" class="form-control" name="commisionoriginator" id="commorigin">
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
-                            <label for="commnonorigin">Commission Non-Originator</label>
+                            <label for="commnonorigin">Commission Non-Originator <span style="color:#FF0000;">*</span></label>
                             <input type="text" class="form-control" id="commnonorigin" name="commisionnonoriginator">
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                 <div class="row">
                     <div class="col-xs-3">
                         <div class="form-group">
-                            <label for="earninggoals">Earning Goals</label>
+                            <label for="earninggoals">Earning Goals <span style="color:#FF0000;">*</span></label>
                             <input type="text" name="earninggoals" class="form-control" id="earninggoals" aria-label="Amount">
                         </div>
                     </div>

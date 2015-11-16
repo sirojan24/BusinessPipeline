@@ -339,15 +339,24 @@ class DashboardController extends Controller{
         
             $users = $repository->findBy(array('companyname' => $admin_companyName,'status'=>'Active'));
             foreach ($users as $user) {
+                $wonAmount = 0;
+                $lossAmount =0;
                 $originOpportunities = $repository1->findBy(array('username' => $user->getUsername(),'status'=>'Active'));
                 $ownedOpportunityCount = count($originOpportunities);
                 $wonOpportunities = $repository1->findBy(array('username' => $user->getUsername(),'status'=>'Active','stage'=>'6'));
                 $wonOpportunityCount = count($wonOpportunities);
+                foreach ($wonOpportunities as $wonOpportunity){
+                    $wonAmount += intval(str_replace(",", "", $wonOpportunity->getProjectedrevenue()));
+                }
                 $lossOpportunities = $repository1->findBy(array('username' => $user->getUsername(),'status'=>'Active','stage'=>'7'));
                 $lossOpportunityCount = count($lossOpportunities);
+                foreach ($lossOpportunities as $lossOpportunity){
+                    $lossAmount += intval(str_replace(",", "", $lossOpportunity->getProjectedrevenue()));
+                }
                 $allOpprtunities = $repository1->findBy(array('status' => 'Active'));
                 $totalCount = 0;
                 $wonCount = 0;
+                
                 $lossCount = 0;
                 foreach ($allOpprtunities as $opportunity) {
                     $sharingString = $opportunity->getSharing();
@@ -358,9 +367,13 @@ class DashboardController extends Controller{
                                 $totalCount++;
                                 if($opportunity->getStage() == '6'){
                                    $wonCount++; 
+                                   $wonAmount += intval(str_replace(",", "", $opportunity->getRevenue()));
+                                   
                                 }
                                 if($opportunity->getStage() == '7'){
-                                   $lossCount++; 
+                                   $lossCount++;
+                                   $lossAmount += intval(str_replace(",", "", $opportunity->getProjectedrevenue()));
+                                   
                                 }
                             }
                         }
@@ -369,8 +382,8 @@ class DashboardController extends Controller{
                 $totalWonOpportunityCount =  intval($wonOpportunityCount) +  intval($wonCount);
                 $totalLossOpportunityCount = intval($lossOpportunityCount) + intval($lossCount);
                 $totalOpportunityCount = intval($ownedOpportunityCount) + intval($totalCount);
-                $user->setWondealcount($totalWonOpportunityCount);
-                $user->setLossdealcount($totalLossOpportunityCount);
+                $user->setWondealcount(number_format($wonAmount));
+                $user->setLossdealcount(number_format($lossAmount));
                 $user->setOpendealcount($totalOpportunityCount - $totalWonOpportunityCount - $totalLossOpportunityCount);
                 $user = $this->revenueAndForecastCalculation($em,$user);
                
@@ -505,7 +518,7 @@ class DashboardController extends Controller{
         if($token){
              $currentuser = $repository->findOneBy(array('username' => $token->getUsername()));
              $fullname = $currentuser->getFirstname()." ".$currentuser->getLastname();  
-             return $this->render('LoginLoginBundle:Default:updateUsers.html.twig', array('name' => $token->getUsername(),'role' => $token->getRole(),'user' => $user,'earn' => $earn , 'annual' => $annual , 'tele' => $tele , 'mobile' => $mobile,'fullname'=>$fullname)); 
+             return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(),'role' => $token->getRole(),'user' => $user,'earn' => $earn , 'annual' => $annual , 'tele' => $tele , 'mobile' => $mobile,'fullname'=>$fullname)); 
         }else{
             
              return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -591,39 +604,37 @@ class DashboardController extends Controller{
                     $adminuser->setRole('Regular');
                     $em->flush();
                 }
-                $user = new Users();
 
-                    $user->setUsername($username);
-                    $user->setFirstname($firstname);
-                    $user->setLastname($lastname);
-                    $user->setEmail($email);
-                    $user->setDob($dob);
-                    $user->setTelephoneoffice($officetel);
-                    $user->setTelephonemobile($mobile);
-                    $user->setJobtitle($jobtitle);
-                    $user->setCompanyname($companyname);
-                    $user->setAddress1($address1);
-                    $user->setAddress2($address2);
-                    $user->setCity($city);
-                    $user->setState($state);
-                    $user->setPostalcode($postalcode);
-                    $user->setContractstartdate($empstartdate);
-                    $user->setCommissionoriginator($commisionoriginator);
-                    $user->setCommissionnonoriginator($commisionnonoriginator);
-                    $user->setAnnualdraw($annualdraw);
-                    $user->setEarninggoal($earninggoals);
-                    $user->setProfilenote($profilenote);
-                    $user->setLinkedin($linkedin);
-                    $user->setTwitter($twitter);
-                    $user->setRole($role);
-                    $user->setIndustry($industry);
-                    $user->setCompanysize($companysize);
-                    $user->setPassword($password);
-                    $user->setStatus("Active");
+                    $currentuser->setUsername($username);
+                    $currentuser->setFirstname($firstname);
+                    $currentuser->setLastname($lastname);
+                    $currentuser->setEmail($email);
+                    $currentuser->setDob($dob);
+                    $currentuser->setTelephoneoffice($officetel);
+                    $currentuser->setTelephonemobile($mobile);
+                    $currentuser->setJobtitle($jobtitle);
+                    $currentuser->setCompanyname($companyname);
+                    $currentuser->setAddress1($address1);
+                    $currentuser->setAddress2($address2);
+                    $currentuser->setCity($city);
+                    $currentuser->setState($state);
+                    $currentuser->setPostalcode($postalcode);
+                    $currentuser->setContractstartdate($empstartdate);
+                    $currentuser->setCommissionoriginator($commisionoriginator);
+                    $currentuser->setCommissionnonoriginator($commisionnonoriginator);
+                    $currentuser->setAnnualdraw($annualdraw);
+                    $currentuser->setEarninggoal($earninggoals);
+                    $currentuser->setProfilenote($profilenote);
+                    $currentuser->setLinkedin($linkedin);
+                    $currentuser->setTwitter($twitter);
+                    $currentuser->setRole($role);
+                    $currentuser->setIndustry($industry);
+                    $currentuser->setCompanysize($companysize);
+                    $currentuser->setPassword($password);
+                    $currentuser->setStatus("Active");
 
                     try{
-                        $em->persist($user);
-                        $em->remove($currentuser);
+                        
                         $em->flush();
                         if($admin -> getRole() == 'Admin' || $admin -> getRole() == 'Regular' ){
                         $users = $repository->findBy(array('companyname' => $companyname,'status'=>'Active'));
@@ -636,7 +647,7 @@ class DashboardController extends Controller{
                             $individualuser = $this->revenueAndForecastCalculation($em,$individualuser);
                         }
                         }
-                        return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=>$fullname,'successmsg' => "Well done ! You successfully updated ".$user->getUsername()."'s profile",'manageview'=>$admin->getUserview()));
+                        return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=>$fullname,'successmsg' => "Well done ! You successfully updated ".$currentuser->getUsername()."'s profile",'manageview'=>$adminuser->getUserview()));
                     } catch(Doctrine\ORM\ORMInvalidArgumentException $e){
                         if($admin -> getRole() == 'Admin' || $admin -> getRole() == 'Regular' ){
                         $users = $repository->findBy(array('companyname' => $companyname,'status'=>'Active'));
@@ -649,7 +660,7 @@ class DashboardController extends Controller{
                             $individualuser = $this->revenueAndForecastCalculation($em,$individualuser);
                         }
                         }
-                        return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=>$fullname,'errormsg' => 'Invalid Arguments. Try Again','manageview'=>$admin->getUserview()));
+                        return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name'=>$admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=>$fullname,'errormsg' => 'Invalid Arguments. Try Again','manageview'=>$adminuser->getUserview()));
 
                     }
 
