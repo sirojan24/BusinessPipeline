@@ -470,7 +470,7 @@ class DashboardController extends Controller{
         
         if($admin){
              $fullname = $admin->getFirstname()." ".$admin->getLastname();
-             return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
+             return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
         }else{
             
              return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

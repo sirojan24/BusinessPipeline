@@ -66,7 +66,10 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
                     <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Deals\"><i class=\"fa fa-usd\"></i></a>
                 </li>
                 <li>
-                    <a href=\"users.php\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Users\"><i class=\"fa fa-users\"></i></a>
+                    <a href=\"";
+        // line 48
+        echo $this->env->getExtension('routing')->getPath("login_login_users");
+        echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Users\"><i class=\"fa fa-users\"></i></a>
                 </li>
                 <li>
                     <a href=\"support.php\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Help & Support\"><i class=\"fa fa-question\"></i></a>
@@ -91,6 +94,6 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
 
     public function getDebugInfo()
     {
-        return array (  39 => 19,  19 => 1,);
+        return array (  71 => 48,  39 => 19,  19 => 1,);
     }
 }
