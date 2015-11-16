@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-		{% include 'LoginLoginBundle:Default:head_v2.html.twig' %}		
+		{% include 'AppBundle:Default:head.html.twig' %}		
 
 <body>
 
     <div id="wrapper">
 
         <!-- Navigation -->
-	{% include 'LoginLoginBundle:Default:navigation.html.twig' %}
+	{% include 'AppBundle:Default:navigation.html.twig' %}
 		<!-- Second Menu -->		
 	{% include 'LoginLoginBundle:Default:secondmenu.html.twig' %}
         
@@ -69,7 +69,7 @@
     </div>
     <!-- /#wrapper -->
 
-    {% include 'LoginLoginBundle:Default:scripts.html.twig' %}
+     {% include 'AppBundle:Default:scripts.html.twig' %}
 		<script src="{{asset('bundles_v2.0/dist/js/sb-admin-2.js')}}"></script>
 		<script src="{{asset('bundles_v2.0/bower_components/raphael/raphael-min.js')}}"></script>
 		<script src="{{asset('bundles_v2.0/bower_components/morrisjs/morris.js')}}"></script>

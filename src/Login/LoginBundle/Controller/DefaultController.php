@@ -108,11 +108,14 @@ class DefaultController extends Controller
             $user->setLastname($lastname);
             $user->setRole($role);
             $user->setStatus($status);
+            $user->setUserview(10);
+            $user->setOpportunityview(10);
+            $user->setContactview(10);
             //$em = $this->getDoctrine()->getEntityManager();
             try{
                 $em->persist($user);
                 $em->flush();
-                return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('successmsg' => 'Registration Success,Login your account.'));
+                return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('successmsg' => 'Registration Success,Login your account.'));
             } catch(Doctrine\ORM\ORMInvalidArgumentException $e){
                 
                 return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Invalid Arguments. Try Again'));
