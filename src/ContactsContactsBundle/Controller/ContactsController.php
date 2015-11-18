@@ -70,7 +70,54 @@ class ContactsController extends Controller {
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
             
-            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'manageview' => $user->getContactview()));
+            $fullname = $user->getFirstname() . " " . $user->getLastname();
+            $currentCompany = $user->getCompanyname();
+            $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            $contactArray = array();
+            
+            foreach ($contacts as $contact) {
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
+                
+                //serialize contact obects to array
+                $arrElement["name"] = $contact->getName();
+                $arrElement["company"] = $contact->getCompany();
+                $arrElement["open_deal"] = 0;
+                $arrElement["projected_revenue"] = $contact->getProjectedrevenue();
+                $arrElement["weighted_forecast"] = $contact->getWeightedforecast();
+                $arrElement["won_deals"] = 0;
+                $arrElement["lost_deals"] = 0;
+                $arrElement["owner"] = $contact->getFirstname() . " " . $contact->getLastname();
+                $arrElement["id"] = $contact->getId();
+                $arrElement["email"] = $contact->getEmail0();
+                $arrElement["telephone"] = $contact->getPhone0();
+                $arrElement["tags"] = $contact->getTags();
+                $arrElement["username"] = $contact->getUsername();
+                array_push($contactArray, $arrElement);
+            }
+            $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $user->getContactview());
+            $response = json_encode($response);
+            
+            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contactArray' => $response,'manageview' => $user->getContactview()));
         } else {
             
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
