@@ -682,30 +682,10 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                     </div>
                 </div>
                 <div class=\"row\">\t\t\t
-                    <div class=\"col-xs-3\">
+                    <div class=\"col-xs-6\">
                         <div class=\"form-group\">\t
-                            <label for=\"commorigin\">Commission Originator <span style=\"color:#FF0000;\">*</span></label>
-                            <input type=\"text\" class=\"form-control\" name=\"commisionoriginator\" id=\"commorigin\">
-                        </div>
-                    </div>
-                    <div class=\"col-xs-3\">
-                        <div class=\"form-group\">
-                            <label for=\"commnonorigin\">Commission Non-Originator <span style=\"color:#FF0000;\">*</span></label>
-                            <input type=\"text\" class=\"form-control\" id=\"commnonorigin\" name=\"commisionnonoriginator\">
-                        </div>
-                    </div>
-                </div>
-                <div class=\"row\">
-                    <div class=\"col-xs-3\">
-                        <div class=\"form-group\">
-                            <label for=\"earninggoals\">Earning Goals <span style=\"color:#FF0000;\">*</span></label>
-                            <input type=\"text\" name=\"earninggoals\" class=\"form-control\" id=\"earninggoals\" aria-label=\"Amount\">
-                        </div>
-                    </div>
-                    <div class=\"col-xs-3\">
-                        <div class=\"form-group\">\t
-                            <label for=\"draw\">Annual Draw Against Commissions</label>
-                            <input type=\"text\" class=\"form-control\" name=\"annualdraw\" id=\"draw\" aria-label=\"Amount\">
+                            <label for=\"commorigin\">Tags</label>
+                            <input type=\"text\" value=\"\"  class=\"form-control\" data-role=\"tagsinput\" />
                         </div>
                     </div>
                 </div>
@@ -717,7 +697,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                             <div class=\"fileinput fileinput-new\" data-provides=\"fileinput\">
                                 <div class=\"fileinput-new thumbnail\" style=\"width: 200px; height: 150px;\">
                                     <img src=\"";
-        // line 664
+        // line 644
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/img/Avatar.PNG"), "html", null, true);
         echo "\" alt=\"...\">
                                 </div>
@@ -744,7 +724,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
     </div>
 </div>
 ";
-        // line 688
+        // line 668
         $this->env->loadTemplate("ContactsContactsBundle:Default:contactformScript.html.twig")->display($context);
     }
 
@@ -760,6 +740,6 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
 
     public function getDebugInfo()
     {
-        return array (  748 => 688,  721 => 664,  680 => 625,  671 => 623,  664 => 621,  661 => 620,  653 => 619,  651 => 618,  644 => 617,  642 => 616,  485 => 461,  242 => 219,  54 => 32,  24 => 4,  19 => 1,);
+        return array (  728 => 668,  701 => 644,  680 => 625,  671 => 623,  664 => 621,  661 => 620,  653 => 619,  651 => 618,  644 => 617,  642 => 616,  485 => 461,  242 => 219,  54 => 32,  24 => 4,  19 => 1,);
     }
 }

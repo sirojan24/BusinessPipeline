@@ -99,17 +99,22 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         // line 47
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/src/bootstrap-table.css"), "html", null, true);
         echo "\">
-    <script src=\"";
+    <link href=\"";
         // line 48
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/bootstrap-tagsinput.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\" type=\"text/css\">
+    
+    <script src=\"";
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/src/bootstrap-table.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 49
+        // line 51
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/ga.js"), "html", null, true);
         echo "\"></script>
     
      <link rel=\"stylesheet\" href=\"";
-        // line 51
+        // line 53
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/parsley.css"), "html", null, true);
         echo "\" />
 </head>";
@@ -127,6 +132,6 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
 
     public function getDebugInfo()
     {
-        return array (  113 => 51,  108 => 49,  104 => 48,  100 => 47,  96 => 46,  90 => 43,  79 => 35,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
+        return array (  118 => 53,  113 => 51,  109 => 50,  104 => 48,  100 => 47,  96 => 46,  90 => 43,  79 => 35,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
     }
 }

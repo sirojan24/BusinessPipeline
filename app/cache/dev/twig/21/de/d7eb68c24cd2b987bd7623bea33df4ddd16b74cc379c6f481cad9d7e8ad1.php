@@ -16,37 +16,41 @@ class __TwigTemplate_21ded7eb68c24cd2b987bd7623bea33df4ddd16b74cc379c6f481cad9d7
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<script>
+        echo "<script src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
+        echo "\"></script>
+
+<script>
     \$(document).ready(function () {
-        
+
     });
-    
+
     var showEmailId = 1;
-    function addEmail(){
+    function addEmail() {
         \$(\"#emailDiv\" + showEmailId).show();
         showEmailId++;
-        
-        if(showEmailId >= 10){
+
+        if (showEmailId >= 10) {
             \$(\"#addEmailDiv\").hide();
         }
     }
-    
+
     var showPhoneId = 1;
-    function addPhone(){
+    function addPhone() {
         \$(\"#phoneDiv\" + showPhoneId).show();
         showPhoneId++;
-        
-        if(showPhoneId >= 10){
+
+        if (showPhoneId >= 10) {
             \$(\"#addPhoneDiv\").hide();
         }
     }
-    
+
     var showSubContactId = 1;
-    function addSubContact(){
+    function addSubContact() {
         \$(\"#subcontact\" + showSubContactId).show();
         showSubContactId++;
-        
-        if(showSubContactId > 2){
+
+        if (showSubContactId > 2) {
             \$(\"#addSubContactDiv\").hide();
         }
     }
@@ -56,6 +60,11 @@ class __TwigTemplate_21ded7eb68c24cd2b987bd7623bea33df4ddd16b74cc379c6f481cad9d7
     public function getTemplateName()
     {
         return "ContactsContactsBundle:Default:contactformScript.html.twig";
+    }
+
+    public function isTraitable()
+    {
+        return false;
     }
 
     public function getDebugInfo()
