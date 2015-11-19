@@ -133,7 +133,7 @@ class ContactsController extends Controller {
             $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $user->getContactview());
             $response = json_encode($response);
             
-            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contactArray' => $response,'manageview' => $user->getContactview()));
+            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contactArray' => $response,'fullname' => $fullname,'manageview' => $user->getContactview()));
         } else {
             
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

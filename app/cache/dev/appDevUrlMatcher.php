@@ -481,9 +481,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // contacts_contacts_editcontactpage
-        if (0 === strpos($pathinfo, '/editcontact') && preg_match('#^/editcontact/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_editcontactpage')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::editcontactpageAction',));
+        if (0 === strpos($pathinfo, '/editcontact')) {
+            // contacts_contacts_editcontactpage
+            if (preg_match('#^/editcontact/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_editcontactpage')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::editcontactpageAction',));
+            }
+
+            // contacts_contacts_editcontactpageV2
+            if (0 === strpos($pathinfo, '/editcontactV2') && preg_match('#^/editcontactV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'contacts_contacts_editcontactpageV2')), array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::editcontactpageV2Action',));
+            }
+
         }
 
         // contacts_contacts_updatecontact
