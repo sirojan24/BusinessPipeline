@@ -301,24 +301,6 @@ class DashboardController extends Controller {
         return new Response(json_encode($response));
     }
 
-    public function manageUsersAction(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository("LoginLoginBundle:Users");
-        $session = $request->getSession();
-        $admin = $session->get('token');
-        
-        if($admin){
-            $adminname = $admin->getUsername();
-            $adminuser = $repository->findOneBy(array('username' => $adminname));
-            $fullname = $adminuser->getFirstname() . " " . $adminuser->getLastname();
-            $userArray = $this->getUserArray($admin);
-        
-            return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $adminuser->getUserView()));
-        }else{
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need Admin privillages to do this addition.'));
-        }
-    }
-
     public function userTableDataAction(Request $request) {
 
         $token = $request->getSession()->get('token');

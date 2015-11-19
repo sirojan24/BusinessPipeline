@@ -632,19 +632,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::getcompanyajaxAction',  '_route' => 'login_login_getcompanyajax',);
         }
 
-        // login_login_users
-        if ($pathinfo === '/users') {
-            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::usersAction',  '_route' => 'login_login_users',);
-        }
+        if (0 === strpos($pathinfo, '/user')) {
+            // login_login_users
+            if ($pathinfo === '/users') {
+                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::usersAction',  '_route' => 'login_login_users',);
+            }
 
-        // login_login_manageUsers
-        if ($pathinfo === '/manageUsers') {
-            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::manageUsersAction',  '_route' => 'login_login_manageUsers',);
-        }
+            // login_login_userTableData
+            if ($pathinfo === '/userTableData') {
+                return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::userTableDataAction',  '_route' => 'login_login_userTableData',);
+            }
 
-        // login_login_userTableData
-        if ($pathinfo === '/userTableData') {
-            return array (  '_controller' => 'Login\\LoginBundle\\Controller\\DashboardController::userTableDataAction',  '_route' => 'login_login_userTableData',);
         }
 
         // login_login_edituserpage
