@@ -1,6 +1,10 @@
 settings_homepage:
     path:     /hello/{name}
     defaults: { _controller: SettingsBundle:Default:index }
+
+settings_pipelinesetup:
+    path:     /pipelinesetup
+    defaults: { _controller: SettingsBundle:Default:pipelinesetup }
     
 settings_addaccounttype:
     path:     /addaccounttype

@@ -127,12 +127,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/hel')) {
-            // web_homepage
-            if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'web_homepage')), array (  '_controller' => 'webBundle\\Controller\\DefaultController::indexAction',));
-            }
+        // web_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'web_homepage')), array (  '_controller' => 'webBundle\\Controller\\DefaultController::indexAction',));
+        }
 
+        // web_support
+        if ($pathinfo === '/support') {
+            return array (  '_controller' => 'webBundle\\Controller\\DefaultController::supportAction',  '_route' => 'web_support',);
+        }
+
+        if (0 === strpos($pathinfo, '/hel')) {
             // help_homepage
             if ($pathinfo === '/help') {
                 return array (  '_controller' => 'HelpBundle\\Controller\\DefaultController::indexAction',  '_route' => 'help_homepage',);
@@ -257,6 +262,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // settings_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_homepage')), array (  '_controller' => 'SettingsBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        // settings_pipelinesetup
+        if ($pathinfo === '/pipelinesetup') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\DefaultController::pipelinesetupAction',  '_route' => 'settings_pipelinesetup',);
         }
 
         // settings_addaccounttype

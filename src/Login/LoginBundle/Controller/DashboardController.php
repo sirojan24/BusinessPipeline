@@ -82,10 +82,10 @@ class DashboardController extends Controller {
             }
             $fullname = $user->getFirstname() . " " . $user->getLastname();
 
-            return $this->render('LoginLoginBundle:Default:updateUsers.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 'mobile' => $mobile, 'update' => 'true', 'fullname' => $fullname));
+            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 'mobile' => $mobile, 'update' => 'true', 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 

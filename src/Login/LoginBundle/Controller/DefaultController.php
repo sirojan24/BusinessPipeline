@@ -46,17 +46,17 @@ class DefaultController extends Controller
 
                     return $this->render('LoginLoginBundle:Default:dashboard.html.twig', array('name' => $user->getUsername(),'role' => $user->getRole(),'fullname'=>$fullname, 'manageview'=>$user->getUserView()));
                 }else{
-                    return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Oh snap! You are not an active user'));
+                    return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Oh snap! You are not an active user'));
 		
                 }
             }else{
 
-		return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Oh snap! Login Failed Try Again'));
+		return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Oh snap! Login Failed Try Again'));
 			
             }
         }else{
 
-			return $this->render('LoginLoginBundle:Default:signIn.html.twig');
+			return $this->render('LoginLoginBundle:Default:signinV2.html.twig');
 			
 		} 
     }
@@ -221,7 +221,7 @@ class DefaultController extends Controller
         
         $session = $request->getSession();
         $session->clear();
-        return $this->render('LoginLoginBundle:Default:signIn.html.twig');
+        return $this->render('LoginLoginBundle:Default:signinV2.html.twig');
         
     }
     
