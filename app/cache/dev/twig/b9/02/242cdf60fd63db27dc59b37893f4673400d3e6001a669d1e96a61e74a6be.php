@@ -685,14 +685,14 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">\t
                             <label for=\"commorigin\">Tags</label>
-                            <input type=\"text\" value=\"\"  class=\"form-control\" data-role=\"tagsinput\" />
+                            <input type=\"text\" value=\"\" name=\"tags\" class=\"form-control\" data-role=\"tagsinput\" />
                         </div>
                     </div>
                 </div>
                 <div class=\"row\">
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">
-                            <label for=\"avatar\">User Avatar</label>
+                            <label for=\"avatar\">Contact Picture</label>
                             <br>
                             <div class=\"fileinput fileinput-new\" data-provides=\"fileinput\">
                                 <div class=\"fileinput-new thumbnail\" style=\"width: 200px; height: 150px;\">
