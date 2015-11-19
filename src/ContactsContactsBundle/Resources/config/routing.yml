@@ -30,6 +30,10 @@ contacts_contacts_editcontactpage:
     path:     /editcontact/{id}
     defaults: { _controller: ContactsContactsBundle:Contacts:editcontactpage }
     
+contacts_contacts_editcontactpageV2:
+    path:     /editcontactV2/{id}
+    defaults: { _controller: ContactsContactsBundle:Contacts:editcontactpageV2 }
+    
 contacts_contacts_updatecontact:
     path:     /updatecontact
     defaults: { _controller: ContactsContactsBundle:Contacts:updatecontact }

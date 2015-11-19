@@ -125,7 +125,27 @@
                         telephone: tempContact.telephone,
                         tags: tempContact.tags
                     });
-
+                    
+                    var editPath = '{{ path('contacts_contacts_editcontactpageV2',{'id':0} )}}';
+                    editPath = editPath.substring(0, editPath.length - 1);
+                    
+                    var name = '{{name|lower}}';
+                    var action = '';
+                    if(name === tempContact.username.toLowerCase()){
+                        action = '<div class="pull-right">' +
+                                '<div class="keep-open btn-group">' +
+                                '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
+                                '<i class="glyphicon glyphicon-chevron-down"></i>' +
+                                '</button>' +
+                                '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
+                                '<li><a href="#"><i class="fa fa-usd"></i> New Deal</a></li>' +
+                                '<li><a href="' + editPath + tempContact.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
+                                '<li><a href="#"><i class="fa fa-file-o"></i> Notes</a></li>' +
+                                '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
+                                '</ul>' +
+                                '</div>' +
+                                '</div>';
+                    }
                     rows.push({
                         name: tempContact.name,
                         company: tempContact.company,
@@ -135,19 +155,7 @@
                         won_deals: '$' + tempContact.won_deals,
                         lost_deals: '$' + tempContact.lost_deals,
                         owner: '<a href="javascript:fillTableDataWithUsername(' + "'" + tempContact.username + "'" + ')">' + tempContact.owner + '</a>',
-                        action: '<div class="pull-right">' +
-                                '<div class="keep-open btn-group">' +
-                                '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
-                                '<i class="glyphicon glyphicon-chevron-down"></i>' +
-                                '</button>' +
-                                '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                                '<li><a href="#"><i class="fa fa-usd"></i> New Deal</a></li>' +
-                                '<li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
-                                '<li><a href="#"><i class="fa fa-file-o"></i> Notes</a></li>' +
-                                '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
-                                '</ul>' +
-                                '</div>' +
-                                '</div>'
+                        action: action
 
                     });
                 }

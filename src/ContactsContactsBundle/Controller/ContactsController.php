@@ -581,6 +581,80 @@ class ContactsController extends Controller {
         }
     }
 
+    public function editcontactpageV2Action(Request $request, $id) {
+        $session = $request->getSession();
+        $token = $session->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+        $contact = $repository->findOneBy(array('id' => $id));
+
+        $tele = array();
+
+        $tele[0] = $contact->getPhone0();
+        $tele[1] = $contact->getPhone1();
+        $tele[2] = $contact->getPhone2();
+        $tele[3] = $contact->getPhone3();
+        $tele[4] = $contact->getPhone4();
+        $tele[5] = $contact->getPhone5();
+        $tele[6] = $contact->getPhone6();
+        $tele[7] = $contact->getPhone7();
+        $tele[8] = $contact->getPhone8();
+        $tele[9] = $contact->getPhone9();
+
+        for ($i = 0; $i < 10; $i++) {
+            if ($tele[$i] != null) {
+                $tele[$i] = split(":", $tele[$i])[1];
+                $tele[$i] = str_replace('(', '', $tele[$i]);
+                $tele[$i] = str_replace(')', '', $tele[$i]);
+                $tele[$i] = str_replace('-', '', $tele[$i]);
+                $tele[$i] = str_replace(' ', '', $tele[$i]);
+                $tele[$i] = str_replace('Ext.', '', $tele[$i]);
+            } else {
+                $tele[$i] = '';
+            }
+        }
+        $repository1 = $em->getRepository("LoginLoginBundle:Users");
+        $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+        $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+        $currentCompany = $currentUser->getCompanyname();
+        $users = $repository1->findBy(array('companyname' => $currentCompany));
+
+        if ($token && strtolower($contact->getUsername()) == strtolower($token->getUsername())) {
+            return $this->render('ContactsContactsBundle:Default:editContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contact' => $contact, 'tele' => $tele, 'users' => $users, 'fullname' => $fullname));
+        } else {
+            $repository2 = $em->getRepository("LoginLoginBundle:Users");
+            $currentUser = $repository2->findOneBy(array('username' => $token->getUsername()));
+            $currentCompany = $currentUser->getCompanyname();
+
+            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+            $repository3 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            foreach ($contacts as $contact) {
+
+                $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
+                $opportunities = $repository3->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $count = 0;
+                $projectedrevenue = 0;
+                $weightedforecast = 0;
+                if ($opportunities) {
+
+                    foreach ($opportunities as $opportunity) {
+                        $count++;
+                        $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                    }
+                }
+                $contact->setNoofopportunities($count);
+                $contact->setProjectedrevenue(number_format($projectedrevenue));
+                $contact->setWeightedforecast(number_format($weightedforecast));
+                $contact->setFirstname($currentUser->getFirstname());
+                $contact->setLastname($currentUser->getLastname());
+            }
+            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'errormsg' => 'You should be the owner of the contact to do this action', 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+        }
+    }
+    
     public function updatecontactAction(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
