@@ -60,7 +60,10 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
                     <a href=\"index.php\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Dashboard\"><i class=\"fa fa-tachometer\"></i></a>
                 </li>
                 <li>
-                    <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Contacts\"><i class=\"fa fa-user\"></i></a>
+                    <a href=\"";
+        // line 42
+        echo $this->env->getExtension('routing')->getPath("contacts_contacts_contacts");
+        echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Contacts\"><i class=\"fa fa-user\"></i></a>
                 </li>
                 <li>
                     <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Deals\"><i class=\"fa fa-usd\"></i></a>
@@ -94,6 +97,6 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
 
     public function getDebugInfo()
     {
-        return array (  71 => 48,  39 => 19,  19 => 1,);
+        return array (  74 => 48,  65 => 42,  39 => 19,  19 => 1,);
     }
 }

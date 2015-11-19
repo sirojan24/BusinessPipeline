@@ -19,15 +19,16 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
-    \$(\"#tableDiv\").show();
+   
     \$(document).ready(function () {
+        \$(\"#tableDiv\").show();
         iniFillTableData();
     });
 
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 11
+        // line 12
         echo twig_escape_filter($this->env, (isset($context["contactArray"]) ? $context["contactArray"] : $this->getContext($context, "contactArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
@@ -44,7 +45,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 25
+        // line 26
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data");
         echo "', null,
                 function (response) {
@@ -62,7 +63,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 40
+        // line 41
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -81,7 +82,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     function storePageSize(size) {
         \$.post('";
-        // line 56
+        // line 57
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -145,7 +146,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                 rows = [];
 
     ";
-        // line 119
+        // line 120
         echo "                for (var i = 0; i < jsonString.contacts.length; i++) {
                     var tempContact = jsonString.contacts[i];
 
@@ -158,7 +159,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     rows.push({
                         name: tempContact.name,
                         company: tempContact.company,
-                        open_deal: '0',
+                        open_deal: tempContact.open_deal,
                         projected_revenue: '\$' + tempContact.projected_revenue,
                         weighted_forecast: '\$' + tempContact.weighted_forecast,
                         won_deals: '\$' + tempContact.won_deals,
@@ -218,6 +219,6 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     public function getDebugInfo()
     {
-        return array (  149 => 119,  85 => 56,  66 => 40,  48 => 25,  31 => 11,  19 => 1,);
+        return array (  150 => 120,  86 => 57,  67 => 41,  49 => 26,  32 => 12,  19 => 1,);
     }
 }

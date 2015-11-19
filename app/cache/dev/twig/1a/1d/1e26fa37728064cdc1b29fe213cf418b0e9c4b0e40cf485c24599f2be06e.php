@@ -19,9 +19,9 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
-    \$(\"#tableDiv\").show();
+    
     \$(document).ready(function () {
-        
+        \$(\"#tableDiv\").show();
         iniFillTableData();
     });
     

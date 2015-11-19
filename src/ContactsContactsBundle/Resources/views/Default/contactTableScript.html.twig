@@ -1,8 +1,9 @@
 <script>
     var $table = $('#table');
     var extendColData = [];
-    $("#tableDiv").show();
+   
     $(document).ready(function () {
+        $("#tableDiv").show();
         iniFillTableData();
     });
 
@@ -128,7 +129,7 @@
                     rows.push({
                         name: tempContact.name,
                         company: tempContact.company,
-                        open_deal: '0',
+                        open_deal: tempContact.open_deal,
                         projected_revenue: '$' + tempContact.projected_revenue,
                         weighted_forecast: '$' + tempContact.weighted_forecast,
                         won_deals: '$' + tempContact.won_deals,

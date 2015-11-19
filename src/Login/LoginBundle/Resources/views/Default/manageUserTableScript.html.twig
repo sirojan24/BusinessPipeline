@@ -3,8 +3,18 @@
     var extendColData = [];
 
     $(document).ready(function () {
-        fillTableData();
+        $("#tableDiv").show();
+        iniFillTableData();
     });
+    
+    function iniFillTableData() {
+        $table.bootstrapTable('showLoading');
+        var data = '{{userArray}}';
+        var newString = data.replace(/&quot;/g, '"');
+        //var newString = JSON.parse(data);
+        $table.bootstrapTable('hideLoading');
+        $table.bootstrapTable('append', convertData(newString));
+    }
 
     function refreshTable() {
         $table.bootstrapTable('removeAll');

@@ -80,8 +80,13 @@ class ContactsController extends Controller {
             
             foreach ($contacts as $contact) {
                 $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
-                $opportunities = $repository2->findBy(array('personname' => $contact->getName(), 'status' => 'Active'));
+                $opportunities = $repository2->findBy(array('contactid' => $contact->getId(), 'status' => 'Active'));
                 $count = 0;
+                $woncount = 0;
+                $losscount = 0;
+                $wonRevenue = 0;
+                $lossRevenue = 0;
+                $opencount = 0;
                 $projectedrevenue = 0;
                 $weightedforecast = 0;
                 if ($opportunities) {
@@ -90,6 +95,17 @@ class ContactsController extends Controller {
                         $count++;
                         $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                         $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
+                        if ($opportunity->getStage() == 6){
+                            $woncount++;
+                            $wonRevenue += intval(str_replace(',', '', $opportunity->getRevenue()));
+                        }else if($opportunity->getStage() == 7){
+                            $losscount++;
+                            $lossRevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
+                        }else{
+                            $opencount++;
+                            //echo $opencount;
+                            //exit;
+                        } 
                     }
                 }
                 $contact->setNoofopportunities($count);
@@ -101,11 +117,11 @@ class ContactsController extends Controller {
                 //serialize contact obects to array
                 $arrElement["name"] = $contact->getName();
                 $arrElement["company"] = $contact->getCompany();
-                $arrElement["open_deal"] = 0;
+                $arrElement["open_deal"] = $opencount;
                 $arrElement["projected_revenue"] = $contact->getProjectedrevenue();
                 $arrElement["weighted_forecast"] = $contact->getWeightedforecast();
-                $arrElement["won_deals"] = 0;
-                $arrElement["lost_deals"] = 0;
+                $arrElement["won_deals"] = number_format($wonRevenue);
+                $arrElement["lost_deals"] = number_format($lossRevenue);
                 $arrElement["owner"] = $contact->getFirstname() . " " . $contact->getLastname();
                 $arrElement["id"] = $contact->getId();
                 $arrElement["email"] = $contact->getEmail0();
