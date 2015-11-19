@@ -982,6 +982,7 @@ class ContactsController extends Controller {
     }
 
     public function uploadcontactAction(Request $request) {
+        
         $session = $request->getSession();
         $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
@@ -1025,10 +1026,10 @@ class ContactsController extends Controller {
                 $count++;
                 continue;
             }
-
+            
             try {
                 $em->persist($contact);
-
+                
                 $em->flush();
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
@@ -1051,9 +1052,9 @@ class ContactsController extends Controller {
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
             $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
-            return $this->render('ContactsContactsBundle:Default:importContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
+            return $this->render('ContactsContactsBundle:Default:importContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
