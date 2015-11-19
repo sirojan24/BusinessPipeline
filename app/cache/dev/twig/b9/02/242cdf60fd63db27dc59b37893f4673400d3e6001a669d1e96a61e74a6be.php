@@ -21,7 +21,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
         <div class=\"panel-body\">
             <form action=\"";
         // line 4
-        echo $this->env->getExtension('routing')->getPath("login_login_fullsignup");
+        echo $this->env->getExtension('routing')->getPath("contacts_contacts_createcontact");
         echo "\" role=\"form\" method=\"post\" enctype=\"multipart/form-data\" data-parsley-validate>
                 <div class=\"row\">\t\t\t
                     <div class=\"col-xs-6\">
@@ -34,8 +34,8 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                 <div class=\"row\">\t\t\t
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">
-                            <label for=\"Last Name\">Title <span style=\"color:#FF0000;\">*</span></label>
-                            <input type=\"text\" name=\"title\" class=\"form-control\" id=\"title\" placeholder=\"\" pattern=\"^[a-zA-Z_ ]*\$\" data-parsley-pattern=\"^[a-zA-Z_ ]*\$\"  data-parsley-trigger=\"keyup\" required/>
+                            <label for=\"Last Name\">Title</label>
+                            <input type=\"text\" name=\"title\" class=\"form-control\" id=\"title\" placeholder=\"\" pattern=\"^[a-zA-Z_ ]*\$\" data-parsley-pattern=\"^[a-zA-Z_ ]*\$\"  data-parsley-trigger=\"keyup\"/>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email1\" class=\"form-control\" id=\"email1\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email1\" class=\"form-control\" id=\"email1\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -90,7 +90,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email2\" class=\"form-control\" id=\"email2\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email2\" class=\"form-control\" id=\"email2\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -108,7 +108,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email3\" class=\"form-control\" id=\"email3\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email3\" class=\"form-control\" id=\"email3\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -126,7 +126,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email4\" class=\"form-control\" id=\"email4\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email4\" class=\"form-control\" id=\"email4\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -144,7 +144,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email5\" class=\"form-control\" id=\"email5\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email5\" class=\"form-control\" id=\"email5\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -162,7 +162,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email6\" class=\"form-control\" id=\"email6\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email6\" class=\"form-control\" id=\"email6\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -180,7 +180,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email7\" class=\"form-control\" id=\"email7\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email7\" class=\"form-control\" id=\"email7\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -198,7 +198,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email8\" class=\"form-control\" id=\"email8\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email8\" class=\"form-control\" id=\"email8\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -216,7 +216,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"email\">Email</label>
-                                <input type=\"email\"  name=\"email9\" class=\"form-control\" id=\"email9\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+                                <input type=\"email\"  name=\"email9\" class=\"form-control\" id=\"email9\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -244,7 +244,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone <span style=\"color:#FF0000;\">*</span></label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone0\" name=\"phone0\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone0\" name=\"phone0\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   required/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -261,7 +261,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone1\" name=\"phone1\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone1\" name=\"phone1\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -285,7 +285,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone2\" name=\"phone2\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone2\" name=\"phone2\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -309,7 +309,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone3\" name=\"phone3\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone3\" name=\"phone3\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -333,7 +333,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone4\" name=\"phone4\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone4\" name=\"phone4\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -357,7 +357,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone5\" name=\"phone5\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone5\" name=\"phone5\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -381,7 +381,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone6\" name=\"phone6\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone6\" name=\"phone6\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -405,7 +405,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone7\" name=\"phone7\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone7\" name=\"phone7\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -429,7 +429,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone8\" name=\"phone8\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone8\" name=\"phone8\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -453,7 +453,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                         <div class=\"col-xs-4\">
                             <div class=\"form-group\">
                                 <label for=\"telephonework\">Telephone</label>
-                                <input type=\"tel\" class=\"form-control\" id=\"phone9\" name=\"phone9\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                <input type=\"tel\" class=\"form-control\" id=\"phone9\" name=\"phone9\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -519,7 +519,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                                                     <div class=\"col-xs-12\">
                                                         <div class=\"form-group\">
                                                             <label for=\"firstname\">Telephone</label>
-                                                            <input type=\"tel\" class=\"form-control\" id=\"sub_con_phone1\" name=\"sub_con_phone1\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                                            <input type=\"tel\" class=\"form-control\" id=\"sub_con_phone1\" name=\"sub_con_phone1\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -564,7 +564,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                                                     <div class=\"col-xs-12\">
                                                         <div class=\"form-group\">
                                                             <label for=\"firstname\">Telephone</label>
-                                                            <input type=\"tel\" class=\"form-control\" id=\"sub_con_phone2\" name=\"sub_con_phone2\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
+                                                            <input type=\"tel\" class=\"form-control\" id=\"sub_con_phone2\" name=\"sub_con_phone2\" placeholder=\"(XXX) XXX-XXXX Ext.XXXX\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -703,7 +703,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                                 </div>
                                 <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"max-width: 200px; max-height: 150px;\"></div>
                                 <div>
-                                    <span class=\"btn btn-default btn-file\"><span class=\"fileinput-new\">Select image</span><span class=\"fileinput-exists\">Change</span><input type=\"file\" name=\"img\"></span>
+                                    <span class=\"btn btn-default btn-file\"><span class=\"fileinput-new\">Select image</span><span class=\"fileinput-exists\">Change</span><input type=\"file\" name=\"profileimage\"></span>
                                     <a href=\"#\" class=\"btn btn-default fileinput-exists\" data-dismiss=\"fileinput\">Remove</a>
                                 </div>
                             </div>

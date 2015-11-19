@@ -43,7 +43,7 @@ class __TwigTemplate_518fdaf64508daae1a9a7fbb165524a21ec52032edba0ad2ce3574cb9f5
         }
     }
 
-    var showSubContactId = 1;
+   
     function addSubContact() {
         \$(\"#subcontact\" + showSubContactId).show();
         showSubContactId++;

@@ -87,8 +87,105 @@ class Contacts {
     
     private $weightedforecast;
     
-   
+    private $title;
     
+    private $sub_con_name1;
+    
+    private $sub_con_title1;
+    
+    private $sub_con_email1;
+    
+    private $sub_con_phone1;
+    
+    private $sub_con_name2;
+    
+    private $sub_con_title2;
+    
+    private $sub_con_email2;
+    
+    private $sub_con_phone2;
+    
+    public function getTitle() {
+        return $this->title;
+    }
+    
+    public function getSub_con_name1() {
+        return $this->sub_con_name1;
+    }
+    
+    public function getSub_con_title1() {
+        return $this->sub_con_title1;
+    }
+    
+    public function getSub_con_email1() {
+        return $this->sub_con_email1;
+    }
+    
+    public function getSub_con_phone1() {
+        return $this->sub_con_phone1;
+    }
+    
+    public function getSub_con_name2() {
+        return $this->sub_con_name2;
+    }
+    
+    public function getSub_con_title2() {
+        return $this->sub_con_title2;
+    }
+    
+    public function getSub_con_email2() {
+        return $this->sub_con_email2;
+    }
+    
+    public function getSub_con_phone2() {
+        return $this->sub_con_phone2;
+    }
+
+    public function setTitle($title){
+        $this->title = $title;
+        return $this;
+    }
+    
+    public function setSub_con_name1($sub_con_name1){
+        $this->sub_con_name1 = $sub_con_name1;
+        return $this;
+    }
+    
+    public function setSub_con_title1($sub_con_title1){
+        $this->sub_con_title1 = $sub_con_title1;
+        return $this;
+    }
+    
+    public function setSub_con_email1($sub_con_email1){
+        $this->sub_con_email1 = $sub_con_email1;
+        return $this;
+    }
+    
+    public function setSub_con_phone1($sub_con_phone1){
+        $this->sub_con_phone1 = $sub_con_phone1;
+        return $this;
+    }
+    
+    public function setSub_con_name2($sub_con_name2){
+        $this->sub_con_name2 = $sub_con_name2;
+        return $this;
+    }
+    
+    public function setSub_con_title2($sub_con_title2){
+        $this->sub_con_title2 = $sub_con_title2;
+        return $this;
+    }
+    
+    public function setSub_con_email2($sub_con_email2){
+        $this->sub_con_email2 = $sub_con_email2;
+        return $this;
+    }
+    
+    public function setSub_con_phone2($sub_con_phone2){
+        $this->sub_con_phone2 = $sub_con_phone2;
+        return $this;
+    }
+
     public function getNoofopportunities(){
         return $this->noofopportunities;
     }

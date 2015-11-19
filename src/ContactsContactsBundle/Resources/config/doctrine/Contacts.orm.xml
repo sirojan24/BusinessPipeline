@@ -38,7 +38,17 @@
     <field name="contactnotes" type="string" column="contactnotes" length="200" nullable="true"/>
     <field name="status" type="string" column="status" length="30" nullable="false"/>  
     <field name="visibility" type="string" column="visibility" length="30" nullable="false"/>  
-    <field name="ownedcompany" type="string" column="ownedcompany" length="50" nullable="false"/>   
+    <field name="ownedcompany" type="string" column="ownedcompany" length="50" nullable="false"/>
+    <field name="title" type="string" column="title" length="100" nullable="true"/> 
+    <field name="sub_con_name1" type="string" column="sub_con_name1" length="100" nullable="true"/> 
+    <field name="sub_con_title1" type="string" column="sub_con_title1" length="100" nullable="true"/> 
+    <field name="sub_con_email1" type="string" column="sub_con_email1" length="100" nullable="true"/> 
+    <field name="sub_con_phone1" type="string" column="sub_con_phone1" length="100" nullable="true"/> 
+    <field name="sub_con_name2" type="string" column="sub_con_name2" length="100" nullable="true"/> 
+    <field name="sub_con_title2" type="string" column="sub_con_title2" length="100" nullable="true"/> 
+    <field name="sub_con_email2" type="string" column="sub_con_email2" length="100" nullable="true"/> 
+    <field name="sub_con_phone2" type="string" column="sub_con_phone2" length="100" nullable="true"/> 
+   
     
   </entity>
 </doctrine-mapping>

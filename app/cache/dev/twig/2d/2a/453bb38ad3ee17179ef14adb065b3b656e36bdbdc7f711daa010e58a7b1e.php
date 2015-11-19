@@ -41,7 +41,7 @@ class __TwigTemplate_2d2a453bb38ad3ee17179ef14adb065b3b656e36bdbdc7f711daa010e58
             <!-- Page Content -->\t\t
             <div id=\"page-wrapper\" class=\"no-padding\">
                 <div class=\"container-fluid\">
-                    <div class=\"alert alert-success alert-dismissable\" id=\"successmsg\" style=\"display: block\">
+                    <div class=\"alert alert-success alert-dismissable\" id=\"successmsg\" style=\"display: none\">
                         <button type=\"button\" class=\"close bigger-200\" data-dismiss=\"alert\" aria-hidden=\"true\">
                             &times;
                         </button>

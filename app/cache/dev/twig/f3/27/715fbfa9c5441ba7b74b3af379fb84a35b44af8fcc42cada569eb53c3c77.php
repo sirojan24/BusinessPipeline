@@ -40,6 +40,51 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
                 <div class=\"container-fluid\">
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
+                            ";
+        // line 19
+        if (array_key_exists("errormsg", $context)) {
+            // line 20
+            echo "                                <div class=\"alert alert-danger alert-dismissable\" id=\"successmsg\">
+                                    <button type=\"button\" class=\"close bigger-200\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                        &times;
+                                    </button>
+                                    <center> <strong>";
+            // line 24
+            echo twig_escape_filter($this->env, (isset($context["errormsg"]) ? $context["errormsg"] : $this->getContext($context, "errormsg")), "html", null, true);
+            echo "</strong></center>
+                                </div>
+                                <script> 
+                                    window.setTimeout(function () {
+                                        \$(\"#successmsg\").alert('close');
+                                    }, 5000);
+                                </script>
+                            ";
+        }
+        // line 32
+        echo "                            ";
+        if (array_key_exists("successmsg", $context)) {
+            // line 33
+            echo "                                <div class=\"alert alert-success alert-dismissable\" id=\"errormsg\">
+                                    <button type=\"button\" class=\"close bigger-200\" data-dismiss=\"alert\" aria-hidden=\"true\">
+                                        &times;
+                                    </button>
+                                    <center> <strong>";
+            // line 37
+            echo twig_escape_filter($this->env, (isset($context["successmsg"]) ? $context["successmsg"] : $this->getContext($context, "successmsg")), "html", null, true);
+            echo "</strong></center>
+                                </div>
+                                <script> 
+                                    window.setTimeout(function () {
+                                        \$(\"#errormsg\").alert('close');
+                                    }, 5000);
+                                </script>
+                            ";
+        }
+        // line 45
+        echo "                        </div>
+                    </div>
+                    <div class=\"row\">
+                        <div class=\"col-lg-12\">
                             <h1 class = \"page-header\">Manage Contacts</h1>
                         </div>
                     </div>
@@ -47,39 +92,39 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
                             ";
-        // line 25
+        // line 55
         $this->env->loadTemplate("ContactsContactsBundle:Default:contactTable.html.twig")->display($context);
-        // line 26
+        // line 56
         echo "                        </div>
                     </div>
                 </div>
             </div>
 
             ";
-        // line 31
+        // line 61
         $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 32
+        // line 62
         echo "
         </div>
         <!-- /#wrapper -->
 
         ";
-        // line 36
+        // line 66
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 37
+        // line 67
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 38
+        // line 68
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 39
+        // line 69
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 40
+        // line 70
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -100,6 +145,6 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
 
     public function getDebugInfo()
     {
-        return array (  83 => 40,  79 => 39,  75 => 38,  70 => 37,  68 => 36,  62 => 32,  60 => 31,  53 => 26,  51 => 25,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  128 => 70,  124 => 69,  120 => 68,  115 => 67,  113 => 66,  107 => 62,  105 => 61,  98 => 56,  96 => 55,  84 => 45,  73 => 37,  67 => 33,  64 => 32,  53 => 24,  47 => 20,  45 => 19,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

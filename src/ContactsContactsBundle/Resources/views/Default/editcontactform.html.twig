@@ -1,6 +1,7 @@
 <script>
     var showEmailId = 1;
     var showPhoneId = 1;
+    var showSubContactId = 1;
 </script>
 
 <div class="container">
@@ -18,8 +19,8 @@
                 <div class="row">			
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label for="Last Name">Title <span style="color:#FF0000;">*</span></label>
-                            <input type="text" name="title" class="form-control" id="title" placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup" required/>
+                            <label for="Last Name">Title </label>
+                            <input type="text" name="title" class="form-control" id="title" value="{{ contact.getTitle() }}" placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup" />
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email1" class="form-control" id="email1" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email1" class="form-control" id="email1" value="{{ (contact.getEmail1()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -89,7 +90,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email2" class="form-control" id="email2" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email2" class="form-control" id="email2" value="{{ (contact.getEmail2()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -115,7 +116,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email3" class="form-control" id="email3" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email3" class="form-control" id="email3" value="{{ (contact.getEmail3()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -141,7 +142,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email4" class="form-control" id="email4" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email4" class="form-control" id="email4" value="{{ (contact.getEmail4()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -167,7 +168,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email5" class="form-control" id="email5" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email5" class="form-control" id="email5" value="{{ (contact.getEmail5()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -193,7 +194,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email6" class="form-control" id="email6" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email6" class="form-control" id="email6" value="{{ (contact.getEmail6()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -219,7 +220,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email7" class="form-control" id="email7" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email7" class="form-control" id="email7" value="{{ (contact.getEmail7()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -245,7 +246,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email8" class="form-control" id="email8" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email8" class="form-control" id="email8" value="{{ (contact.getEmail8()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -271,7 +272,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email"  name="email9" class="form-control" id="email9" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
+                                <input type="email"  name="email9" class="form-control" id="email9" value="{{ (contact.getEmail9()|split(':'))[1]}}" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"  required/>
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -322,7 +323,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone1" name="phone1" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone1" name="phone1" value="{{(contact.getPhone1()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -354,7 +355,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone2" name="phone2" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone2" value="{{(contact.getPhone2()|split(':'))[1]}}" name="phone2" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -386,7 +387,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone3" name="phone3" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone3" name="phone3" value="{{(contact.getPhone3()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -418,7 +419,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone4" name="phone4" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone4" name="phone4" value="{{(contact.getPhone4()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -450,7 +451,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone5" name="phone5" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone5" name="phone5" value="{{(contact.getPhone5()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -482,7 +483,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone6" name="phone6" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone6" value="{{(contact.getPhone6()|split(':'))[1]}}" name="phone6" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -514,7 +515,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone7" name="phone7" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone7" name="phone7" value="{{(contact.getPhone7()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -546,7 +547,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone8" name="phone8" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone8" name="phone8" value="{{(contact.getPhone8()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -578,7 +579,7 @@
                         <div class="col-xs-4">
                             <div class="form-group">
                                 <label for="telephonework">Telephone</label>
-                                <input type="tel" class="form-control" id="phone9" name="phone9" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                <input type="tel" class="form-control" id="phone9" name="phone9" value="{{(contact.getPhone9()|split(':'))[1]}}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                             </div>
                         </div>
                         <div class="col-xs-2">
@@ -606,12 +607,21 @@
                 </div>
 
                 {#                sub contact section#}
+                
                 <div class="col-xs-12">
                     <div class="row">
                         <div id="subcontact">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <div class="panel panel-default" id="subcontact1" style="display: none">
+                                    {%if contact.getSub_con_name1()== '' %}
+                                        <div class="panel panel-default" id="subcontact1" style="display: none">
+                                    {%else%} 
+                                      <script>  
+                                        showSubContactId++;   
+                                      </script>
+                                      <div class="panel panel-default" id="subcontact1" style="display: block">
+                                    {%endif%}    
+                                    
                                         <div class="panel-heading">Sub-Contact 1</div>
                                         <div class="panel-body">
                                             <div>
@@ -619,7 +629,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Name</label>
-                                                            <input type="text" name="sub_con_name1" class="form-control" id="sub_con_name1"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
+                                                            <input type="text" name="sub_con_name1" value="{{ contact.getSub_con_name1() }}" class="form-control" id="sub_con_name1"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -627,7 +637,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Title</label>
-                                                            <input type="text" name="sub_con_title1" class="form-control" id="sub_con_title1"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
+                                                            <input type="text" name="sub_con_title1" value="{{ contact.getSub_con_title1() }}" class="form-control" id="sub_con_title1"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -635,7 +645,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Email</label>
-                                                            <input type="email"  name="sub_con_email1" class="form-control" id="sub_con_email1" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"/>   
+                                                            <input type="email"  name="sub_con_email1" value="{{ contact.getSub_con_email1() }}" class="form-control" id="sub_con_email1" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"/>   
                                                         </div>
                                                     </div>
                                                 </div>
@@ -643,7 +653,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Telephone</label>
-                                                            <input type="tel" class="form-control" id="sub_con_phone1" name="sub_con_phone1" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                                            <input type="tel" class="form-control" id="sub_con_phone1" value="{{ contact.getSub_con_phone1() }}" name="sub_con_phone1" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -656,7 +666,14 @@
 
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <div class="panel panel-default" id="subcontact2" style="display: none">
+                                    {%if contact.getSub_con_name2()== '' %}
+                                        <div class="panel panel-default" id="subcontact2" style="display: none">
+                                    {%else%} 
+                                      <script>  
+                                        showSubContactId++;   
+                                      </script>
+                                      <div class="panel panel-default" id="subcontact2" style="display: block">
+                                    {%endif%}  
                                         <div class="panel-heading">Sub-Contact 2</div>
                                         <div class="panel-body">
                                             <div>
@@ -664,7 +681,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Name</label>
-                                                            <input type="text" name="sub_con_name2" class="form-control" id="sub_con_name2"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
+                                                            <input type="text" name="sub_con_name2" value="{{ contact.getSub_con_name2() }}" class="form-control" id="sub_con_name2"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -672,7 +689,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Title</label>
-                                                            <input type="text" name="sub_con_title2" class="form-control" id="sub_con_title2"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
+                                                            <input type="text" name="sub_con_title2" value="{{ contact.getSub_con_title2() }}" class="form-control" id="sub_con_title2"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -680,7 +697,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Email</label>
-                                                            <input type="email"  name="sub_con_email2" class="form-control" id="sub_con_email2" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"/>   
+                                                            <input type="email"  name="sub_con_email2" value="{{ contact.getSub_con_email2() }}" class="form-control" id="sub_con_email2" placeholder="yourname@yourdomain.com" data-parsley-type="email" data-parsley-trigger="keyup"/>   
                                                         </div>
                                                     </div>
                                                 </div>
@@ -688,7 +705,7 @@
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
                                                             <label for="firstname">Telephone</label>
-                                                            <input type="tel" class="form-control" id="sub_con_phone2" name="sub_con_phone2" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
+                                                            <input type="tel" class="form-control" id="sub_con_phone2" name="sub_con_phone2" value="{{ contact.getSub_con_phone2() }}" placeholder="( _ _ _ ) _ _ _ - _ _ _ _" class="col-sm-4"  data-parsley-trigger="change"   />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -778,10 +795,11 @@
                     <div class="col-xs-6">
                         <div class="form-group">	
                             <label for="commorigin">Tags</label>
-                            <input type="text" value="" name="tags" value="{{ contact.getTags() }}" class="form-control" data-role="tagsinput" />
+                            <input type="text" name="tags" value="{{contact.getTags()}}" class="form-control" data-role="tagsinput" />
                         </div>
                     </div>
                 </div>
+                <input type="hidden" value = "{{contact.getId()}}" name ="id"> 
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
@@ -796,7 +814,7 @@
                                         <span class="btn btn-default btn-file">
                                             <span class="fileinput-exists">Change</span>
                                             <span class="fileinput-new">Select image</span>
-                                            <input type="file" name="img">
+                                            <input type="file" name="profileimage">
                                         </span>
                                         <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                     </div>
@@ -806,11 +824,12 @@
                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                         <img src="{{asset('bundles_v2.0/img/Avatar.PNG')}}" alt="...">
                                     </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                     <div>
                                         <span class="btn btn-default btn-file">
                                             <span class="fileinput-exists">Change</span>
                                             <span class="fileinput-new">Select image</span>
-                                            <input type="file" name="img">
+                                            <input type="file" name="profileimage">
                                         </span>
                                         <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                     </div>
