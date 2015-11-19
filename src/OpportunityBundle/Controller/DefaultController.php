@@ -667,7 +667,8 @@ class DefaultController extends Controller {
             $arrElement["company"] = $opportunity->getOrganizationname();
             $arrElement["product_type"] = $opportunity->getProducttype();
             $arrElement["stage"] = $opportunity->getStage();
-            $arrElement["weighted_revenue"] = $opportunity->getCurrentuserforecast();   //need to check
+            $arrElement["weighted_revenue"] = $opportunity->getCurrentuserforecast();
+            $arrElement["weighted_revenue_all"] = $opportunity->getForecast();
             $arrElement["projected_revenue"] = $opportunity->getProjectedrevenue();
             $arrElement["expected_closed_date"] = $opportunity->getCloseddate();
             $arrElement["owner"] = $opportunity->getOwnerfullname();
@@ -687,6 +688,15 @@ class DefaultController extends Controller {
         $opportunitiesArray = array('opportunities' => $opportunitiesArray);
         
         return json_encode($opportunitiesArray);
+    }
+
+    public function getOpportunityTableDataAction(Request $request){
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            return new Response($this->getOpportunityArray($token));
+        }else{
+            return new Response("error!!");
+        }
     }
 
     public function updateopportunityAction(Request $request) {

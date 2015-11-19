@@ -259,6 +259,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_deleteopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::deleteopportunityAction',));
         }
 
+        // opportunity_table_data
+        if ($pathinfo === '/opportunitytable') {
+            return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::getOpportunityTableDataAction',  '_route' => 'opportunity_table_data',);
+        }
+
         // settings_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_homepage')), array (  '_controller' => 'SettingsBundle\\Controller\\DefaultController::indexAction',));

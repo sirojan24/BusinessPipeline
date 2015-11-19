@@ -19,7 +19,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
-   
+    var initResponse;
     \$(document).ready(function () {
         \$(\"#tableDiv\").show();
         iniFillTableData();
@@ -32,11 +32,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         echo twig_escape_filter($this->env, (isset($context["opportunitiesArray"]) ? $context["opportunitiesArray"] : $this->getContext($context, "opportunitiesArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
+        initResponse = newString;
         //var newString = JSON.parse(data);
         \$table.bootstrapTable('hideLoading');
         \$table.bootstrapTable('append', convertData(newString));
     }
-    
+
     function refreshTable() {
         \$table.bootstrapTable('removeAll');
         fillTableData();
@@ -45,12 +46,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 26
-        echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data");
+        // line 27
+        echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
+                        initResponse = response;
                         \$table.bootstrapTable('append', convertData(response));
                     } else {
 
@@ -59,30 +61,31 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         );
     }
 
-    function fillTableDataWithUsername(username) {
+    function usernameFilter(username) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
-        var path = '";
-        // line 41
-        echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
-        echo "';
-        path = path.substring(0, path.length - 1);
 
-        \$.post(path + username, null,
-                function (response) {
-                    if (response) {
-                        \$table.bootstrapTable('hideLoading');
-                        \$table.bootstrapTable('append', convertData(response));
-                    } else {
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
 
-                    }
-                }
-        );
+            if (username === tempOpportunity.username.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(jsonStr));
     }
 
     function storePageSize(size) {
         \$.post('";
-        // line 57
+        // line 63
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -156,7 +159,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 rows = [];
 
     ";
-        // line 130
+        // line 136
         echo "                for (var i = 0; i < jsonString.opportunities.length; i++) {
                     var tempOpportunity = jsonString.opportunities[i];
 
@@ -167,19 +170,20 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         won_deals: tempOpportunity.won_deals,
                         lost_deals: tempOpportunity.lost_deals
                     });
-                    
+
                     var editPath = '";
-        // line 141
+        // line 147
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
-                    
+
                     var name = '";
-        // line 144
+        // line 150
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
-                    if(name === tempOpportunity.username.toLowerCase()){
+
+                    if (name === tempOpportunity.username.toLowerCase()) {
                         action = '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
@@ -194,6 +198,11 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                 '</div>' +
                                 '</div>';
                     }
+
+                    if (tempOpportunity.weighted_revenue == '-1') {
+                        tempOpportunity.weighted_revenue = tempOpportunity.weighted_revenue_all;
+                    }
+
                     rows.push({
                         name: tempOpportunity.name,
                         company: tempOpportunity.company,
@@ -202,12 +211,11 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         weighted_revenue: '\$' + tempOpportunity.weighted_revenue,
                         projected_revenue: '\$' + tempOpportunity.projected_revenue,
                         expected_closed_date: tempOpportunity.expected_closed_date,
-                        owner: '<a href=\"javascript:fillTableDataWithUsername(' + \"'\" + tempOpportunity.username + \"'\" + ')\">' + tempOpportunity.owner + '</a>',
+                        owner: '<a href=\"javascript:usernameFilter(' + \"'\" + tempOpportunity.username + \"'\" + ')\">' + tempOpportunity.owner + '</a>',
                         action: action
-
                     });
                 }
-                
+
                 return rows;
             }
 
@@ -246,6 +254,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  179 => 144,  173 => 141,  160 => 130,  86 => 57,  67 => 41,  49 => 26,  32 => 12,  19 => 1,);
+        return array (  182 => 150,  176 => 147,  163 => 136,  89 => 63,  50 => 27,  32 => 12,  19 => 1,);
     }
 }

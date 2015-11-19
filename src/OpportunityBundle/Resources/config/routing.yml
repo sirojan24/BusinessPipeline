@@ -42,3 +42,7 @@ opportunity_deleteopportunity:
     path:     /deleteopportunity/{id}
     defaults: { _controller: OpportunityBundle:Default:deleteopportunity }
     
+opportunity_table_data:
+    path:     /opportunitytable
+    defaults: { _controller: OpportunityBundle:Default:getOpportunityTableData }
+    
