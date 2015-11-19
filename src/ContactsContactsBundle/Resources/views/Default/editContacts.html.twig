@@ -76,8 +76,7 @@
                                                                                 <div style="margin-left: 50px;height:140px;width: 150px " id="profile-image" >
                                                                                     {%if contact.getImage() != ''%}
                                                                                          <img style="height:125px;width: 125px" src="{{asset(contact.getImage())}}" class="image">
-                                                                                    {%else%}    
-                                                                                    
+                                                                                    {%else%}
                                                                                         <img style="height:125px;width: 125px" src="{{asset('bundles/contactscontacts/contactimages/defaultImage.png')}}" class="image">
                                                                                     {%endif%}    
                                                                                     </div>
@@ -594,7 +593,7 @@
                                                                                                             {%if contact.getUsername()|lower == user.getUsername()|lower %}
                                                                                                                <option value="{{contact.getUsername()}}" selected="selected">{{user.getFirstname()  ~ ' ' ~ user.getLastname()}}</option>
                                                                                                             {%else%}   
-                                                                                                            <option value="{{user.getUsername()}}">{{user.getFirstname()  ~ ' ' ~ user.getLastname()}}</option>
+                                                                                                                <option value="{{user.getUsername()}}">{{user.getFirstname()  ~ ' ' ~ user.getLastname()}}</option>
                                                                                                            {%endif%} 
                                                                                                       {% endfor %} 
                                                                                                     {%endif%}           
