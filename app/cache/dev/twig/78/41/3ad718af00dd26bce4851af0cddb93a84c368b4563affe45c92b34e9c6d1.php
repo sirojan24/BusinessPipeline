@@ -199,7 +199,10 @@ class __TwigTemplate_78413ad718af00dd26bce4851af0cddb93a84c368b4563affe45c92b34e
                         <div class=\"form-group\">
                             <label for=\"avatar\"> </label>
                             <button id=\"savebutton\" class=\"btn btn-primary\">Save</button>
-                            <button id=\"cancelbutton\" class=\"btn btn-default\">Cancel</button>
+                            <a class=\"btn btn-default\" href=\"";
+        // line 178
+        echo $this->env->getExtension('routing')->getPath("login_login_manageUsers");
+        echo "\">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -221,6 +224,6 @@ class __TwigTemplate_78413ad718af00dd26bce4851af0cddb93a84c368b4563affe45c92b34e
 
     public function getDebugInfo()
     {
-        return array (  185 => 162,  24 => 4,  19 => 1,);
+        return array (  204 => 178,  185 => 162,  24 => 4,  19 => 1,);
     }
 }

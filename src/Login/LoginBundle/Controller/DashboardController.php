@@ -273,7 +273,7 @@ class DashboardController extends Controller {
                 
                 $userArray = $this->getUserArray($admin);
                 
-                return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $user->getUserView(), 'successmsg' => 'Regular User Created'));
+                return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $adminuser->getUserView(), 'successmsg' => 'Regular User Created'));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
                 return $this->render('LoginLoginBundle:Default:addUsers.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again'));
@@ -302,7 +302,21 @@ class DashboardController extends Controller {
     }
 
     public function manageUsersAction(Request $request) {
-        return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        $session = $request->getSession();
+        $admin = $session->get('token');
+        
+        if($admin){
+            $adminname = $admin->getUsername();
+            $adminuser = $repository->findOneBy(array('username' => $adminname));
+            $fullname = $adminuser->getFirstname() . " " . $adminuser->getLastname();
+            $userArray = $this->getUserArray($admin);
+        
+            return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $adminuser->getUserView()));
+        }else{
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need Admin privillages to do this addition.'));
+        }
     }
 
     public function userTableDataAction(Request $request) {

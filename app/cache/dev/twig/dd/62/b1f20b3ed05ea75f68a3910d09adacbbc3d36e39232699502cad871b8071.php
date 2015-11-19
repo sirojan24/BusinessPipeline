@@ -301,18 +301,6 @@ class __TwigTemplate_dd62b1f20b3ed05ea75f68a3910d09adacbbc3d36e39232699502cad871
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/img/Avatar.PNG"), "html", null, true);
             echo "\" alt=\"...\">
                                     </div>
-                                    <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"max-width: 200px; max-height: 150px;\">
-                                        ";
-            // line 206
-            if (($this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getImage", array(), "method") != "")) {
-                // line 207
-                echo "                                            <img style=\"height:125px;width: 125px\" src=\"";
-                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getImage", array(), "method")), "html", null, true);
-                echo "\" class=\"image\">
-                                        ";
-            }
-            // line 209
-            echo "                                    </div>
                                     <div>
                                         <span class=\"btn btn-default btn-file\">
                                             <span class=\"fileinput-exists\">Change</span>
@@ -324,12 +312,12 @@ class __TwigTemplate_dd62b1f20b3ed05ea75f68a3910d09adacbbc3d36e39232699502cad871
                                 </div>
                             ";
         }
-        // line 220
+        // line 215
         echo "                        </div>
                     </div>
                 </div>
                 <input type = \"hidden\" name=\"id\" value=\"";
-        // line 223
+        // line 218
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "getId", array(), "method"), "html", null, true);
         echo "\">
                 <div class=\"row\">
@@ -337,7 +325,10 @@ class __TwigTemplate_dd62b1f20b3ed05ea75f68a3910d09adacbbc3d36e39232699502cad871
                         <div class=\"form-group\">
                             <label for=\"avatar\"> </label>
                             <button id=\"savebutton\" class=\"btn btn-primary\">Save</button>
-                            <button id=\"cancelbutton\" class=\"btn btn-default\">Cancel</button>
+                            <a class=\"btn btn-default\" href=\"";
+        // line 224
+        echo $this->env->getExtension('routing')->getPath("login_login_manageUsers");
+        echo "\">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -359,6 +350,6 @@ class __TwigTemplate_dd62b1f20b3ed05ea75f68a3910d09adacbbc3d36e39232699502cad871
 
     public function getDebugInfo()
     {
-        return array (  333 => 223,  328 => 220,  315 => 209,  309 => 207,  307 => 206,  301 => 203,  297 => 201,  282 => 189,  278 => 187,  276 => 186,  264 => 177,  255 => 171,  244 => 163,  235 => 157,  224 => 149,  215 => 143,  204 => 135,  195 => 129,  186 => 123,  175 => 115,  165 => 108,  154 => 100,  133 => 82,  122 => 74,  113 => 68,  102 => 60,  73 => 36,  67 => 35,  54 => 25,  43 => 17,  32 => 9,  24 => 4,  19 => 1,);
+        return array (  330 => 224,  321 => 218,  316 => 215,  301 => 203,  297 => 201,  282 => 189,  278 => 187,  276 => 186,  264 => 177,  255 => 171,  244 => 163,  235 => 157,  224 => 149,  215 => 143,  204 => 135,  195 => 129,  186 => 123,  175 => 115,  165 => 108,  154 => 100,  133 => 82,  122 => 74,  113 => 68,  102 => 60,  73 => 36,  67 => 35,  54 => 25,  43 => 17,  32 => 9,  24 => 4,  19 => 1,);
     }
 }
