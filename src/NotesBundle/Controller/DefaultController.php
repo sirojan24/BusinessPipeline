@@ -170,20 +170,34 @@ class DefaultController extends Controller
              
          $em = $this->getDoctrine()->getManager();
          $repository = $em->getRepository("NotesBundle:Notes");
+         $repository1 = $em->getRepository("LoginLoginBundle:Users");
+              
          
          $notes = $repository->findBy(array('type' => $type,'typeid' => $id));
-         $noteString = "";
+         
+         $notesArray = array();
+        
          if($notes){
              foreach ($notes as $note) {
-                 $noteString .= $note->getId().'**'.$note->getTimestamp().'**'.$note->getUsername().'**'.$note->getFullname().'**'.$note->getNotes().'||';
+                 $user = $repository1 ->findOneBy(array('username' => $note->getUsername()));
+                 
+                 $notesString["id"] = $note->getId();
+                 $notesString["timestamp"] = $note->getTimestamp();
+                 $notesString["username"] = $note->getUsername();
+                 $notesString["fullname"] = $note->getFullname();
+                 $notesString["notes"] = $note->getNotes();
+                 $notesString["url"] = $user->getImage();
+                 
+                 array_push($notesArray, $notesString);
              }
-         }
-         if($notes){  
-            return new Response($noteString); 
+             $response = array('notes' => $notesArray);
+             $response = json_encode($response);
+             return new Response($response); 
          }else{
-            return new Response("false");
-             
+              return new Response("false");
          }
+        
+         
     }
     
     public function savenoteAction(Request $request){

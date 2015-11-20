@@ -66,12 +66,14 @@
 
         </div>
         <!-- /#wrapper -->
-
+        {% include 'LoginLoginBundle:Default:notesModalScript.html.twig' %}
         {% include 'AppBundle:Default:scripts.html.twig' %}
         <script src="{{asset('bundles_v2.0/dist/js/sb-admin-2.js')}}"></script>
         <script src="{{asset('bundles_v2.0/bower_components/raphael/raphael-min.js')}}"></script>
         <script src="{{asset('bundles_v2.0/bower_components/morrisjs/morris.js')}}"></script>
         <script src="{{asset('bundles_v2.0/js/morris-data.js')}}"></script>
+        
+        <script src="{{asset('bundles_v2.0/dist/js/bootstrap-notes.js')}}"></script>
 
     </body>
 

@@ -2,7 +2,7 @@
 .col-md-2, .col-md-10{
     padding:0;
 }
-.panel{
+.modalpanel{
     margin-bottom: 0px;
 }
 .chat-window{
@@ -11,7 +11,7 @@
     float:right;
     margin-left:10px;
 }
-.chat-window > div > .panel{
+.chat-window > div > .modalpanel{
     border-radius: 5px 5px 0 0;
 }
 .icon_minim{
@@ -119,8 +119,3 @@ img {
     background-color: #555;
 }
 
-.btn-group.dropup{
-    position:fixed;
-    left:0px;
-    bottom:0;
-}

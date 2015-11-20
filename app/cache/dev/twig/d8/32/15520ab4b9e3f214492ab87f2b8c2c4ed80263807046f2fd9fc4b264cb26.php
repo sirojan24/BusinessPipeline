@@ -125,6 +125,11 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/parsley.css"), "html", null, true);
         echo "\" />
      
+     <link href=\"";
+        // line 56
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/bootstrap-notes.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\"/>
+     
      
 </head>";
     }
@@ -141,6 +146,6 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
 
     public function getDebugInfo()
     {
-        return array (  125 => 54,  120 => 52,  116 => 51,  112 => 50,  108 => 49,  104 => 48,  100 => 47,  96 => 46,  90 => 43,  79 => 35,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
+        return array (  130 => 56,  125 => 54,  120 => 52,  116 => 51,  112 => 50,  108 => 49,  104 => 48,  100 => 47,  96 => 46,  90 => 43,  79 => 35,  73 => 32,  67 => 29,  61 => 26,  56 => 24,  50 => 21,  44 => 18,  39 => 16,  32 => 12,  19 => 1,);
     }
 }
