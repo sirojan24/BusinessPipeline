@@ -36,7 +36,7 @@ class DefaultController extends Controller
                     $session = $this->getRequest()->getSession();
                     $session->clear();
                     $login = new Login();
-                    $login->setUsername($username);
+                    $login->setUsername($user->getUsername());
                     $login->setPassword($password);
                     $login->setRole($user->getRole());
                     $login->setFullname($fullname);

@@ -117,6 +117,8 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         // line 53
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/parsley.css"), "html", null, true);
         echo "\" />
+     
+     
 </head>";
     }
 

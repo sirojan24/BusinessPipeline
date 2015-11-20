@@ -205,7 +205,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + editPath + tempUser.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +

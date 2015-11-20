@@ -36,19 +36,23 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
         echo "
             <!-- Page Content -->\t\t
             <div id=\"page-wrapper\">
-                <div class=\"container-fluid\">
+                ";
+        // line 15
+        $this->env->loadTemplate("NotesBundle:Default:notesModal.html.twig")->display($context);
+        // line 16
+        echo "                <div class=\"container-fluid\">
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
                             ";
-        // line 18
+        // line 19
         if (array_key_exists("errormsg", $context)) {
-            // line 19
+            // line 20
             echo "                                <div class=\"alert alert-danger alert-dismissable\" id=\"successmsg\">
                                     <button type=\"button\" class=\"close bigger-200\" data-dismiss=\"alert\" aria-hidden=\"true\">
                                         &times;
                                     </button>
                                     <center> <strong>";
-            // line 23
+            // line 24
             echo twig_escape_filter($this->env, (isset($context["errormsg"]) ? $context["errormsg"] : $this->getContext($context, "errormsg")), "html", null, true);
             echo "</strong></center>
                                 </div>
@@ -59,16 +63,16 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
                                 </script>
                             ";
         }
-        // line 31
+        // line 32
         echo "                            ";
         if (array_key_exists("successmsg", $context)) {
-            // line 32
+            // line 33
             echo "                                <div class=\"alert alert-success alert-dismissable\" id=\"errormsg\">
                                     <button type=\"button\" class=\"close bigger-200\" data-dismiss=\"alert\" aria-hidden=\"true\">
                                         &times;
                                     </button>
                                     <center> <strong>";
-            // line 36
+            // line 37
             echo twig_escape_filter($this->env, (isset($context["successmsg"]) ? $context["successmsg"] : $this->getContext($context, "successmsg")), "html", null, true);
             echo "</strong></center>
                                 </div>
@@ -79,7 +83,7 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
                                 </script>
                             ";
         }
-        // line 44
+        // line 45
         echo "                        </div>
                     </div>
                     <div class=\"row\">
@@ -91,52 +95,52 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
                             ";
-        // line 54
+        // line 55
         if (((isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")) == "Regular")) {
-            // line 55
+            // line 56
             echo "                                ";
             $this->env->loadTemplate("LoginLoginBundle:Default:manageUsersTable.html.twig")->display($context);
-            // line 56
+            // line 57
             echo "                            ";
         } else {
             echo "    
                                 ";
-            // line 57
-            $this->env->loadTemplate("LoginLoginBundle:Default:adminManageUsersTable.html.twig")->display($context);
             // line 58
+            $this->env->loadTemplate("LoginLoginBundle:Default:adminManageUsersTable.html.twig")->display($context);
+            // line 59
             echo "                            ";
         }
-        // line 59
+        // line 60
         echo "                        </div>
                     </div>
                 </div>
             </div>
 
             ";
-        // line 64
-        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
         // line 65
+        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
+        // line 66
         echo "
         </div>
         <!-- /#wrapper -->
 
         ";
-        // line 69
-        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
         // line 70
+        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
+        // line 71
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 71
+        // line 72
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 72
+        // line 73
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 73
+        // line 74
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -157,6 +161,6 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
 
     public function getDebugInfo()
     {
-        return array (  140 => 73,  136 => 72,  132 => 71,  127 => 70,  125 => 69,  119 => 65,  117 => 64,  110 => 59,  107 => 58,  105 => 57,  100 => 56,  97 => 55,  95 => 54,  83 => 44,  72 => 36,  66 => 32,  63 => 31,  52 => 23,  46 => 19,  44 => 18,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  144 => 74,  140 => 73,  136 => 72,  131 => 71,  129 => 70,  123 => 66,  121 => 65,  114 => 60,  111 => 59,  109 => 58,  104 => 57,  101 => 56,  99 => 55,  87 => 45,  76 => 37,  70 => 33,  67 => 32,  56 => 24,  50 => 20,  48 => 19,  43 => 16,  41 => 15,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }
