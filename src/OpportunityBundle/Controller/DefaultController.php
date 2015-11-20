@@ -553,7 +553,7 @@ class DefaultController extends Controller {
             $fullname = $user->getFirstname() . " " . $user->getLastname();
 
             $opportunitiesArray = $this->getOpportunityArray($token);
-
+//return $this->render('OpportunityBundle:Default:test.html.twig');
             return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
         } else {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

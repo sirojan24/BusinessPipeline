@@ -1,0 +1,27 @@
+
+<script>
+    function clearFilter() {
+        $("#myModal").find("input[type=checkbox]").each(function (i, checkboxObject) { 
+            $(checkboxObject).prop('checked',false);
+        });
+        
+        $("#myModal").find("input[type=text]").each(function (i, checkboxObject) { 
+            $(checkboxObject).val('');
+        });
+        
+        $("#myModal").find("input[type=radio]").each(function (i, checkboxObject) { 
+            if($(checkboxObject).is(':checked')) {
+                
+            }else{
+                
+            }
+            
+            if(i == 1){
+                $(checkboxObject).prop('checked',true);
+            }else{
+                $(checkboxObject).prop('checked',false);
+            }
+        });
+        $("#filterTags").tagsinput('removeAll');
+    }
+</script>

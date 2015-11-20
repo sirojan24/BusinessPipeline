@@ -17,25 +17,18 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
     {
         // line 1
         echo "<script src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/jquery/dist/jquery.min.js"), "html", null, true);
-        echo "\"></script>
-
-
-
-<script src=\"";
-        // line 5
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/parsley.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 6
+        // line 2
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/parsley.min.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 7
+        // line 3
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/parsley.remote.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 8
+        // line 4
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/parsley.remote.min.js"), "html", null, true);
         echo "\"></script>
 <!-- jQuery -->
@@ -44,31 +37,28 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
 
 
 <!-- Bootstrap Core JavaScript -->
-<script src=\"";
-        // line 15
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/bootstrap/dist/js/bootstrap.min.js"), "html", null, true);
-        echo "\"></script>
+
 
 <!-- Custom Theme JavaScript -->
 <script src=\"";
-        // line 18
+        // line 14
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 20
+        // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/jasny-bootstrap.js"), "html", null, true);
         echo "\"></script>
 
 <script src=\"";
-        // line 22
+        // line 18
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/dropzone.js"), "html", null, true);
         echo "\"></script>
 
 <script>
     function usernameAvailability() {
         \$.post('";
-        // line 26
+        // line 22
         echo $this->env->getExtension('routing')->getPath("login_login_uservalidateajax");
         echo "',
                 {username: document.getElementById('username').value},
@@ -89,7 +79,7 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
     
     function fill(){
                         \$.post('";
-        // line 44
+        // line 40
         echo $this->env->getExtension('routing')->getPath("login_login_getcompanyajax");
         echo "',null, 
                     function(response){
@@ -143,6 +133,6 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
 
     public function getDebugInfo()
     {
-        return array (  93 => 44,  72 => 26,  65 => 22,  60 => 20,  55 => 18,  49 => 15,  39 => 8,  35 => 7,  31 => 6,  27 => 5,  19 => 1,);
+        return array (  83 => 40,  62 => 22,  55 => 18,  50 => 16,  45 => 14,  32 => 4,  28 => 3,  24 => 2,  19 => 1,);
     }
 }

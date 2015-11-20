@@ -1,6 +1,6 @@
 <script src="{{asset('bundles/loginlogin/js/jquery.maskedinput.js')}}"></script>
 <script src="{{asset('bundles/loginlogin/js/jquery.number.js')}}"></script>
-<script src="{{asset('bundles_v2.0/dist/js/bootstrap-tagsinput.js')}}"></script>
+
 <script type="text/javascript">
     jQuery(function ($) {
         $("#fFromDate").mask("99-99-9999");
@@ -18,7 +18,8 @@
                 <h4 class="modal-title">Filters</h4>
             </div>
             <div class="modal-body">
-                <form action="{{path('login_login_fullsignup')}}" role="form" method="post" enctype="multipart/form-data" data-parsley-validate>
+                
+                <form action="#" role="form" method="post" enctype="multipart/form-data" data-parsley-validate>
                     <div class="row">			
                         <div class="col-xs-6">
                             <div class="form-group" style="margin-bottom: 3px">
@@ -58,38 +59,38 @@
                                 </div>
                                 <div class="input-group">
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions"/> <= S
+                                        <input type="radio" name="amountRadioOptions"/> <= S
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" checked="true"/> = S
+                                        <input type="radio" name="amountRadioOptions" checked="true"/> = S
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions"/> => S
+                                        <input type="radio" name="amountRadioOptions"/> => S
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>  
                     
-                    <div class="row">			
+                    <div class="row" id="dealSourceDiv">			
                         <div class="col-xs-8">
                             <div class="form-group">
                                 <label for="firstname">Deal Source:</label>
                                 <div class="checkbox" style="margin-top: 0px">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="all">
                                         All Cities
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="client">
                                         Client Referral
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" value="friend">
                                         Family & Friends
                                     </label>
                                 </div>
@@ -209,7 +210,9 @@
                         <div class="col-xs-8">
                             <div class="form-group">
                                 <label for="firstname">Tags</label>
-                                <input type="text" value="" name="tags" class="form-control" data-role="tagsinput" />
+                                <div id="tagDiv">
+                                    <input type="text" value="sdasd" name="filterTags" id="filterTags" class="form-control" data-role="tagsinput" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,7 +222,7 @@
                             <div class="form-group" style="margin-top: 10px">
                                 <label for="avatar"> </label>
                                 <button id="savebutton" class="btn btn-primary" style="padding-right: 10px;padding-left: 10px;margin-right: 10px"  data-dismiss="modal">Apply</button>
-                                <a class="btn btn-default" href="{{path('contacts_contacts_contacts')}}">Clear</a>
+                                <a class="btn btn-default" href="javascript:clearFilter()">Clear</a>
                             </div>
                         </div>
                     </div>
@@ -229,3 +232,6 @@
 
     </div>
 </div>
+
+<script src="{{asset('bundles_v2.0/dist/js/bootstrap-tagsinput.js')}}"></script>
+{% include 'OpportunityBundle:Default:filterModalscript.html.twig' %}
