@@ -19,7 +19,6 @@ class __TwigTemplate_d53dc8cd4f83a6d5151990ecdce3a202af493739ae06f8f83b5ace0b33d
         echo "
 <script>
     function clearFilter() {
-        //alert(\$('input').tagsinput);
         \$(\"#myModal\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) { 
             \$(checkboxObject).prop('checked',false);
         });

@@ -28,6 +28,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
     jQuery(function (\$) {
         \$(\"#fFromDate\").mask(\"99-99-9999\");
         \$(\"#fToDate\").mask(\"99-99-9999\");
+        \$('#projectedrevenue').number( true, 0 );
     });
 </script>
 <!-- Modal -->
@@ -77,154 +78,56 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                                 <label for=\"firstname\">Projected Revenue:</label>
                                 <div class=\"input-group\">
                                     <div class=\"input-group-addon\">\$</div>
-                                    <input type=\"text\" class=\"form-control\" id=\"exampleInputAmount\">
+                                    <input type=\"text\" class=\"form-control\" id=\"projectedrevenue\">
                                     <div class=\"input-group-addon\">.00</div>
                                 </div>
                                 <div class=\"input-group\">
                                     <label class=\"radio-inline\">
-                                        <input type=\"radio\" name=\"amountRadioOptions\"/> <= S
+                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"less\"/> <= S
                                     </label>
                                     <label class=\"radio-inline\">
-                                        <input type=\"radio\" name=\"amountRadioOptions\" checked=\"true\"/> = S
+                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"equal\" checked=\"true\"/> = S
                                     </label>
                                     <label class=\"radio-inline\">
-                                        <input type=\"radio\" name=\"amountRadioOptions\"/> => S
+                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"great\"/> => S
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>  
                     
-                    <div class=\"row\" id=\"dealSourceDiv\">\t\t\t
+                    <div class=\"row\">\t\t\t
                         <div class=\"col-xs-8\">
-                            <div class=\"form-group\">
+                            <div class=\"form-group\" id=\"filterDealSourceDiv\">
                                 <label for=\"firstname\">Deal Source:</label>
-                                <div class=\"checkbox\" style=\"margin-top: 0px\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"all\">
-                                        All Cities
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"client\">
-                                        Client Referral
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"friend\">
-                                        Family & Friends
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Internet
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Networking
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Provisors
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <hr style=\"margin-top:0px;margin-bottom: 5px\">
                     <div class=\"row\">\t\t\t
                         <div class=\"col-xs-8\">
-                            <div class=\"form-group\">
+                            <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Stage:</label>
-                                <div class=\"checkbox\" style=\"margin-top: 0px\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Lead
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Opportunity
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Proposal
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Submission
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Won
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Lost
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <hr style=\"margin-top:0px;margin-bottom: 5px\">
                     <div class=\"row\">\t\t\t
                         <div class=\"col-xs-8\">
-                            <div class=\"form-group\">
+                            <div class=\"form-group\" id=\"filterAccountTypeDiv\">
                                 <label for=\"firstname\">Account Type:</label>
-                                <div class=\"checkbox\" style=\"margin-top: 0px\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        New Business
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Account Rounding
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <hr style=\"margin-top:0px;margin-bottom: 5px\">
                     <div class=\"row\">\t\t\t
                         <div class=\"col-xs-8\">
-                            <div class=\"form-group\">
+                            <div class=\"form-group\" id=\"filterProductTypeDiv\">
                                 <label for=\"firstname\">Product Type:</label>
-                                <div class=\"checkbox\" style=\"margin-top: 0px\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Workers Comp
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        General Liaibility
-                                    </label>
-                                </div>
-                                <div class=\"checkbox\">
-                                    <label>
-                                        <input type=\"checkbox\" value=\"\">
-                                        Commercial Auto
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -234,7 +137,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                             <div class=\"form-group\">
                                 <label for=\"firstname\">Tags</label>
                                 <div id=\"tagDiv\">
-                                    <input type=\"text\" value=\"sdasd\" name=\"filterTags\" id=\"filterTags\" class=\"form-control\" data-role=\"tagsinput\" />
+                                    <input type=\"text\" value=\"\" name=\"filterTags\" id=\"filterTags\" class=\"form-control\" data-role=\"tagsinput\" />
                                 </div>
                             </div>
                         </div>
@@ -244,7 +147,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                         <div class=\"col-xs-6\">
                             <div class=\"form-group\" style=\"margin-top: 10px\">
                                 <label for=\"avatar\"> </label>
-                                <button id=\"savebutton\" class=\"btn btn-primary\" style=\"padding-right: 10px;padding-left: 10px;margin-right: 10px\"  data-dismiss=\"modal\">Apply</button>
+                                <button id=\"savebutton\" class=\"btn btn-primary\" style=\"padding-right: 10px;padding-left: 10px;margin-right: 10px\" onclick=\"applyUserDefinedFilter()\" data-dismiss=\"modal\">Apply</button>
                                 <a class=\"btn btn-default\" href=\"javascript:clearFilter()\">Clear</a>
                             </div>
                         </div>
@@ -257,12 +160,9 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
 </div>
 
 <script src=\"";
-        // line 236
+        // line 139
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
-        echo "\"></script>
-";
-        // line 237
-        $this->env->loadTemplate("OpportunityBundle:Default:filterModalscript.html.twig")->display($context);
+        echo "\"></script>";
     }
 
     public function getTemplateName()
@@ -277,6 +177,6 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
 
     public function getDebugInfo()
     {
-        return array (  265 => 237,  261 => 236,  24 => 2,  19 => 1,);
+        return array (  164 => 139,  24 => 2,  19 => 1,);
     }
 }

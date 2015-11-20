@@ -20,15 +20,23 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
     var \$table = \$('#table');
     var extendColData = [];
     var initResponse;
+    
+    var dealSource = [];
+    var stage = [];
+    var accountType = [];
+    var productType = [];
+    var tags = [];
+    
     \$(document).ready(function () {
         \$(\"#tableDiv\").show();
         iniFillTableData();
+        populateFilterForm();
     });
 
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 12
+        // line 20
         echo twig_escape_filter($this->env, (isset($context["opportunitiesArray"]) ? $context["opportunitiesArray"] : $this->getContext($context, "opportunitiesArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
@@ -42,11 +50,11 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         \$table.bootstrapTable('removeAll');
         fillTableData();
     }
-
+    
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 27
+        // line 35
         echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
         echo "', null,
                 function (response) {
@@ -82,13 +90,206 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         \$table.bootstrapTable('hideLoading');
         \$table.bootstrapTable('append', convertData(jsonStr));
     }
+    
+    function clearFilter() {
+        \$(\"#myModal\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) { 
+            \$(checkboxObject).prop('checked',false);
+        });
+        
+        \$(\"#myModal\").find(\"input[type=text]\").each(function (i, checkboxObject) { 
+            \$(checkboxObject).val('');
+        });
+        
+        \$(\"#myModal\").find(\"input[type=radio]\").each(function (i, checkboxObject) { 
+            if(i == 1){
+                \$(checkboxObject).prop('checked',true);
+            }else{
+                \$(checkboxObject).prop('checked',false);
+            }
+        });
+        \$(\"#filterTags\").tagsinput('removeAll');
+    }
+    
+    function applyUserDefinedFilter(){
+        \$table.bootstrapTable('removeAll');
+        \$table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        
+        var filterDealOpportunities = [];
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+            var flag = false;
+            \$(\"#filterDealSourceDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) {
+                if(\$(checkboxObject).is(':checked')) {
+                    flag = true;
+                }
+            });
+            if(flag === false){
+                filterDealOpportunities.push(tempOpportunity);
+            }else{
+                \$(\"#filterDealSourceDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) {
+                    if(\$(checkboxObject).is(':checked')) {
+                        if(\$(checkboxObject).val() === tempOpportunity.deal_source){
+                            filterDealOpportunities.push(tempOpportunity);
+                        }
+                    }
+                });
+            }
+        }
+        
+        var filterStageOpportunities = [];
+        for (var i = 0; i < filterDealOpportunities.length; i++) {
+            var tempOpportunity = filterDealOpportunities[i];
+            var flag = false;
+            \$(\"#filterStageDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) {
+                if(\$(checkboxObject).is(':checked')) {
+                    flag = true;
+                }
+            });
+            if(flag === false){
+                filterStageOpportunities.push(tempOpportunity);
+            }else{
+                \$(\"#filterStageDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) { 
+                    if(\$(checkboxObject).is(':checked')) {
+                        if(\$(checkboxObject).val() === tempOpportunity.stage){
+                            filterStageOpportunities.push(tempOpportunity);
+                        }
+                    }
+                });
+            }
+        }
+        
+        var filterAccountOpportunities = [];
+        for (var i = 0; i < filterStageOpportunities.length; i++) {
+            var tempOpportunity = filterStageOpportunities[i];
+            var flag = false;
+            \$(\"#filterAccountTypeDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) {
+                if(\$(checkboxObject).is(':checked')) {
+                    flag = true;
+                }
+            });
+            if(flag === false){
+                filterAccountOpportunities.push(tempOpportunity);
+            }else{
+                \$(\"#filterAccountTypeDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) { 
+                    if(\$(checkboxObject).is(':checked')) {
+                        if(\$(checkboxObject).val() === tempOpportunity.deal_account_type){
+                            filterAccountOpportunities.push(tempOpportunity);
+                        }
+                    }
+                });
+            }
+        }
+        
+        var filterProductOpportunities = [];
+        for (var i = 0; i < filterAccountOpportunities.length; i++) {
+            var tempOpportunity = filterAccountOpportunities[i];
+            var flag = false;
+            \$(\"#filterProductTypeDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) {
+                if(\$(checkboxObject).is(':checked')) {
+                    flag = true;
+                }
+            });
+            if(flag === false){
+                filterProductOpportunities.push(tempOpportunity);
+            }else{
+                \$(\"#filterProductTypeDiv\").find(\"input[type=checkbox]\").each(function (i, checkboxObject) { 
+                    if(\$(checkboxObject).is(':checked')) {
+                        if(\$(checkboxObject).val() === tempOpportunity.product_type){
+                            filterProductOpportunities.push(tempOpportunity);
+                        }
+                    }
+                });
+            }
+        }
+        
+        var filterRevenueOpportunities = [];
+        for (var i = 0; i < filterProductOpportunities.length; i++) {
+            var tempOpportunity = filterProductOpportunities[i];
+            var flag = false;
+            if(\$(\"#projectedrevenue\").val() !== '') {
+                flag = true;
+            }
+            
+            if(\$(\"#projectedrevenue\").val() == '0') {
+                flag = false;
+            }
+            
+            if(flag === false){
+                filterRevenueOpportunities.push(tempOpportunity);
+            }else{
+                var filterVal = parseInt(\$(\"#projectedrevenue\").val(), 10);
+                var actualVal = parseInt(tempOpportunity.projected_revenue.replace(/,/g, ''), 10);
+                if(\$('#less').is(':checked')) {
+                    if(filterVal >= actualVal){
+                        filterRevenueOpportunities.push(tempOpportunity);
+                    }
+                }
+                if(\$('#equal').is(':checked')) {
+                    if(filterVal == actualVal){
+                        filterRevenueOpportunities.push(tempOpportunity);
+                    }
+                }
+                if(\$('#great').is(':checked')) {
+                    if(filterVal <= actualVal){
+                        filterRevenueOpportunities.push(tempOpportunity);
+                    }
+                }
+            }
+        }
+        
+        var filterFromDateOpportunities = [];
+        for (var i = 0; i < filterRevenueOpportunities.length; i++) {
+            var tempOpportunity = filterRevenueOpportunities[i];
+            var flag = true;
+            if(\$(\"#fFromDate\").val() == '' && \$(\"#fToDate\").val() == '') {
+                flag = false;
+            }
+            if(flag === false){
+                filterFromDateOpportunities.push(tempOpportunity);
+            }else{
+                var fromDate = new Date(\$(\"#fFromDate\").val());
+                var toDate = new Date(\$(\"#fToDate\").val());
+                var actualDate = new Date(tempOpportunity.expected_closed_date);
+                if(\$(\"#fFromDate\").val() !== '' && fromDate <= actualDate){
+                    filterFromDateOpportunities.push(tempOpportunity);
+                }
+            }
+        }
+        
+        var filterToDateOpportunities = [];
+        for (var i = 0; i < filterFromDateOpportunities.length; i++) {
+            var tempOpportunity = filterFromDateOpportunities[i];
+            var flag = true;
+            if(\$(\"#fFromDate\").val() == '' && \$(\"#fToDate\").val() == '') {
+                flag = false;
+            }
+            if(flag === false){
+                filterToDateOpportunities.push(tempOpportunity);
+            }else{
+                var fromDate = new Date(\$(\"#fFromDate\").val());
+                var toDate = new Date(\$(\"#fToDate\").val());
+                var actualDate = new Date(tempOpportunity.expected_closed_date);
+                if(\$(\"#fToDate\").val() !== '' && actualDate <= toDate){
+                    filterToDateOpportunities.push(tempOpportunity);
+                }
+            }
+        }
+        
+        var filterOpportunitiesArray = {'opportunities' : filterToDateOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(jsonStr));
+    }
 
     function storePageSize(size) {
         \$.post('";
-        // line 63
+        // line 264
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
-                {name: 'contactview', value: size},
+                {name: 'opportunityview', value: size},
         function (response) {
             if (response !== \"false\") {
 
@@ -111,12 +312,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
     }
 
     function detailFormatter(index, row) {
-
         var deal_account_type = checkAndSetValue(extendColData[index].deal_account_type, '-', '', true);
         var deal_source = checkAndSetValue(extendColData[index].deal_source, '-', '', true);
         var open_deals = checkAndSetValue(extendColData[index].open_deals, '-', '', true);
         var won_deals = checkAndSetValue(extendColData[index].won_deals, '-', '\$', true);
         var lost_deals = checkAndSetValue(extendColData[index].lost_deals, '-', '\$', true);
+        var tags = checkAndSetValue(extendColData[index].tags, '-', '\$', true);
 
         var html = [];
         html.push('<div class\"row\">' +
@@ -142,6 +343,10 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Lost Deals</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + lost_deals + '</small></td>' +
                 '</tr>' +
+                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<td style=\"border: none !important;line-height: 5px;\"><small>Tags</small></td>' +
+                '<td style=\"border: none !important;line-height: 5px;\"><small>' + tags + '</small></td>' +
+                '</tr>' +
                 '</table>' +
                 '</div>' +
                 '</div>');
@@ -159,7 +364,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 rows = [];
 
     ";
-        // line 136
+        // line 341
         echo "                for (var i = 0; i < jsonString.opportunities.length; i++) {
                     var tempOpportunity = jsonString.opportunities[i];
 
@@ -168,17 +373,23 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         deal_source: tempOpportunity.deal_source,
                         open_deals: tempOpportunity.open_deals,
                         won_deals: tempOpportunity.won_deals,
-                        lost_deals: tempOpportunity.lost_deals
+                        lost_deals: tempOpportunity.lost_deals,
+                        tags: tempOpportunity.tags
                     });
+                    
+                    dealSource.push(tempOpportunity.deal_source);
+                    stage.push(tempOpportunity.stage);
+                    accountType.push(tempOpportunity.deal_account_type);
+                    productType.push(tempOpportunity.product_type);
 
                     var editPath = '";
-        // line 147
+        // line 358
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var name = '";
-        // line 150
+        // line 361
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -219,16 +430,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 return rows;
             }
 
-            function priceSorter(a, b) {
-                a = +a.substring(1); // remove \$
-                b = +b.substring(1);
-                if (a > b)
-                    return 1;
-                if (a < b)
-                    return -1;
-                return 0;
-            }
-
             function rowStyle(row, index) {
                 var classes = ['active'];
 
@@ -238,6 +439,60 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     };
                 }
                 return {};
+            }
+            
+            function populateFilterForm(){
+                dealSource = jQuery.unique(dealSource);
+                var style = ' style=\"margin-top: 0px\"';
+                for (var i = 0; i < dealSource.length; i++) {
+                    \$(\"#filterDealSourceDiv\").append('<div class=\"checkbox\"' + style + '>' +
+                                                        '<label>' +
+                                                            '<input type=\"checkbox\" value=\"' + dealSource[i] + '\">' +
+                                                            dealSource[i] +
+                                                        '</label>' +
+                                                    '</div>'
+                                    );
+                    style = '';
+                }
+                
+                stage = jQuery.unique(stage);
+                style = ' style=\"margin-top: 0px\"';
+                for (var i = 0; i < stage.length; i++) {
+                    \$(\"#filterStageDiv\").append('<div class=\"checkbox\"' + style + '>' +
+                                                        '<label>' +
+                                                            '<input type=\"checkbox\" value=\"' + stage[i] + '\">' +
+                                                            stage[i] +
+                                                        '</label>' +
+                                                    '</div>'
+                                    );
+                    style = '';
+                }
+                
+                accountType = jQuery.unique(accountType);
+                style = ' style=\"margin-top: 0px\"';
+                for (var i = 0; i < accountType.length; i++) {
+                    \$(\"#filterAccountTypeDiv\").append('<div class=\"checkbox\"' + style + '>' +
+                                                        '<label>' +
+                                                            '<input type=\"checkbox\" value=\"' + accountType[i] + '\">' +
+                                                            accountType[i] +
+                                                        '</label>' +
+                                                    '</div>'
+                                    );
+                    style = '';
+                }
+                
+                productType = jQuery.unique(productType);
+                style = ' style=\"margin-top: 0px\"';
+                for (var i = 0; i < productType.length; i++) {
+                    \$(\"#filterProductTypeDiv\").append('<div class=\"checkbox\"' + style + '>' +
+                                                        '<label>' +
+                                                            '<input type=\"checkbox\" value=\"' + productType[i] + '\">' +
+                                                            productType[i] +
+                                                        '</label>' +
+                                                    '</div>'
+                                    );
+                    style = '';
+                }
             }
 </script>";
     }
@@ -254,6 +509,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  182 => 150,  176 => 147,  163 => 136,  89 => 63,  50 => 27,  32 => 12,  19 => 1,);
+        return array (  393 => 361,  387 => 358,  368 => 341,  290 => 264,  58 => 35,  40 => 20,  19 => 1,);
     }
 }
