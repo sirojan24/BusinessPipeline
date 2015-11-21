@@ -209,9 +209,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addopportunityAction',  '_route' => 'opportunity_addopportunity',);
             }
 
-            // opportunity_addcontactopportunity
-            if (0 === strpos($pathinfo, '/addcontactopportunity') && preg_match('#^/addcontactopportunity/(?P<name>[^/]++)/(?P<orgname>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_addcontactopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addcontactopportunityAction',));
+            if (0 === strpos($pathinfo, '/addcontactopportunity')) {
+                // opportunity_addcontactopportunity
+                if (preg_match('#^/addcontactopportunity/(?P<name>[^/]++)/(?P<orgname>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_addcontactopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addcontactopportunityAction',));
+                }
+
+                // opportunity_addcontactopportunityV2
+                if (0 === strpos($pathinfo, '/addcontactopportunityV2') && preg_match('#^/addcontactopportunityV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_addcontactopportunityV2')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addcontactopportunityV2Action',));
+                }
+
             }
 
         }

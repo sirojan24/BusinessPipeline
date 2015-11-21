@@ -78,6 +78,41 @@ class DefaultController extends Controller {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
+    
+    public function addcontactopportunityV2Action(Request $request, $id) {
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
+
+            $repository = $em->getRepository("LoginLoginBundle:Users");
+            $repository1 = $em->getRepository("SettingsBundle:Accounttypes");
+            $repository2 = $em->getRepository("SettingsBundle:Stages");
+            $repository3 = $em->getRepository("SettingsBundle:Producttypes");
+            $repository4 = $em->getRepository("SettingsBundle:Opportunitysources");
+            $repository5 = $em->getRepository("ContactsContactsBundle:Contacts");
+
+            $user = $repository->findOneBy(array('username' => $token->getUsername()));
+            $accounttypes = $repository1->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
+            $stages = $repository2->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
+            $producttypes = $repository3->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'), array('name' => 'ASC'));
+            $opportunitysources = $repository4->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
+
+
+            $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+            $currentCompany = $currentUser->getCompanyname();
+            $users = $repository->findBy(array('companyname' => $currentCompany, 'status' => 'Active'));
+
+            $selectedContact = $repository5->findOneBy(array('id' => $id));
+            $opportunityname = $selectedContact->getName();
+            $organizationname = $selectedContact->getCompany();
+
+            return $this->render('OpportunityBundle:Default:addOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 'organizationname' => $organizationname, 'contactid' => $id));
+        } else {
+
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
 
     public function saveopportunityAction(Request $request) {
         $token = $request->getSession()->get('token');
@@ -106,6 +141,8 @@ class DefaultController extends Controller {
             $opportunitie->setUserrevenue($request->get('userrevenue'));
             $opportunitie->setReason($request->get('reason'));
             $opportunitie->setContactid($request->get('contactid'));
+            $opportunitie->setWonnotes($request->get('modalnoteshidden'));
+            $opportunitie->setTags($request->get('tags'));
             $sharingusers = '';
             $colonFlag = true;
             if ($request->get('sharingusers')) {
@@ -217,9 +254,9 @@ class DefaultController extends Controller {
                     }
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
+                $opportunitiesArray = $this->getOpportunityArray($token);
 
-
-                return $this->render('OpportunityBundle:Default:manageOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully add an Opportunity ", 'opportunities' => $opportunities, 'manageview' => $user->getOpportunityview()));
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(),'opportunitiesArray'=> $opportunitiesArray,'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully add an Opportunity ", 'opportunities' => $opportunities, 'manageview' => $user->getOpportunityview()));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
                 return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again'));
@@ -682,7 +719,7 @@ class DefaultController extends Controller {
             $arrElement["open_deals"] = 0;   //need to check
             $arrElement["won_deals"] = 0;   //need to check
             $arrElement["lost_deals"] = 0;   //need to check
-            $arrElement["tags"] = "";   //need to check
+            $arrElement["tags"] = $opportunity->getTags();   //need to check
             
             array_push($opportunitiesArray, $arrElement);
         }

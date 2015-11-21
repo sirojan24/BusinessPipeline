@@ -123,9 +123,11 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
         echo "
         </div>
         <!-- /#wrapper -->
-
         ";
+        // line 69
+        $this->env->loadTemplate("LoginLoginBundle:Default:notesModalScript.html.twig")->display($context);
         // line 70
+        echo "        ";
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
         // line 71
         echo "        <script src=\"";
@@ -142,6 +144,11 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
         <script src=\"";
         // line 74
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
+        echo "\"></script>
+        
+        <script src=\"";
+        // line 76
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-notes.js"), "html", null, true);
         echo "\"></script>
 
     </body>
@@ -161,6 +168,6 @@ class __TwigTemplate_86eecf686d9795ec66ee3e7e8ecc851d83e64f250fec9de01483be711ab
 
     public function getDebugInfo()
     {
-        return array (  144 => 74,  140 => 73,  136 => 72,  131 => 71,  129 => 70,  123 => 66,  121 => 65,  114 => 60,  111 => 59,  109 => 58,  104 => 57,  101 => 56,  99 => 55,  87 => 45,  76 => 37,  70 => 33,  67 => 32,  56 => 24,  50 => 20,  48 => 19,  43 => 16,  41 => 15,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  151 => 76,  146 => 74,  142 => 73,  138 => 72,  133 => 71,  130 => 70,  128 => 69,  123 => 66,  121 => 65,  114 => 60,  111 => 59,  109 => 58,  104 => 57,  101 => 56,  99 => 55,  87 => 45,  76 => 37,  70 => 33,  67 => 32,  56 => 24,  50 => 20,  48 => 19,  43 => 16,  41 => 15,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

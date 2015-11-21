@@ -77,7 +77,10 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
         echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Contacts\"><i class=\"fa fa-user\"></i></a>
                 </li>
                 <li>
-                    <a href=\"#\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Deals\"><i class=\"fa fa-usd\"></i></a>
+                    <a href=\"";
+        // line 45
+        echo $this->env->getExtension('routing')->getPath("opportunity_manageopportunityV2");
+        echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Deals\"><i class=\"fa fa-usd\"></i></a>
                 </li>
                 <li>
                     <a href=\"";
@@ -111,6 +114,6 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
 
     public function getDebugInfo()
     {
-        return array (  91 => 51,  85 => 48,  76 => 42,  57 => 26,  53 => 25,  49 => 24,  39 => 19,  19 => 1,);
+        return array (  94 => 51,  88 => 48,  82 => 45,  76 => 42,  57 => 26,  53 => 25,  49 => 24,  39 => 19,  19 => 1,);
     }
 }

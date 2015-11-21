@@ -101,7 +101,29 @@ class Opportunities
     
     private $userrevenue;
     
-     private $contactid;
+    private $contactid;
+    
+    private $wonnotes;
+    
+    private $tags;
+    
+    public function getWonnotes(){
+        return $this->wonnotes;
+    }
+    
+    public function setWonnotes($wonnotes){
+        $this->wonnotes = $wonnotes;
+        return $this;
+    }
+    
+    public function getTags(){
+        return $this->tags;
+    }
+    
+    public function setTags($tags){
+        $this->tags = $tags;
+        return $this;
+    }
     
     public function getContactid(){
         return $this->contactid;

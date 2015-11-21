@@ -317,7 +317,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         var open_deals = checkAndSetValue(extendColData[index].open_deals, '-', '', true);
         var won_deals = checkAndSetValue(extendColData[index].won_deals, '-', '\$', true);
         var lost_deals = checkAndSetValue(extendColData[index].lost_deals, '-', '\$', true);
-        var tags = checkAndSetValue(extendColData[index].tags, '-', '\$', true);
+        var tags = checkAndSetValue(extendColData[index].tags, '-', '', true);
 
         var html = [];
         html.push('<div class\"row\">' +

@@ -10,6 +10,10 @@ opportunity_addcontactopportunity:
     path:     /addcontactopportunity/{name}/{orgname}/{id}
     defaults: { _controller: OpportunityBundle:Default:addcontactopportunity }
     
+opportunity_addcontactopportunityV2:
+    path:     /addcontactopportunityV2/{id}
+    defaults: { _controller: OpportunityBundle:Default:addcontactopportunityV2 }
+    
 opportunity_saveopportunity:
     path:     /saveopportunity
     defaults: { _controller: OpportunityBundle:Default:saveopportunity }

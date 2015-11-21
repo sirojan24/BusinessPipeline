@@ -241,7 +241,7 @@
                                                                         <div class="form-group">
 										<label class="col-sm-2 control-label no-padding-left" for="organizationname"> Organization Name </label>
                                                                             <div class="input-group col-sm-4">
-										<input type="text" id="organizationname" name="organizationname"{%if  organizationname is defined %} {%if organizationname != 'null'%} value="{{ organizationname}}"{%endif%}{%endif%} placeholder="Organization Name" class="col-sm-12" pattern="^[a-zA-Z0-9_()&-,'.& ]*$" data-parsley-pattern="^[a-zA-Z0-9()_&-,'.& ]*$"  data-parsley-trigger="keyup" />
+										<input type="text" id="organizationname" name="organizationname" {%if  organizationname is defined %} {%if organizationname != 'null'%} value="{{ organizationname}}"{%endif%}{%endif%} placeholder="Organization Name" class="col-sm-12" pattern="^[a-zA-Z0-9_()&-,'.& ]*$" data-parsley-pattern="^[a-zA-Z0-9()_&-,'.& ]*$"  data-parsley-trigger="keyup" />
                                                                              </div>    
 									</div>
                                                                           
