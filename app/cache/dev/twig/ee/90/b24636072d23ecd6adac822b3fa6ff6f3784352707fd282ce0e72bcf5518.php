@@ -293,7 +293,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
 
                 <input type=\"hidden\" name=\"revenue\" id=\"revenue\">
                 <input type=\"hidden\" name=\"userrevenue\" id=\"userrevenue\">
-                <input type=\"text\" name=\"modalnoteshidden\" id=\"modalnoteshidden\">
+                <input type=\"hidden\" name=\"modalnoteshidden\" id=\"modalnoteshidden\">
                 <input type=\"hidden\" name=\"reason\" id=\"reason\">
                 <input type=\"hidden\" name=\"contactid\" id=\"contactid\" value=\"";
         // line 159

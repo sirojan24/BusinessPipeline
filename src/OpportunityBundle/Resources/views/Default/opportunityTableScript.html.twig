@@ -253,7 +253,40 @@
             }
         }
         
-        var filterOpportunitiesArray = {'opportunities' : filterToDateOpportunities};
+        
+        var filterTagsOpportunities = [];
+        for (var i = 0; i < filterToDateOpportunities.length; i++) {
+            var tempOpportunity = filterToDateOpportunities[i];
+            var flag = true;
+            if($("#filterTags").val() == '') {
+                flag = false;
+            }
+            if(flag === false){
+                filterTagsOpportunities.push(tempOpportunity);
+            }else{
+                var filter = $("#filterTags").val();
+                var filterTags = filter.split(',');
+                var actual = '' + tempOpportunity.tags;
+                var actualTags = actual.split(',');
+                var isNotAdd = true;
+                for (var j = 0; j < filterTags.length; j++) {
+                    for (var k = 0; k < actualTags.length; k++) {
+                        if(filterTags[j] === actualTags[k]){
+                            filterTagsOpportunities.push(tempOpportunity);
+                            isNotAdd = false;
+                        }
+                        if(isNotAdd === false){
+                            break;
+                        }
+                    }
+                    if(isNotAdd === false){
+                        break;
+                    }
+                }
+            }
+        }
+        
+        var filterOpportunitiesArray = {'opportunities' : filterTagsOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
         
         $table.bootstrapTable('hideLoading');
@@ -332,7 +365,7 @@
 
     function convertData(response) {
         var jsonString = JSON.parse(response);
-
+        extendColData = [];
         var startId = 1,
                 rows = [];
 
@@ -354,6 +387,7 @@
                     stage.push(tempOpportunity.stage);
                     accountType.push(tempOpportunity.deal_account_type);
                     productType.push(tempOpportunity.product_type);
+                    tags.push(tempOpportunity.tags);
 
                     var editPath = '{{ path('contacts_contacts_editcontactpageV2',{'id':0} )}}';
                     editPath = editPath.substring(0, editPath.length - 1);
@@ -368,7 +402,6 @@
                                 '<i class="glyphicon glyphicon-chevron-down"></i>' +
                                 '</button>' +
                                 '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                                '<li><a href="#"><i class="fa fa-usd"></i> New Deal</a></li>' +
                                 '<li><a href="' + editPath + tempOpportunity.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
                                 '<li><a href="#"><i class="fa fa-file-o"></i> Notes</a></li>' +
                                 '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +

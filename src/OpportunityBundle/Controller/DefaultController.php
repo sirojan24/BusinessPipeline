@@ -720,7 +720,6 @@ class DefaultController extends Controller {
             $arrElement["won_deals"] = 0;   //need to check
             $arrElement["lost_deals"] = 0;   //need to check
             $arrElement["tags"] = $opportunity->getTags();   //need to check
-            
             array_push($opportunitiesArray, $arrElement);
         }
         $opportunitiesArray = array('opportunities' => $opportunitiesArray);

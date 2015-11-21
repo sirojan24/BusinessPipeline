@@ -277,7 +277,40 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             }
         }
         
-        var filterOpportunitiesArray = {'opportunities' : filterToDateOpportunities};
+        
+        var filterTagsOpportunities = [];
+        for (var i = 0; i < filterToDateOpportunities.length; i++) {
+            var tempOpportunity = filterToDateOpportunities[i];
+            var flag = true;
+            if(\$(\"#filterTags\").val() == '') {
+                flag = false;
+            }
+            if(flag === false){
+                filterTagsOpportunities.push(tempOpportunity);
+            }else{
+                var filter = \$(\"#filterTags\").val();
+                var filterTags = filter.split(',');
+                var actual = '' + tempOpportunity.tags;
+                var actualTags = actual.split(',');
+                var isNotAdd = true;
+                for (var j = 0; j < filterTags.length; j++) {
+                    for (var k = 0; k < actualTags.length; k++) {
+                        if(filterTags[j] === actualTags[k]){
+                            filterTagsOpportunities.push(tempOpportunity);
+                            isNotAdd = false;
+                        }
+                        if(isNotAdd === false){
+                            break;
+                        }
+                    }
+                    if(isNotAdd === false){
+                        break;
+                    }
+                }
+            }
+        }
+        
+        var filterOpportunitiesArray = {'opportunities' : filterTagsOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
         
         \$table.bootstrapTable('hideLoading');
@@ -286,7 +319,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     function storePageSize(size) {
         \$.post('";
-        // line 264
+        // line 297
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'opportunityview', value: size},
@@ -359,12 +392,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     function convertData(response) {
         var jsonString = JSON.parse(response);
-
+        extendColData = [];
         var startId = 1,
                 rows = [];
 
     ";
-        // line 341
+        // line 374
         echo "                for (var i = 0; i < jsonString.opportunities.length; i++) {
                     var tempOpportunity = jsonString.opportunities[i];
 
@@ -381,15 +414,16 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     stage.push(tempOpportunity.stage);
                     accountType.push(tempOpportunity.deal_account_type);
                     productType.push(tempOpportunity.product_type);
+                    tags.push(tempOpportunity.tags);
 
                     var editPath = '";
-        // line 358
+        // line 392
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var name = '";
-        // line 361
+        // line 395
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -401,7 +435,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                                '<li><a href=\"#\"><i class=\"fa fa-usd\"></i> New Deal</a></li>' +
                                 '<li><a href=\"' + editPath + tempOpportunity.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
@@ -509,6 +542,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  393 => 361,  387 => 358,  368 => 341,  290 => 264,  58 => 35,  40 => 20,  19 => 1,);
+        return array (  427 => 395,  421 => 392,  401 => 374,  323 => 297,  58 => 35,  40 => 20,  19 => 1,);
     }
 }
