@@ -56,8 +56,8 @@ class DefaultController extends Controller
                 $em->persist($notes);
                 $em->flush();
                
-               $repository1 = $em->getRepository("OpportunityBundle:Opportunities");
-               $repository2 = $em->getRepository("SettingsBundle:Stages");
+                $repository1 = $em->getRepository("OpportunityBundle:Opportunities");
+                $repository2 = $em->getRepository("SettingsBundle:Stages");
             
                 $currentuser = $repository->findOneBy(array('username' => $token->getUsername()));
                 $opportunities = $repository1->findBy(array('ownedcompany' => $currentuser->getCompanyname()));
@@ -180,10 +180,11 @@ class DefaultController extends Controller
          if($notes){
              foreach ($notes as $note) {
                  $user = $repository1 ->findOneBy(array('username' => $note->getUsername()));
-                 
+                 $toUser =  $repository1 ->findOneBy(array('id' => $id));
                  $notesString["id"] = $note->getId();
                  $notesString["timestamp"] = $note->getTimestamp();
-                 $notesString["username"] = $note->getUsername();
+                 $notesString["fromUsername"] = $note->getUsername();
+                 $notesString["toUsername"] = $toUser->getUsername();
                  $notesString["fullname"] = $note->getFullname();
                  $notesString["notes"] = $note->getNotes();
                  $notesString["url"] = $user->getImage();
@@ -210,7 +211,8 @@ class DefaultController extends Controller
          $em = $this->getDoctrine()->getManager();
          $repository = $em->getRepository("LoginLoginBundle:Users");
          $user = $repository->findOneBy(array('username' => $username));
-         
+         $toUser = $repository->findOneBy(array('id' => $type_id));
+                 
          $notes = new Notes();
          $notes->setType($type);
          $notes->setTypeid($type_id);
@@ -225,10 +227,11 @@ class DefaultController extends Controller
          $em->persist($notes);
          $em->flush();
          
-         $noteString = $notes->getId().'**'.$notes->getTimestamp().'**'.$notes->getUsername().'**'.$notes->getFullname().'**'.$notes->getNotes();
+         $response = array('id' => $notes->getId(),'timestamp' => $notes->getTimestamp(), 'fullname' => $notes->getFullname(), 'notes' => $notes->getNotes(),'url' => $user->getImage(),'toUsername'=>$toUser->getUsername());
+         $response = json_encode($response);
          
-         if($noteString){
-             return new Response($noteString);
+         if($response){
+             return new Response($response);
          }else{
              return new Response("false");
          }
@@ -247,9 +250,12 @@ class DefaultController extends Controller
          
          $em->flush();
          $updated_notes = $repository->findOneBy(array('id' => $id));
+         
          if($updated_notes){
-             $noteString = $updated_notes->getId().'**'.$updated_notes->getTimestamp().'**'.$updated_notes->getUsername().'**'.$updated_notes->getFullname().'**'.$updated_notes->getNotes();
-              return new Response($noteString);
+            $response = array('id' => $updated_notes->getId(),'timestamp' => $updated_notes->getTimestamp(), 'fullname' => $updated_notes->getFullname(), 'notes' => $updated_notes->getNotes());
+            $response = json_encode($response);
+            
+            return new Response($response);
          }else{
              return new Response("false");
          }
