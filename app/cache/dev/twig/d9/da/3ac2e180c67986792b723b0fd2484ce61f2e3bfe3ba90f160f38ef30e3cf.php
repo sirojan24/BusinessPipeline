@@ -19,7 +19,8 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
-   
+    var initResponse;
+
     \$(document).ready(function () {
         \$(\"#tableDiv\").show();
         iniFillTableData();
@@ -28,15 +29,16 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 12
+        // line 13
         echo twig_escape_filter($this->env, (isset($context["contactArray"]) ? $context["contactArray"] : $this->getContext($context, "contactArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
+        initResponse = newString;
         //var newString = JSON.parse(data);
         \$table.bootstrapTable('hideLoading');
         \$table.bootstrapTable('append', convertData(newString));
     }
-    
+
     function refreshTable() {
         \$table.bootstrapTable('removeAll');
         fillTableData();
@@ -45,12 +47,13 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 26
+        // line 28
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
+                        initResponse = response;
                         \$table.bootstrapTable('append', convertData(response));
                     } else {
 
@@ -59,11 +62,33 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         );
     }
 
+    function usernameFilter(username) {
+        \$table.bootstrapTable('removeAll');
+        \$table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.contacts.length; i++) {
+            var tempContact = jsonString.contacts[i];
+
+            if (username.toLowerCase() === tempContact.username.toLowerCase()) {
+                filterContact.push(tempContact);
+            }
+
+        }
+        var filterOpportunitiesArray = {'contacts': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(jsonStr));
+    }
+
     function fillTableDataWithUsername(username) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 41
+        // line 66
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -82,7 +107,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     function storePageSize(size) {
         \$.post('";
-        // line 57
+        // line 82
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -147,7 +172,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                 rows = [];
 
     ";
-        // line 121
+        // line 146
         echo "                for (var i = 0; i < jsonString.contacts.length; i++) {
                     var tempContact = jsonString.contacts[i];
 
@@ -156,19 +181,25 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                         telephone: tempContact.telephone,
                         tags: tempContact.tags
                     });
-                    
+
                     var editPath = '";
-        // line 130
+        // line 155
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
-                    
+
+                    var openDealPath = '";
+        // line 158
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
+        echo "';
+                    openDealPath = openDealPath.substring(0, openDealPath.length - 3);
+
                     var name = '";
-        // line 133
+        // line 161
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
-                    if(name === tempContact.username.toLowerCase()){
+                    if (name === tempContact.username.toLowerCase()) {
                         action = '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
@@ -186,12 +217,12 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     rows.push({
                         name: tempContact.name,
                         company: tempContact.company,
-                        open_deal: tempContact.open_deal,
+                        open_deal: '<a href=\"' + openDealPath + tempContact.id + '/Open' + '\">' + tempContact.open_deal + '</a>',
                         projected_revenue: '\$' + tempContact.projected_revenue,
                         weighted_forecast: '\$' + tempContact.weighted_forecast,
-                        won_deals: '\$' + tempContact.won_deals,
-                        lost_deals: '\$' + tempContact.lost_deals,
-                        owner: '<a href=\"javascript:fillTableDataWithUsername(' + \"'\" + tempContact.username + \"'\" + ')\">' + tempContact.owner + '</a>',
+                        won_deals: '<a href=\"' + openDealPath + tempContact.id + '/Won' + '\">\$' + tempContact.won_deals + '</a>',
+                        lost_deals: '<a href=\"' + openDealPath + tempContact.id + '/Lost' + '\">\$' + tempContact.lost_deals + '</a>',
+                        owner: '<a href=\"javascript:usernameFilter(' + \"'\" + tempContact.username + \"'\" + ')\">' + tempContact.owner + '</a>',
                         action: action
 
                     });
@@ -234,6 +265,6 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     public function getDebugInfo()
     {
-        return array (  168 => 133,  162 => 130,  151 => 121,  86 => 57,  67 => 41,  49 => 26,  32 => 12,  19 => 1,);
+        return array (  199 => 161,  193 => 158,  187 => 155,  176 => 146,  111 => 82,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

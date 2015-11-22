@@ -265,6 +265,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // opportunity_opportunitycontactfilterV2
+        if (0 === strpos($pathinfo, '/opportunitycontactfilterV2') && preg_match('#^/opportunitycontactfilterV2/(?P<id>[^/]++)/(?P<filter>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_opportunitycontactfilterV2')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::opportunitycontactfilterV2Action',));
+        }
+
         // opportunity_updateopportunity
         if ($pathinfo === '/updateopportunity') {
             return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::updateopportunityAction',  '_route' => 'opportunity_updateopportunity',);
@@ -276,7 +281,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // opportunity_table_data
-        if ($pathinfo === '/opportunitytable') {
+        if (rtrim($pathinfo, '/') === '/opportunitytable') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'opportunity_table_data');
+            }
+
             return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::getOpportunityTableDataAction',  '_route' => 'opportunity_table_data',);
         }
 

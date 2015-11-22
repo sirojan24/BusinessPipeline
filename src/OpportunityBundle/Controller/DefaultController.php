@@ -254,7 +254,7 @@ class DefaultController extends Controller {
                     }
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
-                $opportunitiesArray = $this->getOpportunityArray($token);
+                $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
 
                 return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(),'opportunitiesArray'=> $opportunitiesArray,'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully add an Opportunity ", 'opportunities' => $opportunities, 'manageview' => $user->getOpportunityview()));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
@@ -622,15 +622,35 @@ class DefaultController extends Controller {
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
 
-            $opportunitiesArray = $this->getOpportunityArray($token);
+            $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
 //return $this->render('OpportunityBundle:Default:test.html.twig');
             return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
         } else {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
+    
+    public function opportunitycontactfilterV2Action(Request $request, $id, $filter) {
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
 
-    private function getOpportunityArray($token) {
+            $repository = $em->getRepository("LoginLoginBundle:Users");
+
+            $user = $repository->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $user->getFirstname() . " " . $user->getLastname();
+
+            $opportunitiesArray = $this->getOpportunityArray($token, $id, $filter);
+            //return $this->render('OpportunityBundle:Default:test.html.twig');
+            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 
+                'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 
+                'manageview' => $user->getOpportunityview(), 'contactid' => $id, 'filter' => $filter));
+        } else {
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
+
+    private function getOpportunityArray($token, $id, $filter) {
         $em = $this->getDoctrine()->getManager();
 
         $repository1 = $em->getRepository("OpportunityBundle:Opportunities");
@@ -641,8 +661,25 @@ class DefaultController extends Controller {
         $repository = $em->getRepository("LoginLoginBundle:Users");
 
         $user = $repository->findOneBy(array('username' => $token->getUsername()));
-        $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
-
+        if($id == '-1'){
+            $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
+        }else{
+            if($filter == "Won"){
+                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => '6'));
+            }else if($filter == "Lost"){
+                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => '7'));
+            }else{
+                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id));
+                $tempOpportunities = array();
+                foreach ($opportunities as $opportunity) {
+                    if($opportunity->getStage() !== '6' && $opportunity->getStage() !== '7'){
+                        array_push($tempOpportunities, $opportunity);
+                    }
+                }
+                $opportunities = $tempOpportunities;
+            }
+        }
+        
         $opportunitiesArray = array();
 
         foreach ($opportunities as $opportunity) {
@@ -763,7 +800,9 @@ class DefaultController extends Controller {
     public function getOpportunityTableDataAction(Request $request){
         $token = $request->getSession()->get('token');
         if ($token) {
-            return new Response($this->getOpportunityArray($token));
+            $id = $request->get('id');
+            $filter = $request->get('filter');
+            return new Response($this->getOpportunityArray($token, $id, $filter));
         }else{
             return new Response("error!!");
         }

@@ -32,17 +32,31 @@
     
     function fillTableData() {
         $table.bootstrapTable('showLoading');
-        $.post('{{path('opportunity_table_data')}}', null,
-                function (response) {
-                    if (response) {
-                        $table.bootstrapTable('hideLoading');
-                        initResponse = response;
-                        $table.bootstrapTable('append', convertData(response));
-                    } else {
+        {% if contactid is defined %}
+            $.post('{{path('opportunity_table_data')}}',{id: '{{contactid}}', filter: '{{filter}}'},
+                    function (response) {
+                        if (response) {
+                            $table.bootstrapTable('hideLoading');
+                            initResponse = response;
+                            $table.bootstrapTable('append', convertData(response));
+                        } else {
 
+                        }
                     }
-                }
-        );
+            );
+        {%else%}
+            $.post('{{path('opportunity_table_data')}}',{id: '-1', filter: 'None',
+                    function (response) {
+                        if (response) {
+                            $table.bootstrapTable('hideLoading');
+                            initResponse = response;
+                            $table.bootstrapTable('append', convertData(response));
+                        } else {
+
+                        }
+                    }
+            ); 
+        {%endif%}
     }
 
     function usernameFilter(username) {
@@ -55,7 +69,7 @@
         for (var i = 0; i < jsonString.opportunities.length; i++) {
             var tempOpportunity = jsonString.opportunities[i];
 
-            if (username === tempOpportunity.username.toLowerCase()) {
+            if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
                 filterOpportunities.push(tempOpportunity);
             }
             

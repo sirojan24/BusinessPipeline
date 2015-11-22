@@ -42,6 +42,10 @@ opportunity_manageopportunityV2:
     path:     /manageopportunityV2
     defaults: { _controller: OpportunityBundle:Default:manageopportunityV2 }
     
+opportunity_opportunitycontactfilterV2:
+    path:     /opportunitycontactfilterV2/{id}/{filter}
+    defaults: { _controller: OpportunityBundle:Default:opportunitycontactfilterV2 }
+    
 opportunity_updateopportunity:
     path:     /updateopportunity
     defaults: { _controller: OpportunityBundle:Default:updateopportunity }
@@ -51,6 +55,6 @@ opportunity_deleteopportunity:
     defaults: { _controller: OpportunityBundle:Default:deleteopportunity }
     
 opportunity_table_data:
-    path:     /opportunitytable
+    path:     /opportunitytable/
     defaults: { _controller: OpportunityBundle:Default:getOpportunityTableData }
     
