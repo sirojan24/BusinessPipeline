@@ -187,26 +187,32 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
+                    
+                    var newDealPath = '";
+        // line 158
+        echo $this->env->getExtension('routing')->getPath("opportunity_addcontactopportunityV2", array("id" => 0));
+        echo "';
+                    newDealPath = newDealPath.substring(0, newDealPath.length - 1);
 
                     var openDealPath = '";
-        // line 158
+        // line 161
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
         echo "';
                     openDealPath = openDealPath.substring(0, openDealPath.length - 3);
 
                     var name = '";
-        // line 161
+        // line 164
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
-                    if (name === tempContact.username.toLowerCase()) {
+                    if (name.toLowerCase() === tempContact.username.toLowerCase()) {
                         action = '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                                '<li><a href=\"#\"><i class=\"fa fa-usd\"></i> New Deal</a></li>' +
+                                '<li><a href=\"' + newDealPath + tempContact.id + '\"><i class=\"fa fa-usd\"></i> New Deal</a></li>' +
                                 '<li><a href=\"' + editPath + tempContact.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
@@ -265,6 +271,6 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     public function getDebugInfo()
     {
-        return array (  199 => 161,  193 => 158,  187 => 155,  176 => 146,  111 => 82,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  205 => 164,  199 => 161,  193 => 158,  187 => 155,  176 => 146,  111 => 82,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

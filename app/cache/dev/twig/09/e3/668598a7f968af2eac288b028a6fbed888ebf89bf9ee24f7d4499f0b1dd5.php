@@ -256,6 +256,7 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
     function clearRevenue() {
         document.getElementById('modalrevenue').value = '';
         document.getElementById('individualrevenue').value = '';
+        document.getElementById('modalnotes').value = '';
     }
 
     function setReason() {

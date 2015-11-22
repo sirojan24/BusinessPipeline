@@ -45,7 +45,7 @@
                     }
             );
         {%else%}
-            $.post('{{path('opportunity_table_data')}}',{id: '-1', filter: 'None',
+            $.post('{{path('opportunity_table_data')}}',{id: '-1', filter: 'None'},
                     function (response) {
                         if (response) {
                             $table.bootstrapTable('hideLoading');
@@ -285,7 +285,7 @@
                 var isNotAdd = true;
                 for (var j = 0; j < filterTags.length; j++) {
                     for (var k = 0; k < actualTags.length; k++) {
-                        if(filterTags[j] === actualTags[k]){
+                        if(filterTags[j].toLowerCase() === actualTags[k].toLowerCase()){
                             filterTagsOpportunities.push(tempOpportunity);
                             isNotAdd = false;
                         }
@@ -403,13 +403,13 @@
                     productType.push(tempOpportunity.product_type);
                     tags.push(tempOpportunity.tags);
 
-                    var editPath = '{{ path('contacts_contacts_editcontactpageV2',{'id':0} )}}';
+                    var editPath = '{{ path('opportunity_editopportunityV2',{'id':0} )}}';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var name = '{{name|lower}}';
                     var action = '';
 
-                    if (name === tempOpportunity.username.toLowerCase()) {
+                    if (name.toLowerCase() === tempOpportunity.username.toLowerCase()) {
                         action = '<div class="pull-right">' +
                                 '<div class="keep-open btn-group">' +
                                 '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +

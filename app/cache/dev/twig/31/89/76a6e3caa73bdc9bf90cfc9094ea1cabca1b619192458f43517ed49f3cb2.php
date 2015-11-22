@@ -79,7 +79,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             // line 48
             echo "            \$.post('";
             echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
-            echo "',{id: '-1', filter: 'None',
+            echo "',{id: '-1', filter: 'None'},
                     function (response) {
                         if (response) {
                             \$table.bootstrapTable('hideLoading');
@@ -321,7 +321,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 var isNotAdd = true;
                 for (var j = 0; j < filterTags.length; j++) {
                     for (var k = 0; k < actualTags.length; k++) {
-                        if(filterTags[j] === actualTags[k]){
+                        if(filterTags[j].toLowerCase() === actualTags[k].toLowerCase()){
                             filterTagsOpportunities.push(tempOpportunity);
                             isNotAdd = false;
                         }
@@ -444,7 +444,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
                     var editPath = '";
         // line 406
-        echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
+        echo $this->env->getExtension('routing')->getPath("opportunity_editopportunityV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
@@ -454,7 +454,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         echo "';
                     var action = '';
 
-                    if (name === tempOpportunity.username.toLowerCase()) {
+                    if (name.toLowerCase() === tempOpportunity.username.toLowerCase()) {
                         action = '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +

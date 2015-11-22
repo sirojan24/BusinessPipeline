@@ -770,6 +770,7 @@ class DefaultController extends Controller {
             }
             $opportunity->setCurrentuserforecast($individualforecast);
 
+            $arrElement["id"] = $opportunity->getId();
             $arrElement["name"] = $opportunity->getPersonname();
             $arrElement["company"] = $opportunity->getOrganizationname();
             $arrElement["product_type"] = $opportunity->getProducttype();
@@ -943,8 +944,8 @@ class DefaultController extends Controller {
                     }
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
-
-                return $this->render('OpportunityBundle:Default:manageOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully update an Opportunity ", 'opportunities' => $opportunities, 'manageview' => $user->getOpportunityview()));
+                $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                 $repository = $em->getRepository("LoginLoginBundle:Users");
                 $repository5 = $em->getRepository("SettingsBundle:Accounttypes");
