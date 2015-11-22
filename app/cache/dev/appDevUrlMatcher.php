@@ -229,9 +229,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::saveopportunityAction',  '_route' => 'opportunity_saveopportunity',);
         }
 
-        // opportunity_editopportunity
-        if (0 === strpos($pathinfo, '/editopportunity') && preg_match('#^/editopportunity/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_editopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::editopportunityAction',));
+        if (0 === strpos($pathinfo, '/editopportunity')) {
+            // opportunity_editopportunity
+            if (preg_match('#^/editopportunity/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_editopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::editopportunityAction',));
+            }
+
+            // opportunity_editopportunityV2
+            if (0 === strpos($pathinfo, '/editopportunityV2') && preg_match('#^/editopportunityV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_editopportunityV2')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::editopportunityV2Action',));
+            }
+
         }
 
         // opportunity_limitededitopportunity

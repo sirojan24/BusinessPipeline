@@ -11,7 +11,7 @@
                     <label for="notes" >Reason</label>
                     <br>
                     <div class="input-group col-sm-12">      
-                        <textarea  id="modalreason" class="form-control col-sm-12" rows="4" name="modalreason" data-parsley-pattern="^[a-zA-Z0-9,.:;'_ ]*$" data-parsley-trigger="keyup"></textarea>
+                        <textarea  id="modalreason" class="form-control col-sm-12" rows="4" name="modalreason" data-parsley-pattern="^[a-zA-Z0-9,.:;'_ ]*$" data-parsley-trigger="keyup">{%if opportunity is defined %}{{opportunity.getReason()}}{%endif%}</textarea>
                     </div>    
                 </div>
             </div>

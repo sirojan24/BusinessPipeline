@@ -15,7 +15,7 @@
                             <span class="input-group-addon">
                                 $
                             </span>
-                            <input type="text" name="modalrevenue" id="modalrevenue" class="form-control" onkeyup="updateUserRevenue()"class="col-sm-12" required />
+                            <input type="text" name="modalrevenue" {%if opportunity is defined %} value="{{opportunity.getRevenue()}}" {%endif%} id="modalrevenue" class="form-control" onkeyup="updateUserRevenue()"class="col-sm-12" required />
                             <span class="input-group-addon">
                                 .00
                             </span>
@@ -30,7 +30,7 @@
                                 $
                             </span>
                             <input type="hidden" id="commisionnonoriginator">
-                            <input type="text" name="modalrevenue" id="individualrevenue" class="form-control"  class="col-sm-12" required />
+                            <input type="text" name="modalrevenue" {%if opportunity is defined %} value="{{opportunity.getUserrevenue()}}" {%endif%} id="individualrevenue" class="form-control"  class="col-sm-12" required />
                             <span class="input-group-addon">
                                 .00
                             </span>
@@ -41,7 +41,7 @@
                         <label  for="projectedrevenue">Notes</label>
                         <br>
                         <div class="input-group col-sm-12" >
-                            <textarea  id="modalnotes" rows="4" class="form-control col-sm-12" name="modalnotes" data-parsley-pattern="^[a-zA-Z0-9,.:;'_ ]*$" data-parsley-trigger="keyup"></textarea>
+                            <textarea  id="modalnotes" rows="4" class="form-control col-sm-12" name="modalnotes" data-parsley-pattern="^[a-zA-Z0-9,.:;'_ ]*$" data-parsley-trigger="keyup">{%if opportunity is defined %}{{opportunity.getWonnotes()}}{%endif%}</textarea>
                         </div>
                     </div>
                 </div>

@@ -50,8 +50,8 @@
                                         <option value = "{{stage.Id}}">{{stage.getName}}</option>
                                     {%endfor%}
                                 {%endif%}
-                                <option value = "Won">Won</option>
-                                <option value = "Lost">Lost</option>
+                                <option value = "6">Won</option>
+                                <option value = "7">Lost</option>
                             </select>
                         </div>
                     </div>
@@ -84,7 +84,6 @@
                                 {%if producttypes is defined%}
                                     {% for producttype in producttypes %} 
                                         <option value = "{{producttype.getId}}">{{producttype.getName}}</option>
-
                                     {%endfor%}
                                 {%endif%}  
                             </select>

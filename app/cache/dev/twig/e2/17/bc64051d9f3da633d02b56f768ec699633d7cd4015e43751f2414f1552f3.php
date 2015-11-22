@@ -29,7 +29,12 @@ class __TwigTemplate_e217bc64051d9f3da633d02b56f768ec699633d7cd4015e43751f2414f1
                     <label for=\"notes\" >Reason</label>
                     <br>
                     <div class=\"input-group col-sm-12\">      
-                        <textarea  id=\"modalreason\" class=\"form-control col-sm-12\" rows=\"4\" name=\"modalreason\" data-parsley-pattern=\"^[a-zA-Z0-9,.:;'_ ]*\$\" data-parsley-trigger=\"keyup\"></textarea>
+                        <textarea  id=\"modalreason\" class=\"form-control col-sm-12\" rows=\"4\" name=\"modalreason\" data-parsley-pattern=\"^[a-zA-Z0-9,.:;'_ ]*\$\" data-parsley-trigger=\"keyup\">";
+        // line 14
+        if (array_key_exists("opportunity", $context)) {
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getReason", array(), "method"), "html", null, true);
+        }
+        echo "</textarea>
                     </div>    
                 </div>
             </div>
@@ -48,8 +53,13 @@ class __TwigTemplate_e217bc64051d9f3da633d02b56f768ec699633d7cd4015e43751f2414f1
         return "OpportunityBundle:Default:LostModal.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  34 => 14,  19 => 1,);
     }
 }

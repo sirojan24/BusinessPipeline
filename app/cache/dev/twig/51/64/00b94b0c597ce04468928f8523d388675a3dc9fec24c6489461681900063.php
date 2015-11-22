@@ -33,7 +33,14 @@ class __TwigTemplate_516400b94b0c597ce04468928f8523d388675a3dc9fec24c64894616819
                             <span class=\"input-group-addon\">
                                 \$
                             </span>
-                            <input type=\"text\" name=\"modalrevenue\" id=\"modalrevenue\" class=\"form-control\" onkeyup=\"updateUserRevenue()\"class=\"col-sm-12\" required />
+                            <input type=\"text\" name=\"modalrevenue\" ";
+        // line 18
+        if (array_key_exists("opportunity", $context)) {
+            echo " value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getRevenue", array(), "method"), "html", null, true);
+            echo "\" ";
+        }
+        echo " id=\"modalrevenue\" class=\"form-control\" onkeyup=\"updateUserRevenue()\"class=\"col-sm-12\" required />
                             <span class=\"input-group-addon\">
                                 .00
                             </span>
@@ -48,7 +55,14 @@ class __TwigTemplate_516400b94b0c597ce04468928f8523d388675a3dc9fec24c64894616819
                                 \$
                             </span>
                             <input type=\"hidden\" id=\"commisionnonoriginator\">
-                            <input type=\"text\" name=\"modalrevenue\" id=\"individualrevenue\" class=\"form-control\"  class=\"col-sm-12\" required />
+                            <input type=\"text\" name=\"modalrevenue\" ";
+        // line 33
+        if (array_key_exists("opportunity", $context)) {
+            echo " value=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getUserrevenue", array(), "method"), "html", null, true);
+            echo "\" ";
+        }
+        echo " id=\"individualrevenue\" class=\"form-control\"  class=\"col-sm-12\" required />
                             <span class=\"input-group-addon\">
                                 .00
                             </span>
@@ -59,7 +73,12 @@ class __TwigTemplate_516400b94b0c597ce04468928f8523d388675a3dc9fec24c64894616819
                         <label  for=\"projectedrevenue\">Notes</label>
                         <br>
                         <div class=\"input-group col-sm-12\" >
-                            <textarea  id=\"modalnotes\" rows=\"4\" class=\"form-control col-sm-12\" name=\"modalnotes\" data-parsley-pattern=\"^[a-zA-Z0-9,.:;'_ ]*\$\" data-parsley-trigger=\"keyup\"></textarea>
+                            <textarea  id=\"modalnotes\" rows=\"4\" class=\"form-control col-sm-12\" name=\"modalnotes\" data-parsley-pattern=\"^[a-zA-Z0-9,.:;'_ ]*\$\" data-parsley-trigger=\"keyup\">";
+        // line 44
+        if (array_key_exists("opportunity", $context)) {
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getWonnotes", array(), "method"), "html", null, true);
+        }
+        echo "</textarea>
                         </div>
                     </div>
                 </div>
@@ -78,8 +97,13 @@ class __TwigTemplate_516400b94b0c597ce04468928f8523d388675a3dc9fec24c64894616819
         return "OpportunityBundle:Default:wonModal.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  78 => 44,  60 => 33,  38 => 18,  19 => 1,);
     }
 }

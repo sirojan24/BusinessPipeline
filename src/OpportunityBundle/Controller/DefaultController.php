@@ -299,6 +299,39 @@ class DefaultController extends Controller {
             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
+    
+    public function editopportunityV2Action(Request $request, $id) {
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
+
+            $repository = $em->getRepository("LoginLoginBundle:Users");
+            $repository1 = $em->getRepository("SettingsBundle:Accounttypes");
+            $repository2 = $em->getRepository("SettingsBundle:Stages");
+            $repository3 = $em->getRepository("SettingsBundle:Producttypes");
+            $repository4 = $em->getRepository("SettingsBundle:Opportunitysources");
+            $repository5 = $em->getRepository("OpportunityBundle:Opportunities");
+
+            $user = $repository->findOneBy(array('username' => $token->getUsername()));
+            $accounttypes = $repository1->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
+            $stages = $repository2->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
+            $producttypes = $repository3->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'), array('name' => 'ASC'));
+            $opportunitysources = $repository4->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
+
+            $opportunity = $repository5->findOneBy(array('id' => $id));
+
+            $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+
+            $currentCompany = $currentUser->getCompanyname();
+            $users = $repository->findBy(array('companyname' => $currentCompany, 'status' => 'Active'));
+
+            return $this->render('OpportunityBundle:Default:editOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname));
+        } else {
+
+            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
 
     public function limitededitopportunityAction(Request $request, $id) {
         $token = $request->getSession()->get('token');
@@ -759,6 +792,8 @@ class DefaultController extends Controller {
             $opportunitie->setRevenue($request->get('revenue'));
             $opportunitie->setReason($request->get('reason'));
             $opportunitie->setUserrevenue($request->get('userrevenue'));
+            $opportunitie->setTags($request->get('tags'));
+            $opportunitie->setWonnotes($request->get('modalnoteshidden'));
             $sharingusers = '';
             $colonFlag = true;
             if ($request->get('sharingusers') != '') {

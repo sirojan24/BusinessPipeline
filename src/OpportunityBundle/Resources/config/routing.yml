@@ -22,6 +22,10 @@ opportunity_editopportunity:
     path:     /editopportunity/{id}
     defaults: { _controller: OpportunityBundle:Default:editopportunity }
     
+opportunity_editopportunityV2:
+    path:     /editopportunityV2/{id}
+    defaults: { _controller: OpportunityBundle:Default:editopportunityV2 }
+    
 opportunity_limitededitopportunity:
     path:     /limitededitopportunity/{id}
     defaults: { _controller: OpportunityBundle:Default:limitededitopportunity }
