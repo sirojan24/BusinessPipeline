@@ -5,3 +5,7 @@ task_homepage:
 task_savetask:    
     path:     /savetask
     defaults: { _controller: TaskBundle:Default:savetask }
+    
+task_manage_task:    
+    path:     /manageTasks/{type}/{id}
+    defaults: { _controller: TaskBundle:Default:manageTasks }

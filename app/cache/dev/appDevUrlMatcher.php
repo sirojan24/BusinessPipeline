@@ -155,6 +155,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::savetaskAction',  '_route' => 'task_savetask',);
         }
 
+        // task_manage_task
+        if (0 === strpos($pathinfo, '/manageTasks') && preg_match('#^/manageTasks/(?P<type>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'task_manage_task')), array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::manageTasksAction',));
+        }
+
         // notes_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'notes_homepage')), array (  '_controller' => 'NotesBundle\\Controller\\DefaultController::indexAction',));

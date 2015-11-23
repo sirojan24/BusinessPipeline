@@ -107,8 +107,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email1\" class=\"form-control\" id=\"email1\" value=\"";
         // line 67
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail1", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail1", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -158,8 +158,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email2\" class=\"form-control\" id=\"email2\" value=\"";
         // line 93
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail2", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail2", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -209,8 +209,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email3\" class=\"form-control\" id=\"email3\" value=\"";
         // line 119
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail3", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail3", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -260,8 +260,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email4\" class=\"form-control\" id=\"email4\" value=\"";
         // line 145
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail4", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail4", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -311,8 +311,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email5\" class=\"form-control\" id=\"email5\" value=\"";
         // line 171
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail5", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail5", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -362,8 +362,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email6\" class=\"form-control\" id=\"email6\" value=\"";
         // line 197
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail6", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail6", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -413,8 +413,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email7\" class=\"form-control\" id=\"email7\" value=\"";
         // line 223
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail7", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail7", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -464,8 +464,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email8\" class=\"form-control\" id=\"email8\" value=\"";
         // line 249
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail8", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail8", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"/>
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -515,8 +515,8 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"email\">Email</label>
                                 <input type=\"email\"  name=\"email9\" class=\"form-control\" id=\"email9\" value=\"";
         // line 275
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail9", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
-        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\"  required/>
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getEmail9", array(), "method"), "html", null, true);
+        echo "\" placeholder=\"yourname@yourdomain.com\" data-parsley-type=\"email\" data-parsley-trigger=\"keyup\" />
                             </div>
                         </div>
                         <div class=\"col-xs-2\">
@@ -599,7 +599,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone1\" name=\"phone1\" value=\"";
         // line 326
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone1", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone1", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone1", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -686,7 +688,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone2\" value=\"";
         // line 358
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone2", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone2", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone2", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" name=\"phone2\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -773,7 +777,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone3\" name=\"phone3\" value=\"";
         // line 390
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone3", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone3", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone3", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -860,7 +866,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone4\" name=\"phone4\" value=\"";
         // line 422
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone4", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone4", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone4", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -947,7 +955,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone5\" name=\"phone5\" value=\"";
         // line 454
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone5", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone5", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone5", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -1034,7 +1044,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone6\" value=\"";
         // line 486
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone6", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone6", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone6", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" name=\"phone6\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -1121,7 +1133,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone7\" name=\"phone7\" value=\"";
         // line 518
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone7", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone7", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone7", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -1208,7 +1222,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone8\" name=\"phone8\" value=\"";
         // line 550
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone8", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone8", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone8", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -1295,7 +1311,9 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 <label for=\"telephonework\">Telephone</label>
                                 <input type=\"tel\" class=\"form-control\" id=\"phone9\" name=\"phone9\" value=\"";
         // line 582
-        echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone9", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        if ($this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone9", array(), "method"), ":"), 1, array(), "array", true, true)) {
+            echo twig_escape_filter($this->env, $this->getAttribute(twig_split_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getPhone9", array(), "method"), ":"), 1, array(), "array"), "html", null, true);
+        }
         echo "\" placeholder=\"( _ _ _ ) _ _ _ - _ _ _ _\" class=\"col-sm-4\"  data-parsley-trigger=\"change\"   />
                             </div>
                         </div>
@@ -1678,10 +1696,16 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
         // line 808
         if (($this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getImage", array(), "method") != "")) {
             // line 809
-            echo "                                <div class=\"fileinput fileinput-preview\" data-provides=\"fileinput\">
-                                    <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"width: 200px; height: 150px;\">
+            echo "                                <div class=\"fileinput fileinput-preview fileinput-exists\" data-provides=\"fileinput\">
+                                    <div class=\"fileinput-new thumbnail\" style=\"width: 200px;\">
                                         <img src=\"";
             // line 811
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/img/Avatar.PNG"), "html", null, true);
+            echo "\" alt=\"...\">
+                                    </div>
+                                    <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"width: 200px;\">
+                                        <img src=\"";
+            // line 814
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getImage", array(), "method")), "html", null, true);
             echo "\" class=\"image\">
                                     </div>
@@ -1696,15 +1720,15 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 </div>
                             ";
         } else {
-            // line 823
+            // line 826
             echo "                                <div class=\"fileinput fileinput-new\" data-provides=\"fileinput\">
-                                    <div class=\"fileinput-new thumbnail\" style=\"width: 200px; height: 150px;\">
+                                    <div class=\"fileinput-new thumbnail\" style=\"width: 200px;\">
                                         <img src=\"";
-            // line 825
+            // line 828
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/img/Avatar.PNG"), "html", null, true);
             echo "\" alt=\"...\">
                                     </div>
-                                    <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"max-width: 200px; max-height: 150px;\"></div>
+                                    <div class=\"fileinput-preview fileinput-exists thumbnail\" style=\"max-width: 200px;\"></div>
                                     <div>
                                         <span class=\"btn btn-default btn-file\">
                                             <span class=\"fileinput-exists\">Change</span>
@@ -1716,7 +1740,7 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                                 </div>
                             ";
         }
-        // line 838
+        // line 841
         echo "                        </div>
                     </div>
                 </div>
@@ -1726,7 +1750,7 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
                             <label for=\"avatar\"> </label>
                             <button id=\"savebutton\" class=\"btn btn-primary\">Save</button>
                             <a class=\"btn btn-default\" href=\"";
-        // line 846
+        // line 849
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_contacts");
         echo "\">Cancel</a>
                         </div>
@@ -1737,7 +1761,7 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
     </div>
 </div>
 ";
-        // line 854
+        // line 857
         $this->env->loadTemplate("ContactsContactsBundle:Default:editcontactformScript.html.twig")->display($context);
     }
 
@@ -1753,6 +1777,6 @@ class __TwigTemplate_1e23d6ec602978e5a05c1a0d1a5fdfbe0f143b923c4960a28e060f9a1d8
 
     public function getDebugInfo()
     {
-        return array (  1741 => 854,  1730 => 846,  1720 => 838,  1704 => 825,  1700 => 823,  1685 => 811,  1681 => 809,  1679 => 808,  1670 => 802,  1663 => 798,  1653 => 790,  1649 => 788,  1642 => 787,  1635 => 786,  1632 => 785,  1624 => 784,  1622 => 783,  1615 => 782,  1613 => 781,  1598 => 771,  1592 => 770,  1580 => 761,  1571 => 755,  1562 => 749,  1551 => 741,  1540 => 733,  1512 => 708,  1501 => 700,  1490 => 692,  1479 => 684,  1469 => 676,  1461 => 671,  1457 => 670,  1455 => 669,  1439 => 656,  1428 => 648,  1417 => 640,  1406 => 632,  1395 => 623,  1387 => 618,  1383 => 617,  1381 => 616,  1373 => 610,  1356 => 597,  1350 => 596,  1344 => 595,  1338 => 594,  1332 => 593,  1326 => 592,  1320 => 591,  1314 => 590,  1308 => 589,  1298 => 582,  1293 => 579,  1286 => 574,  1282 => 572,  1280 => 571,  1269 => 565,  1263 => 564,  1257 => 563,  1251 => 562,  1245 => 561,  1239 => 560,  1233 => 559,  1227 => 558,  1221 => 557,  1211 => 550,  1206 => 547,  1199 => 542,  1195 => 540,  1193 => 539,  1182 => 533,  1176 => 532,  1170 => 531,  1164 => 530,  1158 => 529,  1152 => 528,  1146 => 527,  1140 => 526,  1134 => 525,  1124 => 518,  1119 => 515,  1112 => 510,  1108 => 508,  1106 => 507,  1095 => 501,  1089 => 500,  1083 => 499,  1077 => 498,  1071 => 497,  1065 => 496,  1059 => 495,  1053 => 494,  1047 => 493,  1037 => 486,  1032 => 483,  1025 => 478,  1021 => 476,  1019 => 475,  1008 => 469,  1002 => 468,  996 => 467,  990 => 466,  984 => 465,  978 => 464,  972 => 463,  966 => 462,  960 => 461,  950 => 454,  945 => 451,  938 => 446,  934 => 444,  932 => 443,  921 => 437,  915 => 436,  909 => 435,  903 => 434,  897 => 433,  891 => 432,  885 => 431,  879 => 430,  873 => 429,  863 => 422,  858 => 419,  851 => 414,  847 => 412,  845 => 411,  834 => 405,  828 => 404,  822 => 403,  816 => 402,  810 => 401,  804 => 400,  798 => 399,  792 => 398,  786 => 397,  776 => 390,  771 => 387,  764 => 382,  760 => 380,  758 => 379,  747 => 373,  741 => 372,  735 => 371,  729 => 370,  723 => 369,  717 => 368,  711 => 367,  705 => 366,  699 => 365,  689 => 358,  684 => 355,  677 => 350,  673 => 348,  671 => 347,  660 => 341,  654 => 340,  648 => 339,  642 => 338,  636 => 337,  630 => 336,  624 => 335,  618 => 334,  612 => 333,  602 => 326,  597 => 323,  590 => 318,  586 => 316,  584 => 315,  564 => 302,  557 => 297,  540 => 284,  534 => 283,  528 => 282,  518 => 275,  513 => 272,  506 => 267,  500 => 264,  489 => 258,  483 => 257,  477 => 256,  467 => 249,  462 => 246,  455 => 241,  449 => 238,  438 => 232,  432 => 231,  426 => 230,  416 => 223,  411 => 220,  404 => 215,  398 => 212,  387 => 206,  381 => 205,  375 => 204,  365 => 197,  360 => 194,  353 => 189,  347 => 186,  336 => 180,  330 => 179,  324 => 178,  314 => 171,  309 => 168,  302 => 163,  296 => 160,  285 => 154,  279 => 153,  273 => 152,  263 => 145,  258 => 142,  251 => 137,  245 => 134,  234 => 128,  228 => 127,  222 => 126,  212 => 119,  207 => 116,  200 => 111,  194 => 108,  183 => 102,  177 => 101,  171 => 100,  161 => 93,  156 => 90,  149 => 85,  143 => 82,  132 => 76,  126 => 75,  120 => 74,  110 => 67,  105 => 64,  98 => 59,  92 => 56,  76 => 43,  69 => 38,  60 => 31,  49 => 23,  38 => 15,  30 => 10,  19 => 1,);
+        return array (  1765 => 857,  1754 => 849,  1744 => 841,  1728 => 828,  1724 => 826,  1709 => 814,  1703 => 811,  1699 => 809,  1697 => 808,  1688 => 802,  1681 => 798,  1671 => 790,  1667 => 788,  1660 => 787,  1653 => 786,  1650 => 785,  1642 => 784,  1640 => 783,  1633 => 782,  1631 => 781,  1616 => 771,  1610 => 770,  1598 => 761,  1589 => 755,  1580 => 749,  1569 => 741,  1558 => 733,  1530 => 708,  1519 => 700,  1508 => 692,  1497 => 684,  1487 => 676,  1479 => 671,  1475 => 670,  1473 => 669,  1457 => 656,  1446 => 648,  1435 => 640,  1424 => 632,  1413 => 623,  1405 => 618,  1401 => 617,  1399 => 616,  1391 => 610,  1374 => 597,  1368 => 596,  1362 => 595,  1356 => 594,  1350 => 593,  1344 => 592,  1338 => 591,  1332 => 590,  1326 => 589,  1314 => 582,  1309 => 579,  1302 => 574,  1298 => 572,  1296 => 571,  1285 => 565,  1279 => 564,  1273 => 563,  1267 => 562,  1261 => 561,  1255 => 560,  1249 => 559,  1243 => 558,  1237 => 557,  1225 => 550,  1220 => 547,  1213 => 542,  1209 => 540,  1207 => 539,  1196 => 533,  1190 => 532,  1184 => 531,  1178 => 530,  1172 => 529,  1166 => 528,  1160 => 527,  1154 => 526,  1148 => 525,  1136 => 518,  1131 => 515,  1124 => 510,  1120 => 508,  1118 => 507,  1107 => 501,  1101 => 500,  1095 => 499,  1089 => 498,  1083 => 497,  1077 => 496,  1071 => 495,  1065 => 494,  1059 => 493,  1047 => 486,  1042 => 483,  1035 => 478,  1031 => 476,  1029 => 475,  1018 => 469,  1012 => 468,  1006 => 467,  1000 => 466,  994 => 465,  988 => 464,  982 => 463,  976 => 462,  970 => 461,  958 => 454,  953 => 451,  946 => 446,  942 => 444,  940 => 443,  929 => 437,  923 => 436,  917 => 435,  911 => 434,  905 => 433,  899 => 432,  893 => 431,  887 => 430,  881 => 429,  869 => 422,  864 => 419,  857 => 414,  853 => 412,  851 => 411,  840 => 405,  834 => 404,  828 => 403,  822 => 402,  816 => 401,  810 => 400,  804 => 399,  798 => 398,  792 => 397,  780 => 390,  775 => 387,  768 => 382,  764 => 380,  762 => 379,  751 => 373,  745 => 372,  739 => 371,  733 => 370,  727 => 369,  721 => 368,  715 => 367,  709 => 366,  703 => 365,  691 => 358,  686 => 355,  679 => 350,  675 => 348,  673 => 347,  662 => 341,  656 => 340,  650 => 339,  644 => 338,  638 => 337,  632 => 336,  626 => 335,  620 => 334,  614 => 333,  602 => 326,  597 => 323,  590 => 318,  586 => 316,  584 => 315,  564 => 302,  557 => 297,  540 => 284,  534 => 283,  528 => 282,  518 => 275,  513 => 272,  506 => 267,  500 => 264,  489 => 258,  483 => 257,  477 => 256,  467 => 249,  462 => 246,  455 => 241,  449 => 238,  438 => 232,  432 => 231,  426 => 230,  416 => 223,  411 => 220,  404 => 215,  398 => 212,  387 => 206,  381 => 205,  375 => 204,  365 => 197,  360 => 194,  353 => 189,  347 => 186,  336 => 180,  330 => 179,  324 => 178,  314 => 171,  309 => 168,  302 => 163,  296 => 160,  285 => 154,  279 => 153,  273 => 152,  263 => 145,  258 => 142,  251 => 137,  245 => 134,  234 => 128,  228 => 127,  222 => 126,  212 => 119,  207 => 116,  200 => 111,  194 => 108,  183 => 102,  177 => 101,  171 => 100,  161 => 93,  156 => 90,  149 => 85,  143 => 82,  132 => 76,  126 => 75,  120 => 74,  110 => 67,  105 => 64,  98 => 59,  92 => 56,  76 => 43,  69 => 38,  60 => 31,  49 => 23,  38 => 15,  30 => 10,  19 => 1,);
     }
 }

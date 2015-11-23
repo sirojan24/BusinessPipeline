@@ -380,7 +380,7 @@ class __TwigTemplate_0e29087d67d4db7074ddff8319ed7f982c603f7d9006e23bd64073db45c
                                 // line 366
                                 if (($this->getAttribute($context["opportunity"], "getSharing", array(), "method") != "")) {
                                     // line 367
-                                    echo "                                                                                            <td class=\"actions\"><a title=\"Edit\" href=\"";
+                                    echo "                                                                                                <td class=\"actions\"><a title=\"Edit\" href=\"";
                                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_editopportunity", array("id" => $this->getAttribute($context["opportunity"], "getId", array(), "method"))), "html", null, true);
                                     echo "\"><i class=\"fa fa-pencil\"></i></a> <a title=\"Opportunity Sharing\" onclick=\"sharingpopup('";
                                     echo twig_escape_filter($this->env, $this->getAttribute($context["opportunity"], "getSharing", array(), "method"), "html", null, true);
@@ -406,7 +406,7 @@ class __TwigTemplate_0e29087d67d4db7074ddff8319ed7f982c603f7d9006e23bd64073db45c
                                                                                             ";
                                 } else {
                                     // line 369
-                                    echo "                                                                                            <td class=\"actions\"><a title=\"Edit\" href=\"";
+                                    echo "                                                                                                <td class=\"actions\"><a title=\"Edit\" href=\"";
                                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_editopportunity", array("id" => $this->getAttribute($context["opportunity"], "getId", array(), "method"))), "html", null, true);
                                     echo "\"><i class=\"fa fa-pencil\"></i></a> <a title=\"Notes\" onclick=\"notespopup(";
                                     echo twig_escape_filter($this->env, $this->getAttribute($context["opportunity"], "getId", array(), "method"), "html", null, true);
@@ -1304,7 +1304,7 @@ class __TwigTemplate_0e29087d67d4db7074ddff8319ed7f982c603f7d9006e23bd64073db45c
         // line 1022
         echo $this->env->getExtension('routing')->getPath("login_login_getusers");
         echo "',               
-                       {sharedusers: sharing,user:username}, 
+                                    {sharedusers: sharing,user:username}, 
                            function(response){
                                if(response !== \"false\"){
                                    console.log(\"@@@@@@@@@\",response);
