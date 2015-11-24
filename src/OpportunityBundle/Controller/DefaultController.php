@@ -208,7 +208,9 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            if($sharingUser){
+                                $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            }
                         }
 
                         if ($opportunity->getUsername() == $token->getUsername()) {
@@ -426,7 +428,9 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            if($sharingUser){
+                                $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            }
                         }
 
                         if ($opportunity->getUsername() == $token->getUsername()) {
@@ -558,7 +562,9 @@ class DefaultController extends Controller {
                     foreach ($sharedusers as $shareduser) {
 
                         $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                        $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                        if($sharingUser){
+                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                        }
                     }
 
                     if ($opportunity->getUsername() == $token->getUsername()) {
@@ -724,7 +730,9 @@ class DefaultController extends Controller {
                 foreach ($sharedusers as $shareduser) {
 
                     $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                    $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                    if($sharingUser){
+                        $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                    }
                 }
 
                 if ($opportunity->getUsername() == $token->getUsername()) {
@@ -898,7 +906,9 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            if($sharingUser){
+                                $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            }
                         }
 
                         if ($opportunity->getUsername() == $token->getUsername()) {
@@ -1032,7 +1042,9 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            if($sharingUser){
+                                $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            }
                         }
 
                         if ($opportunity->getUsername() == $token->getUsername()) {

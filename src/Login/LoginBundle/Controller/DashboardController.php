@@ -1093,7 +1093,9 @@ class DashboardController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            if($sharingUser){
+                                $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                            }
                         }
 
                         if (strtolower($opportunity->getUsername()) == strtolower($user->getUsername())) {
@@ -1180,7 +1182,9 @@ class DashboardController extends Controller {
                     foreach ($sharedusers as $shareduser) {
 
                         $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                        $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                        if($sharingUser){
+                            $sharedPercentage += $sharingUser->getCommissionnonoriginator();
+                        }
                     }
 
                     if ((strtolower($username) == strtolower($opportunity->getUsername())) && $sharedPercentage >= 100) {
