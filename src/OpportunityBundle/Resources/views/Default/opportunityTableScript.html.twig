@@ -13,6 +13,7 @@
         $("#tableDiv").show();
         iniFillTableData();
         populateFilterForm();
+        wonLostFilter();
     });
 
     function iniFillTableData() {
@@ -30,6 +31,13 @@
         fillTableData();
     }
     
+    function resetTable() {
+        $table.bootstrapTable('resetSearch');
+        clearFilter();
+        applyUserDefinedFilter();
+        wonLostFilter();
+    }
+    
     function fillTableData() {
         $table.bootstrapTable('showLoading');
         {% if contactid is defined %}
@@ -38,7 +46,8 @@
                         if (response) {
                             $table.bootstrapTable('hideLoading');
                             initResponse = response;
-                            $table.bootstrapTable('append', convertData(response));
+                            $table.bootstrapTable('append', convertData(response));    
+                            wonLostFilter();
                         } else {
 
                         }
@@ -50,7 +59,8 @@
                         if (response) {
                             $table.bootstrapTable('hideLoading');
                             initResponse = response;
-                            $table.bootstrapTable('append', convertData(response));
+                            $table.bootstrapTable('append', convertData(response));    
+                            wonLostFilter();
                         } else {
 
                         }
@@ -58,7 +68,29 @@
             ); 
         {%endif%}
     }
+    
+    function wonLostFilter() {
+        $table.bootstrapTable('removeAll');
+        $table.bootstrapTable('showLoading');
 
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+
+            if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        $table.bootstrapTable('hideLoading');
+        $table.bootstrapTable('append', convertData(jsonStr));
+    }
+    
     function usernameFilter(username) {
         $table.bootstrapTable('removeAll');
         $table.bootstrapTable('showLoading');
@@ -70,6 +102,50 @@
             var tempOpportunity = jsonString.opportunities[i];
 
             if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        $table.bootstrapTable('hideLoading');
+        $table.bootstrapTable('append', convertData(jsonStr));
+    }
+    
+    function productTypeFilter(productType) {
+        $table.bootstrapTable('removeAll');
+        $table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+
+            if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        $table.bootstrapTable('hideLoading');
+        $table.bootstrapTable('append', convertData(jsonStr));
+    }
+    
+    function stageFilter(stage) {
+        $table.bootstrapTable('removeAll');
+        $table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+
+            if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
                 filterOpportunities.push(tempOpportunity);
             }
             
@@ -431,8 +507,8 @@
                     rows.push({
                         name: tempOpportunity.name,
                         company: tempOpportunity.company,
-                        product_type: tempOpportunity.product_type,
-                        stage: tempOpportunity.stage,
+                        product_type: '<a href="javascript:productTypeFilter(' + "'" + tempOpportunity.product_type + "'" + ')">' + tempOpportunity.product_type + '</a>',
+                        stage: '<a href="javascript:stageFilter(' + "'" + tempOpportunity.stage + "'" + ')">' + tempOpportunity.stage + '</a>',
                         weighted_revenue: '$' + tempOpportunity.weighted_revenue,
                         projected_revenue: '$' + tempOpportunity.projected_revenue,
                         expected_closed_date: tempOpportunity.expected_closed_date,

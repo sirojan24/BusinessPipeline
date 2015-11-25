@@ -700,9 +700,11 @@ class DefaultController extends Controller {
             }
             if ($opportunity->getStage() == '6') {
                 $opportunity->setChanceofsale('100');
+                $opportunity->setStage('Won');
             }
             if ($opportunity->getStage() == '7') {
                 $opportunity->setChanceofsale('0');
+                $opportunity->setStage('Lost');
             }
             $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
             if ($accounttype) {

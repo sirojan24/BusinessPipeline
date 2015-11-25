@@ -26,8 +26,6 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
 
 <script type=\"text/javascript\">
     jQuery(function (\$) {
-        \$(\"#fFromDate\").mask(\"99/99/9999\");
-        \$(\"#fToDate\").mask(\"99/99/9999\");
         \$('#projectedrevenue').number( true, 0 );
     });
 </script>
@@ -55,7 +53,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                         <div class=\"col-xs-8\">
                             <div class=\"col-xs-5\" style=\"padding-right:0px;padding-left:0px\">
                                 <div class=\"form-group\">
-                                    <input type=\"text\" class=\"form-control\" id=\"fFromDate\" name=\"fFromDate\" placeholder=\"month/date/year\">
+                                    <input type=\"date\" class=\"form-control\" id=\"fFromDate\" name=\"fFromDate\">
                                 </div>
                             </div>
                             <div class=\"col-xs-2\" style=\"padding-right:2px;padding-left: 22px;padding-top: 5px;\">
@@ -65,7 +63,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                             </div>
                             <div class=\"col-xs-5\" style=\"padding-right:0px;padding-left:0px\">
                                 <div class=\"form-group\">
-                                    <input type=\"text\" class=\"form-control\" data-date-format=\"mm-dd-yyyy\" id=\"fToDate\" name=\"fToDate\" placeholder=\"month/date/year\">
+                                    <input type=\"date\" class=\"form-control\" id=\"fToDate\" name=\"fToDate\">
                                 </div>
                             </div>
                         </div>
@@ -147,8 +145,9 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                         <div class=\"col-xs-6\">
                             <div class=\"form-group\" style=\"margin-top: 10px\">
                                 <label for=\"avatar\"> </label>
-                                <button id=\"savebutton\" class=\"btn btn-primary\" style=\"padding-right: 10px;padding-left: 10px;margin-right: 10px\" onclick=\"applyUserDefinedFilter()\" data-dismiss=\"modal\">Apply</button>
+                                <button id=\"savebutton\" class=\"btn btn-primary\" onclick=\"applyUserDefinedFilter()\" data-dismiss=\"modal\">Apply</button>
                                 <a class=\"btn btn-default\" href=\"javascript:clearFilter()\">Clear</a>
+                                <a class=\"btn btn-default\"  data-dismiss=\"modal\" href=\"#\">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +159,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
 </div>
 
 <script src=\"";
-        // line 139
+        // line 138
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
         echo "\"></script>";
     }
@@ -177,6 +176,6 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
 
     public function getDebugInfo()
     {
-        return array (  164 => 139,  24 => 2,  19 => 1,);
+        return array (  163 => 138,  24 => 2,  19 => 1,);
     }
 }

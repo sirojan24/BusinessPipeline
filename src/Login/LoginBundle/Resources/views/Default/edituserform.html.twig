@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -140,13 +141,13 @@
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="dob">Date of Birth</label>
-                            <input type="text" class="form-control" id="dob" name="dob" value="{{user.getDob()}}" placeholder="month/date/year">
+                            <input type="date" class="form-control" id="dob" name="dob" value="" placeholder="month/date/year">
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="employmentstartdate">Employment Start Date</label>
-                            <input type="text" class="form-control" name="empstartdate" value="{{user.getContractstartdate()}}" id="employmentstartdate" placeholder="month/date/year">
+                            <input type="date" class="form-control" name="empstartdate" id="employmentstartdate">
                         </div>			
                     </div>
                 </div>
@@ -233,3 +234,25 @@
         </div>
     </div>
 </div>
+<script>
+    var mdate = new Date('{{user.getDob()}}');
+    var month = 1;
+    if((mdate.getMonth() + 1) < 10){
+        month = '0' + (mdate.getMonth() + 1);
+    }else{
+        month = mdate.getMonth() + 1;
+    }
+    var newDate = mdate.getFullYear() + '-' + month + '-' + mdate.getDate();
+    $('#dob').val(newDate);
+</script>
+<script>
+    var mdate = new Date('{{user.getContractstartdate()}}');
+    var month = 1;
+    if((mdate.getMonth() + 1) < 10){
+        month = '0' + (mdate.getMonth() + 1);
+    }else{
+        month = mdate.getMonth() + 1;
+    }
+    var newDate = mdate.getFullYear() + '-' + month + '-' + mdate.getDate();
+    $('#employmentstartdate').val(newDate);
+</script>

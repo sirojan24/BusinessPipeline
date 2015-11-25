@@ -40,7 +40,7 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
 \t\t<div class=\"container-fluid\">
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
-                            <h1 class = \"page-header\">Manage Opportunities</h1>
+                            <h1 class = \"page-header\">Manage Deals</h1>
                         </div>
                     </div>
                     <div class=\"row\">

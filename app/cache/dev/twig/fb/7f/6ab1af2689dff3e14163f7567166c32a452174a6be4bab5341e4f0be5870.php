@@ -18,6 +18,19 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
         // line 1
         echo "
 <script>
+    var mdate = new Date('";
+        // line 3
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getCloseddate", array()), "html", null, true);
+        echo "');
+    var month = 1;
+    if((mdate.getMonth() + 1) < 10){
+        month = '0' + (mdate.getMonth() + 1);
+    }else{
+        month = mdate.getMonth() + 1;
+    }
+    var newDate = mdate.getFullYear() + '-' + month + '-' + mdate.getDate();
+    \$('#closeddate').val(newDate);
+    
     if (document.getElementById('stage').value == '6') {
             \$('#progress').css('width', '100%');
             \$('#progress').html('100%');
@@ -26,7 +39,7 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
             \$('#progress').html('0%');
     }else{
         \$.post('";
-        // line 10
+        // line 20
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
             {id: document.getElementById('stage').value},
@@ -48,7 +61,6 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
         \$('#forecast').number(true, 0);
         \$('#modalrevenue').number(true, 0);
         \$('#userrevenue').number(true, 0);
-        \$(\"#closeddate\").mask(\"99/99/9999\");
     });
 
     jQuery(function (\$) {
@@ -144,11 +156,11 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
         revenue = \$('#projectedrevenue').val();
         if (document.getElementById('stage').value !== '' && document.getElementById('projectedrevenue').value !== '') {
             \$.post('";
-        // line 125
+        // line 134
         echo $this->env->getExtension('routing')->getPath("login_login_getCommissionoriginator");
         echo "',
                     {name: \"";
-        // line 126
+        // line 135
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "\"},
             function (response) {
@@ -161,7 +173,7 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
                         document.getElementById('forecast').value = 0;
                     } else {
                         \$.post('";
-        // line 136
+        // line 145
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                                 {id: document.getElementById('stage').value},
@@ -187,11 +199,11 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
     function initiateStageModal() {
 
         \$.post('";
-        // line 159
+        // line 168
         echo $this->env->getExtension('routing')->getPath("login_login_getCommissionoriginator");
         echo "',
                 {name: \"";
-        // line 160
+        // line 169
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "\"},
         function (response) {
@@ -227,7 +239,7 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
         else {
 
             \$.post('";
-        // line 193
+        // line 202
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                     {id: document.getElementById('stage').value},
@@ -291,6 +303,6 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
 
     public function getDebugInfo()
     {
-        return array (  231 => 193,  195 => 160,  191 => 159,  165 => 136,  152 => 126,  148 => 125,  30 => 10,  19 => 1,);
+        return array (  243 => 202,  207 => 169,  203 => 168,  177 => 145,  164 => 135,  160 => 134,  43 => 20,  23 => 3,  19 => 1,);
     }
 }

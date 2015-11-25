@@ -94,7 +94,8 @@
                     <div class="col-xs-6">				
                         <div class="form-group">
                             <label for="username">Opportunity Source <span style="color:#FF0000;">*</span></label>
-                            <select class="form-control" name="opportunitysource" >
+                            <select class="form-control" name="opportunitysource">
+                                <option value = "">Enter the deal source</option>
                                 {%if opportunitysources is defined%}
                                     {% for opportunitysource in opportunitysources %} 
                                         <option value = "{{opportunitysource.Id}}">{{opportunitysource.getName}}</option>
@@ -108,7 +109,7 @@
                     <div class="col-xs-6">				
                         <div class="form-group">
                             <label for="username">Expected Closed Date <span style="color:#FF0000;">*</span></label>
-                            <input id="closeddate" type="text" name="closeddate" class="form-control" placeholder="month/date/year">
+                            <input id="closeddate" type="date" name="closeddate" class="form-control">
                         </div>
                     </div>
                 </div>

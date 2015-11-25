@@ -31,12 +31,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         \$(\"#tableDiv\").show();
         iniFillTableData();
         populateFilterForm();
+        wonLostFilter();
     });
 
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 20
+        // line 21
         echo twig_escape_filter($this->env, (isset($context["opportunitiesArray"]) ? $context["opportunitiesArray"] : $this->getContext($context, "opportunitiesArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
@@ -51,12 +52,19 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         fillTableData();
     }
     
+    function resetTable() {
+        \$table.bootstrapTable('resetSearch');
+        clearFilter();
+        applyUserDefinedFilter();
+        wonLostFilter();
+    }
+    
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         ";
-        // line 35
+        // line 43
         if (array_key_exists("contactid", $context)) {
-            // line 36
+            // line 44
             echo "            \$.post('";
             echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
             echo "',{id: '";
@@ -68,7 +76,8 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         if (response) {
                             \$table.bootstrapTable('hideLoading');
                             initResponse = response;
-                            \$table.bootstrapTable('append', convertData(response));
+                            \$table.bootstrapTable('append', convertData(response));    
+                            wonLostFilter();
                         } else {
 
                         }
@@ -76,7 +85,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             );
         ";
         } else {
-            // line 48
+            // line 57
             echo "            \$.post('";
             echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
             echo "',{id: '-1', filter: 'None'},
@@ -84,7 +93,8 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         if (response) {
                             \$table.bootstrapTable('hideLoading');
                             initResponse = response;
-                            \$table.bootstrapTable('append', convertData(response));
+                            \$table.bootstrapTable('append', convertData(response));    
+                            wonLostFilter();
                         } else {
 
                         }
@@ -92,9 +102,31 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             ); 
         ";
         }
-        // line 60
+        // line 70
         echo "    }
+    
+    function wonLostFilter() {
+        \$table.bootstrapTable('removeAll');
+        \$table.bootstrapTable('showLoading');
 
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+
+            if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(jsonStr));
+    }
+    
     function usernameFilter(username) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
@@ -106,6 +138,50 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             var tempOpportunity = jsonString.opportunities[i];
 
             if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(jsonStr));
+    }
+    
+    function productTypeFilter(productType) {
+        \$table.bootstrapTable('removeAll');
+        \$table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+
+            if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
+                filterOpportunities.push(tempOpportunity);
+            }
+            
+        }
+        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+        
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertData(jsonStr));
+    }
+    
+    function stageFilter(stage) {
+        \$table.bootstrapTable('removeAll');
+        \$table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterOpportunities = [];
+        
+        for (var i = 0; i < jsonString.opportunities.length; i++) {
+            var tempOpportunity = jsonString.opportunities[i];
+
+            if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
                 filterOpportunities.push(tempOpportunity);
             }
             
@@ -345,7 +421,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     function storePageSize(size) {
         \$.post('";
-        // line 311
+        // line 387
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'opportunityview', value: size},
@@ -423,7 +499,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 rows = [];
 
     ";
-        // line 388
+        // line 464
         echo "                for (var i = 0; i < jsonString.opportunities.length; i++) {
                     var tempOpportunity = jsonString.opportunities[i];
 
@@ -443,13 +519,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     tags.push(tempOpportunity.tags);
 
                     var editPath = '";
-        // line 406
+        // line 482
         echo $this->env->getExtension('routing')->getPath("opportunity_editopportunityV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var name = '";
-        // line 409
+        // line 485
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -476,8 +552,8 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     rows.push({
                         name: tempOpportunity.name,
                         company: tempOpportunity.company,
-                        product_type: tempOpportunity.product_type,
-                        stage: tempOpportunity.stage,
+                        product_type: '<a href=\"javascript:productTypeFilter(' + \"'\" + tempOpportunity.product_type + \"'\" + ')\">' + tempOpportunity.product_type + '</a>',
+                        stage: '<a href=\"javascript:stageFilter(' + \"'\" + tempOpportunity.stage + \"'\" + ')\">' + tempOpportunity.stage + '</a>',
                         weighted_revenue: '\$' + tempOpportunity.weighted_revenue,
                         projected_revenue: '\$' + tempOpportunity.projected_revenue,
                         expected_closed_date: tempOpportunity.expected_closed_date,
@@ -568,6 +644,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  453 => 409,  447 => 406,  427 => 388,  349 => 311,  96 => 60,  80 => 48,  60 => 36,  58 => 35,  40 => 20,  19 => 1,);
+        return array (  529 => 485,  523 => 482,  503 => 464,  425 => 387,  106 => 70,  89 => 57,  68 => 44,  66 => 43,  41 => 21,  19 => 1,);
     }
 }

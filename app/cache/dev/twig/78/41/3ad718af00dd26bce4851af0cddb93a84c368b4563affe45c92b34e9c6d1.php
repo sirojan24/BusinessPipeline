@@ -135,13 +135,13 @@ class __TwigTemplate_78413ad718af00dd26bce4851af0cddb93a84c368b4563affe45c92b34e
                     <div class=\"col-xs-3\">
                         <div class=\"form-group\">
                             <label for=\"dob\">Date of Birth</label>
-                            <input type=\"text\" class=\"form-control\" id=\"dob\" name=\"dob\" placeholder=\"month/date/year\">
+                            <input type=\"date\" class=\"form-control\" id=\"dob\" name=\"dob\">
                         </div>
                     </div>
                     <div class=\"col-xs-3\">
                         <div class=\"form-group\">
                             <label for=\"employmentstartdate\">Employment Start Date</label>
-                            <input type=\"text\" class=\"form-control\" name=\"empstartdate\" id=\"employmentstartdate\" placeholder=\"month/date/year\">
+                            <input type=\"date\" class=\"form-control\" name=\"empstartdate\" id=\"employmentstartdate\">
                         </div>\t\t\t
                     </div>
                 </div>

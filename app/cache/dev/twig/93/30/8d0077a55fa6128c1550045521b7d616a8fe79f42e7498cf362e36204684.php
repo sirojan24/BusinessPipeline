@@ -41,14 +41,17 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
                         </span>
+                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"javascript:resetTable()\" style=\"color: black;\"><i class=\"fa fa-times fa-lg\"></i></a>
+                        </span>
                     </div>
                 </div>
             </div>
 
             ";
-        // line 30
+        // line 33
         $this->env->loadTemplate("OpportunityBundle:Default:filterModal.html.twig")->display($context);
-        // line 31
+        // line 34
         echo "            
             <div class=\"row\">
                 <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
@@ -58,7 +61,7 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
                                data-detail-view=\"true\"
                                data-search=\"true\"
                                data-page-size=\"";
-        // line 39
+        // line 42
         echo twig_escape_filter($this->env, (isset($context["manageview"]) ? $context["manageview"] : $this->getContext($context, "manageview")), "html", null, true);
         echo "\"
                                data-page-list=\"[10,25,50]\"
@@ -89,7 +92,7 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
     </div>
 </div>
 ";
-        // line 67
+        // line 70
         $this->env->loadTemplate("OpportunityBundle:Default:opportunityTableScript.html.twig")->display($context);
     }
 
@@ -105,6 +108,6 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
 
     public function getDebugInfo()
     {
-        return array (  93 => 67,  62 => 39,  52 => 31,  50 => 30,  19 => 1,);
+        return array (  96 => 70,  65 => 42,  55 => 34,  53 => 33,  19 => 1,);
     }
 }

@@ -189,18 +189,19 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                     <div class=\"col-xs-6\">\t\t\t\t
                         <div class=\"form-group\">
                             <label for=\"username\">Opportunity Source <span style=\"color:#FF0000;\">*</span></label>
-                            <select class=\"form-control\" name=\"opportunitysource\" >
+                            <select class=\"form-control\" name=\"opportunitysource\" placeholder=\"sdasdasd\">
+                                <option value = \"\"></option>
                                 ";
-        // line 98
+        // line 99
         if (array_key_exists("opportunitysources", $context)) {
-            // line 99
+            // line 100
             echo "                                    ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["opportunitysources"]) ? $context["opportunitysources"] : $this->getContext($context, "opportunitysources")));
             foreach ($context['_seq'] as $context["_key"] => $context["opportunitysource"]) {
                 echo " 
                                         <option value = \"";
-                // line 100
+                // line 101
                 echo twig_escape_filter($this->env, $this->getAttribute($context["opportunitysource"], "Id", array()), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["opportunitysource"], "getName", array()), "html", null, true);
@@ -210,7 +211,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['opportunitysource'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 102
+            // line 103
             echo "                                ";
         }
         echo "  \t
@@ -222,7 +223,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                     <div class=\"col-xs-6\">\t\t\t\t
                         <div class=\"form-group\">
                             <label for=\"username\">Expected Closed Date <span style=\"color:#FF0000;\">*</span></label>
-                            <input id=\"closeddate\" type=\"text\" name=\"closeddate\" class=\"form-control\" placeholder=\"month/date/year\">
+                            <input id=\"closeddate\" type=\"date\" name=\"closeddate\" class=\"form-control\">
                         </div>
                     </div>
                 </div>
@@ -254,27 +255,27 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                             <!-- #section:plugins/input.duallist -->
                             <select  class=\"form-control\" multiple=\"multiple\" name=\"sharingusers[]\" id=\"duallist\">
                                 ";
-        // line 142
+        // line 143
         if (array_key_exists("users", $context)) {
-            // line 143
+            // line 144
             echo "                                    ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["users"]) ? $context["users"] : $this->getContext($context, "users")));
             foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
                 echo " 
                                         ";
-                // line 144
+                // line 145
                 if (((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")) != $this->getAttribute($context["user"], "getUsername", array(), "method"))) {
                     echo "   
                                             <option value=\"";
-                    // line 145
+                    // line 146
                     echo twig_escape_filter($this->env, $this->getAttribute($context["user"], "getUsername", array(), "method"), "html", null, true);
                     echo "\">";
                     echo twig_escape_filter($this->env, (($this->getAttribute($context["user"], "getFirstname", array(), "method") . " ") . $this->getAttribute($context["user"], "getLastname", array(), "method")), "html", null, true);
                     echo "</option>
                                         ";
                 }
-                // line 147
+                // line 148
                 echo "                                    ";
             }
             $_parent = $context['_parent'];
@@ -283,7 +284,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
             echo " 
                                 ";
         }
-        // line 148
+        // line 149
         echo "    
                             </select>
                         </div>
@@ -295,7 +296,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                 <input type=\"hidden\" name=\"modalnoteshidden\" id=\"modalnoteshidden\">
                 <input type=\"hidden\" name=\"reason\" id=\"reason\">
                 <input type=\"hidden\" name=\"contactid\" id=\"contactid\" value=\"";
-        // line 158
+        // line 159
         echo twig_escape_filter($this->env, (isset($context["contactid"]) ? $context["contactid"] : $this->getContext($context, "contactid")), "html", null, true);
         echo "\"> 
 
@@ -305,7 +306,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                             <label for=\"avatar\"> </label>
                             <button id=\"savebutton\" class=\"btn btn-primary\">Save</button>
                             <a class=\"btn btn-default\" href=\"";
-        // line 165
+        // line 166
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_contacts");
         echo "\">Cancel</a>
                         </div>
@@ -316,15 +317,15 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
     </div>
 </div>
 <script src=\"";
-        // line 173
+        // line 174
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 174
+        // line 175
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/ace/jquery.bootstrap-duallistbox.js"), "html", null, true);
         echo "\"></script>
 ";
-        // line 175
+        // line 176
         $this->env->loadTemplate("OpportunityBundle:Default:opportunityformScript.html.twig")->display($context);
     }
 
@@ -340,6 +341,6 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
 
     public function getDebugInfo()
     {
-        return array (  328 => 175,  324 => 174,  320 => 173,  309 => 165,  299 => 158,  287 => 148,  278 => 147,  271 => 145,  267 => 144,  260 => 143,  258 => 142,  214 => 102,  204 => 100,  197 => 99,  195 => 98,  181 => 88,  171 => 86,  164 => 85,  162 => 84,  129 => 53,  126 => 52,  116 => 50,  109 => 49,  107 => 48,  93 => 38,  83 => 36,  76 => 35,  74 => 34,  47 => 17,  32 => 9,  24 => 4,  19 => 1,);
+        return array (  329 => 176,  325 => 175,  321 => 174,  310 => 166,  300 => 159,  288 => 149,  279 => 148,  272 => 146,  268 => 145,  261 => 144,  259 => 143,  215 => 103,  205 => 101,  198 => 100,  196 => 99,  181 => 88,  171 => 86,  164 => 85,  162 => 84,  129 => 53,  126 => 52,  116 => 50,  109 => 49,  107 => 48,  93 => 38,  83 => 36,  76 => 35,  74 => 34,  47 => 17,  32 => 9,  24 => 4,  19 => 1,);
     }
 }

@@ -1,5 +1,15 @@
 
 <script>
+    var mdate = new Date('{{opportunity.getCloseddate}}');
+    var month = 1;
+    if((mdate.getMonth() + 1) < 10){
+        month = '0' + (mdate.getMonth() + 1);
+    }else{
+        month = mdate.getMonth() + 1;
+    }
+    var newDate = mdate.getFullYear() + '-' + month + '-' + mdate.getDate();
+    $('#closeddate').val(newDate);
+    
     if (document.getElementById('stage').value == '6') {
             $('#progress').css('width', '100%');
             $('#progress').html('100%');
@@ -27,7 +37,6 @@
         $('#forecast').number(true, 0);
         $('#modalrevenue').number(true, 0);
         $('#userrevenue').number(true, 0);
-        $("#closeddate").mask("99/99/9999");
     });
 
     jQuery(function ($) {

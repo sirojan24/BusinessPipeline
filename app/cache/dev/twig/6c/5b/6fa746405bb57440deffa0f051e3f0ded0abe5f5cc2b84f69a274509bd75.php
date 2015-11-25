@@ -71,8 +71,6 @@ class __TwigTemplate_6c5b6fa746405bb57440deffa0f051e3f0ded0abe5f5cc2b84f69a27450
             jQuery(function (\$) {
                 \$(\"#officetel\").mask(\"(999) 999-9999? Ext.9999\");
                 \$(\"#mobile\").mask(\"(999) 999-9999\");
-                \$(\"#dob\").mask(\"99/99/9999\");
-                \$(\"#employmentstartdate\").mask(\"99/99/9999\");
                 \$(\"#commorigin\").mask(\"99%\");
                 \$(\"#commnonorigin\").mask(\"99%\");
                 \$('#earninggoals').number( true, 0 );
@@ -83,22 +81,22 @@ class __TwigTemplate_6c5b6fa746405bb57440deffa0f051e3f0ded0abe5f5cc2b84f69a27450
             });
         </script>
         ";
-        // line 49
+        // line 47
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 50
+        // line 48
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 51
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 52
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 53
+        // line 51
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -119,6 +117,6 @@ class __TwigTemplate_6c5b6fa746405bb57440deffa0f051e3f0ded0abe5f5cc2b84f69a27450
 
     public function getDebugInfo()
     {
-        return array (  102 => 53,  98 => 52,  94 => 51,  89 => 50,  87 => 49,  68 => 33,  64 => 32,  59 => 29,  57 => 28,  53 => 26,  51 => 25,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  100 => 51,  96 => 50,  92 => 49,  87 => 48,  85 => 47,  68 => 33,  64 => 32,  59 => 29,  57 => 28,  53 => 26,  51 => 25,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

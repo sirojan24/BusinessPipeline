@@ -210,18 +210,18 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         if (0 === strpos($pathinfo, '/add')) {
             // opportunity_addopportunity
-            if ($pathinfo === '/addopportunity') {
+            if ($pathinfo === '/adddeal') {
                 return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addopportunityAction',  '_route' => 'opportunity_addopportunity',);
             }
 
-            if (0 === strpos($pathinfo, '/addcontactopportunity')) {
+            if (0 === strpos($pathinfo, '/addcontactdeal')) {
                 // opportunity_addcontactopportunity
-                if (preg_match('#^/addcontactopportunity/(?P<name>[^/]++)/(?P<orgname>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (preg_match('#^/addcontactdeal/(?P<name>[^/]++)/(?P<orgname>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_addcontactopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addcontactopportunityAction',));
                 }
 
                 // opportunity_addcontactopportunityV2
-                if (0 === strpos($pathinfo, '/addcontactopportunityV2') && preg_match('#^/addcontactopportunityV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (0 === strpos($pathinfo, '/addcontactdealV2') && preg_match('#^/addcontactdealV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_addcontactopportunityV2')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::addcontactopportunityV2Action',));
                 }
 
@@ -230,68 +230,71 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // opportunity_saveopportunity
-        if ($pathinfo === '/saveopportunity') {
+        if ($pathinfo === '/savedeal') {
             return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::saveopportunityAction',  '_route' => 'opportunity_saveopportunity',);
         }
 
-        if (0 === strpos($pathinfo, '/editopportunity')) {
+        if (0 === strpos($pathinfo, '/editdeal')) {
             // opportunity_editopportunity
-            if (preg_match('#^/editopportunity/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (preg_match('#^/editdeal/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_editopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::editopportunityAction',));
             }
 
             // opportunity_editopportunityV2
-            if (0 === strpos($pathinfo, '/editopportunityV2') && preg_match('#^/editopportunityV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/editdealV2') && preg_match('#^/editdealV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_editopportunityV2')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::editopportunityV2Action',));
             }
 
         }
 
         // opportunity_limitededitopportunity
-        if (0 === strpos($pathinfo, '/limitededitopportunity') && preg_match('#^/limitededitopportunity/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/limitededitdeal') && preg_match('#^/limitededitdeal/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_limitededitopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::limitededitopportunityAction',));
         }
 
         // opportunity_activateopportunity
-        if (0 === strpos($pathinfo, '/activateopportunity') && preg_match('#^/activateopportunity/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/activatedeal') && preg_match('#^/activatedeal/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_activateopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::activateopportunityAction',));
         }
 
-        if (0 === strpos($pathinfo, '/manageopportunity')) {
+        if (0 === strpos($pathinfo, '/managedeal')) {
             // opportunity_manageopportunity
-            if ($pathinfo === '/manageopportunity') {
+            if ($pathinfo === '/managedeal') {
                 return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::manageopportunityAction',  '_route' => 'opportunity_manageopportunity',);
             }
 
             // opportunity_manageopportunityV2
-            if ($pathinfo === '/manageopportunityV2') {
+            if ($pathinfo === '/managedealV2') {
                 return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::manageopportunityV2Action',  '_route' => 'opportunity_manageopportunityV2',);
             }
 
         }
 
         // opportunity_opportunitycontactfilterV2
-        if (0 === strpos($pathinfo, '/opportunitycontactfilterV2') && preg_match('#^/opportunitycontactfilterV2/(?P<id>[^/]++)/(?P<filter>[^/]++)$#s', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/dealcontactfilterV2') && preg_match('#^/dealcontactfilterV2/(?P<id>[^/]++)/(?P<filter>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_opportunitycontactfilterV2')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::opportunitycontactfilterV2Action',));
         }
 
         // opportunity_updateopportunity
-        if ($pathinfo === '/updateopportunity') {
+        if ($pathinfo === '/updatedeal') {
             return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::updateopportunityAction',  '_route' => 'opportunity_updateopportunity',);
         }
 
-        // opportunity_deleteopportunity
-        if (0 === strpos($pathinfo, '/deleteopportunity') && preg_match('#^/deleteopportunity/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_deleteopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::deleteopportunityAction',));
-        }
-
-        // opportunity_table_data
-        if (rtrim($pathinfo, '/') === '/opportunitytable') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'opportunity_table_data');
+        if (0 === strpos($pathinfo, '/de')) {
+            // opportunity_deleteopportunity
+            if (0 === strpos($pathinfo, '/deletedeal') && preg_match('#^/deletedeal/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'opportunity_deleteopportunity')), array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::deleteopportunityAction',));
             }
 
-            return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::getOpportunityTableDataAction',  '_route' => 'opportunity_table_data',);
+            // opportunity_table_data
+            if (rtrim($pathinfo, '/') === '/dealtable') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'opportunity_table_data');
+                }
+
+                return array (  '_controller' => 'OpportunityBundle\\Controller\\DefaultController::getOpportunityTableDataAction',  '_route' => 'opportunity_table_data',);
+            }
+
         }
 
         // settings_homepage

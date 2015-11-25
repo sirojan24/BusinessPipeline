@@ -70,8 +70,6 @@ class __TwigTemplate_cbe56281a4da3f7edc2a7a524ac2f9785634747a4703432851d93ff342c
             jQuery(function (\$) {
                 \$(\"#officetel\").mask(\"(999) 999-9999? Ext.9999\");
                 \$(\"#mobile\").mask(\"(999) 999-9999\");
-                \$(\"#dob\").mask(\"99/99/9999\");
-                \$(\"#employmentstartdate\").mask(\"99/99/9999\");
                 \$(\"#commorigin\").mask(\"99%\");
                 \$(\"#commnonorigin\").mask(\"99%\");
                 \$('#earninggoals').number( true, 0 );
@@ -83,26 +81,26 @@ class __TwigTemplate_cbe56281a4da3f7edc2a7a524ac2f9785634747a4703432851d93ff342c
         </script>
         <!-- /#wrapper -->
         ";
-        // line 49
+        // line 47
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 50
+        // line 48
         echo "        
         <script src=\"";
-        // line 51
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
 
 
         <script src=\"";
-        // line 54
+        // line 52
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 55
+        // line 53
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 56
+        // line 54
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
         
@@ -123,6 +121,6 @@ class __TwigTemplate_cbe56281a4da3f7edc2a7a524ac2f9785634747a4703432851d93ff342c
 
     public function getDebugInfo()
     {
-        return array (  106 => 56,  102 => 55,  98 => 54,  92 => 51,  89 => 50,  87 => 49,  67 => 32,  63 => 31,  59 => 29,  57 => 28,  53 => 26,  51 => 25,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  104 => 54,  100 => 53,  96 => 52,  90 => 49,  87 => 48,  85 => 47,  67 => 32,  63 => 31,  59 => 29,  57 => 28,  53 => 26,  51 => 25,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

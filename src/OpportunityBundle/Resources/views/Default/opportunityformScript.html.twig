@@ -19,7 +19,6 @@
         $('#forecast').number(true, 0);
         $('#modalrevenue').number(true, 0);
         $('#userrevenue').number(true, 0);
-        $("#closeddate").mask("99/99/9999");
     });
 
     jQuery(function ($) {
@@ -164,7 +163,7 @@
     function stageModal(commisionoriginator) {
         commisionoriginator = commisionoriginator.substring(0, commisionoriginator.length - 1);
         //get commision originator
-        if (document.getElementById('stage').value == 'Won') {
+        if (document.getElementById('stage').value == '6') {
             $('#progress').css('width', '100%');
             $('#progress').html('100%');
             $('#wonModal').modal('show');
@@ -172,7 +171,7 @@
             $('#forecast').number(true, 0);
             //forecastcalculate();
         }
-        else if (document.getElementById('stage').value == 'Lost') {
+        else if (document.getElementById('stage').value == '7') {
             $('#progress').css('width', '0%');
             $('#progress').html('0%');
             $('#lostModal').modal('show');

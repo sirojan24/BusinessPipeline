@@ -220,14 +220,29 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                                 '</div>' +
                                 '</div>';
                     }
+                    
+                    var openDeal = tempContact.open_deal;
+                    if(tempContact.open_deal > 0){
+                        openDeal = '<a href=\"' + openDealPath + tempContact.id + '/Open' + '\">' + tempContact.open_deal + '</a>';
+                    }
+                    
+                    var wonDeal = tempContact.won_deals;
+                    if(tempContact.won_deals !== '0'){
+                        wonDeal = '<a href=\"' + openDealPath + tempContact.id + '/Won' + '\">\$' + tempContact.won_deals + '</a>';
+                    }
+                    
+                    var lostDeal = tempContact.lost_deals;
+                    if(tempContact.lost_deals !== '0'){
+                        lostDeal = '<a href=\"' + openDealPath + tempContact.id + '/Won' + '\">\$' + tempContact.won_deals + '</a>';
+                    }
                     rows.push({
                         name: tempContact.name,
                         company: tempContact.company,
-                        open_deal: '<a href=\"' + openDealPath + tempContact.id + '/Open' + '\">' + tempContact.open_deal + '</a>',
+                        open_deal: openDeal,
                         projected_revenue: '\$' + tempContact.projected_revenue,
                         weighted_forecast: '\$' + tempContact.weighted_forecast,
-                        won_deals: '<a href=\"' + openDealPath + tempContact.id + '/Won' + '\">\$' + tempContact.won_deals + '</a>',
-                        lost_deals: '<a href=\"' + openDealPath + tempContact.id + '/Lost' + '\">\$' + tempContact.lost_deals + '</a>',
+                        won_deals: wonDeal,
+                        lost_deals: lostDeal,
                         owner: '<a href=\"javascript:usernameFilter(' + \"'\" + tempContact.username + \"'\" + ')\">' + tempContact.owner + '</a>',
                         action: action
 

@@ -40,7 +40,6 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
         \$('#forecast').number(true, 0);
         \$('#modalrevenue').number(true, 0);
         \$('#userrevenue').number(true, 0);
-        \$(\"#closeddate\").mask(\"99/99/9999\");
     });
 
     jQuery(function (\$) {
@@ -136,11 +135,11 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
         revenue = \$('#projectedrevenue').val();
         if (document.getElementById('stage').value !== '' && document.getElementById('projectedrevenue').value !== '') {
             \$.post('";
-        // line 117
+        // line 116
         echo $this->env->getExtension('routing')->getPath("login_login_getCommissionoriginator");
         echo "',
                     {name: \"";
-        // line 118
+        // line 117
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "\"},
             function (response) {
@@ -153,7 +152,7 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
                         document.getElementById('forecast').value = 0;
                     } else {
                         \$.post('";
-        // line 128
+        // line 127
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                                 {id: document.getElementById('stage').value},
@@ -179,11 +178,11 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
     function initiateStageModal() {
 
         \$.post('";
-        // line 151
+        // line 150
         echo $this->env->getExtension('routing')->getPath("login_login_getCommissionoriginator");
         echo "',
                 {name: \"";
-        // line 152
+        // line 151
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "\"},
         function (response) {
@@ -200,7 +199,7 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
     function stageModal(commisionoriginator) {
         commisionoriginator = commisionoriginator.substring(0, commisionoriginator.length - 1);
         //get commision originator
-        if (document.getElementById('stage').value == 'Won') {
+        if (document.getElementById('stage').value == '6') {
             \$('#progress').css('width', '100%');
             \$('#progress').html('100%');
             \$('#wonModal').modal('show');
@@ -208,7 +207,7 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
             \$('#forecast').number(true, 0);
             //forecastcalculate();
         }
-        else if (document.getElementById('stage').value == 'Lost') {
+        else if (document.getElementById('stage').value == '7') {
             \$('#progress').css('width', '0%');
             \$('#progress').html('0%');
             \$('#lostModal').modal('show');
@@ -219,7 +218,7 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
         else {
 
             \$.post('";
-        // line 185
+        // line 184
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                     {id: document.getElementById('stage').value},
@@ -283,6 +282,6 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
 
     public function getDebugInfo()
     {
-        return array (  223 => 185,  187 => 152,  183 => 151,  157 => 128,  144 => 118,  140 => 117,  23 => 3,  19 => 1,);
+        return array (  222 => 184,  186 => 151,  182 => 150,  156 => 127,  143 => 117,  139 => 116,  23 => 3,  19 => 1,);
     }
 }
