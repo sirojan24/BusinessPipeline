@@ -7,7 +7,13 @@
     }else{
         month = mdate.getMonth() + 1;
     }
-    var newDate = mdate.getFullYear() + '-' + month + '-' + mdate.getDate();
+    var day = 1;
+    if((mdate.getDate()) < 10){
+        day = '0' + (mdate.getDate());
+    }else{
+        day = mdate.getDate();
+    }
+    var newDate = mdate.getFullYear() + '-' + month + '-' + day;
     $('#closeddate').val(newDate);
     
     if (document.getElementById('stage').value == '6') {

@@ -72,7 +72,24 @@
         var earningGoals = checkAndSetValue(extendColData[index].earningGoals, '-', '$', true);
         var drawAgainstCommission = checkAndSetValue(extendColData[index].drawAgainstCommission, '-', '$', true);
         var dob = checkAndSetValue(extendColData[index].dob, '-', '', true);
-
+        
+        if(dob !== '-'){
+            var mdate = new Date(dob);
+            var month = 1;
+            if((mdate.getMonth() + 1) < 10){
+                month = '0' + (mdate.getMonth() + 1);
+            }else{
+                month = mdate.getMonth() + 1;
+            }
+            var day = 1;
+            if((mdate.getDate()) < 10){
+                day = '0' + (mdate.getDate());
+            }else{
+                day = mdate.getDate();
+            }
+            var dob = month + '/' + day + '/' + mdate.getFullYear();
+        }
+        
         var html = [];
         html.push('<div class"row">' +
                 '<div class="col-xs-4">' +

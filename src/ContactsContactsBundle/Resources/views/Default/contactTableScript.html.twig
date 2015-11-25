@@ -191,7 +191,7 @@
                     
                     var lostDeal = tempContact.lost_deals;
                     if(tempContact.lost_deals !== '0'){
-                        lostDeal = '<a href="' + openDealPath + tempContact.id + '/Won' + '">$' + tempContact.won_deals + '</a>';
+                        lostDeal = '<a href="' + openDealPath + tempContact.id + '/Lost' + '">$' + tempContact.lost_deals + '</a>';
                     }
                     rows.push({
                         name: tempContact.name,

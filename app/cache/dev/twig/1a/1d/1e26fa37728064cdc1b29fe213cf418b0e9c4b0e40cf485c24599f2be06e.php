@@ -99,7 +99,24 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         var earningGoals = checkAndSetValue(extendColData[index].earningGoals, '-', '\$', true);
         var drawAgainstCommission = checkAndSetValue(extendColData[index].drawAgainstCommission, '-', '\$', true);
         var dob = checkAndSetValue(extendColData[index].dob, '-', '', true);
-
+        
+        if(dob !== '-'){
+            var mdate = new Date(dob);
+            var month = 1;
+            if((mdate.getMonth() + 1) < 10){
+                month = '0' + (mdate.getMonth() + 1);
+            }else{
+                month = mdate.getMonth() + 1;
+            }
+            var day = 1;
+            if((mdate.getDate()) < 10){
+                day = '0' + (mdate.getDate());
+            }else{
+                day = mdate.getDate();
+            }
+            var dob = month + '/' + day + '/' + mdate.getFullYear();
+        }
+        
         var html = [];
         html.push('<div class\"row\">' +
                 '<div class=\"col-xs-4\">' +
@@ -166,7 +183,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 rows = [];
 
     ";
-        // line 143
+        // line 160
         echo "                for (var i = 0; i < jsonString.users.length; i++) {
                     var tempUser = jsonString.users[i];
 
@@ -183,7 +200,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                         dob: tempUser.dob
                     });
                     var editPath = '";
-        // line 158
+        // line 175
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
@@ -252,6 +269,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  187 => 158,  170 => 143,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
+        return array (  204 => 175,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
     }
 }

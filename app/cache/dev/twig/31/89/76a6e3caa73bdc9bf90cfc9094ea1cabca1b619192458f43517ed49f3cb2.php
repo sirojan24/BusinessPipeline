@@ -104,29 +104,41 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         }
         // line 70
         echo "    }
-    
-    function wonLostFilter() {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initResponse);
-        var filterOpportunities = [];
-        
-        for (var i = 0; i < jsonString.opportunities.length; i++) {
-            var tempOpportunity = jsonString.opportunities[i];
-
-            if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
-                filterOpportunities.push(tempOpportunity);
-            }
+    ";
+        // line 71
+        if (array_key_exists("contactid", $context)) {
+            // line 72
+            echo "        function wonLostFilter() {
             
         }
-        var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray); 
-        
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(jsonStr));
-    }
-    
+    ";
+        } else {
+            // line 76
+            echo "        function wonLostFilter() {
+            \$table.bootstrapTable('removeAll');
+            \$table.bootstrapTable('showLoading');
+
+            var jsonString = JSON.parse(initResponse);
+            var filterOpportunities = [];
+
+            for (var i = 0; i < jsonString.opportunities.length; i++) {
+                var tempOpportunity = jsonString.opportunities[i];
+
+                if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
+                    filterOpportunities.push(tempOpportunity);
+                }
+
+            }
+            var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
+            var jsonStr = JSON.stringify(filterOpportunitiesArray); 
+
+            \$table.bootstrapTable('hideLoading');
+            \$table.bootstrapTable('append', convertData(jsonStr));
+        }
+    ";
+        }
+        // line 98
+        echo "        
     function usernameFilter(username) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
@@ -137,11 +149,25 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         for (var i = 0; i < jsonString.opportunities.length; i++) {
             var tempOpportunity = jsonString.opportunities[i];
 
-            if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
-                filterOpportunities.push(tempOpportunity);
-            }
-            
+            ";
+        // line 109
+        if (array_key_exists("contactid", $context)) {
+            // line 110
+            echo "                if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
+                    filterOpportunities.push(tempOpportunity);
+                }
+            ";
+        } else {
+            // line 114
+            echo "                if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
+                    if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
+                        filterOpportunities.push(tempOpportunity);
+                    }
+                }
+            ";
         }
+        // line 120
+        echo "        }
         var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
         
@@ -159,10 +185,25 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         for (var i = 0; i < jsonString.opportunities.length; i++) {
             var tempOpportunity = jsonString.opportunities[i];
 
-            if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
-                filterOpportunities.push(tempOpportunity);
-            }
-            
+            ";
+        // line 138
+        if (array_key_exists("contactid", $context)) {
+            // line 139
+            echo "                if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
+                    filterOpportunities.push(tempOpportunity);
+                }
+            ";
+        } else {
+            // line 143
+            echo "                if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
+                    if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
+                        filterOpportunities.push(tempOpportunity);
+                    }
+                }
+            ";
+        }
+        // line 149
+        echo "            
         }
         var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
@@ -181,11 +222,26 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         for (var i = 0; i < jsonString.opportunities.length; i++) {
             var tempOpportunity = jsonString.opportunities[i];
 
-            if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
-                filterOpportunities.push(tempOpportunity);
-            }
             
+            ";
+        // line 169
+        if (array_key_exists("contactid", $context)) {
+            // line 170
+            echo "                if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
+                    filterOpportunities.push(tempOpportunity);
+                }
+            ";
+        } else {
+            // line 174
+            echo "                if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
+                    if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
+                        filterOpportunities.push(tempOpportunity);
+                    }
+                }
+            ";
         }
+        // line 180
+        echo "        }
         var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
         
@@ -421,7 +477,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     function storePageSize(size) {
         \$.post('";
-        // line 387
+        // line 415
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'opportunityview', value: size},
@@ -499,7 +555,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 rows = [];
 
     ";
-        // line 464
+        // line 492
         echo "                for (var i = 0; i < jsonString.opportunities.length; i++) {
                     var tempOpportunity = jsonString.opportunities[i];
 
@@ -519,13 +575,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     tags.push(tempOpportunity.tags);
 
                     var editPath = '";
-        // line 482
+        // line 510
         echo $this->env->getExtension('routing')->getPath("opportunity_editopportunityV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var name = '";
-        // line 485
+        // line 513
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -548,7 +604,26 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     if (tempOpportunity.weighted_revenue == '-1') {
                         tempOpportunity.weighted_revenue = tempOpportunity.weighted_revenue_all;
                     }
-
+                    
+                    var mdate = new Date(tempOpportunity.expected_closed_date);
+                    if(tempOpportunity.expected_closed_date !== ''){
+                        var month = 1;
+                        if((mdate.getMonth() + 1) < 10){
+                            month = '0' + (mdate.getMonth() + 1);
+                        }else{
+                            month = mdate.getMonth() + 1;
+                        }
+                        var day = 1;
+                        if((mdate.getDate()) < 10){
+                            day = '0' + (mdate.getDate());
+                        }else{
+                            day = mdate.getDate();
+                        }
+                        var date = month + '/' + day + '/' + mdate.getFullYear();
+                    }else{
+                        date = '';
+                    }
+                    
                     rows.push({
                         name: tempOpportunity.name,
                         company: tempOpportunity.company,
@@ -556,7 +631,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         stage: '<a href=\"javascript:stageFilter(' + \"'\" + tempOpportunity.stage + \"'\" + ')\">' + tempOpportunity.stage + '</a>',
                         weighted_revenue: '\$' + tempOpportunity.weighted_revenue,
                         projected_revenue: '\$' + tempOpportunity.projected_revenue,
-                        expected_closed_date: tempOpportunity.expected_closed_date,
+                        expected_closed_date: date,
                         owner: '<a href=\"javascript:usernameFilter(' + \"'\" + tempOpportunity.username + \"'\" + ')\">' + tempOpportunity.owner + '</a>',
                         action: action
                     });
@@ -644,6 +719,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  529 => 485,  523 => 482,  503 => 464,  425 => 387,  106 => 70,  89 => 57,  68 => 44,  66 => 43,  41 => 21,  19 => 1,);
+        return array (  585 => 513,  579 => 510,  559 => 492,  481 => 415,  244 => 180,  236 => 174,  230 => 170,  228 => 169,  206 => 149,  198 => 143,  192 => 139,  190 => 138,  170 => 120,  162 => 114,  156 => 110,  154 => 109,  141 => 98,  117 => 76,  111 => 72,  109 => 71,  106 => 70,  89 => 57,  68 => 44,  66 => 43,  41 => 21,  19 => 1,);
     }
 }

@@ -233,7 +233,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     
                     var lostDeal = tempContact.lost_deals;
                     if(tempContact.lost_deals !== '0'){
-                        lostDeal = '<a href=\"' + openDealPath + tempContact.id + '/Won' + '\">\$' + tempContact.won_deals + '</a>';
+                        lostDeal = '<a href=\"' + openDealPath + tempContact.id + '/Lost' + '\">\$' + tempContact.lost_deals + '</a>';
                     }
                     rows.push({
                         name: tempContact.name,

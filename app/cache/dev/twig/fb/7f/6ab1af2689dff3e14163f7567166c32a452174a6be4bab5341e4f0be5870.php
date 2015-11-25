@@ -28,7 +28,13 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
     }else{
         month = mdate.getMonth() + 1;
     }
-    var newDate = mdate.getFullYear() + '-' + month + '-' + mdate.getDate();
+    var day = 1;
+    if((mdate.getDate()) < 10){
+        day = '0' + (mdate.getDate());
+    }else{
+        day = mdate.getDate();
+    }
+    var newDate = mdate.getFullYear() + '-' + month + '-' + day;
     \$('#closeddate').val(newDate);
     
     if (document.getElementById('stage').value == '6') {
@@ -39,7 +45,7 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
             \$('#progress').html('0%');
     }else{
         \$.post('";
-        // line 20
+        // line 26
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
             {id: document.getElementById('stage').value},
@@ -156,11 +162,11 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
         revenue = \$('#projectedrevenue').val();
         if (document.getElementById('stage').value !== '' && document.getElementById('projectedrevenue').value !== '') {
             \$.post('";
-        // line 134
+        // line 140
         echo $this->env->getExtension('routing')->getPath("login_login_getCommissionoriginator");
         echo "',
                     {name: \"";
-        // line 135
+        // line 141
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "\"},
             function (response) {
@@ -173,7 +179,7 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
                         document.getElementById('forecast').value = 0;
                     } else {
                         \$.post('";
-        // line 145
+        // line 151
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                                 {id: document.getElementById('stage').value},
@@ -199,11 +205,11 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
     function initiateStageModal() {
 
         \$.post('";
-        // line 168
+        // line 174
         echo $this->env->getExtension('routing')->getPath("login_login_getCommissionoriginator");
         echo "',
                 {name: \"";
-        // line 169
+        // line 175
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
         echo "\"},
         function (response) {
@@ -239,7 +245,7 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
         else {
 
             \$.post('";
-        // line 202
+        // line 208
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                     {id: document.getElementById('stage').value},
@@ -303,6 +309,6 @@ class __TwigTemplate_fb7f6ab1af2689dff3e14163f7567166c32a452174a6be4bab5341e4f0b
 
     public function getDebugInfo()
     {
-        return array (  243 => 202,  207 => 169,  203 => 168,  177 => 145,  164 => 135,  160 => 134,  43 => 20,  23 => 3,  19 => 1,);
+        return array (  249 => 208,  213 => 175,  209 => 174,  183 => 151,  170 => 141,  166 => 140,  49 => 26,  23 => 3,  19 => 1,);
     }
 }
