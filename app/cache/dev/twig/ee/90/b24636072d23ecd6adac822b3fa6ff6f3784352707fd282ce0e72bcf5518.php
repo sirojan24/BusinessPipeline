@@ -189,8 +189,8 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                     <div class=\"col-xs-6\">\t\t\t\t
                         <div class=\"form-group\">
                             <label for=\"username\">Opportunity Source <span style=\"color:#FF0000;\">*</span></label>
-                            <select class=\"form-control\" name=\"opportunitysource\" placeholder=\"sdasdasd\">
-                                <option value = \"\"></option>
+                            <select class=\"form-control\" name=\"opportunitysource\">
+                                <option value = \"\">Enter the deal source</option>
                                 ";
         // line 99
         if (array_key_exists("opportunitysources", $context)) {
