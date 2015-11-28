@@ -142,15 +142,15 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         html.push('<div class\"row\">' +
                 '<div class=\"col-xs-4\">' +
                 '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;\">' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;width:30%\"><small>Email</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + email + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Telephone</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + telephone + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Tags</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + tags + '</small></td>' +
                 '</tr>' +

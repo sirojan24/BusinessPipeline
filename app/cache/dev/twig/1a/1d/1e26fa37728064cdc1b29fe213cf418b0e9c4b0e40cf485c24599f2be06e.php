@@ -121,23 +121,23 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         html.push('<div class\"row\">' +
                 '<div class=\"col-xs-4\">' +
                 '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;\">' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;width:30%\"><small>Title</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + title + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Company</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + company + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Email</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + email + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Telephone</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + telephone + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Cell Phone</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + cellphone + '</small></td>' +
                 '</tr>' +
@@ -145,23 +145,23 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 '</div>' +
                 '<div class=\"col-xs-4\">' +
                 '<table class=\"table\" style=\"margin-left:22px; border: none !important;line-height: 5px;\">' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;width:60%\"><small>Commissions Originator</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + originator + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Commissions Non-Originator</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + nonOriginator + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Earning Goals</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + earningGoals + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>Draw Against Commissions</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + drawAgainstCommission + '</small></td>' +
                 '</tr>' +
-                '<tr style=\"padding:0px;margin:0px;\">' +
+                '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>DOB</small></td>' +
                 '<td style=\"border: none !important;line-height: 5px;\"><small>' + dob + '</small></td>' +
                 '</tr>' +

@@ -689,6 +689,29 @@ class DefaultController extends Controller {
         $opportunitiesArray = array();
 
         foreach ($opportunities as $opportunity) {
+            
+            $contactId = $opportunity->getContactid();
+            $contactIdOpportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active','contactid'=>$contactId));
+            $wondealCount = 0;
+            $wondealAmount = 0;
+            $lossdealCount = 0;
+            $lossdealAmount = 0;
+            $opendealCount = 0;
+            $opendealAmout = 0;
+            
+            foreach($contactIdOpportunities as $contactOpportunity){
+                if($contactOpportunity->getStage()==6){
+                    $wondealCount++;
+                    $wondealAmount += str_replace(",","",$contactOpportunity->getRevenue());
+                }else if($contactOpportunity->getStage() == 7){
+                    $lossdealCount++;
+                    $lossdealAmount += str_replace(",","",$contactOpportunity->getProjectedrevenue());
+                    
+                }else{
+                    $opendealCount++;
+                    $opendealAmout += str_replace(",","",$contactOpportunity->getForecast());
+                }
+            }
 
             $ownedUser = $repository->findOneBy(array('username' => $opportunity->getUsername()));
             $ownedUserfullname = $ownedUser->getFirstname() . " " . $ownedUser->getLastname();
@@ -797,11 +820,12 @@ class DefaultController extends Controller {
 //            $arrElement["tags"] = $opportunity->getOpendealcount();
             $arrElement["deal_account_type"] = $opportunity->getAccounttype();
             $arrElement["deal_source"] = $opportunity->getOpportunitysource();
-            $arrElement["open_deals"] = 0;   //need to check
-            $arrElement["won_deals"] = 0;   //need to check
-            $arrElement["lost_deals"] = 0;   //need to check
+            $arrElement["open_deals"] = $opendealCount.' / $'.number_format($opendealAmout);   //need to check
+            $arrElement["won_deals"] = $wondealCount.' / $'.number_format($wondealAmount);   //need to check
+            $arrElement["lost_deals"] = $lossdealCount.' / $'.number_format($lossdealAmount);   //need to check
             $arrElement["tags"] = $opportunity->getTags();   //need to check
             array_push($opportunitiesArray, $arrElement);
+            
         }
         $opportunitiesArray = array('opportunities' => $opportunitiesArray);
         
