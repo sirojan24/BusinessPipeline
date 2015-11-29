@@ -42,6 +42,10 @@ settings_addstage:
     path:     /addstage
     defaults: { _controller: SettingsBundle:Stage:addstage }
     
+settings_addstageV2:
+    path:     /addstageV2
+    defaults: { _controller: SettingsBundle:Stage:addstageV2 }
+    
 settings_validatestage:
     path:     /validatestage
     defaults: { _controller: SettingsBundle:Stage:validatestage }
@@ -50,6 +54,14 @@ settings_managestages:
     path:     /managestages
     defaults: { _controller: SettingsBundle:Stage:managestages }
     
+settings_managestagesV2:
+    path:     /managestagesV2
+    defaults: { _controller: SettingsBundle:Stage:managestagesV2 }
+    
+settings_table_data:
+    path:     /tableData
+    defaults: { _controller: SettingsBundle:Stage:tableData }
+    
 settings_savestage:
     path:     /savestage
     defaults: { _controller: SettingsBundle:Stage:savestage }
@@ -57,6 +69,10 @@ settings_savestage:
 settings_editstage:
     path:     /editstage/{id}
     defaults: { _controller: SettingsBundle:Stage:editstage }
+    
+settings_editstageV2:
+    path:     /editstageV2/{id}
+    defaults: { _controller: SettingsBundle:Stage:editstageV2 }
     
 settings_deletestage:
     path:     /deletestage/{id}
