@@ -180,7 +180,8 @@ class DefaultController extends Controller
          if($notes){
              foreach ($notes as $note) {
                  $user = $repository1 ->findOneBy(array('username' => $note->getUsername()));
-                 $toUser =  $repository1 ->findOneBy(array('id' => $id));
+                 //$toUser =  $repository1 ->findOneBy(array('id' => $id));
+                 $toUser = $user;
                  $notesString["id"] = $note->getId();
                  $notesString["timestamp"] = $note->getTimestamp();
                  $notesString["fromUsername"] = $note->getUsername();
@@ -207,12 +208,13 @@ class DefaultController extends Controller
          $type_id = $request->get('type_id');
          $note = $request->get('note');
          $username = $request->get('username');
-         
+         //echo $username ."***";
+         //exit;
          $em = $this->getDoctrine()->getManager();
          $repository = $em->getRepository("LoginLoginBundle:Users");
          $user = $repository->findOneBy(array('username' => $username));
-         $toUser = $repository->findOneBy(array('id' => $type_id));
-                 
+        // $toUser = $repository->findOneBy(array('id' => $type_id));
+         $toUser = $user;       
          $notes = new Notes();
          $notes->setType($type);
          $notes->setTypeid($type_id);
