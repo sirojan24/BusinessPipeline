@@ -347,9 +347,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'SettingsBundle\\Controller\\AccountTypeController::validateaccounttypeAction',  '_route' => 'settings_validateaccounttype',);
         }
 
-        // settings_addstage
-        if ($pathinfo === '/addstage') {
-            return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageAction',  '_route' => 'settings_addstage',);
+        if (0 === strpos($pathinfo, '/addstage')) {
+            // settings_addstage
+            if ($pathinfo === '/addstage') {
+                return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageAction',  '_route' => 'settings_addstage',);
+            }
+
+            // settings_addstageV2
+            if ($pathinfo === '/addstageV2') {
+                return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageV2Action',  '_route' => 'settings_addstageV2',);
+            }
+
         }
 
         // settings_validatestage
@@ -357,9 +365,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::validatestageAction',  '_route' => 'settings_validatestage',);
         }
 
-        // settings_managestages
-        if ($pathinfo === '/managestages') {
-            return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::managestagesAction',  '_route' => 'settings_managestages',);
+        if (0 === strpos($pathinfo, '/managestages')) {
+            // settings_managestages
+            if ($pathinfo === '/managestages') {
+                return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::managestagesAction',  '_route' => 'settings_managestages',);
+            }
+
+            // settings_managestagesV2
+            if ($pathinfo === '/managestagesV2') {
+                return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::managestagesV2Action',  '_route' => 'settings_managestagesV2',);
+            }
+
+        }
+
+        // settings_table_data
+        if ($pathinfo === '/tableData') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::tableDataAction',  '_route' => 'settings_table_data',);
         }
 
         // settings_savestage
@@ -367,9 +388,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::savestageAction',  '_route' => 'settings_savestage',);
         }
 
-        // settings_editstage
-        if (0 === strpos($pathinfo, '/editstage') && preg_match('#^/editstage/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_editstage')), array (  '_controller' => 'SettingsBundle\\Controller\\StageController::editstageAction',));
+        if (0 === strpos($pathinfo, '/editstage')) {
+            // settings_editstage
+            if (preg_match('#^/editstage/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_editstage')), array (  '_controller' => 'SettingsBundle\\Controller\\StageController::editstageAction',));
+            }
+
+            // settings_editstageV2
+            if (0 === strpos($pathinfo, '/editstageV2') && preg_match('#^/editstageV2/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_editstageV2')), array (  '_controller' => 'SettingsBundle\\Controller\\StageController::editstageV2Action',));
+            }
+
         }
 
         // settings_deletestage

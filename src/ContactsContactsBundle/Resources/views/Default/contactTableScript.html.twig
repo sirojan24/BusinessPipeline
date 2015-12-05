@@ -13,14 +13,33 @@
         var data = '{{contactArray}}';
         var newString = data.replace(/&quot;/g, '"');
         initResponse = newString;
-        //var newString = JSON.parse(data);
         $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(newString));
+        //$table.bootstrapTable('append', convertData(newString));
+        var username = '{{name|lower}}';
+        usernameFilter(username);
     }
 
     function refreshTable() {
         $table.bootstrapTable('removeAll');
         fillTableData();
+    }
+    
+    function showHideContacts() {
+        $table.bootstrapTable('removeAll');
+        
+        var showHide = $( "#showHide" ).children();
+        
+        if(showHide.hasClass("fa-eye")){
+            showHide.removeClass( "fa-eye" );
+            showHide.addClass( "fa-eye-slash" );
+            $table.bootstrapTable('append', convertData(initResponse));
+        }else{
+            showHide.addClass( "fa-eye" );
+            showHide.removeClass( "fa-eye-slash" );
+            var username = '{{name|lower}}';
+            usernameFilter(username);
+        }
+        
     }
 
     function fillTableData() {
@@ -30,7 +49,9 @@
                     if (response) {
                         $table.bootstrapTable('hideLoading');
                         initResponse = response;
-                        $table.bootstrapTable('append', convertData(response));
+                        //$table.bootstrapTable('append', convertData(response));
+                        var username = '{{name|lower}}';
+                        usernameFilter(username);
                     } else {
 
                     }

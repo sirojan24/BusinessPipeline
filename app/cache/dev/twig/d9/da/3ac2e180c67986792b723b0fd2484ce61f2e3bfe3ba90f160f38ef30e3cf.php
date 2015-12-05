@@ -34,27 +34,57 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         initResponse = newString;
-        //var newString = JSON.parse(data);
         \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(newString));
+        //\$table.bootstrapTable('append', convertData(newString));
+        var username = '";
+        // line 18
+        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "';
+        usernameFilter(username);
     }
 
     function refreshTable() {
         \$table.bootstrapTable('removeAll');
         fillTableData();
     }
+    
+    function showHideContacts() {
+        \$table.bootstrapTable('removeAll');
+        
+        var showHide = \$( \"#showHide\" ).children();
+        
+        if(showHide.hasClass(\"fa-eye\")){
+            showHide.removeClass( \"fa-eye\" );
+            showHide.addClass( \"fa-eye-slash\" );
+            \$table.bootstrapTable('append', convertData(initResponse));
+        }else{
+            showHide.addClass( \"fa-eye\" );
+            showHide.removeClass( \"fa-eye-slash\" );
+            var username = '";
+        // line 39
+        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "';
+            usernameFilter(username);
+        }
+        
+    }
 
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 28
+        // line 47
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
                         initResponse = response;
-                        \$table.bootstrapTable('append', convertData(response));
+                        //\$table.bootstrapTable('append', convertData(response));
+                        var username = '";
+        // line 53
+        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "';
+                        usernameFilter(username);
                     } else {
 
                     }
@@ -88,7 +118,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 66
+        // line 87
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -107,7 +137,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     function storePageSize(size) {
         \$.post('";
-        // line 82
+        // line 103
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -172,7 +202,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                 rows = [];
 
     ";
-        // line 146
+        // line 167
         echo "                for (var i = 0; i < jsonString.contacts.length; i++) {
                     var tempContact = jsonString.contacts[i];
 
@@ -183,25 +213,25 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     });
 
                     var editPath = '";
-        // line 155
+        // line 176
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
                     
                     var newDealPath = '";
-        // line 158
+        // line 179
         echo $this->env->getExtension('routing')->getPath("opportunity_addcontactopportunityV2", array("id" => 0));
         echo "';
                     newDealPath = newDealPath.substring(0, newDealPath.length - 1);
 
                     var openDealPath = '";
-        // line 161
+        // line 182
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
         echo "';
                     openDealPath = openDealPath.substring(0, openDealPath.length - 3);
 
                     var name = '";
-        // line 164
+        // line 185
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -286,6 +316,6 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     public function getDebugInfo()
     {
-        return array (  205 => 164,  199 => 161,  193 => 158,  187 => 155,  176 => 146,  111 => 82,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  235 => 185,  229 => 182,  223 => 179,  217 => 176,  206 => 167,  141 => 103,  122 => 87,  85 => 53,  76 => 47,  65 => 39,  41 => 18,  33 => 13,  19 => 1,);
     }
 }

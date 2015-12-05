@@ -25,7 +25,7 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
         echo "\t
 
     <body>
-
+    
         <div id=\"wrapper\">
 
             ";
@@ -83,8 +83,11 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                                 </div>
                                                 <div class=\"tab-pane fade\" id=\"pipelinestages\">
                                                     <h4>Pipeline Stages</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                </div>
+                                                    ";
+        // line 62
+        $this->env->loadTemplate("SettingsBundle:Stages:stagesTable.html.twig")->display($context);
+        // line 63
+        echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"producttype\">
                                                     <h4>Product Type</h4>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -160,6 +163,6 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
 
     public function getDebugInfo()
     {
-        return array (  143 => 103,  139 => 102,  135 => 101,  130 => 100,  128 => 99,  122 => 95,  120 => 94,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  146 => 103,  142 => 102,  138 => 101,  133 => 100,  131 => 99,  125 => 95,  123 => 94,  90 => 63,  88 => 62,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

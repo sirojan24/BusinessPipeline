@@ -38,22 +38,23 @@
         );
     }
 
-    function usernameFilter(username) {
+    function deactivateId(id) {
         $table.bootstrapTable('removeAll');
         $table.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.contacts.length; i++) {
-            var tempContact = jsonString.contacts[i];
+        for (var i = 0; i < jsonString.stages.length; i++) {
+            var tempStage = jsonString.stages[i];
 
-            if (username.toLowerCase() === tempContact.username.toLowerCase()) {
-                filterContact.push(tempContact);
+            if (id === tempStage.id) {
+                
+                filterContact.push(tempStage);
             }
 
         }
-        var filterOpportunitiesArray = {'contacts': filterContact};
+        var filterOpportunitiesArray = {'stages': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
         $table.bootstrapTable('hideLoading');
@@ -130,12 +131,6 @@
                 note: tempStage.notes
             });
 
-            var editPath = '{{ path('settings_editstageV2',{'id':0} )}}';
-            editPath = editPath.substring(0, editPath.length - 1);
-
-            var activatePath = '{{ path('settings_activatestage',{'id':0} )}}';
-            activatePath = activatePath.substring(0, activatePath.length - 1);
-
             var name = '{{name|lower}}';
             var action = '';
             var role = '{{role}}';
@@ -149,7 +144,9 @@
                         '<li><a href="javascript:opeEditModal(' + tempStage.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
                 
                 if (tempStage.status === "Inactive") {
-                    //action += '<li><a href="' + activatePath + tempStage.id + '"><i class="fa fa-check"></i> Activate</a></li>';
+                    action += '<li><a href="javascript:activateStage(' + tempStage.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
+                }else if(tempStage.status === "Active"){
+                    action += '<li><a href="javascript:deleteStage(' + tempStage.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
@@ -170,6 +167,50 @@
             });
         }
         return rows;
+    }
+    
+    function deleteStage(id){
+        $table.bootstrapTable('showLoading');
+        var path = '{{ path('settings_deletestage',{'id':0} )}}';
+        path = path.substring(0, path.length - 1);
+
+        $.post(path + id, null,
+                function (response) {
+                    if (response) {
+                        
+                    } else {
+                        $table.bootstrapTable('hideLoading');
+                    }
+                }
+        );
+    }
+    
+    function activateStage(id){
+        $table.bootstrapTable('showLoading');
+        var path = '{{ path('settings_activatestage',{'id':0} )}}';
+        path = path.substring(0, path.length - 1);
+
+        $.post(path + id, null,
+                function (response) {
+                    if (response) {
+                        $table.bootstrapTable('showLoading');
+                        $.post('{{path('settings_table_data')}}', null,
+                                function (response) {
+                                    if (response) {
+                                        $table.bootstrapTable('removeAll');
+                                        $table.bootstrapTable('hideLoading');
+                                        initResponse = response;
+                                        $table.bootstrapTable('append', convertData(response));
+                                    } else {
+                                        $table.bootstrapTable('hideLoading');
+                                    }
+                                }
+                        );
+                    } else {
+                        $table.bootstrapTable('hideLoading');
+                    }
+                }
+        );
     }
 
     function priceSorter(a, b) {

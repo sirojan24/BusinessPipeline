@@ -168,14 +168,20 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
             activatePath = activatePath.substring(0, activatePath.length - 1);
+            
+            var deActivatePath = '";
+        // line 139
+        echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
+        echo "';
+            deActivatePath = deActivatePath.substring(0, deActivatePath.length - 1);
 
             var name = '";
-        // line 139
+        // line 142
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 141
+        // line 144
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -188,7 +194,9 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                         '<li><a href=\"javascript:opeEditModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
                 
                 if (tempStage.status === \"Inactive\") {
-                    //action += '<li><a href=\"' + activatePath + tempStage.id + '\"><i class=\"fa fa-check\"></i> Activate</a></li>';
+                    action += '<li><a href=\"javascript:activateStage(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
+                }else if(tempStage.status === \"Active\"){
+                    action += '<li><a href=\"javascript:deleteStage(' + tempStage.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
@@ -209,6 +217,74 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
             });
         }
         return rows;
+    }
+    
+    function deleteStage(id){
+        \$table.bootstrapTable('showLoading');
+        var path = '";
+        // line 182
+        echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
+        echo "';
+        path = path.substring(0, path.length - 1);
+
+        \$.post(path + id, null,
+                function (response) {
+                    if (response) {
+                        \$table.bootstrapTable('showLoading');
+                        \$.post('";
+        // line 189
+        echo $this->env->getExtension('routing')->getPath("settings_table_data");
+        echo "', null,
+                                function (response) {
+                                    if (response) {
+                                        \$table.bootstrapTable('removeAll');
+                                        \$table.bootstrapTable('hideLoading');
+                                        initResponse = response;
+                                        \$table.bootstrapTable('append', convertData(response));
+                                    } else {
+                                        \$table.bootstrapTable('hideLoading');
+                                    }
+                                }
+                        );
+                    } else {
+                        \$table.bootstrapTable('hideLoading');
+                    }
+                }
+        );
+    }
+    
+    function activateStage(id){
+        \$table.bootstrapTable('showLoading');
+        var path = '";
+        // line 210
+        echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
+        echo "';
+        path = path.substring(0, path.length - 1);
+
+        \$.post(path + id, null,
+                function (response) {
+                    if (response) {
+                        \$table.bootstrapTable('showLoading');
+                        \$.post('";
+        // line 217
+        echo $this->env->getExtension('routing')->getPath("settings_table_data");
+        echo "', null,
+                                function (response) {
+                                    if (response) {
+                                        \$table.bootstrapTable('removeAll');
+                                        \$table.bootstrapTable('hideLoading');
+                                        initResponse = response;
+                                        \$table.bootstrapTable('append', convertData(response));
+                                    } else {
+                                        \$table.bootstrapTable('hideLoading');
+                                    }
+                                }
+                        );
+                    } else {
+                        \$table.bootstrapTable('hideLoading');
+                    }
+                }
+        );
     }
 
     function priceSorter(a, b) {
@@ -246,6 +322,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  179 => 141,  174 => 139,  168 => 136,  162 => 133,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  270 => 217,  260 => 210,  236 => 189,  226 => 182,  185 => 144,  180 => 142,  174 => 139,  168 => 136,  162 => 133,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

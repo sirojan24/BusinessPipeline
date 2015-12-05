@@ -35,8 +35,11 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_importcontacts");
         echo "\" style=\"color: black;\"><i class=\"fa fa-users\"></i> Import Contacts</a>
                         </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
-                            <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
+                        <span calss=\"pull-right\" style=\"margin-left: 20px; border-left: 2px solid #ddd;\">
+                            <a href=\"javascript:showHideContacts()\" id=\"showHide\" style=\"color: black;margin-left: 5px;\"><i class=\"fa fa-eye\"></i></a>
+                        </span>
+                        <span calss=\"pull-right\" style=\"margin-left: 2px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
+                            <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
@@ -62,7 +65,7 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
                                data-detail-view=\"true\"
                                data-search=\"true\"
                                data-page-size=\"";
-        // line 40
+        // line 43
         echo twig_escape_filter($this->env, (isset($context["manageview"]) ? $context["manageview"] : $this->getContext($context, "manageview")), "html", null, true);
         echo "\"
                                data-page-list=\"[10,25,50]\"
@@ -93,7 +96,7 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
     </div>
 </div>
 ";
-        // line 68
+        // line 71
         $this->env->loadTemplate("ContactsContactsBundle:Default:contactTableScript.html.twig")->display($context);
     }
 
@@ -109,6 +112,6 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
 
     public function getDebugInfo()
     {
-        return array (  97 => 68,  66 => 40,  35 => 12,  29 => 9,  19 => 1,);
+        return array (  100 => 71,  69 => 43,  35 => 12,  29 => 9,  19 => 1,);
     }
 }
