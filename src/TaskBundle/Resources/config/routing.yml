@@ -9,3 +9,7 @@ task_savetask:
 task_manage_task:    
     path:     /manageTasks/{type}/{id}
     defaults: { _controller: TaskBundle:Default:manageTasks }
+    
+task_get_task:    
+    path:     /getTasks/{type}/{id}
+    defaults: { _controller: TaskBundle:Default:getTasks }

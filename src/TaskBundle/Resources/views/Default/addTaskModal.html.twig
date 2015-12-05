@@ -3,8 +3,6 @@
 
 <script type="text/javascript">
     jQuery(function ($) {
-        $("#due").mask("99/99/9999");
-        $("#fToDate").mask("99/99/9999");
         $('#projectedrevenue').number(true, 0);
     });
 </script>
@@ -24,7 +22,7 @@
                         <div class="col-xs-3">
                             <div class="form-group" id="filterStageDiv">
                                 <label for="firstname">Priority <span style="color:#FF0000;">*</span></label>
-                                <select class="form-control" name="priority" >
+                                <select class="form-control" name="priority" id="priority">
                                     <option value="Normal" >Normal</option>
                                     <option value="Medium" >Medium</option>
                                     <option value="High" >High</option>
@@ -34,7 +32,7 @@
                         <div class="col-xs-3">
                             <div class="form-group" id="filterStageDiv">
                                 <label for="firstname">Due <span style="color:#FF0000;">*</span></label>
-                                <input type="text" class="form-control" name="due" id="due" placeholder="month/date/year">
+                                <input type="date" class="form-control" name="due" id="due">
                             </div>
                         </div>
                         <div class="col-xs-3">
@@ -48,7 +46,7 @@
                         <div class="col-xs-3">
                             <div class="form-group" id="filterStageDiv">
                                 <label for="firstname">Visibility <span style="color:#FF0000;">*</span></label>
-                                <select class="form-control" name="visibility" >
+                                <select class="form-control" name="visibility" id="visibility" >
                                     <option value="Public" >Entire Company</option>
                                     <option value="Private" >Private</option>
                                 </select>
@@ -84,11 +82,12 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" id="tasktypeid"/>
                 </form>
             </div>
             <div class="modal-footer">
                 <a class="btn btn-default" href="javascript:clearFilter()">Cancel</a>
-                <button id="savebutton" class="btn btn-primary" onclick="applyUserDefinedFilter()" data-dismiss="modal">Save</button>
+                <button id="savebutton" class="btn btn-primary" onclick="saveTask()" data-dismiss="modal">Save</button>
             </div>
         </div>
 

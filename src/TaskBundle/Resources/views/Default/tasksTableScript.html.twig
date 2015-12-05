@@ -21,6 +21,19 @@
     function refreshTable() {
         $table.bootstrapTable('removeAll');
         fillTableData();
+        var taskpath = '{{path('task_get_task',{'type': 'contact' , 'id':0 })}}';
+        taskpath = taskpath.substring(0, taskpath.length - 1);
+         $.post(taskpath + {{typeId}}, null,
+                function (response) {
+                    if (response !== false) {
+                        $table.bootstrapTable('hideLoading');
+                        initResponse = response;
+                        $table.bootstrapTable('append', convertData(response));
+                    } else {
+
+                    }
+                }
+        );
     }
 
     function fillTableData() {
@@ -254,6 +267,57 @@
 
 
 
+
+    }
+
+    function saveTask() {
+
+        var priority = document.getElementById('priority').value;
+        var due = document.getElementById('due').value;
+        var shareduserselect = document.getElementById('shareduserselect').value;
+        var visibility = document.getElementById('visibility').value;
+        var taskname = document.getElementById('taskname').value;
+        var tasknotes = document.getElementById('tasknotes').value;
+        var tasktags = document.getElementById('tasktags').value;
+        var tasktypeid = document.getElementById('tasktypeid').value;
+
+        $.post('{{path('task_savetask')}}',
+                {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, tasktype: "contact",tasktypeid:tasktypeid},
+        function (response) {
+            if (response !== false) {
+                $table.bootstrapTable('removeAll');
+                $table.bootstrapTable('showLoading');
+
+                var jsonString = JSON.parse(initResponse);
+                var filterContact = [];
+
+                for (var i = 0; i < jsonString.tasks.length; i++) {
+                    var tempContact = jsonString.tasks[i];
+
+                    filterContact.push(tempContact);
+                    
+
+                }
+                var tempTask = JSON.parse(response);
+                filterContact.push({taskName: tempTask.taskName,
+                name: tempTask.name,
+                company: tempTask.company,
+                priority: tempTask.priority,
+                assignedTo: tempTask.assignedTo,
+                dueDate: tempTask.dueDate,
+                username: tempTask.username
+                });
+                var filterOpportunitiesArray = {'tasks': filterContact};
+                var jsonStr = JSON.stringify(filterOpportunitiesArray);
+                initResponse = jsonStr;
+                $table.bootstrapTable('hideLoading');
+                $table.bootstrapTable('append', convertData(jsonStr));
+
+
+            } else {
+                console.log("error occured in saving tasks", response);
+            }
+        });
 
     }
 </script>
