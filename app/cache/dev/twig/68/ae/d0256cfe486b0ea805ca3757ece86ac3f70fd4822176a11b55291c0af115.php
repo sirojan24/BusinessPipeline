@@ -62,22 +62,23 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         );
     }
 
-    function usernameFilter(username) {
+    function deactivateId(id) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.contacts.length; i++) {
-            var tempContact = jsonString.contacts[i];
+        for (var i = 0; i < jsonString.stages.length; i++) {
+            var tempStage = jsonString.stages[i];
 
-            if (username.toLowerCase() === tempContact.username.toLowerCase()) {
-                filterContact.push(tempContact);
+            if (id === tempStage.id) {
+                tempStage.status = \"Inactive\";
             }
-
+            filterContact.push(tempStage);
+            
         }
-        var filterOpportunitiesArray = {'contacts': filterContact};
+        var filterOpportunitiesArray = {'stages': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
         \$table.bootstrapTable('hideLoading');
@@ -88,7 +89,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 66
+        // line 67
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -157,31 +158,13 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 note: tempStage.notes
             });
 
-            var editPath = '";
-        // line 133
-        echo $this->env->getExtension('routing')->getPath("settings_editstageV2", array("id" => 0));
-        echo "';
-            editPath = editPath.substring(0, editPath.length - 1);
-
-            var activatePath = '";
-        // line 136
-        echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
-        echo "';
-            activatePath = activatePath.substring(0, activatePath.length - 1);
-            
-            var deActivatePath = '";
-        // line 139
-        echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
-        echo "';
-            deActivatePath = deActivatePath.substring(0, deActivatePath.length - 1);
-
             var name = '";
-        // line 142
+        // line 134
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 144
+        // line 136
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -220,9 +203,9 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     }
     
     function deleteStage(id){
-        \$table.bootstrapTable('showLoading');
+        //\$table.bootstrapTable('showLoading');
         var path = '";
-        // line 182
+        // line 174
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -230,22 +213,8 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        \$table.bootstrapTable('showLoading');
-                        \$.post('";
-        // line 189
-        echo $this->env->getExtension('routing')->getPath("settings_table_data");
-        echo "', null,
-                                function (response) {
-                                    if (response) {
-                                        \$table.bootstrapTable('removeAll');
-                                        \$table.bootstrapTable('hideLoading');
-                                        initResponse = response;
-                                        \$table.bootstrapTable('append', convertData(response));
-                                    } else {
-                                        \$table.bootstrapTable('hideLoading');
-                                    }
-                                }
-                        );
+                        //\$table.bootstrapTable('showLoading');
+                        deactivateId(id);
                     } else {
                         \$table.bootstrapTable('hideLoading');
                     }
@@ -256,7 +225,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function activateStage(id){
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 210
+        // line 191
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -266,7 +235,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                     if (response) {
                         \$table.bootstrapTable('showLoading');
                         \$.post('";
-        // line 217
+        // line 198
         echo $this->env->getExtension('routing')->getPath("settings_table_data");
         echo "', null,
                                 function (response) {
@@ -322,6 +291,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  270 => 217,  260 => 210,  236 => 189,  226 => 182,  185 => 144,  180 => 142,  174 => 139,  168 => 136,  162 => 133,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  239 => 198,  229 => 191,  209 => 174,  168 => 136,  163 => 134,  93 => 67,  51 => 28,  33 => 13,  19 => 1,);
     }
 }
