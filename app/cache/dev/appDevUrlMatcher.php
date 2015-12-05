@@ -347,15 +347,23 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'SettingsBundle\\Controller\\AccountTypeController::validateaccounttypeAction',  '_route' => 'settings_validateaccounttype',);
         }
 
-        if (0 === strpos($pathinfo, '/addstage')) {
-            // settings_addstage
-            if ($pathinfo === '/addstage') {
-                return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageAction',  '_route' => 'settings_addstage',);
+        if (0 === strpos($pathinfo, '/a')) {
+            // settings_account_type_table_data
+            if ($pathinfo === '/accountTypeTableData') {
+                return array (  '_controller' => 'SettingsBundle\\Controller\\AccountTypeController::tableDataAction',  '_route' => 'settings_account_type_table_data',);
             }
 
-            // settings_addstageV2
-            if ($pathinfo === '/addstageV2') {
-                return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageV2Action',  '_route' => 'settings_addstageV2',);
+            if (0 === strpos($pathinfo, '/addstage')) {
+                // settings_addstage
+                if ($pathinfo === '/addstage') {
+                    return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageAction',  '_route' => 'settings_addstage',);
+                }
+
+                // settings_addstageV2
+                if ($pathinfo === '/addstageV2') {
+                    return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::addstageV2Action',  '_route' => 'settings_addstageV2',);
+                }
+
             }
 
         }
@@ -451,17 +459,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'SettingsBundle\\Controller\\ProductTypeController::updateproducttypeAction',  '_route' => 'settings_updateproducttype',);
         }
 
-        if (0 === strpos($pathinfo, '/a')) {
-            // settings_activateproducttype
-            if (0 === strpos($pathinfo, '/activateproducttype') && preg_match('#^/activateproducttype/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_activateproducttype')), array (  '_controller' => 'SettingsBundle\\Controller\\ProductTypeController::activateproducttypeAction',));
-            }
+        // settings_activateproducttype
+        if (0 === strpos($pathinfo, '/activateproducttype') && preg_match('#^/activateproducttype/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'settings_activateproducttype')), array (  '_controller' => 'SettingsBundle\\Controller\\ProductTypeController::activateproducttypeAction',));
+        }
 
-            // settings_addopportunitysource
-            if ($pathinfo === '/addopportunitysource') {
-                return array (  '_controller' => 'SettingsBundle\\Controller\\OpportunitySourceController::addopportunitysourceAction',  '_route' => 'settings_addopportunitysource',);
-            }
+        // settings_product_type_table_data
+        if ($pathinfo === '/productTypeTableData') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\ProductTypeController::productTypeTableDataAction',  '_route' => 'settings_product_type_table_data',);
+        }
 
+        // settings_addopportunitysource
+        if ($pathinfo === '/addopportunitysource') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\OpportunitySourceController::addopportunitysourceAction',  '_route' => 'settings_addopportunitysource',);
         }
 
         // settings_saveopportunitysource
@@ -497,6 +507,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // settings_validateopportunitysource
         if ($pathinfo === '/validateopportunitysource') {
             return array (  '_controller' => 'SettingsBundle\\Controller\\OpportunitySourceController::validateopportunitysourceAction',  '_route' => 'settings_validateopportunitysource',);
+        }
+
+        // settings_opportunity_source_table_data
+        if ($pathinfo === '/opportunityTableData') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\OpportunitySourceController::tableDataAction',  '_route' => 'settings_opportunity_source_table_data',);
         }
 
         // settings_getsale

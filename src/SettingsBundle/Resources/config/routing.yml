@@ -38,6 +38,10 @@ settings_validateaccounttype:
     path:     /validateaccounttype
     defaults: { _controller: SettingsBundle:AccountType:validateaccounttype }
     
+settings_account_type_table_data:
+    path:     /accountTypeTableData
+    defaults: { _controller: SettingsBundle:AccountType:tableData }
+    
 settings_addstage:
     path:     /addstage
     defaults: { _controller: SettingsBundle:Stage:addstage }
@@ -117,6 +121,10 @@ settings_updateproducttype:
 settings_activateproducttype:
     path:     /activateproducttype/{id}
     defaults: { _controller: SettingsBundle:ProductType:activateproducttype }
+
+settings_product_type_table_data:
+    path:     /productTypeTableData
+    defaults: { _controller: SettingsBundle:ProductType:productTypeTableData }
     
 settings_addopportunitysource:
     path:     /addopportunitysource
@@ -149,6 +157,10 @@ settings_activateopportunitysource:
 settings_validateopportunitysource:
     path:     /validateopportunitysource
     defaults: { _controller: SettingsBundle:OpportunitySource:validateopportunitysource }
+    
+settings_opportunity_source_table_data:
+    path:     /opportunityTableData
+    defaults: { _controller: SettingsBundle:OpportunitySource:tableData }
     
 settings_getsale:
     path:     /getsale

@@ -16,9 +16,9 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        $this->env->loadTemplate("SettingsBundle:AccountType:addStageModal.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:AccountType:addAccountTypeModal.html.twig")->display($context);
         // line 2
-        $this->env->loadTemplate("SettingsBundle:AccountType:editStageModal.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:AccountType:editAccountTypeModal.html.twig")->display($context);
         // line 3
         echo "<div class=\"panel panel-default\">
     <div class=\"panel-body\">
@@ -28,7 +28,7 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
                 <div class=\"col-lg-12\">
                     <div class=\"pull-right\">  
                         <span calss=\"pull-right\">
-                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Account</a>
+                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addAccountTypeModal\"><i class=\"fa fa-user-plus\"></i> Add Account</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshAccountTypeTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>

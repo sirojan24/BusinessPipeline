@@ -221,5 +221,40 @@ class OpportunitySourceController extends Controller {
             return new Response("false");
              
          }
-    }     
+    }  
+    
+    public function tableDataAction(Request $request) {
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $stagesArray = $this->getOpportunitySourceData($token);
+            return new Response($stagesArray);
+        } else {
+            return new Response(false);
+        }
+    }
+    
+    private function getOpportunitySourceData($token) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        $user = $repository->findOneBy(array('username' => $token->getUsername()));
+        
+        $repository1 = $em->getRepository("SettingsBundle:Opportunitysources");
+        $sources = $repository1->findBy(array('companyname' => $user->getCompanyname()));
+        
+        $opportunitySourceArray = array();
+
+        foreach ($sources as $productType) {
+            //serialize obects to array
+            $arrElement["id"] = $productType->getId();
+            $arrElement["username"] = $productType->getUsername();
+            $arrElement["opportunitySource"] = $productType->getName();
+            $arrElement["notes"] = $productType->getNotes();
+            $arrElement["status"] = $productType->getStatus();
+
+            array_push($opportunitySourceArray, $arrElement);
+        }
+        $response = array('opportunitySources' => $opportunitySourceArray);
+        return json_encode($response);
+    }
+
 }

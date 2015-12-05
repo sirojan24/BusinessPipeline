@@ -10,7 +10,7 @@
 
     function iniFillOppotunitySourceTableData() {
         $table.bootstrapTable('showLoading');
-        var data = '{{stagesArray}}';
+        var data = '{{opportunitySourceArray}}';
         var newString = data.replace(/&quot;/g, '"');
         initOpportunitySourceResponse = newString;
         //var newString = JSON.parse(data);
@@ -20,12 +20,12 @@
 
     function refreshOpportunitySourceTable() {
         $table.bootstrapTable('removeAll');
-        fillTableData();
+        fillOpportunitySourceTableData();
     }
 
-    function fillTableData() {
+    function fillOpportunitySourceTableData() {
         $table.bootstrapTable('showLoading');
-        $.post('{{path('settings_table_data')}}', null,
+        $.post('{{path('settings_opportunity_source_table_data')}}', null,
                 function (response) {
                     if (response) {
                         $table.bootstrapTable('hideLoading');
@@ -36,29 +36,6 @@
                     }
                 }
         );
-    }
-
-    function deactivateId(id) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initOpportunitySourceResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = "Inactive";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
     function fillTableDataWithUsername(username) {
@@ -124,11 +101,11 @@
         var startId = 1,
                 rows = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.opportunitySources.length; i++) {
+            var tempType = jsonString.opportunitySources[i];
 
             extendColData.push({
-                note: tempStage.notes
+                note: tempType.notes
             });
 
             var name = '{{name|lower}}';
@@ -141,44 +118,64 @@
                         '<i class="glyphicon glyphicon-chevron-down"></i>' +
                         '</button>' +
                         '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                        '<li><a href="javascript:opeEditModal(' + tempStage.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
+                        '<li><a href="javascript:opeEditOpportunitySourceModal(' + tempType.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
 
-                if (tempStage.status === "Inactive") {
-                    action += '<li><a href="javascript:activateStage(' + tempStage.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
-                } else if (tempStage.status === "Active") {
-                    action += '<li><a href="javascript:deleteStage(' + tempStage.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
+                if (tempType.status === "Inactive") {
+                    action += '<li><a href="javascript:activateOpportunitySource(' + tempType.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
+                } else if (tempType.status === "Active") {
+                    action += '<li><a href="javascript:deleteOpportunitySource(' + tempType.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
+            }else{
+                $table.bootstrapTable('hideColumn', 'Action');
             }
 
-
-            var status = tempStage.status;
-
             rows.push({
-                stages: tempStage.stage,
-                saleChange: tempStage.saleChange + "%",
-                notes: tempStage.notes,
-                status: status,
+                opportunitySource: tempType.opportunitySource,
+                notes: tempType.notes,
+                status: tempType.status,
                 action: action
-
             });
         }
         return rows;
     }
 
-    function deleteStage(id) {
+    function deactivateOpportunitySourceId(id) {
+        $table.bootstrapTable('removeAll');
+        $table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initOpportunitySourceResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.opportunitySources.length; i++) {
+            var tempStage = jsonString.opportunitySources[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = "Inactive";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'opportunitySources': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initOpportunitySourceResponse = jsonStr;
+        $table.bootstrapTable('hideLoading');
+        $table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
+    }
+
+    function deleteOpportunitySource(id) {
         //$table.bootstrapTable('showLoading');
-        var path = '{{ path('settings_deletestage',{'id':0} )}}';
+        var path = '{{ path('settings_deleteopportunitysource',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + id, null,
                 function (response) {
                     if (response) {
                         //$table.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateOpportunitySourceId(id);
                     } else {
                         $table.bootstrapTable('hideLoading');
                     }
@@ -186,15 +183,15 @@
         );
     }
 
-    function activateId(id) {
+    function activateOpportunitySourceId(id) {
         $table.bootstrapTable('removeAll');
         $table.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initOpportunitySourceResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.opportunitySources.length; i++) {
+            var tempStage = jsonString.opportunitySources[i];
 
             if (id === tempStage.id) {
                 tempStage.status = "Active";
@@ -202,22 +199,22 @@
             filterContact.push(tempStage);
 
         }
-        var filterOpportunitiesArray = {'stages': filterContact};
+        var filterOpportunitiesArray = {'opportunitySources': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initOpportunitySourceResponse = jsonStr;
         $table.bootstrapTable('hideLoading');
         $table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateOpportunitySource(id) {
         //$table.bootstrapTable('showLoading');
-        var path = '{{ path('settings_activatestage',{'id':0} )}}';
+        var path = '{{ path('settings_activateopportunitysource',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateOpportunitySourceId(id);
                     } else {
                         $table.bootstrapTable('hideLoading');
                     }

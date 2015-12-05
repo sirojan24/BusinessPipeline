@@ -30,7 +30,7 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         \$table.bootstrapTable('showLoading');
         var data = '";
         // line 13
-        echo twig_escape_filter($this->env, (isset($context["stagesArray"]) ? $context["stagesArray"] : $this->getContext($context, "stagesArray")), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["opportunitySourceArray"]) ? $context["opportunitySourceArray"] : $this->getContext($context, "opportunitySourceArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         initOpportunitySourceResponse = newString;
@@ -41,14 +41,14 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
 
     function refreshOpportunitySourceTable() {
         \$table.bootstrapTable('removeAll');
-        fillTableData();
+        fillOpportunitySourceTableData();
     }
 
-    function fillTableData() {
+    function fillOpportunitySourceTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
         // line 28
-        echo $this->env->getExtension('routing')->getPath("settings_table_data");
+        echo $this->env->getExtension('routing')->getPath("settings_opportunity_source_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
@@ -62,34 +62,11 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         );
     }
 
-    function deactivateId(id) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initOpportunitySourceResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = \"Inactive\";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
-    }
-
     function fillTableDataWithUsername(username) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 67
+        // line 44
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -151,20 +128,20 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         var startId = 1,
                 rows = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.opportunitySources.length; i++) {
+            var tempType = jsonString.opportunitySources[i];
 
             extendColData.push({
-                note: tempStage.notes
+                note: tempType.notes
             });
 
             var name = '";
-        // line 134
+        // line 111
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 136
+        // line 113
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -174,39 +151,59 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
                         '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                         '</button>' +
                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                        '<li><a href=\"javascript:opeEditModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
+                        '<li><a href=\"javascript:opeEditOpportunitySourceModal(' + tempType.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
 
-                if (tempStage.status === \"Inactive\") {
-                    action += '<li><a href=\"javascript:activateStage(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
-                } else if (tempStage.status === \"Active\") {
-                    action += '<li><a href=\"javascript:deleteStage(' + tempStage.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
+                if (tempType.status === \"Inactive\") {
+                    action += '<li><a href=\"javascript:activateOpportunitySource(' + tempType.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
+                } else if (tempType.status === \"Active\") {
+                    action += '<li><a href=\"javascript:deleteOpportunitySource(' + tempType.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
+            }else{
+                \$table.bootstrapTable('hideColumn', 'Action');
             }
 
-
-            var status = tempStage.status;
-
             rows.push({
-                stages: tempStage.stage,
-                saleChange: tempStage.saleChange + \"%\",
-                notes: tempStage.notes,
-                status: status,
+                opportunitySource: tempType.opportunitySource,
+                notes: tempType.notes,
+                status: tempType.status,
                 action: action
-
             });
         }
         return rows;
     }
 
-    function deleteStage(id) {
+    function deactivateOpportunitySourceId(id) {
+        \$table.bootstrapTable('removeAll');
+        \$table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initOpportunitySourceResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.opportunitySources.length; i++) {
+            var tempStage = jsonString.opportunitySources[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = \"Inactive\";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'opportunitySources': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initOpportunitySourceResponse = jsonStr;
+        \$table.bootstrapTable('hideLoading');
+        \$table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
+    }
+
+    function deleteOpportunitySource(id) {
         //\$table.bootstrapTable('showLoading');
         var path = '";
-        // line 174
-        echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
+        // line 171
+        echo $this->env->getExtension('routing')->getPath("settings_deleteopportunitysource", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
 
@@ -214,7 +211,7 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
                 function (response) {
                     if (response) {
                         //\$table.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateOpportunitySourceId(id);
                     } else {
                         \$table.bootstrapTable('hideLoading');
                     }
@@ -222,15 +219,15 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         );
     }
 
-    function activateId(id) {
+    function activateOpportunitySourceId(id) {
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initOpportunitySourceResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.opportunitySources.length; i++) {
+            var tempStage = jsonString.opportunitySources[i];
 
             if (id === tempStage.id) {
                 tempStage.status = \"Active\";
@@ -238,25 +235,25 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
             filterContact.push(tempStage);
 
         }
-        var filterOpportunitiesArray = {'stages': filterContact};
+        var filterOpportunitiesArray = {'opportunitySources': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initOpportunitySourceResponse = jsonStr;
         \$table.bootstrapTable('hideLoading');
         \$table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateOpportunitySource(id) {
         //\$table.bootstrapTable('showLoading');
         var path = '";
-        // line 214
-        echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
+        // line 211
+        echo $this->env->getExtension('routing')->getPath("settings_activateopportunitysource", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
 
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateOpportunitySourceId(id);
                     } else {
                         \$table.bootstrapTable('hideLoading');
                     }
@@ -299,6 +296,6 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
 
     public function getDebugInfo()
     {
-        return array (  252 => 214,  209 => 174,  168 => 136,  163 => 134,  93 => 67,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  249 => 211,  206 => 171,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

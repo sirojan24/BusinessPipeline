@@ -162,6 +162,8 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
+            }else{
+                \$productTypeTable.bootstrapTable('hideColumn', 'Action');
             }
 
 
@@ -207,7 +209,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function deleteStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 176
+        // line 178
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -252,7 +254,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function activateStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 218
+        // line 220
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -304,6 +306,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  256 => 218,  211 => 176,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  258 => 220,  213 => 178,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

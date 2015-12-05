@@ -30,7 +30,7 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
         \$productTypeTable.bootstrapTable('showLoading');
         var data = '";
         // line 13
-        echo twig_escape_filter($this->env, (isset($context["stagesArray"]) ? $context["stagesArray"] : $this->getContext($context, "stagesArray")), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["productTypeArray"]) ? $context["productTypeArray"] : $this->getContext($context, "productTypeArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         initProductTypeResponse = newString;
@@ -41,14 +41,14 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
 
     function refreshProductTypeTable() {
         \$productTypeTable.bootstrapTable('removeAll');
-        fillTableData();
+        fillProductTypeTableData();
     }
 
-    function fillTableData() {
+    function fillProductTypeTableData() {
         \$productTypeTable.bootstrapTable('showLoading');
         \$.post('";
         // line 28
-        echo $this->env->getExtension('routing')->getPath("settings_table_data");
+        echo $this->env->getExtension('routing')->getPath("settings_product_type_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
@@ -62,34 +62,11 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
         );
     }
 
-    function deactivateId(id) {
-        \$productTypeTable.bootstrapTable('removeAll');
-        \$productTypeTable.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initProductTypeResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = \"Inactive\";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        \$productTypeTable.bootstrapTable('hideLoading');
-        \$productTypeTable.bootstrapTable('append', convertProductTypeData(jsonStr));
-    }
-
     function fillTableDataWithUsername(username) {
         \$productTypeTable.bootstrapTable('removeAll');
         \$productTypeTable.bootstrapTable('showLoading');
         var path = '";
-        // line 67
+        // line 44
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -151,20 +128,20 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
         var startId = 1,
                 rows = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.productTypes.length; i++) {
+            var tempType = jsonString.productTypes[i];
 
             extendColData.push({
-                note: tempStage.notes
+                note: tempType.notes
             });
 
             var name = '";
-        // line 134
+        // line 111
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 136
+        // line 113
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -174,39 +151,61 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
                         '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                         '</button>' +
                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                        '<li><a href=\"javascript:opeEditModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
+                        '<li><a href=\"javascript:opeEditProductTypeModal(' + tempType.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
 
-                if (tempStage.status === \"Inactive\") {
-                    action += '<li><a href=\"javascript:activateStage(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
-                } else if (tempStage.status === \"Active\") {
-                    action += '<li><a href=\"javascript:deleteStage(' + tempStage.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
+                if (tempType.status === \"Inactive\") {
+                    action += '<li><a href=\"javascript:activateProductType(' + tempType.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
+                } else if (tempType.status === \"Active\") {
+                    action += '<li><a href=\"javascript:deleteProductType(' + tempType.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
+            }else{
+                \$productTypeTable.bootstrapTable('hideColumn', 'Action');
             }
 
-
-            var status = tempStage.status;
-
             rows.push({
-                stages: tempStage.stage,
-                saleChange: tempStage.saleChange + \"%\",
-                notes: tempStage.notes,
-                status: status,
+                productType: tempType.productType,
+                notes: tempType.notes,
+                status: tempType.status,
                 action: action
 
             });
         }
         return rows;
     }
+    
+    function deactivateProductTypeId(id) {
+        \$productTypeTable.bootstrapTable('removeAll');
+        \$productTypeTable.bootstrapTable('showLoading');
 
-    function deleteStage(id) {
+        var jsonString = JSON.parse(initProductTypeResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.productTypes.length; i++) {
+            var tempStage = jsonString.productTypes[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = \"Inactive\";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'productTypes': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initProductTypeResponse = jsonStr;
+        
+        \$productTypeTable.bootstrapTable('hideLoading');
+        \$productTypeTable.bootstrapTable('append', convertProductTypeData(jsonStr));
+    }
+
+    function deleteProductType(id) {
         //\$productTypeTable.bootstrapTable('showLoading');
         var path = '";
-        // line 174
-        echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
+        // line 173
+        echo $this->env->getExtension('routing')->getPath("settings_deleteproducttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
 
@@ -214,7 +213,7 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
                 function (response) {
                     if (response) {
                         //\$productTypeTable.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateProductTypeId(id);
                     } else {
                         \$productTypeTable.bootstrapTable('hideLoading');
                     }
@@ -222,15 +221,15 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
         );
     }
 
-    function activateId(id) {
+    function activateProductTypeId(id) {
         \$productTypeTable.bootstrapTable('removeAll');
         \$productTypeTable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initProductTypeResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.productTypes.length; i++) {
+            var tempStage = jsonString.productTypes[i];
 
             if (id === tempStage.id) {
                 tempStage.status = \"Active\";
@@ -238,32 +237,33 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
             filterContact.push(tempStage);
 
         }
-        var filterOpportunitiesArray = {'stages': filterContact};
+        var filterOpportunitiesArray = {'productTypes': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initProductTypeResponse = jsonStr;
+        
         \$productTypeTable.bootstrapTable('hideLoading');
         \$productTypeTable.bootstrapTable('append', convertProductTypeData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateProductType(id) {
         //\$productTypeTable.bootstrapTable('showLoading');
         var path = '";
         // line 214
-        echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
+        echo $this->env->getExtension('routing')->getPath("settings_activateproducttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
 
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateProductTypeId(id);
                     } else {
                         \$productTypeTable.bootstrapTable('hideLoading');
                     }
                 }
         );
     }
-
+    
     function priceSorter(a, b) {
         a = +a.substring(1); // remove \$
         b = +b.substring(1);
@@ -299,6 +299,6 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
 
     public function getDebugInfo()
     {
-        return array (  252 => 214,  209 => 174,  168 => 136,  163 => 134,  93 => 67,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  252 => 214,  208 => 173,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

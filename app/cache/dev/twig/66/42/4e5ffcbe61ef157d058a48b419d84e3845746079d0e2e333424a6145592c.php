@@ -79,35 +79,31 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                                 </div>\t\t\t\t\t\t\t\t\t\t\t\t
                                                 <div class=\"tab-pane fade\" id=\"accounttype\">
                                                     <h4>Account Type</h4>
-                                                    <p align=\"justify\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                     ";
-        // line 59
+        // line 58
         $this->env->loadTemplate("SettingsBundle:AccountType:accounttypesTable.html.twig")->display($context);
-        // line 60
+        // line 59
         echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"pipelinestages\">
                                                     <h4>Pipeline Stages</h4>
-                                                    <p align=\"justify\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                     ";
-        // line 64
+        // line 62
         $this->env->loadTemplate("SettingsBundle:Stages:stagesTable.html.twig")->display($context);
-        // line 65
+        // line 63
         echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"producttype\">
                                                     <h4>Product Type</h4>
-                                                    <p align=\"justify\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                     ";
-        // line 69
+        // line 66
         $this->env->loadTemplate("SettingsBundle:ProductType:productTypesTable.html.twig")->display($context);
-        // line 70
+        // line 67
         echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"opportunitysource\">
                                                     <h4>Opportunity Source</h4>
-                                                    <p align=\"justify\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                     ";
-        // line 74
+        // line 70
         $this->env->loadTemplate("SettingsBundle:OpportunitySource:opportunitySourcesTable.html.twig")->display($context);
-        // line 75
+        // line 71
         echo "                                                </div>\t\t\t\t\t\t\t\t
                                             </div>
                                         </div>
@@ -132,30 +128,30 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
             <!-- /#page-wrapper -->
 
             ";
-        // line 98
+        // line 94
         $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 99
+        // line 95
         echo "
         </div>
         <!-- /#wrapper -->
 
         ";
-        // line 103
+        // line 99
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 104
+        // line 100
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 105
+        // line 101
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 106
+        // line 102
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 107
+        // line 103
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -176,6 +172,6 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
 
     public function getDebugInfo()
     {
-        return array (  159 => 107,  155 => 106,  151 => 105,  146 => 104,  144 => 103,  138 => 99,  136 => 98,  111 => 75,  109 => 74,  103 => 70,  101 => 69,  95 => 65,  93 => 64,  87 => 60,  85 => 59,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  155 => 103,  151 => 102,  147 => 101,  142 => 100,  140 => 99,  134 => 95,  132 => 94,  107 => 71,  105 => 70,  100 => 67,  98 => 66,  93 => 63,  91 => 62,  86 => 59,  84 => 58,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

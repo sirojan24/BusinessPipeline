@@ -10,7 +10,7 @@
 
     function iniFillProductTypeTableData() {
         $productTypeTable.bootstrapTable('showLoading');
-        var data = '{{stagesArray}}';
+        var data = '{{productTypeArray}}';
         var newString = data.replace(/&quot;/g, '"');
         initProductTypeResponse = newString;
         //var newString = JSON.parse(data);
@@ -20,12 +20,12 @@
 
     function refreshProductTypeTable() {
         $productTypeTable.bootstrapTable('removeAll');
-        fillTableData();
+        fillProductTypeTableData();
     }
 
-    function fillTableData() {
+    function fillProductTypeTableData() {
         $productTypeTable.bootstrapTable('showLoading');
-        $.post('{{path('settings_table_data')}}', null,
+        $.post('{{path('settings_product_type_table_data')}}', null,
                 function (response) {
                     if (response) {
                         $productTypeTable.bootstrapTable('hideLoading');
@@ -36,29 +36,6 @@
                     }
                 }
         );
-    }
-
-    function deactivateId(id) {
-        $productTypeTable.bootstrapTable('removeAll');
-        $productTypeTable.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initProductTypeResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = "Inactive";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        $productTypeTable.bootstrapTable('hideLoading');
-        $productTypeTable.bootstrapTable('append', convertProductTypeData(jsonStr));
     }
 
     function fillTableDataWithUsername(username) {
@@ -124,11 +101,11 @@
         var startId = 1,
                 rows = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.productTypes.length; i++) {
+            var tempType = jsonString.productTypes[i];
 
             extendColData.push({
-                note: tempStage.notes
+                note: tempType.notes
             });
 
             var name = '{{name|lower}}';
@@ -141,44 +118,66 @@
                         '<i class="glyphicon glyphicon-chevron-down"></i>' +
                         '</button>' +
                         '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                        '<li><a href="javascript:opeEditModal(' + tempStage.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
+                        '<li><a href="javascript:opeEditProductTypeModal(' + tempType.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
 
-                if (tempStage.status === "Inactive") {
-                    action += '<li><a href="javascript:activateStage(' + tempStage.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
-                } else if (tempStage.status === "Active") {
-                    action += '<li><a href="javascript:deleteStage(' + tempStage.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
+                if (tempType.status === "Inactive") {
+                    action += '<li><a href="javascript:activateProductType(' + tempType.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
+                } else if (tempType.status === "Active") {
+                    action += '<li><a href="javascript:deleteProductType(' + tempType.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
+            }else{
+                $productTypeTable.bootstrapTable('hideColumn', 'Action');
             }
 
-
-            var status = tempStage.status;
-
             rows.push({
-                stages: tempStage.stage,
-                saleChange: tempStage.saleChange + "%",
-                notes: tempStage.notes,
-                status: status,
+                productType: tempType.productType,
+                notes: tempType.notes,
+                status: tempType.status,
                 action: action
 
             });
         }
         return rows;
     }
+    
+    function deactivateProductTypeId(id) {
+        $productTypeTable.bootstrapTable('removeAll');
+        $productTypeTable.bootstrapTable('showLoading');
 
-    function deleteStage(id) {
+        var jsonString = JSON.parse(initProductTypeResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.productTypes.length; i++) {
+            var tempStage = jsonString.productTypes[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = "Inactive";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'productTypes': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initProductTypeResponse = jsonStr;
+        
+        $productTypeTable.bootstrapTable('hideLoading');
+        $productTypeTable.bootstrapTable('append', convertProductTypeData(jsonStr));
+    }
+
+    function deleteProductType(id) {
         //$productTypeTable.bootstrapTable('showLoading');
-        var path = '{{ path('settings_deletestage',{'id':0} )}}';
+        var path = '{{ path('settings_deleteproducttype',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + id, null,
                 function (response) {
                     if (response) {
                         //$productTypeTable.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateProductTypeId(id);
                     } else {
                         $productTypeTable.bootstrapTable('hideLoading');
                     }
@@ -186,15 +185,15 @@
         );
     }
 
-    function activateId(id) {
+    function activateProductTypeId(id) {
         $productTypeTable.bootstrapTable('removeAll');
         $productTypeTable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initProductTypeResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.productTypes.length; i++) {
+            var tempStage = jsonString.productTypes[i];
 
             if (id === tempStage.id) {
                 tempStage.status = "Active";
@@ -202,29 +201,30 @@
             filterContact.push(tempStage);
 
         }
-        var filterOpportunitiesArray = {'stages': filterContact};
+        var filterOpportunitiesArray = {'productTypes': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initProductTypeResponse = jsonStr;
+        
         $productTypeTable.bootstrapTable('hideLoading');
         $productTypeTable.bootstrapTable('append', convertProductTypeData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateProductType(id) {
         //$productTypeTable.bootstrapTable('showLoading');
-        var path = '{{ path('settings_activatestage',{'id':0} )}}';
+        var path = '{{ path('settings_activateproducttype',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateProductTypeId(id);
                     } else {
                         $productTypeTable.bootstrapTable('hideLoading');
                     }
                 }
         );
     }
-
+    
     function priceSorter(a, b) {
         a = +a.substring(1); // remove $
         b = +b.substring(1);

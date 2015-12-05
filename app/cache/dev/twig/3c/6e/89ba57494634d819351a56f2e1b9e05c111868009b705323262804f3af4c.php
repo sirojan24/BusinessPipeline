@@ -66,7 +66,7 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
     }
     
     function opeEditStageModal(id){
-        var jsonString = JSON.parse(initResponse);
+        var jsonString = JSON.parse(initStageResponse);
 
         for (var i = 0; i < jsonString.stages.length; i++) {
             var tempStage = jsonString.stages[i];

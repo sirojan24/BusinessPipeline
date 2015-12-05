@@ -24,6 +24,39 @@ class AccountTypeController extends Controller
         }
     }
     
+    public function tableDataAction(Request $request) {
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $stagesArray = $this->getAccountTypeData($token);
+            return new Response($stagesArray);
+        } else {
+            return new Response(false);
+        }
+    }
+    
+    private function getAccountTypeData($token) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        $user = $repository->findOneBy(array('username' => $token->getUsername()));
+        
+        $repository1 = $em->getRepository("SettingsBundle:Accounttypes");
+        $accountTypes = $repository1->findBy(array('companyname' => $user->getCompanyname()));
+        
+        $accountTypesArray = array();
+        foreach ($accountTypes as $accountType) {
+            //serialize obects to array
+            $arrElement["id"] = $accountType->getId();
+            $arrElement["username"] = $accountType->getUsername();
+            $arrElement["accountType"] = $accountType->getName();
+            $arrElement["notes"] = $accountType->getNotes();
+            $arrElement["status"] = $accountType->getStatus();
+
+            array_push($accountTypesArray, $arrElement);
+        }
+        $response = array('accountTypes' => $accountTypesArray);
+        return json_encode($response);
+    }
+
     public function saveaccounttypeAction (Request $request){
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();

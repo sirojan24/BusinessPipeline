@@ -1,5 +1,5 @@
-{% include 'SettingsBundle:OpportunitySource:addStageModal.html.twig' %}
-{% include 'SettingsBundle:OpportunitySource:editStageModal.html.twig' %}
+{% include 'SettingsBundle:OpportunitySource:addOpportunitySourceModal.html.twig' %}
+{% include 'SettingsBundle:OpportunitySource:editOpportunitySourceModal.html.twig' %}
 <div class="panel panel-default">
     <div class="panel-body">
         
@@ -8,10 +8,10 @@
                 <div class="col-lg-12">
                     <div class="pull-right">  
                         <span calss="pull-right">
-                            <a href="#" style="color: black;" data-toggle="modal" data-target="#addStage"><i class="fa fa-user-plus"></i> Add Stage</a>
+                            <a href="#" style="color: black;" data-toggle="modal" data-target="#addOpportunitySourceModal"><i class="fa fa-user-plus"></i> Add Source</a>
                         </span>
                         <span calss="pull-right" style="margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;">
-                            <a href="javascript:refreshTable()" style="color: black;"><i class="fa fa-refresh fa-lg" style="margin-left: 5px;margin-right: 2px;"></i></a>
+                            <a href="javascript:refreshOpportunitySourceTable()" style="color: black;"><i class="fa fa-refresh fa-lg" style="margin-left: 5px;margin-right: 2px;"></i></a>
                         </span>
                         <span calss="pull-right" style="margin-left: 10px">
                             <a href="#" style="color: black;"><i class="fa fa-print fa-lg"></i></a>
@@ -44,8 +44,7 @@
                             <thead>
                                 <tr>
                                     <th data-field="state" data-checkbox="true"></th>
-                                    <th data-field="stages" data-sortable="true">Stages</th>
-                                    <th data-field="saleChange" data-sortable="true">Chance Of Sale</th>
+                                    <th data-field="opportunitySource" data-sortable="true">Opportunity Source</th>
                                     <th data-field="notes" data-sortable="true">Notes</th>
                                     <th data-field="status" data-sortable="true">Status</th>
                                     <th data-field="action" data-sortable="true">Action</th>

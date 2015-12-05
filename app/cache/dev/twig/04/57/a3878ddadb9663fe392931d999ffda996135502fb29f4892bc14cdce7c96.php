@@ -16,9 +16,9 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        $this->env->loadTemplate("SettingsBundle:Stages:addStageModal.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:ProductType:addProductTypeModal.html.twig")->display($context);
         // line 2
-        $this->env->loadTemplate("SettingsBundle:Stages:editStageModal.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:ProductType:editProductTypeModal.html.twig")->display($context);
         // line 3
         echo "<div class=\"panel panel-default\">
     <div class=\"panel-body\">
@@ -28,10 +28,10 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
                 <div class=\"col-lg-12\">
                     <div class=\"pull-right\">  
                         <span calss=\"pull-right\">
-                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Stage</a>
+                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addProductTypeModal\"><i class=\"fa fa-user-plus\"></i> Add Product</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
-                            <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
+                            <a href=\"javascript:refreshProductTypeTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
@@ -63,9 +63,8 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
                                data-row-style=\"rowStyle\">
                             <thead>
                                 <tr>
-                                    <th data-field=\"state\" data-checkbox=\"true\"></th>
-                                    <th data-field=\"stages\" data-sortable=\"true\">Stages</th>
-                                    <th data-field=\"saleChange\" data-sortable=\"true\">Chance Of Sale</th>
+                                   <th data-field=\"state\" data-checkbox=\"true\"></th>
+                                    <th data-field=\"productType\" data-sortable=\"true\">Product Type</th>
                                     <th data-field=\"notes\" data-sortable=\"true\">Notes</th>
                                     <th data-field=\"status\" data-sortable=\"true\">Status</th>
                                     <th data-field=\"action\" data-sortable=\"true\">Action</th>
@@ -80,7 +79,7 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
     </div>
 </div>
 ";
-        // line 62
+        // line 61
         $this->env->loadTemplate("SettingsBundle:ProductType:productTypeTableScript.html.twig")->display($context);
     }
 
@@ -96,6 +95,6 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
 
     public function getDebugInfo()
     {
-        return array (  84 => 62,  23 => 3,  21 => 2,  19 => 1,);
+        return array (  83 => 61,  23 => 3,  21 => 2,  19 => 1,);
     }
 }

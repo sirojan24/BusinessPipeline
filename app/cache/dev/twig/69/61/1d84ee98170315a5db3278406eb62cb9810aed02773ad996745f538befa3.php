@@ -48,7 +48,7 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         \$accounttypetable.bootstrapTable('showLoading');
         \$.post('";
         // line 28
-        echo $this->env->getExtension('routing')->getPath("settings_table_data");
+        echo $this->env->getExtension('routing')->getPath("settings_account_type_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
@@ -151,7 +151,7 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
                         '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                         '</button>' +
                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                        '<li><a href=\"javascript:opeEditModal(' + tempType.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
+                        '<li><a href=\"javascript:opeEditAccountTypeModal(' + tempType.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
 
                 if (tempType.status === \"Inactive\") {
                     action += '<li><a href=\"javascript:activateAccountType(' + tempType.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
@@ -162,6 +162,8 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
+            }else{
+                \$accounttypetable.bootstrapTable('hideColumn', 'Action');
             }
 
             rows.push({
@@ -193,7 +195,8 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         }
         var filterOpportunitiesArray = {'accountTypes': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initResponse = jsonStr;
+        
         \$accounttypetable.bootstrapTable('hideLoading');
         \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
     }
@@ -201,7 +204,7 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
     function deleteAccountType(id) {
         //\$accounttypetable.bootstrapTable('showLoading');
         var path = '";
-        // line 170
+        // line 173
         echo $this->env->getExtension('routing')->getPath("settings_deleteaccounttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -236,7 +239,8 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         }
         var filterOpportunitiesArray = {'accountTypes': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initResponse = jsonStr;
+        
         \$accounttypetable.bootstrapTable('hideLoading');
         \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
     }
@@ -244,7 +248,7 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
     function activateAccountType(id) {
         //\$accounttypetable.bootstrapTable('showLoading');
         var path = '";
-        // line 210
+        // line 214
         echo $this->env->getExtension('routing')->getPath("settings_activateaccounttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -295,6 +299,6 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
 
     public function getDebugInfo()
     {
-        return array (  248 => 210,  205 => 170,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  252 => 214,  208 => 173,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

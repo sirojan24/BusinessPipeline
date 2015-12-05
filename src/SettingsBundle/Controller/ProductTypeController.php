@@ -222,4 +222,37 @@ class ProductTypeController extends Controller {
          }
     }   
     
+    public function productTypeTableDataAction(Request $request) {
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $stagesArray = $this->getProductTypeData($token);
+            return new Response($stagesArray);
+        } else {
+            return new Response(false);
+        }
+    }
+    
+    private function getProductTypeData($token) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        $user = $repository->findOneBy(array('username' => $token->getUsername()));
+        
+        $repository1 = $em->getRepository("SettingsBundle:Producttypes");
+        $producttypes = $repository1->findBy(array('companyname' => $user->getCompanyname()));
+        
+        $productTypesArray = array();
+        
+        foreach ($producttypes as $productType) {
+            //serialize obects to array
+            $arrElement["id"] = $productType->getId();
+            $arrElement["username"] = $productType->getUsername();
+            $arrElement["productType"] = $productType->getName();
+            $arrElement["notes"] = $productType->getNotes();
+            $arrElement["status"] = $productType->getStatus();
+
+            array_push($productTypesArray, $arrElement);
+        }
+        $response = array('productTypes' => $productTypesArray);
+        return json_encode($response);
+    }
 }
