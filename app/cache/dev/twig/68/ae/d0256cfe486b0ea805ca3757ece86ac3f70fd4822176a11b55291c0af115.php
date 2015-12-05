@@ -151,7 +151,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                         '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                         '</button>' +
                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                        '<li><a href=\"javascript:opeEditModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
+                        '<li><a href=\"javascript:opeEditStageModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
 
                 if (tempStage.status === \"Inactive\") {
                     action += '<li><a href=\"javascript:activateStageCall(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
@@ -197,8 +197,9 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
+        
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initStageResponse = jsonStr;
         \$stagetable.bootstrapTable('hideLoading');
         \$stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
@@ -206,7 +207,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function deleteStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 175
+        // line 176
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -215,12 +216,13 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 function (response) {
                     if (response) {
                         //\$stagetable.bootstrapTable('showLoading');
-                        deactivateStageId(id);
+                        
                     } else {
                         \$stagetable.bootstrapTable('hideLoading');
                     }
                 }
         );
+        deactivateStageId(id);
     }
 
     function activateStageId(id) {
@@ -240,8 +242,9 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
+        
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initStageResponse = jsonStr;
         \$stagetable.bootstrapTable('hideLoading');
         \$stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
@@ -249,7 +252,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function activateStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 215
+        // line 218
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -257,12 +260,13 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateStageId(id);
+                        
                     } else {
                         \$stagetable.bootstrapTable('hideLoading');
                     }
                 }
         );
+        activateStageId(id);
     }
 
     function priceSorter(a, b) {
@@ -300,6 +304,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  253 => 215,  210 => 175,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  256 => 218,  211 => 176,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

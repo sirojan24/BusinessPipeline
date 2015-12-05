@@ -118,7 +118,7 @@
                         '<i class="glyphicon glyphicon-chevron-down"></i>' +
                         '</button>' +
                         '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                        '<li><a href="javascript:opeEditModal(' + tempStage.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
+                        '<li><a href="javascript:opeEditStageModal(' + tempStage.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
 
                 if (tempStage.status === "Inactive") {
                     action += '<li><a href="javascript:activateStageCall(' + tempStage.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
@@ -164,8 +164,9 @@
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
+        
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initStageResponse = jsonStr;
         $stagetable.bootstrapTable('hideLoading');
         $stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
@@ -179,12 +180,13 @@
                 function (response) {
                     if (response) {
                         //$stagetable.bootstrapTable('showLoading');
-                        deactivateStageId(id);
+                        
                     } else {
                         $stagetable.bootstrapTable('hideLoading');
                     }
                 }
         );
+        deactivateStageId(id);
     }
 
     function activateStageId(id) {
@@ -204,8 +206,9 @@
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
+        
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
+        initStageResponse = jsonStr;
         $stagetable.bootstrapTable('hideLoading');
         $stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
@@ -218,12 +221,13 @@
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateStageId(id);
+                        
                     } else {
                         $stagetable.bootstrapTable('hideLoading');
                     }
                 }
         );
+        activateStageId(id);
     }
 
     function priceSorter(a, b) {

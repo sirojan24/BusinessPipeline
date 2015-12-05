@@ -28,7 +28,7 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
                 <div class=\"col-lg-12\">
                     <div class=\"pull-right\">  
                         <span calss=\"pull-right\">
-                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Stage</a>
+                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStageModal\"><i class=\"fa fa-user-plus\"></i> Add Stage</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshStageTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>

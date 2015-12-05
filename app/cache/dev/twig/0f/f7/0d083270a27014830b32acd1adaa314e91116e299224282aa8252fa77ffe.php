@@ -30,7 +30,7 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
     });
 </script>
 <!-- Modal -->
-<div class=\"modal fade\" id=\"addStage\" role=\"dialog\">
+<div class=\"modal fade\" id=\"addStageModal\" role=\"dialog\">
     <div class=\"modal-dialog\">
 
         <!-- Modal content-->

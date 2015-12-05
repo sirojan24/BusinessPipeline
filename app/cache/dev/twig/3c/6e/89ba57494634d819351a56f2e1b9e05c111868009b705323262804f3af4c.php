@@ -65,18 +65,18 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
         return false;
     }
     
-    function opeEditModal(id){
+    function opeEditStageModal(id){
         var jsonString = JSON.parse(initResponse);
 
         for (var i = 0; i < jsonString.stages.length; i++) {
             var tempStage = jsonString.stages[i];
 
             if (id === tempStage.id) {
-                \$(\"#editStageId\").val(id);
-                \$(\"#editStageName\").val(tempStage.stage);
-                \$(\"#editStageSalechance\").val(tempStage.saleChange);
-                \$(\"#editStageNotes\").val(tempStage.notes);
-                \$('#editStage').modal('show');
+                \$(\"#editStageModalId\").val(id);
+                \$(\"#editStageModalName\").val(tempStage.stage);
+                \$(\"#editStageModalSalechance\").val(tempStage.saleChange);
+                \$(\"#editStageModalNotes\").val(tempStage.notes);
+                \$('#editStageModal').modal('show');
                 break;
             }
 
@@ -88,7 +88,7 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
         // line 61
         echo $this->env->getExtension('routing')->getPath("settings_updatestage");
         echo "',
-                {id: \$(\"#editStageId\").val(), name: \$(\"#editStageName\").val(), salechance: \$(\"#editStageSalechance\").val(), notes: \$(\"#editStageNotes\").val()},
+                {id: \$(\"#editStageId\").val(), name: \$(\"#editStageModalName\").val(), salechance: \$(\"#editStageModalSalechance\").val(), notes: \$(\"#editStageModalNotes\").val()},
         function (response) {
             if (response != \"false\") {
                 refreshTable();

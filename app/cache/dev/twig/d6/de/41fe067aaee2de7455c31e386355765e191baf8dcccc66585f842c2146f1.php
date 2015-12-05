@@ -30,7 +30,7 @@ class __TwigTemplate_d6de41fe067aaee2de7455c31e386355765e191baf8dcccc66585f842c2
     });
 </script>
 <!-- Modal -->
-<div class=\"modal fade\" id=\"editStage\" role=\"dialog\">
+<div class=\"modal fade\" id=\"editStageModal\" role=\"dialog\">
     <div class=\"modal-dialog\">
 
         <!-- Modal content-->
@@ -49,7 +49,7 @@ class __TwigTemplate_d6de41fe067aaee2de7455c31e386355765e191baf8dcccc66585f842c2
                         <div class=\"col-xs-12\">
                             <div class=\"form-group\">
                                 <label for=\"firstname\">Name <span style=\"color:#FF0000;\">*</span></label>
-                                <input type=\"text\" name=\"name\" class=\"form-control\" id=\"editStageName\" placeholder=\"Name\" autocomplete=\"off\"
+                                <input type=\"text\" name=\"name\" class=\"form-control\" id=\"editStageModalName\" placeholder=\"Name\" autocomplete=\"off\"
                                        placeholder=\"Name\" onkeyup=\"stageAvailability()\" required/>
                             </div>
                         </div>
@@ -59,7 +59,7 @@ class __TwigTemplate_d6de41fe067aaee2de7455c31e386355765e191baf8dcccc66585f842c2
                             <div class=\"form-group\">
                                 <label for=\"Last Name\">Chance of Sale <span style=\"color:#FF0000;\">*</span></label>
                                 <div class=\"input-group\" >
-                                    <input type=\"text\" name=\"salechance\" class=\"form-control\" id=\"editStageSalechance\" autocomplete=\"off\"
+                                    <input type=\"text\" name=\"salechance\" class=\"form-control\" id=\"editStageModalSalechance\" autocomplete=\"off\"
                                            placeholder=\"Chance of sale\" required/>
                                     <span class=\"input-group-addon\">
                                         %
@@ -72,11 +72,11 @@ class __TwigTemplate_d6de41fe067aaee2de7455c31e386355765e191baf8dcccc66585f842c2
                         <div class=\"col-xs-12\">\t\t\t\t
                             <div class=\"form-group\">
                                 <label for=\"username\">Notes</label>
-                                <textarea  id=\"editStageNotes\" placeholder=\"Notes\" class=\"form-control\" name=\"notes\" rows =\"4\"></textarea>
+                                <textarea  id=\"editStageModalNotes\" placeholder=\"Notes\" class=\"form-control\" name=\"notes\" rows =\"4\"></textarea>
                                 <div id=\"usernameerror\"></div>
                             </div>
                         </div>
-                        <input type=\"hidden\" value = \"\" id =\"editStageId\">
+                        <input type=\"hidden\" value = \"\" id =\"editStageModalId\">
                     </div>
 
                     <div class=\"row\">
