@@ -31,7 +31,7 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
                             <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Stage</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
-                            <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
+                            <a href=\"javascript:refreshAccountTypeTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
@@ -81,7 +81,7 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
 </div>
 ";
         // line 62
-        $this->env->loadTemplate("SettingsBundle:AccountType:stagesTableScript.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:AccountType:accountTypeTableScript.html.twig")->display($context);
     }
 
     public function getTemplateName()

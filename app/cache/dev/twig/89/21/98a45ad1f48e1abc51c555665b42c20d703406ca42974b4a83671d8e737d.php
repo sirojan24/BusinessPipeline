@@ -36,7 +36,7 @@ class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8
         initResponse = newString;
         //var newString = JSON.parse(data);
         \$accounttypetable.bootstrapTable('hideLoading');
-        \$accounttypetable.bootstrapTable('append', convertData(newString));
+        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(newString));
     }
 
     function refreshAccountTypeTable() {
@@ -54,7 +54,7 @@ class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8
                     if (response) {
                         \$accounttypetable.bootstrapTable('hideLoading');
                         initResponse = response;
-                        \$accounttypetable.bootstrapTable('append', convertData(response));
+                        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(response));
                     } else {
 
                     }
@@ -82,7 +82,7 @@ class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
         \$accounttypetable.bootstrapTable('hideLoading');
-        \$accounttypetable.bootstrapTable('append', convertData(jsonStr));
+        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
     }
 
     function fillTableDataWithUsername(username) {
@@ -98,7 +98,7 @@ class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8
                 function (response) {
                     if (response) {
                         \$accounttypetable.bootstrapTable('hideLoading');
-                        \$accounttypetable.bootstrapTable('append', convertData(response));
+                        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(response));
                     } else {
 
                     }
@@ -144,7 +144,7 @@ class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8
         return html.join('');
     }
 
-    function convertData(response) {
+    function convertAccountTypeData(response) {
         var jsonString = JSON.parse(response);
         extendColData = [];
 
@@ -242,7 +242,7 @@ class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
         \$accounttypetable.bootstrapTable('hideLoading');
-        \$accounttypetable.bootstrapTable('append', convertData(jsonStr));
+        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
     }
 
     function activateStage(id) {

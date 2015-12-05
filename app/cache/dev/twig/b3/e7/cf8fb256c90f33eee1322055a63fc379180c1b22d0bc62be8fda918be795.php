@@ -31,7 +31,7 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
                             <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Stage</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
-                            <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
+                            <a href=\"javascript:refreshStageTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
@@ -50,7 +50,7 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
             </div>
 
             <div class=\"row\">
-                <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
+                <div class=\"col-lg-12\" id=\"tableStageDiv\" style=\"display: none\">
                     <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
                         <table id=\"stagetable\"
                                data-toggle=\"table\"

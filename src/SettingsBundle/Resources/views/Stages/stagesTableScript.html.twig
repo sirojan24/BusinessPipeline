@@ -1,36 +1,36 @@
 <script>
-    var $table = $('#stagetable');
+    var $stagetable = $('#stagetable');
     var extendColData = [];
-    var initResponse;
+    var initStageResponse;
 
     $(document).ready(function () {
-        $("#tableDiv").show();
-        iniFillTableData();
+        $("#tableStageDiv").show();
+        iniFillStageTableData();
     });
 
-    function iniFillTableData() {
-        $table.bootstrapTable('showLoading');
+    function iniFillStageTableData() {
+        $stagetable.bootstrapTable('showLoading');
         var data = '{{stagesArray}}';
         var newString = data.replace(/&quot;/g, '"');
-        initResponse = newString;
+        initStageResponse = newString;
         //var newString = JSON.parse(data);
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(newString));
+        $stagetable.bootstrapTable('hideLoading');
+        $stagetable.bootstrapTable('append', convertStageData(newString));
     }
 
-    function refreshTable() {
-        $table.bootstrapTable('removeAll');
-        fillTableData();
+    function refreshStageTable() {
+        $stagetable.bootstrapTable('removeAll');
+        fillStageTableData();
     }
 
-    function fillTableData() {
-        $table.bootstrapTable('showLoading');
+    function fillStageTableData() {
+        $stagetable.bootstrapTable('showLoading');
         $.post('{{path('settings_table_data')}}', null,
                 function (response) {
                     if (response) {
-                        $table.bootstrapTable('hideLoading');
-                        initResponse = response;
-                        $table.bootstrapTable('append', convertData(response));
+                        $stagetable.bootstrapTable('hideLoading');
+                        initStageResponse = response;
+                        $stagetable.bootstrapTable('append', convertStageData(response));
                     } else {
 
                     }
@@ -39,10 +39,10 @@
     }
 
     function deactivateId(id) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
+        $stagetable.bootstrapTable('removeAll');
+        $stagetable.bootstrapTable('showLoading');
 
-        var jsonString = JSON.parse(initResponse);
+        var jsonString = JSON.parse(initStageResponse);
         var filterContact = [];
 
         for (var i = 0; i < jsonString.stages.length; i++) {
@@ -57,21 +57,21 @@
         var filterOpportunitiesArray = {'stages': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(jsonStr));
+        $stagetable.bootstrapTable('hideLoading');
+        $stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
 
-    function fillTableDataWithUsername(username) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
+    function fillStageTableDataWithUsername(username) {
+        $stagetable.bootstrapTable('removeAll');
+        $stagetable.bootstrapTable('showLoading');
         var path = '{{path('contacts_contacts_table_data_username_filter', {'username': '0'})}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + username, null,
                 function (response) {
                     if (response) {
-                        $table.bootstrapTable('hideLoading');
-                        $table.bootstrapTable('append', convertData(response));
+                        $stagetable.bootstrapTable('hideLoading');
+                        $stagetable.bootstrapTable('append', convertStageData(response));
                     } else {
 
                     }
@@ -117,7 +117,7 @@
         return html.join('');
     }
 
-    function convertData(response) {
+    function convertStageData(response) {
         var jsonString = JSON.parse(response);
         extendColData = [];
 
@@ -170,27 +170,27 @@
     }
 
     function deleteStage(id) {
-        //$table.bootstrapTable('showLoading');
+        //$stagetable.bootstrapTable('showLoading');
         var path = '{{ path('settings_deletestage',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        //$table.bootstrapTable('showLoading');
+                        //$stagetable.bootstrapTable('showLoading');
                         deactivateId(id);
                     } else {
-                        $table.bootstrapTable('hideLoading');
+                        $stagetable.bootstrapTable('hideLoading');
                     }
                 }
         );
     }
 
     function activateId(id) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
+        $stagetable.bootstrapTable('removeAll');
+        $stagetable.bootstrapTable('showLoading');
 
-        var jsonString = JSON.parse(initResponse);
+        var jsonString = JSON.parse(initStageResponse);
         var filterContact = [];
 
         for (var i = 0; i < jsonString.stages.length; i++) {
@@ -205,12 +205,12 @@
         var filterOpportunitiesArray = {'stages': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(jsonStr));
+        $stagetable.bootstrapTable('hideLoading');
+        $stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
 
     function activateStage(id) {
-        //$table.bootstrapTable('showLoading');
+        //$stagetable.bootstrapTable('showLoading');
         var path = '{{ path('settings_activatestage',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
@@ -219,7 +219,7 @@
                     if (response) {
                         activateId(id);
                     } else {
-                        $table.bootstrapTable('hideLoading');
+                        $stagetable.bootstrapTable('hideLoading');
                     }
                 }
         );

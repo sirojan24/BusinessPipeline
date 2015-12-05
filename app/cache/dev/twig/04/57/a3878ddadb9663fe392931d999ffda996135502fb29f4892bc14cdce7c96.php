@@ -50,9 +50,9 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
             </div>
 
             <div class=\"row\">
-                <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
+                <div class=\"col-lg-12\" id=\"tableProductTypeDiv\" style=\"display: none\">
                     <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
-                        <table id=\"table\"
+                        <table id=\"producttypetable\"
                                data-toggle=\"table\"
                                data-search=\"true\"
                                data-page-size=\"10\"
@@ -81,7 +81,7 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
 </div>
 ";
         // line 62
-        $this->env->loadTemplate("SettingsBundle:Stages:stagesTableScript.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:ProductType:productTypeTableScript.html.twig")->display($context);
     }
 
     public function getTemplateName()

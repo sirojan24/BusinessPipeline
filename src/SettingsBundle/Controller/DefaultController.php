@@ -22,7 +22,7 @@ class DefaultController extends Controller
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-            $stagesArray = $this->getTableData($token);
+            $stagesArray = $this->getStageTableData($token);
             return $this->render('SettingsBundle:Default:pipelinesetup.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 
                 'fullname' => $fullname, 'stagesArray' => $stagesArray));
         } else {
@@ -31,7 +31,7 @@ class DefaultController extends Controller
         }
     }
     
-    private function getTableData($token) {
+    private function getStageTableData($token) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
         $user = $repository->findOneBy(array('username' => $token->getUsername()));

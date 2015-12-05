@@ -50,7 +50,7 @@ class __TwigTemplate_c2799c628701bd653c99da6af2371a3252467001f5ae594c22fd1a262e3
             </div>
 
             <div class=\"row\">
-                <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
+                <div class=\"col-lg-12\" id=\"opportunityTableDiv\" style=\"display: none\">
                     <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
                         <table id=\"table\"
                                data-toggle=\"table\"
@@ -81,7 +81,7 @@ class __TwigTemplate_c2799c628701bd653c99da6af2371a3252467001f5ae594c22fd1a262e3
 </div>
 ";
         // line 62
-        $this->env->loadTemplate("SettingsBundle:OpportunitySource:stagesTableScript.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:OpportunitySource:opportunitySourceTableScript.html.twig")->display($context);
     }
 
     public function getTemplateName()
