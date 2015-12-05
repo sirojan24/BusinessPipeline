@@ -1,7 +1,7 @@
 <?php
 
-/* SettingsBundle:Stages:stagesTableScript.html.twig */
-class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0af115 extends Twig_Template
+/* SettingsBundle:OpportunitySource:stagesTableScript.html.twig */
+class __TwigTemplate_ed193869cd29978dee6439c52fe8963cc9ec53f2dec33088978af592e42b2753 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -289,7 +289,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getTemplateName()
     {
-        return "SettingsBundle:Stages:stagesTableScript.html.twig";
+        return "SettingsBundle:OpportunitySource:stagesTableScript.html.twig";
     }
 
     public function isTraitable()

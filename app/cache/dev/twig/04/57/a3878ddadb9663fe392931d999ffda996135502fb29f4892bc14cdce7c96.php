@@ -1,7 +1,7 @@
 <?php
 
-/* SettingsBundle:Stages:stagesTable.html.twig */
-class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918be795 extends Twig_Template
+/* SettingsBundle:ProductType:productTypesTable.html.twig */
+class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdce7c96 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -52,7 +52,7 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
             <div class=\"row\">
                 <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
                     <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
-                        <table id=\"stagetable\"
+                        <table id=\"table\"
                                data-toggle=\"table\"
                                data-search=\"true\"
                                data-page-size=\"10\"
@@ -86,7 +86,7 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
 
     public function getTemplateName()
     {
-        return "SettingsBundle:Stages:stagesTable.html.twig";
+        return "SettingsBundle:ProductType:productTypesTable.html.twig";
     }
 
     public function isTraitable()

@@ -1,7 +1,7 @@
 <?php
 
-/* SettingsBundle:Stages:stagesTable.html.twig */
-class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918be795 extends Twig_Template
+/* SettingsBundle:OpportunitySource:opportunitySourcesTable.html.twig */
+class __TwigTemplate_c2799c628701bd653c99da6af2371a3252467001f5ae594c22fd1a262e3e2c20 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -16,9 +16,9 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        $this->env->loadTemplate("SettingsBundle:Stages:addStageModal.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:OpportunitySource:addStageModal.html.twig")->display($context);
         // line 2
-        $this->env->loadTemplate("SettingsBundle:Stages:editStageModal.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:OpportunitySource:editStageModal.html.twig")->display($context);
         // line 3
         echo "<div class=\"panel panel-default\">
     <div class=\"panel-body\">
@@ -52,7 +52,7 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
             <div class=\"row\">
                 <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
                     <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
-                        <table id=\"stagetable\"
+                        <table id=\"table\"
                                data-toggle=\"table\"
                                data-search=\"true\"
                                data-page-size=\"10\"
@@ -81,12 +81,12 @@ class __TwigTemplate_b3e7cf8fb256c90f33eee1322055a63fc379180c1b22d0bc62be8fda918
 </div>
 ";
         // line 62
-        $this->env->loadTemplate("SettingsBundle:Stages:stagesTableScript.html.twig")->display($context);
+        $this->env->loadTemplate("SettingsBundle:OpportunitySource:stagesTableScript.html.twig")->display($context);
     }
 
     public function getTemplateName()
     {
-        return "SettingsBundle:Stages:stagesTable.html.twig";
+        return "SettingsBundle:OpportunitySource:opportunitySourcesTable.html.twig";
     }
 
     public function isTraitable()

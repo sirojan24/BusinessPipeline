@@ -1,7 +1,7 @@
 <?php
 
-/* SettingsBundle:Stages:stagesTableScript.html.twig */
-class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0af115 extends Twig_Template
+/* SettingsBundle:AccountType:stagesTableScript.html.twig */
+class __TwigTemplate_892198a45ad1f48e1abc51c555665b42c20d703406ca42974b4a83671d8e737d extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -17,17 +17,17 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     {
         // line 1
         echo "<script>
-    var \$table = \$('#table');
+    var \$accounttypetable = \$('#accounttypetable');
     var extendColData = [];
     var initResponse;
 
     \$(document).ready(function () {
         \$(\"#tableDiv\").show();
-        iniFillTableData();
+        iniFillAccountTypeTableData();
     });
 
-    function iniFillTableData() {
-        \$table.bootstrapTable('showLoading');
+    function iniFillAccountTypeTableData() {
+        \$accounttypetable.bootstrapTable('showLoading');
         var data = '";
         // line 13
         echo twig_escape_filter($this->env, (isset($context["stagesArray"]) ? $context["stagesArray"] : $this->getContext($context, "stagesArray")), "html", null, true);
@@ -35,26 +35,26 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         var newString = data.replace(/&quot;/g, '\"');
         initResponse = newString;
         //var newString = JSON.parse(data);
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(newString));
+        \$accounttypetable.bootstrapTable('hideLoading');
+        \$accounttypetable.bootstrapTable('append', convertData(newString));
     }
 
-    function refreshTable() {
-        \$table.bootstrapTable('removeAll');
+    function refreshAccountTypeTable() {
+        \$accounttypetable.bootstrapTable('removeAll');
         fillTableData();
     }
 
     function fillTableData() {
-        \$table.bootstrapTable('showLoading');
+        \$accounttypetable.bootstrapTable('showLoading');
         \$.post('";
         // line 28
         echo $this->env->getExtension('routing')->getPath("settings_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
-                        \$table.bootstrapTable('hideLoading');
+                        \$accounttypetable.bootstrapTable('hideLoading');
                         initResponse = response;
-                        \$table.bootstrapTable('append', convertData(response));
+                        \$accounttypetable.bootstrapTable('append', convertData(response));
                     } else {
 
                     }
@@ -63,8 +63,8 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     }
 
     function deactivateId(id) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
+        \$accounttypetable.bootstrapTable('removeAll');
+        \$accounttypetable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initResponse);
         var filterContact = [];
@@ -81,13 +81,13 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         var filterOpportunitiesArray = {'stages': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(jsonStr));
+        \$accounttypetable.bootstrapTable('hideLoading');
+        \$accounttypetable.bootstrapTable('append', convertData(jsonStr));
     }
 
     function fillTableDataWithUsername(username) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
+        \$accounttypetable.bootstrapTable('removeAll');
+        \$accounttypetable.bootstrapTable('showLoading');
         var path = '";
         // line 67
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
@@ -97,8 +97,8 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$.post(path + username, null,
                 function (response) {
                     if (response) {
-                        \$table.bootstrapTable('hideLoading');
-                        \$table.bootstrapTable('append', convertData(response));
+                        \$accounttypetable.bootstrapTable('hideLoading');
+                        \$accounttypetable.bootstrapTable('append', convertData(response));
                     } else {
 
                     }
@@ -203,7 +203,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     }
 
     function deleteStage(id) {
-        //\$table.bootstrapTable('showLoading');
+        //\$accounttypetable.bootstrapTable('showLoading');
         var path = '";
         // line 174
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
@@ -213,18 +213,18 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        //\$table.bootstrapTable('showLoading');
+                        //\$accounttypetable.bootstrapTable('showLoading');
                         deactivateId(id);
                     } else {
-                        \$table.bootstrapTable('hideLoading');
+                        \$accounttypetable.bootstrapTable('hideLoading');
                     }
                 }
         );
     }
 
     function activateId(id) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
+        \$accounttypetable.bootstrapTable('removeAll');
+        \$accounttypetable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initResponse);
         var filterContact = [];
@@ -241,12 +241,12 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         var filterOpportunitiesArray = {'stages': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(jsonStr));
+        \$accounttypetable.bootstrapTable('hideLoading');
+        \$accounttypetable.bootstrapTable('append', convertData(jsonStr));
     }
 
     function activateStage(id) {
-        //\$table.bootstrapTable('showLoading');
+        //\$accounttypetable.bootstrapTable('showLoading');
         var path = '";
         // line 214
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
@@ -258,7 +258,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                     if (response) {
                         activateId(id);
                     } else {
-                        \$table.bootstrapTable('hideLoading');
+                        \$accounttypetable.bootstrapTable('hideLoading');
                     }
                 }
         );
@@ -289,7 +289,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getTemplateName()
     {
-        return "SettingsBundle:Stages:stagesTableScript.html.twig";
+        return "SettingsBundle:AccountType:stagesTableScript.html.twig";
     }
 
     public function isTraitable()
