@@ -26,8 +26,6 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
 
 <script type=\"text/javascript\">
     jQuery(function (\$) {
-        \$(\"#due\").mask(\"99/99/9999\");
-        \$(\"#fToDate\").mask(\"99/99/9999\");
         \$('#projectedrevenue').number(true, 0);
     });
 </script>
@@ -47,7 +45,7 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                         <div class=\"col-xs-3\">
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Priority <span style=\"color:#FF0000;\">*</span></label>
-                                <select class=\"form-control\" name=\"priority\" >
+                                <select class=\"form-control\" name=\"priority\" id=\"priority\">
                                     <option value=\"Normal\" >Normal</option>
                                     <option value=\"Medium\" >Medium</option>
                                     <option value=\"High\" >High</option>
@@ -57,7 +55,7 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                         <div class=\"col-xs-3\">
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Due <span style=\"color:#FF0000;\">*</span></label>
-                                <input type=\"text\" class=\"form-control\" name=\"due\" id=\"due\" placeholder=\"month/date/year\">
+                                <input type=\"date\" class=\"form-control\" name=\"due\" id=\"due\">
                             </div>
                         </div>
                         <div class=\"col-xs-3\">
@@ -71,7 +69,7 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                         <div class=\"col-xs-3\">
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Visibility <span style=\"color:#FF0000;\">*</span></label>
-                                <select class=\"form-control\" name=\"visibility\" >
+                                <select class=\"form-control\" name=\"visibility\" id=\"visibility\" >
                                     <option value=\"Public\" >Entire Company</option>
                                     <option value=\"Private\" >Private</option>
                                 </select>
@@ -107,11 +105,12 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                             </div>
                         </div>
                     </div>
+                    <input type=\"hidden\" id=\"tasktypeid\"/>
                 </form>
             </div>
             <div class=\"modal-footer\">
                 <a class=\"btn btn-default\" href=\"javascript:clearFilter()\">Cancel</a>
-                <button id=\"savebutton\" class=\"btn btn-primary\" onclick=\"applyUserDefinedFilter()\" data-dismiss=\"modal\">Save</button>
+                <button id=\"savebutton\" class=\"btn btn-primary\" onclick=\"saveTask()\" data-dismiss=\"modal\">Save</button>
             </div>
         </div>
 
@@ -119,7 +118,7 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
 </div>
 
 <script src=\"";
-        // line 98
+        // line 97
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
         echo "\"></script>";
     }
@@ -136,6 +135,6 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
 
     public function getDebugInfo()
     {
-        return array (  123 => 98,  24 => 2,  19 => 1,);
+        return array (  122 => 97,  24 => 2,  19 => 1,);
     }
 }

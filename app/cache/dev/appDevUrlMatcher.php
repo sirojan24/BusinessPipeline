@@ -160,6 +160,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'task_manage_task')), array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::manageTasksAction',));
         }
 
+        // task_get_task
+        if (0 === strpos($pathinfo, '/getTasks') && preg_match('#^/getTasks/(?P<type>[^/]++)/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'task_get_task')), array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::getTasksAction',));
+        }
+
         // notes_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'notes_homepage')), array (  '_controller' => 'NotesBundle\\Controller\\DefaultController::indexAction',));

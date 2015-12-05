@@ -46,10 +46,15 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
-        \$.post('";
+        var taskpath = '";
         // line 28
-        echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data");
-        echo "', null,
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_get_task", array("type" => "contact", "id" => 0)), "html", null, true);
+        echo "';
+        taskpath = taskpath.substring(0, taskpath.length - 1);
+         \$.post(taskpath + ";
+        // line 30
+        echo twig_escape_filter($this->env, (isset($context["typeId"]) ? $context["typeId"] : $this->getContext($context, "typeId")), "html", null, true);
+        echo ", null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
@@ -88,7 +93,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 66
+        // line 68
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -107,7 +112,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
     function storePageSize(size) {
         \$.post('";
-        // line 82
+        // line 84
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -176,13 +181,13 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             });
 
             var editPath = '";
-        // line 148
+        // line 150
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
             editPath = editPath.substring(0, editPath.length - 1);
 
             var name = '";
-        // line 151
+        // line 153
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
@@ -239,7 +244,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
     function taskpopup(sharing, username, id) {
         if (sharing != '') {
             \$.post('";
-        // line 205
+        // line 207
         echo $this->env->getExtension('routing')->getPath("login_login_getusers");
         echo "',
                     {sharedusers: sharing, user: username},
@@ -273,7 +278,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         } else {
 
             \$.post('";
-        // line 236
+        // line 238
         echo $this->env->getExtension('routing')->getPath("login_login_getFullname");
         echo "',
                     {name: username},
@@ -298,6 +303,60 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
 
     }
+
+    function saveTask() {
+
+        var priority = document.getElementById('priority').value;
+        var due = document.getElementById('due').value;
+        var shareduserselect = document.getElementById('shareduserselect').value;
+        var visibility = document.getElementById('visibility').value;
+        var taskname = document.getElementById('taskname').value;
+        var tasknotes = document.getElementById('tasknotes').value;
+        var tasktags = document.getElementById('tasktags').value;
+        var tasktypeid = document.getElementById('tasktypeid').value;
+
+        \$.post('";
+        // line 273
+        echo $this->env->getExtension('routing')->getPath("task_savetask");
+        echo "',
+                {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, tasktype: \"contact\",tasktypeid:tasktypeid},
+        function (response) {
+            if (response !== false) {
+                \$table.bootstrapTable('removeAll');
+                \$table.bootstrapTable('showLoading');
+
+                var jsonString = JSON.parse(initResponse);
+                var filterContact = [];
+
+                for (var i = 0; i < jsonString.tasks.length; i++) {
+                    var tempContact = jsonString.tasks[i];
+
+                    filterContact.push(tempContact);
+                    
+
+                }
+                var tempTask = JSON.parse(response);
+                filterContact.push({taskName: tempTask.taskName,
+                name: tempTask.name,
+                company: tempTask.company,
+                priority: tempTask.priority,
+                assignedTo: tempTask.assignedTo,
+                dueDate: tempTask.dueDate,
+                username: tempTask.username
+                });
+                var filterOpportunitiesArray = {'tasks': filterContact};
+                var jsonStr = JSON.stringify(filterOpportunitiesArray);
+                initResponse = jsonStr;
+                \$table.bootstrapTable('hideLoading');
+                \$table.bootstrapTable('append', convertData(jsonStr));
+
+
+            } else {
+                console.log(\"error occured in saving tasks\", response);
+            }
+        });
+
+    }
 </script>";
     }
 
@@ -313,6 +372,6 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
     public function getDebugInfo()
     {
-        return array (  277 => 236,  243 => 205,  186 => 151,  180 => 148,  111 => 82,  92 => 66,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  320 => 273,  282 => 238,  248 => 207,  191 => 153,  185 => 150,  116 => 84,  97 => 68,  56 => 30,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

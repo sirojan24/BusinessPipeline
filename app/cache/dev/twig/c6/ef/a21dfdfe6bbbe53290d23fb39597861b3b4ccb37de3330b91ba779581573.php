@@ -43,7 +43,9 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
             // line 15
             echo "                                <a href=\"javascript:taskpopup('','";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getUsername", array(), "method"), "html", null, true);
-            echo "','')\"
+            echo "',";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getId", array(), "method"), "html", null, true);
+            echo ")\"
                                    style=\"color: black;\">
                                     <i class=\"fa fa-list\"></i> Add Tasks
                                 </a>
@@ -135,6 +137,6 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
 
     public function getDebugInfo()
     {
-        return array (  123 => 78,  94 => 52,  85 => 45,  83 => 44,  62 => 25,  53 => 20,  44 => 15,  31 => 10,  29 => 9,  19 => 1,);
+        return array (  125 => 78,  96 => 52,  87 => 45,  85 => 44,  64 => 25,  55 => 20,  44 => 15,  31 => 10,  29 => 9,  19 => 1,);
     }
 }

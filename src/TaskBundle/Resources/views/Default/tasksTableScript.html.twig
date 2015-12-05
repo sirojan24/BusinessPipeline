@@ -21,24 +21,13 @@
     function refreshTable() {
         $table.bootstrapTable('removeAll');
         fillTableData();
-        var taskpath = '{{path('task_get_task',{'type': 'contact' , 'id':0 })}}';
-        taskpath = taskpath.substring(0, taskpath.length - 1);
-         $.post(taskpath + {{typeId}}, null,
-                function (response) {
-                    if (response !== false) {
-                        $table.bootstrapTable('hideLoading');
-                        initResponse = response;
-                        $table.bootstrapTable('append', convertData(response));
-                    } else {
-
-                    }
-                }
-        );
     }
 
     function fillTableData() {
         $table.bootstrapTable('showLoading');
-        $.post('{{path('contacts_contacts_table_data')}}', null,
+        var taskpath = '{{path('task_get_task',{'type': 'contact' , 'id':0 })}}';
+        taskpath = taskpath.substring(0, taskpath.length - 1);
+         $.post(taskpath + {{typeId}}, null,
                 function (response) {
                     if (response) {
                         $table.bootstrapTable('hideLoading');
