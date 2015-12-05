@@ -28,7 +28,7 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
                 <div class=\"col-lg-12\">
                     <div class=\"pull-right\">  
                         <span calss=\"pull-right\">
-                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Stage</a>
+                            <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#addStage\"><i class=\"fa fa-user-plus\"></i> Add Account</a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshAccountTypeTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
@@ -64,8 +64,7 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
                             <thead>
                                 <tr>
                                     <th data-field=\"state\" data-checkbox=\"true\"></th>
-                                    <th data-field=\"stages\" data-sortable=\"true\">Stages</th>
-                                    <th data-field=\"saleChange\" data-sortable=\"true\">Chance Of Sale</th>
+                                    <th data-field=\"accountType\" data-sortable=\"true\">Account Type</th>
                                     <th data-field=\"notes\" data-sortable=\"true\">Notes</th>
                                     <th data-field=\"status\" data-sortable=\"true\">Status</th>
                                     <th data-field=\"action\" data-sortable=\"true\">Action</th>
@@ -80,7 +79,7 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
     </div>
 </div>
 ";
-        // line 62
+        // line 61
         $this->env->loadTemplate("SettingsBundle:AccountType:accountTypeTableScript.html.twig")->display($context);
     }
 
@@ -96,6 +95,6 @@ class __TwigTemplate_c6db156a62f6b4aefcef00a71153811a7b687862eb2dcfe139db7758b15
 
     public function getDebugInfo()
     {
-        return array (  84 => 62,  23 => 3,  21 => 2,  19 => 1,);
+        return array (  83 => 61,  23 => 3,  21 => 2,  19 => 1,);
     }
 }

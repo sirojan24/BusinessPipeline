@@ -8,29 +8,31 @@ use Login\LoginBundle\Entity\Users;
 use Symfony\Component\HttpFoundation\Response;
 use SettingsBundle\Entity\Accounttypes;
 
-class DefaultController extends Controller
-{
-    public function indexAction($name)
-    {
+class DefaultController extends Controller {
+
+    public function indexAction($name) {
         return $this->render('SettingsBundle:Default:index.html.twig', array('name' => $name));
     }
-    
-    public function pipelinesetupAction (Request $request){
+
+    public function pipelinesetupAction(Request $request) {
         $token = $request->getSession()->get('token');
         if ($token) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
+            
             $stagesArray = $this->getStageTableData($token);
-            return $this->render('SettingsBundle:Default:pipelinesetup.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 
-                'fullname' => $fullname, 'stagesArray' => $stagesArray));
+            $accountTypesArray = $this->getAccountTypeData($token);
+            
+            return $this->render('SettingsBundle:Default:pipelinesetup.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'fullname' => $fullname, 'stagesArray' => $stagesArray, 'accountTypeArray' => $accountTypesArray));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
+
     private function getStageTableData($token) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
@@ -54,4 +56,28 @@ class DefaultController extends Controller
         $response = array('stages' => $stagesArray);
         return json_encode($response);
     }
+
+    private function getAccountTypeData($token) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        $user = $repository->findOneBy(array('username' => $token->getUsername()));
+        
+        $repository1 = $em->getRepository("SettingsBundle:Accounttypes");
+        $accountTypes = $repository1->findBy(array('companyname' => $user->getCompanyname()));
+        
+        $accountTypesArray = array();
+        foreach ($accountTypes as $accountType) {
+            //serialize obects to array
+            $arrElement["id"] = $accountType->getId();
+            $arrElement["username"] = $accountType->getUsername();
+            $arrElement["accountType"] = $accountType->getName();
+            $arrElement["notes"] = $accountType->getNotes();
+            $arrElement["status"] = $accountType->getStatus();
+
+            array_push($accountTypesArray, $arrElement);
+        }
+        $response = array('accountTypes' => $accountTypesArray);
+        return json_encode($response);
+    }
+
 }

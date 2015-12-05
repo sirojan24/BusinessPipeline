@@ -19,12 +19,12 @@
         });
     }
 
-    function saveNewStage() {
+    function saveNewStageInfo() {
         $.post('{{path('settings_savestage')}}',
                 {name: $("#addStageName").val(), salechance: $("#addStageSalechance").val(), notes: $("#addStageNotes").val()},
         function (response) {
             if (response != "false") {
-                refreshTable();
+                refreshStageTable();
             }
         });
         $("#addStage").find("input[type=text]").each(function (i, object) { 
@@ -57,15 +57,15 @@
         }
     } 
     
-    function updateStage() {
+    function updateStageInfo() {
         $.post('{{path('settings_updatestage')}}',
-                {id: $("#editStageId").val(), name: $("#editStageModalName").val(), salechance: $("#editStageModalSalechance").val(), notes: $("#editStageModalNotes").val()},
+                {id: $("#editStageModalId").val(), name: $("#editStageModalName").val(), salechance: $("#editStageModalSalechance").val(), notes: $("#editStageModalNotes").val()},
         function (response) {
             if (response != "false") {
-                refreshTable();
+                refreshStageTable();
             }
         });
-        $('#editStage').modal('hide');
+        $('#editStageModal').modal('hide');
         
         return false;
     }

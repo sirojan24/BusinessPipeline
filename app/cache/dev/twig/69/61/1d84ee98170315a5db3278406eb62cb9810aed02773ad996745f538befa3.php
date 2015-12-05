@@ -30,7 +30,7 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         \$accounttypetable.bootstrapTable('showLoading');
         var data = '";
         // line 13
-        echo twig_escape_filter($this->env, (isset($context["stagesArray"]) ? $context["stagesArray"] : $this->getContext($context, "stagesArray")), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["accountTypeArray"]) ? $context["accountTypeArray"] : $this->getContext($context, "accountTypeArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         initResponse = newString;
@@ -62,34 +62,11 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         );
     }
 
-    function deactivateId(id) {
-        \$accounttypetable.bootstrapTable('removeAll');
-        \$accounttypetable.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = \"Inactive\";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        \$accounttypetable.bootstrapTable('hideLoading');
-        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
-    }
-
     function fillAccountTypeTableDataWithUsername(username) {
         \$accounttypetable.bootstrapTable('removeAll');
         \$accounttypetable.bootstrapTable('showLoading');
         var path = '";
-        // line 67
+        // line 44
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -151,20 +128,20 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         var startId = 1,
                 rows = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.accountTypes.length; i++) {
+            var tempType = jsonString.accountTypes[i];
 
             extendColData.push({
-                note: tempStage.notes
+                note: tempType.notes
             });
 
             var name = '";
-        // line 134
+        // line 111
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 136
+        // line 113
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -174,12 +151,12 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
                         '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                         '</button>' +
                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                        '<li><a href=\"javascript:opeEditModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
+                        '<li><a href=\"javascript:opeEditModal(' + tempType.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
 
-                if (tempStage.status === \"Inactive\") {
-                    action += '<li><a href=\"javascript:activateStage(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
-                } else if (tempStage.status === \"Active\") {
-                    action += '<li><a href=\"javascript:deleteStage(' + tempStage.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
+                if (tempType.status === \"Inactive\") {
+                    action += '<li><a href=\"javascript:activateAccountType(' + tempType.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
+                } else if (tempType.status === \"Active\") {
+                    action += '<li><a href=\"javascript:deleteAccountType(' + tempType.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
@@ -187,14 +164,10 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
                         '</div>';
             }
 
-
-            var status = tempStage.status;
-
             rows.push({
-                stages: tempStage.stage,
-                saleChange: tempStage.saleChange + \"%\",
-                notes: tempStage.notes,
-                status: status,
+                accountType: tempType.accountType,
+                notes: tempType.notes,
+                status: tempType.status,
                 action: action
 
             });
@@ -202,11 +175,34 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         return rows;
     }
 
-    function deleteStage(id) {
+    function deactivateAccountTypeId(id) {
+        \$accounttypetable.bootstrapTable('removeAll');
+        \$accounttypetable.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.accountTypes.length; i++) {
+            var tempStage = jsonString.accountTypes[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = \"Inactive\";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'accountTypes': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+
+        \$accounttypetable.bootstrapTable('hideLoading');
+        \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
+    }
+
+    function deleteAccountType(id) {
         //\$accounttypetable.bootstrapTable('showLoading');
         var path = '";
-        // line 174
-        echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
+        // line 170
+        echo $this->env->getExtension('routing')->getPath("settings_deleteaccounttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
 
@@ -214,7 +210,7 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
                 function (response) {
                     if (response) {
                         //\$accounttypetable.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateAccountTypeId(id);
                     } else {
                         \$accounttypetable.bootstrapTable('hideLoading');
                     }
@@ -222,15 +218,15 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         );
     }
 
-    function activateId(id) {
+    function activateAccountTypeId(id) {
         \$accounttypetable.bootstrapTable('removeAll');
         \$accounttypetable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initResponse);
         var filterContact = [];
 
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
+        for (var i = 0; i < jsonString.accountTypes.length; i++) {
+            var tempStage = jsonString.accountTypes[i];
 
             if (id === tempStage.id) {
                 tempStage.status = \"Active\";
@@ -238,25 +234,25 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
             filterContact.push(tempStage);
 
         }
-        var filterOpportunitiesArray = {'stages': filterContact};
+        var filterOpportunitiesArray = {'accountTypes': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
 
         \$accounttypetable.bootstrapTable('hideLoading');
         \$accounttypetable.bootstrapTable('append', convertAccountTypeData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateAccountType(id) {
         //\$accounttypetable.bootstrapTable('showLoading');
         var path = '";
-        // line 214
-        echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
+        // line 210
+        echo $this->env->getExtension('routing')->getPath("settings_activateaccounttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
 
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateAccountTypeId(id);
                     } else {
                         \$accounttypetable.bootstrapTable('hideLoading');
                     }
@@ -299,6 +295,6 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
 
     public function getDebugInfo()
     {
-        return array (  252 => 214,  209 => 174,  168 => 136,  163 => 134,  93 => 67,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  248 => 210,  205 => 170,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

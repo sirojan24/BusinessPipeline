@@ -44,7 +44,7 @@ class __TwigTemplate_d6de41fe067aaee2de7455c31e386355765e191baf8dcccc66585f842c2
         // line 20
         echo $this->env->getExtension('routing')->getPath("settings_savestage");
         echo "\" role=\"form\" method=\"post\" enctype=\"multipart/form-data\"
-                      onsubmit=\"return updateStage()\">
+                      onsubmit=\"return updateStageInfo()\">
                     <div class=\"row\">\t\t\t
                         <div class=\"col-xs-12\">
                             <div class=\"form-group\">

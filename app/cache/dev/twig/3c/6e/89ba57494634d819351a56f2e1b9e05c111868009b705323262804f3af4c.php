@@ -42,7 +42,7 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
         });
     }
 
-    function saveNewStage() {
+    function saveNewStageInfo() {
         \$.post('";
         // line 23
         echo $this->env->getExtension('routing')->getPath("settings_savestage");
@@ -50,7 +50,7 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
                 {name: \$(\"#addStageName\").val(), salechance: \$(\"#addStageSalechance\").val(), notes: \$(\"#addStageNotes\").val()},
         function (response) {
             if (response != \"false\") {
-                refreshTable();
+                refreshStageTable();
             }
         });
         \$(\"#addStage\").find(\"input[type=text]\").each(function (i, object) { 
@@ -83,18 +83,18 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
         }
     } 
     
-    function updateStage() {
+    function updateStageInfo() {
         \$.post('";
         // line 61
         echo $this->env->getExtension('routing')->getPath("settings_updatestage");
         echo "',
-                {id: \$(\"#editStageId\").val(), name: \$(\"#editStageModalName\").val(), salechance: \$(\"#editStageModalSalechance\").val(), notes: \$(\"#editStageModalNotes\").val()},
+                {id: \$(\"#editStageModalId\").val(), name: \$(\"#editStageModalName\").val(), salechance: \$(\"#editStageModalSalechance\").val(), notes: \$(\"#editStageModalNotes\").val()},
         function (response) {
             if (response != \"false\") {
-                refreshTable();
+                refreshStageTable();
             }
         });
-        \$('#editStage').modal('hide');
+        \$('#editStageModal').modal('hide');
         
         return false;
     }
