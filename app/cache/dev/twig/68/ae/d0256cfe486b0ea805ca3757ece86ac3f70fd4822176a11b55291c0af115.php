@@ -62,34 +62,11 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         );
     }
 
-    function deactivateId(id) {
-        \$stagetable.bootstrapTable('removeAll');
-        \$stagetable.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initStageResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = \"Inactive\";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        \$stagetable.bootstrapTable('hideLoading');
-        \$stagetable.bootstrapTable('append', convertStageData(jsonStr));
-    }
-
     function fillStageTableDataWithUsername(username) {
         \$stagetable.bootstrapTable('removeAll');
         \$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 67
+        // line 44
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -159,12 +136,12 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
             });
 
             var name = '";
-        // line 134
+        // line 111
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 136
+        // line 113
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -177,9 +154,9 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                         '<li><a href=\"javascript:opeEditModal(' + tempStage.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>';
 
                 if (tempStage.status === \"Inactive\") {
-                    action += '<li><a href=\"javascript:activateStage(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
+                    action += '<li><a href=\"javascript:activateStageCall(' + tempStage.id + ')\"><i class=\"fa fa-check\"></i> Activate</a></li>';
                 } else if (tempStage.status === \"Active\") {
-                    action += '<li><a href=\"javascript:deleteStage(' + tempStage.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
+                    action += '<li><a href=\"javascript:deleteStageCall(' + tempStage.id + ')\"><i class=\"fa fa-times\"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
@@ -192,7 +169,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
             rows.push({
                 stages: tempStage.stage,
-                saleChange: tempStage.saleChange + \"%\",
+                saleChange: checkAndSetValue(tempStage.saleChange, '-', '%', false),
                 notes: tempStage.notes,
                 status: status,
                 action: action
@@ -202,10 +179,34 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         return rows;
     }
 
-    function deleteStage(id) {
+    
+    function deactivateStageId(id) {
+        \$stagetable.bootstrapTable('removeAll');
+        \$stagetable.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initStageResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.stages.length; i++) {
+            var tempStage = jsonString.stages[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = \"Inactive\";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'stages': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+
+        \$stagetable.bootstrapTable('hideLoading');
+        \$stagetable.bootstrapTable('append', convertStageData(jsonStr));
+    }
+
+    function deleteStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 174
+        // line 175
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -214,7 +215,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 function (response) {
                     if (response) {
                         //\$stagetable.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateStageId(id);
                     } else {
                         \$stagetable.bootstrapTable('hideLoading');
                     }
@@ -222,7 +223,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         );
     }
 
-    function activateId(id) {
+    function activateStageId(id) {
         \$stagetable.bootstrapTable('removeAll');
         \$stagetable.bootstrapTable('showLoading');
 
@@ -245,10 +246,10 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 214
+        // line 215
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -256,7 +257,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateStageId(id);
                     } else {
                         \$stagetable.bootstrapTable('hideLoading');
                     }
@@ -299,6 +300,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  252 => 214,  209 => 174,  168 => 136,  163 => 134,  93 => 67,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  253 => 215,  210 => 175,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

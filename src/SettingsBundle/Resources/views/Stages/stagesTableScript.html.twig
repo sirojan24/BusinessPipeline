@@ -38,29 +38,6 @@
         );
     }
 
-    function deactivateId(id) {
-        $stagetable.bootstrapTable('removeAll');
-        $stagetable.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initStageResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.stages.length; i++) {
-            var tempStage = jsonString.stages[i];
-
-            if (id === tempStage.id) {
-                tempStage.status = "Inactive";
-            }
-            filterContact.push(tempStage);
-
-        }
-        var filterOpportunitiesArray = {'stages': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        $stagetable.bootstrapTable('hideLoading');
-        $stagetable.bootstrapTable('append', convertStageData(jsonStr));
-    }
-
     function fillStageTableDataWithUsername(username) {
         $stagetable.bootstrapTable('removeAll');
         $stagetable.bootstrapTable('showLoading');
@@ -144,9 +121,9 @@
                         '<li><a href="javascript:opeEditModal(' + tempStage.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>';
 
                 if (tempStage.status === "Inactive") {
-                    action += '<li><a href="javascript:activateStage(' + tempStage.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
+                    action += '<li><a href="javascript:activateStageCall(' + tempStage.id + ')"><i class="fa fa-check"></i> Activate</a></li>';
                 } else if (tempStage.status === "Active") {
-                    action += '<li><a href="javascript:deleteStage(' + tempStage.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
+                    action += '<li><a href="javascript:deleteStageCall(' + tempStage.id + ')"><i class="fa fa-times"></i> Delete</a></li>';
                 }
 
                 action += '</ul>' +
@@ -159,7 +136,7 @@
 
             rows.push({
                 stages: tempStage.stage,
-                saleChange: tempStage.saleChange + "%",
+                saleChange: checkAndSetValue(tempStage.saleChange, '-', '%', false),
                 notes: tempStage.notes,
                 status: status,
                 action: action
@@ -169,7 +146,31 @@
         return rows;
     }
 
-    function deleteStage(id) {
+    
+    function deactivateStageId(id) {
+        $stagetable.bootstrapTable('removeAll');
+        $stagetable.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initStageResponse);
+        var filterContact = [];
+
+        for (var i = 0; i < jsonString.stages.length; i++) {
+            var tempStage = jsonString.stages[i];
+
+            if (id === tempStage.id) {
+                tempStage.status = "Inactive";
+            }
+            filterContact.push(tempStage);
+
+        }
+        var filterOpportunitiesArray = {'stages': filterContact};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+
+        $stagetable.bootstrapTable('hideLoading');
+        $stagetable.bootstrapTable('append', convertStageData(jsonStr));
+    }
+
+    function deleteStageCall(id) {
         //$stagetable.bootstrapTable('showLoading');
         var path = '{{ path('settings_deletestage',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
@@ -178,7 +179,7 @@
                 function (response) {
                     if (response) {
                         //$stagetable.bootstrapTable('showLoading');
-                        deactivateId(id);
+                        deactivateStageId(id);
                     } else {
                         $stagetable.bootstrapTable('hideLoading');
                     }
@@ -186,7 +187,7 @@
         );
     }
 
-    function activateId(id) {
+    function activateStageId(id) {
         $stagetable.bootstrapTable('removeAll');
         $stagetable.bootstrapTable('showLoading');
 
@@ -209,7 +210,7 @@
         $stagetable.bootstrapTable('append', convertStageData(jsonStr));
     }
 
-    function activateStage(id) {
+    function activateStageCall(id) {
         //$stagetable.bootstrapTable('showLoading');
         var path = '{{ path('settings_activatestage',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
@@ -217,7 +218,7 @@
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        activateId(id);
+                        activateStageId(id);
                     } else {
                         $stagetable.bootstrapTable('hideLoading');
                     }
