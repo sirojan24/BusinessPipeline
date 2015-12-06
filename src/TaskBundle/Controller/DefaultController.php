@@ -58,6 +58,17 @@ class DefaultController extends Controller {
                     $name = $contact->getName();
                     $company = $contact->getCompany();
                 }
+            }else if ($tasks->getTasktype() == "user") {
+                $repository = $em->getRepository("LoginLoginBundle:Users");
+                $user = $repository->findOneBy(array("id" => $typeid));
+
+                if ($user) {
+                   
+                    $name = $tasks->getFullname();
+                    $company = $tasks->getCompanyname();
+                }
+            }else{
+                // need to write for opportunity
             }
             try {
                 $em->persist($tasks);

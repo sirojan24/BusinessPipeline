@@ -53,9 +53,9 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                         <div class=\"panel-body\">
                                             <!-- Nav tabs -->
                                             <ul class=\"nav nav-tabs\">
-                                                <li class=\"active\"><a href=\"#users\" data-toggle=\"tab\">Users</a>
+                                                <li><a href=\"#users\" data-toggle=\"tab\">Users</a>
                                                 </li>\t
-                                                <li><a href=\"#partners\" data-toggle=\"tab\">Partners</a>
+                                                <li class=\"active\"><a href=\"#partners\" data-toggle=\"tab\">Partners</a>
                                                 </li>\t\t\t\t\t\t\t
                                                 <li><a href=\"#accounttype\" data-toggle=\"tab\">Account Type</a>
                                                 </li>
@@ -73,7 +73,7 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                                     <h4>Users</h4>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                 </div>
-                                                <div class=\"tab-pane fade\" id=\"partners\">
+                                                <div class=\"tab-pane fade active in\" id=\"partners\">
                                                     <h4>Partners</h4>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                 </div>\t\t\t\t\t\t\t\t\t\t\t\t

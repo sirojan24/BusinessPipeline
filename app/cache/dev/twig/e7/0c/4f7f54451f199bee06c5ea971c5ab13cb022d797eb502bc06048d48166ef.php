@@ -48,13 +48,9 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         \$table.bootstrapTable('showLoading');
         var taskpath = '";
         // line 28
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_get_task", array("type" => "contact", "id" => 0)), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_get_task", array("type" => (isset($context["type"]) ? $context["type"] : $this->getContext($context, "type")), "id" => (isset($context["typeId"]) ? $context["typeId"] : $this->getContext($context, "typeId")))), "html", null, true);
         echo "';
-        taskpath = taskpath.substring(0, taskpath.length - 1);
-         \$.post(taskpath + ";
-        // line 30
-        echo twig_escape_filter($this->env, (isset($context["typeId"]) ? $context["typeId"] : $this->getContext($context, "typeId")), "html", null, true);
-        echo ", null,
+         \$.post(taskpath, null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
@@ -93,7 +89,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 68
+        // line 67
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -112,7 +108,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
     function storePageSize(size) {
         \$.post('";
-        // line 84
+        // line 83
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -181,13 +177,13 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             });
 
             var editPath = '";
-        // line 150
+        // line 149
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
             editPath = editPath.substring(0, editPath.length - 1);
 
             var name = '";
-        // line 153
+        // line 152
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
@@ -244,7 +240,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
     function taskpopup(sharing, username, id) {
         if (sharing != '') {
             \$.post('";
-        // line 207
+        // line 206
         echo $this->env->getExtension('routing')->getPath("login_login_getusers");
         echo "',
                     {sharedusers: sharing, user: username},
@@ -278,7 +274,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         } else {
 
             \$.post('";
-        // line 238
+        // line 237
         echo $this->env->getExtension('routing')->getPath("login_login_getFullname");
         echo "',
                     {name: username},
@@ -316,7 +312,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         var tasktypeid = document.getElementById('tasktypeid').value;
 
         \$.post('";
-        // line 273
+        // line 272
         echo $this->env->getExtension('routing')->getPath("task_savetask");
         echo "',
                 {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, tasktype: \"contact\",tasktypeid:tasktypeid},
@@ -372,6 +368,6 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
     public function getDebugInfo()
     {
-        return array (  320 => 273,  282 => 238,  248 => 207,  191 => 153,  185 => 150,  116 => 84,  97 => 68,  56 => 30,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  316 => 272,  278 => 237,  244 => 206,  187 => 152,  181 => 149,  112 => 83,  93 => 67,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

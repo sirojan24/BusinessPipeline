@@ -25,9 +25,8 @@
 
     function fillTableData() {
         $table.bootstrapTable('showLoading');
-        var taskpath = '{{path('task_get_task',{'type': 'contact' , 'id':0 })}}';
-        taskpath = taskpath.substring(0, taskpath.length - 1);
-         $.post(taskpath + {{typeId}}, null,
+        var taskpath = '{{path('task_get_task',{'type': type , 'id':typeId })}}';
+         $.post(taskpath, null,
                 function (response) {
                     if (response) {
                         $table.bootstrapTable('hideLoading');
