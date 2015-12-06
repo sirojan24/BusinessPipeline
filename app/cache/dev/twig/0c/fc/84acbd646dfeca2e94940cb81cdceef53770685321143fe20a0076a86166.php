@@ -83,10 +83,6 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
         );
     }
 
-    function storePageSize(size) {
-
-    }
-
     function checkAndSetValue(value, blankValue, scale, pre) {
         if (value === '' || value === null) {
             return blankValue;
@@ -136,12 +132,12 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
             });
 
             var name = '";
-        // line 111
+        // line 107
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 113
+        // line 109
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -204,7 +200,7 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
     function deleteProductType(id) {
         //\$productTypeTable.bootstrapTable('showLoading');
         var path = '";
-        // line 173
+        // line 169
         echo $this->env->getExtension('routing')->getPath("settings_deleteproducttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -248,7 +244,7 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
     function activateProductType(id) {
         //\$productTypeTable.bootstrapTable('showLoading');
         var path = '";
-        // line 214
+        // line 210
         echo $this->env->getExtension('routing')->getPath("settings_activateproducttype", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -299,6 +295,6 @@ class __TwigTemplate_0cfc84acbd646dfeca2e94940cb81cdceef53770685321143fe20a0076a
 
     public function getDebugInfo()
     {
-        return array (  252 => 214,  208 => 173,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  248 => 210,  204 => 169,  141 => 109,  136 => 107,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

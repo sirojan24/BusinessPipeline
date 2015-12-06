@@ -17,7 +17,7 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
     {
         // line 1
         echo "<script>
-    var \$table = \$('#table');
+    var \$opportunitySourceTable = \$('#opportunitytable');
     var extendColData = [];
     var initOpportunitySourceResponse;
 
@@ -27,7 +27,7 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
     });
 
     function iniFillOppotunitySourceTableData() {
-        \$table.bootstrapTable('showLoading');
+        \$opportunitySourceTable.bootstrapTable('showLoading');
         var data = '";
         // line 13
         echo twig_escape_filter($this->env, (isset($context["opportunitySourceArray"]) ? $context["opportunitySourceArray"] : $this->getContext($context, "opportunitySourceArray")), "html", null, true);
@@ -35,26 +35,26 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         var newString = data.replace(/&quot;/g, '\"');
         initOpportunitySourceResponse = newString;
         //var newString = JSON.parse(data);
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertOpportunitySourceData(newString));
+        \$opportunitySourceTable.bootstrapTable('hideLoading');
+        \$opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(newString));
     }
 
     function refreshOpportunitySourceTable() {
-        \$table.bootstrapTable('removeAll');
+        \$opportunitySourceTable.bootstrapTable('removeAll');
         fillOpportunitySourceTableData();
     }
 
     function fillOpportunitySourceTableData() {
-        \$table.bootstrapTable('showLoading');
+        \$opportunitySourceTable.bootstrapTable('showLoading');
         \$.post('";
         // line 28
         echo $this->env->getExtension('routing')->getPath("settings_opportunity_source_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
-                        \$table.bootstrapTable('hideLoading');
+                        \$opportunitySourceTable.bootstrapTable('hideLoading');
                         initOpportunitySourceResponse = response;
-                        \$table.bootstrapTable('append', convertOpportunitySourceData(response));
+                        \$opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(response));
                     } else {
 
                     }
@@ -63,8 +63,8 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
     }
 
     function fillTableDataWithUsername(username) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
+        \$opportunitySourceTable.bootstrapTable('removeAll');
+        \$opportunitySourceTable.bootstrapTable('showLoading');
         var path = '";
         // line 44
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
@@ -74,17 +74,13 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         \$.post(path + username, null,
                 function (response) {
                     if (response) {
-                        \$table.bootstrapTable('hideLoading');
-                        \$table.bootstrapTable('append', convertOpportunitySourceData(response));
+                        \$opportunitySourceTable.bootstrapTable('hideLoading');
+                        \$opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(response));
                     } else {
 
                     }
                 }
         );
-    }
-
-    function storePageSize(size) {
-
     }
 
     function checkAndSetValue(value, blankValue, scale, pre) {
@@ -136,12 +132,12 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
             });
 
             var name = '";
-        // line 111
+        // line 107
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 113
+        // line 109
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -163,7 +159,7 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
                         '</div>' +
                         '</div>';
             }else{
-                \$table.bootstrapTable('hideColumn', 'Action');
+                \$opportunitySourceTable.bootstrapTable('hideColumn', 'Action');
             }
 
             rows.push({
@@ -177,8 +173,8 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
     }
 
     function deactivateOpportunitySourceId(id) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
+        \$opportunitySourceTable.bootstrapTable('removeAll');
+        \$opportunitySourceTable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initOpportunitySourceResponse);
         var filterContact = [];
@@ -195,14 +191,14 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         var filterOpportunitiesArray = {'opportunitySources': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initOpportunitySourceResponse = jsonStr;
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
+        \$opportunitySourceTable.bootstrapTable('hideLoading');
+        \$opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
     function deleteOpportunitySource(id) {
-        //\$table.bootstrapTable('showLoading');
+        //\$opportunitySourceTable.bootstrapTable('showLoading');
         var path = '";
-        // line 171
+        // line 167
         echo $this->env->getExtension('routing')->getPath("settings_deleteopportunitysource", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -210,18 +206,18 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        //\$table.bootstrapTable('showLoading');
+                        //\$opportunitySourceTable.bootstrapTable('showLoading');
                         deactivateOpportunitySourceId(id);
                     } else {
-                        \$table.bootstrapTable('hideLoading');
+                        \$opportunitySourceTable.bootstrapTable('hideLoading');
                     }
                 }
         );
     }
 
     function activateOpportunitySourceId(id) {
-        \$table.bootstrapTable('removeAll');
-        \$table.bootstrapTable('showLoading');
+        \$opportunitySourceTable.bootstrapTable('removeAll');
+        \$opportunitySourceTable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initOpportunitySourceResponse);
         var filterContact = [];
@@ -238,14 +234,14 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         var filterOpportunitiesArray = {'opportunitySources': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initOpportunitySourceResponse = jsonStr;
-        \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
+        \$opportunitySourceTable.bootstrapTable('hideLoading');
+        \$opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
     function activateOpportunitySource(id) {
-        //\$table.bootstrapTable('showLoading');
+        //\$opportunitySourceTable.bootstrapTable('showLoading');
         var path = '";
-        // line 211
+        // line 207
         echo $this->env->getExtension('routing')->getPath("settings_activateopportunitysource", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -255,7 +251,7 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
                     if (response) {
                         activateOpportunitySourceId(id);
                     } else {
-                        \$table.bootstrapTable('hideLoading');
+                        \$opportunitySourceTable.bootstrapTable('hideLoading');
                     }
                 }
         );
@@ -296,6 +292,6 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
 
     public function getDebugInfo()
     {
-        return array (  249 => 211,  206 => 171,  145 => 113,  140 => 111,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  245 => 207,  202 => 167,  141 => 109,  136 => 107,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

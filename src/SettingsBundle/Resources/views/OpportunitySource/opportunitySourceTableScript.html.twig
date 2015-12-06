@@ -1,5 +1,5 @@
 <script>
-    var $table = $('#table');
+    var $opportunitySourceTable = $('#opportunitytable');
     var extendColData = [];
     var initOpportunitySourceResponse;
 
@@ -9,28 +9,28 @@
     });
 
     function iniFillOppotunitySourceTableData() {
-        $table.bootstrapTable('showLoading');
+        $opportunitySourceTable.bootstrapTable('showLoading');
         var data = '{{opportunitySourceArray}}';
         var newString = data.replace(/&quot;/g, '"');
         initOpportunitySourceResponse = newString;
         //var newString = JSON.parse(data);
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertOpportunitySourceData(newString));
+        $opportunitySourceTable.bootstrapTable('hideLoading');
+        $opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(newString));
     }
 
     function refreshOpportunitySourceTable() {
-        $table.bootstrapTable('removeAll');
+        $opportunitySourceTable.bootstrapTable('removeAll');
         fillOpportunitySourceTableData();
     }
 
     function fillOpportunitySourceTableData() {
-        $table.bootstrapTable('showLoading');
+        $opportunitySourceTable.bootstrapTable('showLoading');
         $.post('{{path('settings_opportunity_source_table_data')}}', null,
                 function (response) {
                     if (response) {
-                        $table.bootstrapTable('hideLoading');
+                        $opportunitySourceTable.bootstrapTable('hideLoading');
                         initOpportunitySourceResponse = response;
-                        $table.bootstrapTable('append', convertOpportunitySourceData(response));
+                        $opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(response));
                     } else {
 
                     }
@@ -39,25 +39,21 @@
     }
 
     function fillTableDataWithUsername(username) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
+        $opportunitySourceTable.bootstrapTable('removeAll');
+        $opportunitySourceTable.bootstrapTable('showLoading');
         var path = '{{path('contacts_contacts_table_data_username_filter', {'username': '0'})}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + username, null,
                 function (response) {
                     if (response) {
-                        $table.bootstrapTable('hideLoading');
-                        $table.bootstrapTable('append', convertOpportunitySourceData(response));
+                        $opportunitySourceTable.bootstrapTable('hideLoading');
+                        $opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(response));
                     } else {
 
                     }
                 }
         );
-    }
-
-    function storePageSize(size) {
-
     }
 
     function checkAndSetValue(value, blankValue, scale, pre) {
@@ -130,7 +126,7 @@
                         '</div>' +
                         '</div>';
             }else{
-                $table.bootstrapTable('hideColumn', 'Action');
+                $opportunitySourceTable.bootstrapTable('hideColumn', 'Action');
             }
 
             rows.push({
@@ -144,8 +140,8 @@
     }
 
     function deactivateOpportunitySourceId(id) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
+        $opportunitySourceTable.bootstrapTable('removeAll');
+        $opportunitySourceTable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initOpportunitySourceResponse);
         var filterContact = [];
@@ -162,30 +158,30 @@
         var filterOpportunitiesArray = {'opportunitySources': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initOpportunitySourceResponse = jsonStr;
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
+        $opportunitySourceTable.bootstrapTable('hideLoading');
+        $opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
     function deleteOpportunitySource(id) {
-        //$table.bootstrapTable('showLoading');
+        //$opportunitySourceTable.bootstrapTable('showLoading');
         var path = '{{ path('settings_deleteopportunitysource',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        //$table.bootstrapTable('showLoading');
+                        //$opportunitySourceTable.bootstrapTable('showLoading');
                         deactivateOpportunitySourceId(id);
                     } else {
-                        $table.bootstrapTable('hideLoading');
+                        $opportunitySourceTable.bootstrapTable('hideLoading');
                     }
                 }
         );
     }
 
     function activateOpportunitySourceId(id) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
+        $opportunitySourceTable.bootstrapTable('removeAll');
+        $opportunitySourceTable.bootstrapTable('showLoading');
 
         var jsonString = JSON.parse(initOpportunitySourceResponse);
         var filterContact = [];
@@ -202,12 +198,12 @@
         var filterOpportunitiesArray = {'opportunitySources': filterContact};
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initOpportunitySourceResponse = jsonStr;
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
+        $opportunitySourceTable.bootstrapTable('hideLoading');
+        $opportunitySourceTable.bootstrapTable('append', convertOpportunitySourceData(jsonStr));
     }
 
     function activateOpportunitySource(id) {
-        //$table.bootstrapTable('showLoading');
+        //$opportunitySourceTable.bootstrapTable('showLoading');
         var path = '{{ path('settings_activateopportunitysource',{'id':0} )}}';
         path = path.substring(0, path.length - 1);
 
@@ -216,7 +212,7 @@
                     if (response) {
                         activateOpportunitySourceId(id);
                     } else {
-                        $table.bootstrapTable('hideLoading');
+                        $opportunitySourceTable.bootstrapTable('hideLoading');
                     }
                 }
         );

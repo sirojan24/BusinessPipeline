@@ -53,9 +53,9 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                         <div class=\"panel-body\">
                                             <!-- Nav tabs -->
                                             <ul class=\"nav nav-tabs\">
-                                                <li><a href=\"#users\" data-toggle=\"tab\">Users</a>
+                                                <li class=\"active\"><a href=\"#users\" data-toggle=\"tab\">Users</a>
                                                 </li>\t
-                                                <li class=\"active\"><a href=\"#partners\" data-toggle=\"tab\">Partners</a>
+                                                <li><a href=\"#partners\" data-toggle=\"tab\">Partners</a>
                                                 </li>\t\t\t\t\t\t\t
                                                 <li><a href=\"#accounttype\" data-toggle=\"tab\">Account Type</a>
                                                 </li>
@@ -69,11 +69,14 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                             <!-- Tab panes -->
                                             <div class=\"tab-content\">
 
-                                                <div class=\"tab-pane fade\" id=\"users\">
+                                                <div class=\"tab-pane fade active in\" id=\"users\">
                                                     <h4>Users</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                </div>
-                                                <div class=\"tab-pane fade active in\" id=\"partners\">
+                                                    ";
+        // line 50
+        $this->env->loadTemplate("SettingsBundle:User:adminManageUsersTable.html.twig")->display($context);
+        // line 51
+        echo "                                                </div>
+                                                <div class=\"tab-pane fade\" id=\"partners\">
                                                     <h4>Partners</h4>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                 </div>\t\t\t\t\t\t\t\t\t\t\t\t
@@ -172,6 +175,6 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
 
     public function getDebugInfo()
     {
-        return array (  155 => 103,  151 => 102,  147 => 101,  142 => 100,  140 => 99,  134 => 95,  132 => 94,  107 => 71,  105 => 70,  100 => 67,  98 => 66,  93 => 63,  91 => 62,  86 => 59,  84 => 58,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  158 => 103,  154 => 102,  150 => 101,  145 => 100,  143 => 99,  137 => 95,  135 => 94,  110 => 71,  108 => 70,  103 => 67,  101 => 66,  96 => 63,  94 => 62,  89 => 59,  87 => 58,  78 => 51,  76 => 50,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

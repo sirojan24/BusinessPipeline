@@ -272,8 +272,8 @@ class DashboardController extends Controller {
                 $em->flush();
                 
                 $userArray = $this->getUserArray($admin);
-                
-                return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $adminuser->getUserView(), 'successmsg' => 'Regular User Created'));
+                return $this->redirectToRoute('settings_pipelinesetup');
+                //return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $adminuser->getUserView(), 'successmsg' => 'Regular User Created'));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
                 return $this->render('LoginLoginBundle:Default:addUsers.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again'));
@@ -893,8 +893,8 @@ class DashboardController extends Controller {
                     }
                     $response = array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'users' => $userArray, 'manageview' => $adminuser->getUserview());
                     $response = json_encode($response);
-
-                    return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'userArray' => $response, 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully updated " . $currentuser->getUsername() . "'s profile", 'manageview' => $adminuser->getUserview()));
+                    return $this->redirectToRoute('settings_pipelinesetup');
+                    //return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'userArray' => $response, 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully updated " . $currentuser->getUsername() . "'s profile", 'manageview' => $adminuser->getUserview()));
                 } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                     if ($admin->getRole() == 'Admin' || $admin->getRole() == 'Regular') {
                         $users = $repository->findBy(array('companyname' => $companyname, 'status' => 'Active'));
