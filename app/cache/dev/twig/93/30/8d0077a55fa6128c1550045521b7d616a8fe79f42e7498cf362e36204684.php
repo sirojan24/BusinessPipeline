@@ -81,6 +81,7 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
                                     <th data-field=\"expected_closed_date\" data-sortable=\"true\">Expected Closed<br> Deals</th>
                                     <th data-field=\"owner\" data-sortable=\"true\">Owner</th>
                                     <th data-field=\"action\">Action</th>
+                                    <th data-field=\"tags\">tags</th>
                                 </tr>
                             </thead>
                         </table>
@@ -92,7 +93,7 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
     </div>
 </div>
 ";
-        // line 70
+        // line 71
         $this->env->loadTemplate("OpportunityBundle:Default:opportunityTableScript.html.twig")->display($context);
     }
 
@@ -108,6 +109,6 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
 
     public function getDebugInfo()
     {
-        return array (  96 => 70,  65 => 42,  55 => 34,  53 => 33,  19 => 1,);
+        return array (  97 => 71,  65 => 42,  55 => 34,  53 => 33,  19 => 1,);
     }
 }

@@ -97,11 +97,11 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     function detailFormatter(index, row) {
 
-        var note = checkAndSetValue(extendColData[index].note, '-', '', true);
+        var note = checkAndSetValue(row.note, '-', '', true);
 
         var html = [];
         html.push('<div class\"row\">' +
-                '<div class=\"col-xs-4\">' +
+                '<div class=\"col-xs-8\">' +
                 '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;\">' +
                 '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
                 '<td style=\"border: none !important;line-height: 5px;width:30%\"><small>Notes</small></td>' +
@@ -128,7 +128,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
             var tempStage = jsonString.stages[i];
 
             extendColData.push({
-                note: tempStage.notes
+                
             });
 
             var name = '";
@@ -170,7 +170,8 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 saleChange: checkAndSetValue(tempStage.saleChange, '-', '%', false),
                 notes: tempStage.notes,
                 status: status,
-                action: action
+                action: action,
+                note: tempStage.notes
 
             });
         }
@@ -205,7 +206,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function deleteStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 174
+        // line 175
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -250,7 +251,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function activateStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 216
+        // line 217
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -302,6 +303,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  254 => 216,  209 => 174,  141 => 109,  136 => 107,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  255 => 217,  210 => 175,  141 => 109,  136 => 107,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
     }
 }

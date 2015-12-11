@@ -14,6 +14,7 @@
         iniFillTableData();
         populateFilterForm();
         wonLostFilter();
+        $table.bootstrapTable('hideColumn', 'tags');
     });
 
     function iniFillTableData() {
@@ -436,12 +437,12 @@
     }
 
     function detailFormatter(index, row) {
-        var deal_account_type = checkAndSetValue(extendColData[index].deal_account_type, '-', '', true);
-        var deal_source = checkAndSetValue(extendColData[index].deal_source, '-', '', true);
-        var open_deals = checkAndSetValue(extendColData[index].open_deals, '-', '', true);
-        var won_deals = checkAndSetValue(extendColData[index].won_deals, '-', '', true);
-        var lost_deals = checkAndSetValue(extendColData[index].lost_deals, '-', '', true);
-        var tags = checkAndSetValue(extendColData[index].tags, '-', '', true);
+        var deal_account_type = checkAndSetValue(row.deal_account_type, '-', '', true);
+        var deal_source = checkAndSetValue(row.deal_source, '-', '', true);
+        var open_deals = checkAndSetValue(row.open_deals, '-', '', true);
+        var won_deals = checkAndSetValue(row.won_deals, '-', '', true);
+        var lost_deals = checkAndSetValue(row.lost_deals, '-', '', true);
+        var tags = checkAndSetValue(row.tags, '-', '', true);
 
         var html = [];
         html.push('<div class"row">' +
@@ -493,12 +494,7 @@
                     var tempOpportunity = jsonString.opportunities[i];
 
                     extendColData.push({
-                        deal_account_type: tempOpportunity.deal_account_type,
-                        deal_source: tempOpportunity.deal_source,
-                        open_deals: tempOpportunity.open_deals,
-                        won_deals: tempOpportunity.won_deals,
-                        lost_deals: tempOpportunity.lost_deals,
-                        tags: tempOpportunity.tags
+                        
                     });
                     
                     dealSource.push(tempOpportunity.deal_source);
@@ -560,7 +556,13 @@
                         projected_revenue: '$' + tempOpportunity.projected_revenue,
                         expected_closed_date: date,
                         owner: '<a href="javascript:usernameFilter(' + "'" + tempOpportunity.username + "'" + ')">' + tempOpportunity.owner + '</a>',
-                        action: action
+                        action: action,
+                        deal_account_type: tempOpportunity.deal_account_type,
+                        deal_source: tempOpportunity.deal_source,
+                        open_deals: tempOpportunity.open_deals,
+                        won_deals: tempOpportunity.won_deals,
+                        lost_deals: tempOpportunity.lost_deals,
+                        tags: tempOpportunity.tags
                     });
                 }
 

@@ -19,12 +19,12 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
-    
+
     \$(document).ready(function () {
         \$(\"#tableDiv\").show();
         iniFillTableData();
     });
-    
+
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
@@ -36,7 +36,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         \$table.bootstrapTable('hideLoading');
         \$table.bootstrapTable('append', convertData(newString));
     }
-    
+
     function refreshTable() {
         \$table.bootstrapTable('removeAll');
         fillTableData();
@@ -74,49 +74,49 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         });
     }
 
-    function checkAndSetValue(value, blankValue, scale, pre){
-        if(value === '' || value === null){
+    function checkAndSetValue(value, blankValue, scale, pre) {
+        if (value === '' || value === null) {
             return blankValue;
-        }else{
-            if(pre === true){
+        } else {
+            if (pre === true) {
                 return scale + '' + value;
-            }else{
+            } else {
                 return value + '' + scale;
             }
         }
     }
-    
+
     function detailFormatter(index, row) {
 
-        var title = checkAndSetValue(extendColData[index].title, '-', '', true);
-        var company = checkAndSetValue(extendColData[index].company, '-', '', true);
-        var email = checkAndSetValue(extendColData[index].email, '-', '', true);
-        var telephone = checkAndSetValue(extendColData[index].telephone, '-', '', true);
-        var cellphone = checkAndSetValue(extendColData[index].cellphone, '-', '', true);
+        var title = checkAndSetValue(row.title, '-', '', true);
+        var company = checkAndSetValue(row.company, '-', '', true);
+        var email = checkAndSetValue(row.email, '-', '', true);
+        var telephone = checkAndSetValue(row.telephone, '-', '', true);
+        var cellphone = checkAndSetValue(row.cellphone, '-', '', true);
 
-        var originator = checkAndSetValue(extendColData[index].originator, '-', '%', false);
-        var nonOriginator = checkAndSetValue(extendColData[index].nonOriginator, '-', '%', false);
-        var earningGoals = checkAndSetValue(extendColData[index].earningGoals, '-', '\$', true);
-        var drawAgainstCommission = checkAndSetValue(extendColData[index].drawAgainstCommission, '-', '\$', true);
-        var dob = checkAndSetValue(extendColData[index].dob, '-', '', true);
-        
-        if(dob !== '-'){
+        var originator = checkAndSetValue(row.originator, '-', '%', false);
+        var nonOriginator = checkAndSetValue(row.nonOriginator, '-', '%', false);
+        var earningGoals = checkAndSetValue(row.earningGoals, '-', '\$', true);
+        var drawAgainstCommission = checkAndSetValue(row.drawAgainstCommission, '-', '\$', true);
+        var dob = checkAndSetValue(row.dob, '-', '', true);
+
+        if (dob !== '-') {
             var mdate = new Date(dob);
             var month = 1;
-            if((mdate.getMonth() + 1) < 10){
+            if ((mdate.getMonth() + 1) < 10) {
                 month = '0' + (mdate.getMonth() + 1);
-            }else{
+            } else {
                 month = mdate.getMonth() + 1;
             }
             var day = 1;
-            if((mdate.getDate()) < 10){
+            if ((mdate.getDate()) < 10) {
                 day = '0' + (mdate.getDate());
-            }else{
+            } else {
                 day = mdate.getDate();
             }
             var dob = month + '/' + day + '/' + mdate.getFullYear();
         }
-        
+
         var html = [];
         html.push('<div class\"row\">' +
                 '<div class=\"col-xs-4\">' +
@@ -188,28 +188,18 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                     var tempUser = jsonString.users[i];
 
                     extendColData.push({
-                        title: tempUser.title,
-                        company: tempUser.company,
-                        email: tempUser.email,
-                        telephone: tempUser.telephone,
-                        cellphone: tempUser.cellphone,
-                        originator: tempUser.originator,
-                        nonOriginator: tempUser.nonOriginator,
-                        earningGoals: tempUser.earningGoals,
-                        drawAgainstCommission: tempUser.drawAgainstCommission,
-                        dob: tempUser.dob
                     });
                     var editPath = '";
-        // line 175
+        // line 165
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
-                    
+
                     rows.push({
                         first_name: tempUser.firstname,
                         last_name: tempUser.lastname,
                         username: tempUser.username,
-                        open_deal:  tempUser.openDeals,
+                        open_deal: tempUser.openDeals,
                         projected_revenue: '\$' + tempUser.projectedRevenue,
                         weighted_forecast: '\$' + tempUser.individualForecast,
                         won_deals: '\$' + tempUser.wonDeals,
@@ -223,11 +213,21 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + editPath + tempUser.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\" onclick=\"notespopup('+ tempUser.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"#\" onclick=\"notespopup(' + tempUser.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>'
+                                '</div>',
+                        title: tempUser.title,
+                        company: tempUser.company,
+                        email: tempUser.email,
+                        telephone: tempUser.telephone,
+                        cellphone: tempUser.cellphone,
+                        originator: tempUser.originator,
+                        nonOriginator: tempUser.nonOriginator,
+                        earningGoals: tempUser.earningGoals,
+                        drawAgainstCommission: tempUser.drawAgainstCommission,
+                        dob: tempUser.dob
 
                     });
                 }
@@ -269,6 +269,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  204 => 175,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
+        return array (  194 => 165,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
     }
 }

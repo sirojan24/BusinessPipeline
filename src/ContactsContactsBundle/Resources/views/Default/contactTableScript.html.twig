@@ -2,10 +2,11 @@
     var $table = $('#table');
     var extendColData = [];
     var initResponse;
-
+    
     $(document).ready(function () {
         $("#tableDiv").show();
         iniFillTableData();
+        $table.bootstrapTable('hideColumn', 'tags');
     });
 
     function iniFillTableData() {
@@ -128,9 +129,9 @@
 
     function detailFormatter(index, row) {
 
-        var tags = checkAndSetValue(extendColData[index].tags, '-', '', true);
-        var email = checkAndSetValue(extendColData[index].email, '-', '', true);
-        var telephone = checkAndSetValue(extendColData[index].telephone, '-', '', true);
+        var tags = checkAndSetValue(row.tags, '-', '', true);
+        var email = checkAndSetValue(row.email, '-', '', true);
+        var telephone = checkAndSetValue(row.telephone, '-', '', true);
 
         var html = [];
         html.push('<div class"row">' +
@@ -229,7 +230,10 @@
                         won_deals: wonDeal,
                         lost_deals: lostDeal,
                         owner: '<a href="javascript:usernameFilter(' + "'" + tempContact.username + "'" + ')">' + tempContact.owner + '</a>',
-                        action: action
+                        action: action,
+                        email: tempContact.email,
+                        telephone: tempContact.telephone,
+                        tags: tempContact.tags
 
                     });
                 }

@@ -88,17 +88,17 @@ class __TwigTemplate_f936a35723af0c286e0cfdc7ae383e8183caa9e81c166d1a0c05be0d75e
     
     function detailUserFormatter(index, row) {
 
-        var title = checkAndSetValue(userExtendColData[index].title, '-', '', true);
-        var company = checkAndSetValue(userExtendColData[index].company, '-', '', true);
-        var email = checkAndSetValue(userExtendColData[index].email, '-', '', true);
-        var telephone = checkAndSetValue(userExtendColData[index].telephone, '-', '', true);
-        var cellphone = checkAndSetValue(userExtendColData[index].cellphone, '-', '', true);
+        var title = checkAndSetValue(row.title, '-', '', true);
+        var company = checkAndSetValue(row.company, '-', '', true);
+        var email = checkAndSetValue(row.email, '-', '', true);
+        var telephone = checkAndSetValue(row.telephone, '-', '', true);
+        var cellphone = checkAndSetValue(row.cellphone, '-', '', true);
 
-        var originator = checkAndSetValue(userExtendColData[index].originator, '-', '%', false);
-        var nonOriginator = checkAndSetValue(userExtendColData[index].nonOriginator, '-', '%', false);
-        var earningGoals = checkAndSetValue(userExtendColData[index].earningGoals, '-', '\$', true);
-        var drawAgainstCommission = checkAndSetValue(userExtendColData[index].drawAgainstCommission, '-', '\$', true);
-        var dob = checkAndSetValue(userExtendColData[index].dob, '-', '', true);
+        var originator = checkAndSetValue(row.originator, '-', '%', false);
+        var nonOriginator = checkAndSetValue(row.nonOriginator, '-', '%', false);
+        var earningGoals = checkAndSetValue(row.earningGoals, '-', '\$', true);
+        var drawAgainstCommission = checkAndSetValue(row.drawAgainstCommission, '-', '\$', true);
+        var dob = checkAndSetValue(row.dob, '-', '', true);
         
         if(dob !== '-'){
             var mdate = new Date(dob);
@@ -188,19 +188,10 @@ class __TwigTemplate_f936a35723af0c286e0cfdc7ae383e8183caa9e81c166d1a0c05be0d75e
                     var tempUser = jsonString.users[i];
 
                     userExtendColData.push({
-                        title: tempUser.title,
-                        company: tempUser.company,
-                        email: tempUser.email,
-                        telephone: tempUser.telephone,
-                        cellphone: tempUser.cellphone,
-                        originator: tempUser.originator,
-                        nonOriginator: tempUser.nonOriginator,
-                        earningGoals: tempUser.earningGoals,
-                        drawAgainstCommission: tempUser.drawAgainstCommission,
-                        dob: tempUser.dob
+                        
                     });
                     var editPath = '";
-        // line 175
+        // line 166
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
@@ -227,7 +218,17 @@ class __TwigTemplate_f936a35723af0c286e0cfdc7ae383e8183caa9e81c166d1a0c05be0d75e
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>'
+                                '</div>',
+                        title: tempUser.title,
+                        company: tempUser.company,
+                        email: tempUser.email,
+                        telephone: tempUser.telephone,
+                        cellphone: tempUser.cellphone,
+                        originator: tempUser.originator,
+                        nonOriginator: tempUser.nonOriginator,
+                        earningGoals: tempUser.earningGoals,
+                        drawAgainstCommission: tempUser.drawAgainstCommission,
+                        dob: tempUser.dob
 
                     });
                 }
@@ -269,6 +270,6 @@ class __TwigTemplate_f936a35723af0c286e0cfdc7ae383e8183caa9e81c166d1a0c05be0d75e
 
     public function getDebugInfo()
     {
-        return array (  204 => 175,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
+        return array (  195 => 166,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
     }
 }

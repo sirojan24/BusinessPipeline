@@ -110,6 +110,7 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
                                     <th data-field=\"assignedTo\" data-sortable=\"true\">Assigned To</th>
                                     <th data-field=\"dueDate\" data-sortable=\"true\">Due Date</th>
                                     <th data-field=\"action\">Action</th>
+                                    <th data-field=\"tags\">tags</th>
                                 </tr>
                             </thead>
                         </table>
@@ -121,7 +122,7 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
     </div>
 </div>
 ";
-        // line 78
+        // line 79
         $this->env->loadTemplate("TaskBundle:Default:tasksTableScript.html.twig")->display($context);
     }
 
@@ -137,6 +138,6 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
 
     public function getDebugInfo()
     {
-        return array (  125 => 78,  96 => 52,  87 => 45,  85 => 44,  64 => 25,  55 => 20,  44 => 15,  31 => 10,  29 => 9,  19 => 1,);
+        return array (  126 => 79,  96 => 52,  87 => 45,  85 => 44,  64 => 25,  55 => 20,  44 => 15,  31 => 10,  29 => 9,  19 => 1,);
     }
 }

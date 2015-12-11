@@ -6,6 +6,7 @@
     $(document).ready(function () {
         $("#tableDiv").show();
         iniFillTableData();
+        $table.bootstrapTable('hideColumn','tags');
     });
 
     function iniFillTableData() {
@@ -105,9 +106,9 @@
 
     function detailFormatter(index, row) {
 
-        var tags = checkAndSetValue(extendColData[index].tags, '-', '', true);
-        var message = checkAndSetValue(extendColData[index].message, '-', '', true);
-        var telephone = checkAndSetValue(extendColData[index].telephone, '-', '', true);
+        var tags = checkAndSetValue(row.tags, '-', '', true);
+        var message = checkAndSetValue(row.message, '-', '', true);
+        var telephone = checkAndSetValue(row.telephone, '-', '', true);
 
         var html = [];
         html.push('<div class"row">' +
@@ -142,8 +143,7 @@
             var tempTask = jsonString.tasks[i];
 
             extendColData.push({
-                message: tempTask.message,
-                tags: tempTask.tags
+                
             });
 
             var editPath = '{{ path('contacts_contacts_editcontactpageV2',{'id':0} )}}';
@@ -173,7 +173,9 @@
                 priority: tempTask.priority,
                 assignedTo: tempTask.assignedTo,
                 dueDate: tempTask.dueDate,
-                action: action
+                action: action,
+                message: tempTask.message,
+                tags: tempTask.tags
 
             });
         }

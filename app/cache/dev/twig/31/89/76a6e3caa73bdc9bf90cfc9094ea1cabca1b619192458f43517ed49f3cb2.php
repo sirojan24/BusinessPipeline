@@ -32,12 +32,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         iniFillTableData();
         populateFilterForm();
         wonLostFilter();
+        \$table.bootstrapTable('hideColumn', 'tags');
     });
 
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 21
+        // line 22
         echo twig_escape_filter($this->env, (isset($context["opportunitiesArray"]) ? $context["opportunitiesArray"] : $this->getContext($context, "opportunitiesArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
@@ -62,9 +63,9 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         ";
-        // line 43
+        // line 44
         if (array_key_exists("contactid", $context)) {
-            // line 44
+            // line 45
             echo "            \$.post('";
             echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
             echo "',{id: '";
@@ -85,7 +86,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             );
         ";
         } else {
-            // line 57
+            // line 58
             echo "            \$.post('";
             echo $this->env->getExtension('routing')->getPath("opportunity_table_data");
             echo "',{id: '-1', filter: 'None'},
@@ -102,18 +103,18 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             ); 
         ";
         }
-        // line 70
+        // line 71
         echo "    }
     ";
-        // line 71
+        // line 72
         if (array_key_exists("contactid", $context)) {
-            // line 72
+            // line 73
             echo "        function wonLostFilter() {
             
         }
     ";
         } else {
-            // line 76
+            // line 77
             echo "        function wonLostFilter() {
             \$table.bootstrapTable('removeAll');
             \$table.bootstrapTable('showLoading');
@@ -137,7 +138,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         }
     ";
         }
-        // line 98
+        // line 99
         echo "        
     function usernameFilter(username) {
         \$table.bootstrapTable('removeAll');
@@ -150,15 +151,15 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             var tempOpportunity = jsonString.opportunities[i];
 
             ";
-        // line 109
+        // line 110
         if (array_key_exists("contactid", $context)) {
-            // line 110
+            // line 111
             echo "                if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
                     filterOpportunities.push(tempOpportunity);
                 }
             ";
         } else {
-            // line 114
+            // line 115
             echo "                if (username.toLowerCase() === tempOpportunity.username.toLowerCase()) {
                     if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
                         filterOpportunities.push(tempOpportunity);
@@ -166,7 +167,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 }
             ";
         }
-        // line 120
+        // line 121
         echo "        }
         var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
@@ -186,15 +187,15 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             var tempOpportunity = jsonString.opportunities[i];
 
             ";
-        // line 138
+        // line 139
         if (array_key_exists("contactid", $context)) {
-            // line 139
+            // line 140
             echo "                if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
                     filterOpportunities.push(tempOpportunity);
                 }
             ";
         } else {
-            // line 143
+            // line 144
             echo "                if (productType.toLowerCase() === tempOpportunity.product_type.toLowerCase()) {
                     if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
                         filterOpportunities.push(tempOpportunity);
@@ -202,7 +203,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 }
             ";
         }
-        // line 149
+        // line 150
         echo "            
         }
         var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
@@ -224,15 +225,15 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
             
             ";
-        // line 169
+        // line 170
         if (array_key_exists("contactid", $context)) {
-            // line 170
+            // line 171
             echo "                if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
                     filterOpportunities.push(tempOpportunity);
                 }
             ";
         } else {
-            // line 174
+            // line 175
             echo "                if (stage.toLowerCase() === tempOpportunity.stage.toLowerCase()) {
                     if ('won' !== tempOpportunity.stage.toLowerCase() && 'lost' !== tempOpportunity.stage.toLowerCase()) {
                         filterOpportunities.push(tempOpportunity);
@@ -240,7 +241,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 }
             ";
         }
-        // line 180
+        // line 181
         echo "        }
         var filterOpportunitiesArray = {'opportunities' : filterOpportunities};
         var jsonStr = JSON.stringify(filterOpportunitiesArray); 
@@ -477,7 +478,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     function storePageSize(size) {
         \$.post('";
-        // line 415
+        // line 416
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'opportunityview', value: size},
@@ -503,12 +504,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
     }
 
     function detailFormatter(index, row) {
-        var deal_account_type = checkAndSetValue(extendColData[index].deal_account_type, '-', '', true);
-        var deal_source = checkAndSetValue(extendColData[index].deal_source, '-', '', true);
-        var open_deals = checkAndSetValue(extendColData[index].open_deals, '-', '', true);
-        var won_deals = checkAndSetValue(extendColData[index].won_deals, '-', '', true);
-        var lost_deals = checkAndSetValue(extendColData[index].lost_deals, '-', '', true);
-        var tags = checkAndSetValue(extendColData[index].tags, '-', '', true);
+        var deal_account_type = checkAndSetValue(row.deal_account_type, '-', '', true);
+        var deal_source = checkAndSetValue(row.deal_source, '-', '', true);
+        var open_deals = checkAndSetValue(row.open_deals, '-', '', true);
+        var won_deals = checkAndSetValue(row.won_deals, '-', '', true);
+        var lost_deals = checkAndSetValue(row.lost_deals, '-', '', true);
+        var tags = checkAndSetValue(row.tags, '-', '', true);
 
         var html = [];
         html.push('<div class\"row\">' +
@@ -555,17 +556,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                 rows = [];
 
     ";
-        // line 492
+        // line 493
         echo "                for (var i = 0; i < jsonString.opportunities.length; i++) {
                     var tempOpportunity = jsonString.opportunities[i];
 
                     extendColData.push({
-                        deal_account_type: tempOpportunity.deal_account_type,
-                        deal_source: tempOpportunity.deal_source,
-                        open_deals: tempOpportunity.open_deals,
-                        won_deals: tempOpportunity.won_deals,
-                        lost_deals: tempOpportunity.lost_deals,
-                        tags: tempOpportunity.tags
+                        
                     });
                     
                     dealSource.push(tempOpportunity.deal_source);
@@ -575,13 +571,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                     tags.push(tempOpportunity.tags);
 
                     var editPath = '";
-        // line 510
+        // line 506
         echo $this->env->getExtension('routing')->getPath("opportunity_editopportunityV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var name = '";
-        // line 513
+        // line 509
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -633,7 +629,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                         projected_revenue: '\$' + tempOpportunity.projected_revenue,
                         expected_closed_date: date,
                         owner: '<a href=\"javascript:usernameFilter(' + \"'\" + tempOpportunity.username + \"'\" + ')\">' + tempOpportunity.owner + '</a>',
-                        action: action
+                        action: action,
+                        deal_account_type: tempOpportunity.deal_account_type,
+                        deal_source: tempOpportunity.deal_source,
+                        open_deals: tempOpportunity.open_deals,
+                        won_deals: tempOpportunity.won_deals,
+                        lost_deals: tempOpportunity.lost_deals,
+                        tags: tempOpportunity.tags
                     });
                 }
 
@@ -719,6 +721,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  585 => 513,  579 => 510,  559 => 492,  481 => 415,  244 => 180,  236 => 174,  230 => 170,  228 => 169,  206 => 149,  198 => 143,  192 => 139,  190 => 138,  170 => 120,  162 => 114,  156 => 110,  154 => 109,  141 => 98,  117 => 76,  111 => 72,  109 => 71,  106 => 70,  89 => 57,  68 => 44,  66 => 43,  41 => 21,  19 => 1,);
+        return array (  581 => 509,  575 => 506,  560 => 493,  482 => 416,  245 => 181,  237 => 175,  231 => 171,  229 => 170,  207 => 150,  199 => 144,  193 => 140,  191 => 139,  171 => 121,  163 => 115,  157 => 111,  155 => 110,  142 => 99,  118 => 77,  112 => 73,  110 => 72,  107 => 71,  90 => 58,  69 => 45,  67 => 44,  42 => 22,  19 => 1,);
     }
 }

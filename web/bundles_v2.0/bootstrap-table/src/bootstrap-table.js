@@ -987,9 +987,12 @@
                 var checked = column.visible ? ' checked="checked"' : '';
 
                 if (column.switchable) {
-                    html.push(sprintf('<li>' +
+                    if(column.title !== "tags"){
+                        html.push(sprintf('<li>' +
                             '<label><input type="checkbox" data-field="%s" value="%s"%s> %s</label>' +
                             '</li>', column.field, i, checked, column.title));
+                    }
+                    
                     switchableCount++;
                 }
             });

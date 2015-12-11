@@ -6,7 +6,7 @@
         $("#tableDiv").show();
         iniFillTableData();
     });
-    
+
     function iniFillTableData() {
         $table.bootstrapTable('showLoading');
         var data = '{{userArray}}';
@@ -40,38 +40,38 @@
                 {name: 'userview', value: size},
         function (response) {
             if (response !== "false") {
-                
+
             } else {
                 console.log("error occured in getting the manage view number in contacts", response);
             }
         });
     }
 
-    function checkAndSetValue(value, blankValue, scale, pre){
-        if(value === ''){
+    function checkAndSetValue(value, blankValue, scale, pre) {
+        if (value === '') {
             return blankValue;
-        }else{
-            if(pre === true){
+        } else {
+            if (pre === true) {
                 return scale + '' + value;
-            }else{
+            } else {
                 return value + '' + scale;
             }
         }
     }
-    
+
     function detailFormatter(index, row) {
 
-        var title = checkAndSetValue(extendColData[index].title, '-', '', true);
-        var company = checkAndSetValue(extendColData[index].company, '-', '', true);
-        var email = checkAndSetValue(extendColData[index].email, '-', '', true);
-        var telephone = checkAndSetValue(extendColData[index].telephone, '-', '', true);
-        var cellphone = checkAndSetValue(extendColData[index].cellphone, '-', '', true);
+        var title = checkAndSetValue(row.title, '-', '', true);
+        var company = checkAndSetValue(row.company, '-', '', true);
+        var email = checkAndSetValue(row.email, '-', '', true);
+        var telephone = checkAndSetValue(row.telephone, '-', '', true);
+        var cellphone = checkAndSetValue(row.cellphone, '-', '', true);
 
-        var originator = checkAndSetValue(extendColData[index].originator, '-', '%', false);
-        var nonOriginator = checkAndSetValue(extendColData[index].nonOriginator, '-', '%', false);
-        var earningGoals = checkAndSetValue(extendColData[index].earningGoals, '-', '$', true);
-        var drawAgainstCommission = checkAndSetValue(extendColData[index].drawAgainstCommission, '-', '$', true);
-        var dob = checkAndSetValue(extendColData[index].dob, '-', '', true);
+        var originator = checkAndSetValue(row.originator, '-', '%', false);
+        var nonOriginator = checkAndSetValue(row.nonOriginator, '-', '%', false);
+        var earningGoals = checkAndSetValue(row.earningGoals, '-', '$', true);
+        var drawAgainstCommission = checkAndSetValue(row.drawAgainstCommission, '-', '$', true);
+        var dob = checkAndSetValue(row.dob, '-', '', true);
 
         var html = [];
         html.push('<div class"row">' +
@@ -120,16 +120,6 @@
                     var tempUser = jsonString.users[i];
 
                     extendColData.push({
-                        title: tempUser.title,
-                        company: tempUser.company,
-                        email: tempUser.email,
-                        telephone: tempUser.telephone,
-                        cellphone: tempUser.cellphone,
-                        originator: tempUser.originator,
-                        nonOriginator: tempUser.nonOriginator,
-                        earningGoals: tempUser.earningGoals,
-                        drawAgainstCommission: tempUser.drawAgainstCommission,
-                        dob: tempUser.dob
                     });
 
                     rows.push({
@@ -148,11 +138,21 @@
                                 '</button>' +
                                 '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
                                 '<li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
-                                '<li><a href="#" onclick="notespopup('+ tempUser.id +')"><i class="fa fa-file-o"></i> Notes</a></li>' +
+                                '<li><a href="#" onclick="notespopup(' + tempUser.id + ')"><i class="fa fa-file-o"></i> Notes</a></li>' +
                                 '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>'
+                                '</div>',
+                        title: tempUser.title,
+                        company: tempUser.company,
+                        email: tempUser.email,
+                        telephone: tempUser.telephone,
+                        cellphone: tempUser.cellphone,
+                        originator: tempUser.originator,
+                        nonOriginator: tempUser.nonOriginator,
+                        earningGoals: tempUser.earningGoals,
+                        drawAgainstCommission: tempUser.drawAgainstCommission,
+                        dob: tempUser.dob
 
                     });
                 }

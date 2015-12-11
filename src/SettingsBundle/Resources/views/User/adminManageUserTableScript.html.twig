@@ -61,17 +61,17 @@
     
     function detailUserFormatter(index, row) {
 
-        var title = checkAndSetValue(userExtendColData[index].title, '-', '', true);
-        var company = checkAndSetValue(userExtendColData[index].company, '-', '', true);
-        var email = checkAndSetValue(userExtendColData[index].email, '-', '', true);
-        var telephone = checkAndSetValue(userExtendColData[index].telephone, '-', '', true);
-        var cellphone = checkAndSetValue(userExtendColData[index].cellphone, '-', '', true);
+        var title = checkAndSetValue(row.title, '-', '', true);
+        var company = checkAndSetValue(row.company, '-', '', true);
+        var email = checkAndSetValue(row.email, '-', '', true);
+        var telephone = checkAndSetValue(row.telephone, '-', '', true);
+        var cellphone = checkAndSetValue(row.cellphone, '-', '', true);
 
-        var originator = checkAndSetValue(userExtendColData[index].originator, '-', '%', false);
-        var nonOriginator = checkAndSetValue(userExtendColData[index].nonOriginator, '-', '%', false);
-        var earningGoals = checkAndSetValue(userExtendColData[index].earningGoals, '-', '$', true);
-        var drawAgainstCommission = checkAndSetValue(userExtendColData[index].drawAgainstCommission, '-', '$', true);
-        var dob = checkAndSetValue(userExtendColData[index].dob, '-', '', true);
+        var originator = checkAndSetValue(row.originator, '-', '%', false);
+        var nonOriginator = checkAndSetValue(row.nonOriginator, '-', '%', false);
+        var earningGoals = checkAndSetValue(row.earningGoals, '-', '$', true);
+        var drawAgainstCommission = checkAndSetValue(row.drawAgainstCommission, '-', '$', true);
+        var dob = checkAndSetValue(row.dob, '-', '', true);
         
         if(dob !== '-'){
             var mdate = new Date(dob);
@@ -161,16 +161,7 @@
                     var tempUser = jsonString.users[i];
 
                     userExtendColData.push({
-                        title: tempUser.title,
-                        company: tempUser.company,
-                        email: tempUser.email,
-                        telephone: tempUser.telephone,
-                        cellphone: tempUser.cellphone,
-                        originator: tempUser.originator,
-                        nonOriginator: tempUser.nonOriginator,
-                        earningGoals: tempUser.earningGoals,
-                        drawAgainstCommission: tempUser.drawAgainstCommission,
-                        dob: tempUser.dob
+                        
                     });
                     var editPath = '{{ path('login_login_edituserpage',{'id':0} )}}';
                     editPath = editPath.substring(0, editPath.length - 1);
@@ -197,7 +188,17 @@
                                 '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>'
+                                '</div>',
+                        title: tempUser.title,
+                        company: tempUser.company,
+                        email: tempUser.email,
+                        telephone: tempUser.telephone,
+                        cellphone: tempUser.cellphone,
+                        originator: tempUser.originator,
+                        nonOriginator: tempUser.nonOriginator,
+                        earningGoals: tempUser.earningGoals,
+                        drawAgainstCommission: tempUser.drawAgainstCommission,
+                        dob: tempUser.dob
 
                     });
                 }
