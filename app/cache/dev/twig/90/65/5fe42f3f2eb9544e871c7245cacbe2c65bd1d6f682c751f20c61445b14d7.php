@@ -27,7 +27,10 @@ class __TwigTemplate_90655fe42f3f2eb9544e871c7245cacbe2c65bd1d6f682c751f20c61445
 \t\t\t\t\t\t\t<span class=\"icon-bar\"></span>
 \t\t\t\t\t\t\t<span class=\"icon-bar\"></span>
 \t\t\t\t\t\t</button>
-\t\t\t\t\t\t<a class=\"navbar-brand\" href=\"index.php\"><span style=\"font-family: 'Oswald', serif;\">PIPELINE<font color=\"#95BE22\"><strong> 99</font></strong></a></span>
+\t\t\t\t\t\t<a class=\"navbar-brand\" href=\"";
+        // line 12
+        echo $this->env->getExtension('routing')->getPath("login_login_signin");
+        echo "\"><span style=\"font-family: 'Oswald', serif;\">PIPELINE<font color=\"#95BE22\"><strong> 99</font></strong></a></span>
 \t\t\t\t</div>
 \t\t\t\t<!-- /.end navbar-header -->
 \t\t\t\t
@@ -73,6 +76,6 @@ class __TwigTemplate_90655fe42f3f2eb9544e871c7245cacbe2c65bd1d6f682c751f20c61445
 
     public function getDebugInfo()
     {
-        return array (  52 => 29,  46 => 26,  19 => 1,);
+        return array (  55 => 29,  49 => 26,  32 => 12,  19 => 1,);
     }
 }

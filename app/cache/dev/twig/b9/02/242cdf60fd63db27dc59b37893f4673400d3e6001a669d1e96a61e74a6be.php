@@ -589,7 +589,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">
                             <label for=\"address1\">Address 1</label>
-                            <input type=\"text\" class=\"form-control\" name=\"address1\" id=\"address1\" placeholder=\"Address line 1\" pattern=\"^[a-zA-Z0-9_,./\\ ]*\$\" data-parsley-pattern=\"^[a-zA-Z0-9_,./\\ ]*\$\"  data-parsley-trigger=\"keyup\"/>
+                            <input type=\"text\" class=\"form-control\" name=\"address1\" id=\"address1\" placeholder=\"Address line 1\" data-parsley-trigger=\"keyup\"/>
                         </div>
                     </div>
                 </div>
@@ -597,7 +597,7 @@ class __TwigTemplate_b902242cdf60fd63db27dc59b37893f4673400d3e6001a669d1e96a61e7
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">
                             <label for=\"address2\">Address 2</label>
-                            <input type=\"text\" class=\"form-control\" name=\"address2\" id=\"address2\" placeholder=\"Address line 2\" pattern=\"^[a-zA-Z0-9_,./\\ ]*\$\" data-parsley-pattern=\"^[a-zA-Z0-9_,./\\ ]*\$\"  data-parsley-trigger=\"keyup\"/>
+                            <input type=\"text\" class=\"form-control\" name=\"address2\" id=\"address2\" placeholder=\"Address line 2\" data-parsley-trigger=\"keyup\"/>
                         </div>
                     </div>
                 </div>

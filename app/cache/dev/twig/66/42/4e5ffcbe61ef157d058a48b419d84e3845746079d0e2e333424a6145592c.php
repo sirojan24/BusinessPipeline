@@ -54,9 +54,7 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                             <!-- Nav tabs -->
                                             <ul class=\"nav nav-tabs\">
                                                 <li class=\"active\"><a href=\"#users\" data-toggle=\"tab\">Users</a>
-                                                </li>\t
-                                                <li><a href=\"#partners\" data-toggle=\"tab\">Partners</a>
-                                                </li>\t\t\t\t\t\t\t
+                                                </li>\t\t\t\t\t\t
                                                 <li><a href=\"#accounttype\" data-toggle=\"tab\">Account Type</a>
                                                 </li>
                                                 <li><a href=\"#pipelinestages\" data-toggle=\"tab\">Pipeline Stages</a>
@@ -72,41 +70,37 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
                                                 <div class=\"tab-pane fade active in\" id=\"users\">
                                                     <h4>Users</h4>
                                                     ";
-        // line 50
+        // line 48
         $this->env->loadTemplate("SettingsBundle:User:adminManageUsersTable.html.twig")->display($context);
-        // line 51
-        echo "                                                </div>
-                                                <div class=\"tab-pane fade\" id=\"partners\">
-                                                    <h4>Partners</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                                </div>\t\t\t\t\t\t\t\t\t\t\t\t
+        // line 49
+        echo "                                                </div>\t\t\t\t\t\t\t\t\t\t\t\t
                                                 <div class=\"tab-pane fade\" id=\"accounttype\">
                                                     <h4>Account Type</h4>
                                                     ";
-        // line 58
+        // line 52
         $this->env->loadTemplate("SettingsBundle:AccountType:accounttypesTable.html.twig")->display($context);
-        // line 59
+        // line 53
         echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"pipelinestages\">
                                                     <h4>Pipeline Stages</h4>
                                                     ";
-        // line 62
+        // line 56
         $this->env->loadTemplate("SettingsBundle:Stages:stagesTable.html.twig")->display($context);
-        // line 63
+        // line 57
         echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"producttype\">
                                                     <h4>Product Type</h4>
                                                     ";
-        // line 66
+        // line 60
         $this->env->loadTemplate("SettingsBundle:ProductType:productTypesTable.html.twig")->display($context);
-        // line 67
+        // line 61
         echo "                                                </div>
                                                 <div class=\"tab-pane fade\" id=\"opportunitysource\">
                                                     <h4>Opportunity Source</h4>
                                                     ";
-        // line 70
+        // line 64
         $this->env->loadTemplate("SettingsBundle:OpportunitySource:opportunitySourcesTable.html.twig")->display($context);
-        // line 71
+        // line 65
         echo "                                                </div>\t\t\t\t\t\t\t\t
                                             </div>
                                         </div>
@@ -131,30 +125,30 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
             <!-- /#page-wrapper -->
 
             ";
-        // line 94
+        // line 88
         $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 95
+        // line 89
         echo "
         </div>
         <!-- /#wrapper -->
 
         ";
-        // line 99
+        // line 93
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 100
+        // line 94
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 101
+        // line 95
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 102
+        // line 96
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 103
+        // line 97
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -175,6 +169,6 @@ class __TwigTemplate_66424e5ffcbe61ef157d058a48b419d84e3845746079d0e2e333424a614
 
     public function getDebugInfo()
     {
-        return array (  158 => 103,  154 => 102,  150 => 101,  145 => 100,  143 => 99,  137 => 95,  135 => 94,  110 => 71,  108 => 70,  103 => 67,  101 => 66,  96 => 63,  94 => 62,  89 => 59,  87 => 58,  78 => 51,  76 => 50,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  152 => 97,  148 => 96,  144 => 95,  139 => 94,  137 => 93,  131 => 89,  129 => 88,  104 => 65,  102 => 64,  97 => 61,  95 => 60,  90 => 57,  88 => 56,  83 => 53,  81 => 52,  76 => 49,  74 => 48,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

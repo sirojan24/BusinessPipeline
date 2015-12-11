@@ -23,18 +23,6 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
             <div class=\"row\">
                 <div class=\"col-lg-12\">
                     <div class=\"pull-right\">  
-                        <span calss=\"pull-right\">
-                            <a href=\"";
-        // line 9
-        echo $this->env->getExtension('routing')->getPath("login_login_adduser");
-        echo "\" style=\"color: black;\"><i class=\"fa fa-user-plus\"></i> Add Users</a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"";
-        // line 12
-        echo $this->env->getExtension('routing')->getPath("login_login_importuser");
-        echo "\" style=\"color: black;\"><i class=\"fa fa-users\"></i> Import Users</a>
-                        </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
@@ -62,7 +50,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                                data-detail-view=\"true\"
                                data-search=\"true\"
                                data-page-size=\"";
-        // line 40
+        // line 34
         echo twig_escape_filter($this->env, (isset($context["manageview"]) ? $context["manageview"] : $this->getContext($context, "manageview")), "html", null, true);
         echo "\"
                                data-page-list=\"[10,25,50]\"
@@ -81,9 +69,6 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                                     <th data-field=\"weighted_forecast\" data-sortable=\"true\">Weighted<br> Forecast</th>
                                     <th data-field=\"won_deals\" data-sortable=\"true\">Won<br> Deals</th>
                                     <th data-field=\"lost_deals\" data-sortable=\"true\">Lost<br> Deals</th>
-                                    <th data-field=\"user_status\" data-sortable=\"true\">User<br> Status</th>
-                                    <th data-field=\"user_level\" data-sortable=\"true\">User<br> Level</th>
-                                    <th data-field=\"action\">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -95,7 +80,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
     </div>
 </div>
 ";
-        // line 70
+        // line 61
         $this->env->loadTemplate("LoginLoginBundle:Default:adminManageUserTableScript.html.twig")->display($context);
     }
 
@@ -111,6 +96,6 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
 
     public function getDebugInfo()
     {
-        return array (  99 => 70,  66 => 40,  35 => 12,  29 => 9,  19 => 1,);
+        return array (  84 => 61,  54 => 34,  19 => 1,);
     }
 }

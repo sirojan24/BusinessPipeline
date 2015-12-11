@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-		{% include 'AppBundle:Default:head.html.twig' %}		
+		{% include 'LoginLoginBundle:Default:head_v2.html.twig' %}		
 
-<body>
+    <body>
+
+
+        <!-- Navigation -->
+        {% include 'LoginLoginBundle:Default:navigation.html.twig' %}
+        <!-- Second Menu -->		
+        {% include 'LoginLoginBundle:Default:secondmenu.html.twig' %}		
+
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-	{% include 'AppBundle:Default:navigation.html.twig' %}
-		<!-- Second Menu -->		
-	{% include 'LoginLoginBundle:Default:secondmenu.html.twig' %}
         
         <div class="modal fade" id="termsModal">
             <div class="modal-dialog" style="overflow:scroll; height:90%;width:90%" >
