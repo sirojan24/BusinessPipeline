@@ -727,7 +727,7 @@ class DefaultController extends Controller {
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
                     if($opportunity->getStage() !== '6' && $opportunity->getStage() !== '7' &&
-                            $this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
+                            ($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity))){
                         array_push($tempOpportunities, $opportunity);
                     }
                 }

@@ -25,16 +25,41 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         iniFillTableData();
     });
 
+    function sortMyUsername(initResponse) {
+        var jsonString = JSON.parse(initResponse);
+        var filterUsers = [];
+        
+        var name = '";
+        // line 14
+        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "';
+        for (var i = 0; i < jsonString.users.length; i++) {
+            var tempUser = jsonString.users[i];
+            if (name.toLowerCase() === tempUser.username.toLowerCase()) {
+                filterUsers.push(tempUser);
+            }
+        }
+        for (var i = 0; i < jsonString.users.length; i++) {
+            var tempUser = jsonString.users[i];
+            if (name.toLowerCase() !== tempUser.username.toLowerCase()) {
+                filterUsers.push(tempUser);
+            }
+        }
+        var filterOpportunitiesArray = {'users': filterUsers};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        return jsonStr;
+    }
+
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 12
+        // line 34
         echo twig_escape_filter($this->env, (isset($context["userArray"]) ? $context["userArray"] : $this->getContext($context, "userArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         //var newString = JSON.parse(data);
         \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(newString));
+        \$table.bootstrapTable('append', convertData(sortMyUsername(newString)));
     }
 
     function refreshTable() {
@@ -45,13 +70,13 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 26
+        // line 48
         echo $this->env->getExtension('routing')->getPath("login_login_userTableData");
         echo "', null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
-                        \$table.bootstrapTable('append', convertData(response));
+                        \$table.bootstrapTable('append', convertData(sortMyUsername(response)));
                     } else {
 
                     }
@@ -61,7 +86,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     function storePageSize(size) {
         \$.post('";
-        // line 39
+        // line 61
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'userview', value: size},
@@ -183,30 +208,47 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 rows = [];
 
     ";
-        // line 160
+        // line 182
         echo "                for (var i = 0; i < jsonString.users.length; i++) {
                     var tempUser = jsonString.users[i];
 
                     extendColData.push({
                     });
+                    
                     var editPath = '";
-        // line 165
+        // line 188
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
-                    rows.push({
-                        first_name: tempUser.firstname,
-                        last_name: tempUser.lastname,
-                        username: tempUser.username,
-                        open_deal: tempUser.openDeals,
-                        projected_revenue: '\$' + tempUser.projectedRevenue,
-                        weighted_forecast: '\$' + tempUser.individualForecast,
-                        won_deals: '\$' + tempUser.wonDeals,
-                        lost_deals: '\$' + tempUser.lossDeals,
-                        user_status: tempUser.status,
-                        user_level: tempUser.role,
-                        action: '<div class=\"pull-right\">' +
+                    var openDealPath = '";
+        // line 191
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
+        echo "';
+                    openDealPath = openDealPath.substring(0, openDealPath.length - 3);
+                    
+                    var openDeal = tempUser.openDeals;
+                    if(tempUser.openDeals > 0){
+                        openDeal = '<a href=\"' + openDealPath + tempUser.id + '/OpenUser' + '\">' + tempUser.openDeals + '</a>';
+                    }
+                    
+                    var wonDeal = tempUser.wonDeals;
+                    if(tempUser.wonDeals !== '0'){
+                        wonDeal = '<a href=\"' + openDealPath + tempUser.id + '/WonUser' + '\">\$' + tempUser.wonDeals + '</a>';
+                    }
+                    
+                    var lostDeal = tempUser.lossDeals;
+                    if(tempUser.lossDeals !== '0'){
+                        lostDeal = '<a href=\"' + openDealPath + tempUser.id + '/LostUser' + '\">\$' + tempUser.lossDeals + '</a>';
+                    }
+                    
+                    var action = '';
+                    var name = '";
+        // line 210
+        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
+        echo "';
+                    if (name.toLowerCase() === tempUser.username.toLowerCase()) {
+                        action = '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
@@ -217,7 +259,21 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                                 '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>',
+                                '</div>'
+                    }
+                    
+                    rows.push({
+                        first_name: tempUser.firstname,
+                        last_name: tempUser.lastname,
+                        username: tempUser.username,
+                        open_deal: openDeal,
+                        projected_revenue: '\$' + tempUser.projectedRevenue,
+                        weighted_forecast: '\$' + tempUser.individualForecast,
+                        won_deals: wonDeal,
+                        lost_deals: lostDeal,
+                        user_status: tempUser.status,
+                        user_level: tempUser.role,
+                        action: action,
                         title: tempUser.title,
                         company: tempUser.company,
                         email: tempUser.email,
@@ -269,6 +325,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  194 => 165,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
+        return array (  248 => 210,  226 => 191,  220 => 188,  212 => 182,  90 => 61,  74 => 48,  57 => 34,  34 => 14,  19 => 1,);
     }
 }
