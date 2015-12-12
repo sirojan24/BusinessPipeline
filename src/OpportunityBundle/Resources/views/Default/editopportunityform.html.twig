@@ -175,7 +175,30 @@
                         </div>
                     </div>
                 </div>
-
+                            
+                <div class="row">			
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="duallist">Partner Sharing <span style="color:#FF0000;">*</span>  </label>
+                            <div class="row">
+                                <div class="col-xs-6">				
+                                    <div class="form-group">
+                                        <input type="text" name="forecast" id="forecast" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">				
+                                    <div class="input-group" >
+                                        <input type="hidden" id="commisionnonoriginator">
+                                        <input type="text" name="modalrevenue" class="form-control" required />
+                                        <span class="input-group-addon">
+                                            %
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <input type="hidden" name="modalnoteshidden" value="{{opportunity.getWonnotes()}}" id="modalnoteshidden"> 
                 <input type="hidden"  value="{{opportunity.getId()}}" name="id" /> 
                 <input type="hidden" name="revenue" value="{{opportunity.getRevenue()}}" id="revenue">
