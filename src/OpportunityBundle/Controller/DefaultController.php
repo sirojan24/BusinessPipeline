@@ -176,10 +176,10 @@ class DefaultController extends Controller {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if ($opportunity->getStage() == '6') {
+                    if ($opportunity->getStage() == 'won') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if ($opportunity->getStage() == '7') {
+                    if ($opportunity->getStage() == 'lost') {
                         $opportunity->setChanceofsale('0');
                     }
                     $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
@@ -396,10 +396,10 @@ class DefaultController extends Controller {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if ($opportunity->getStage() == '6') {
+                    if ($opportunity->getStage() == 'won') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if ($opportunity->getStage() == '7') {
+                    if ($opportunity->getStage() == 'lost') {
                         $opportunity->setChanceofsale('0');
                     }
                     $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
@@ -530,10 +530,10 @@ class DefaultController extends Controller {
                     $opportunity->setChanceofsale($stage->getSalechance());
                     $opportunity->setStage($stage->getName());
                 }
-                if ($opportunity->getStage() == '6') {
+                if ($opportunity->getStage() == 'won') {
                     $opportunity->setChanceofsale('100');
                 }
-                if ($opportunity->getStage() == '7') {
+                if ($opportunity->getStage() == 'lost') {
                     $opportunity->setChanceofsale('0');
                 }
                 $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
@@ -689,21 +689,21 @@ class DefaultController extends Controller {
             $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
         }else{
             if($filter == "Won"){
-                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => '6'));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => 'won'));
             }else if($filter == "Lost"){
-                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => '7'));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => 'lost'));
             }else if($filter == "Open"){
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
-                    if($opportunity->getStage() !== '6' && $opportunity->getStage() !== '7'){
+                    if($opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost'){
                         array_push($tempOpportunities, $opportunity);
                     }
                 }
                 $opportunities = $tempOpportunities;
             }else if($filter == "WonUser"){
                 $requestUser = $repository->findOneBy(array('id' => $id));
-                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => '6'));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => 'won'));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
                     if($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
@@ -713,7 +713,7 @@ class DefaultController extends Controller {
                 $opportunities = $tempOpportunities;
             }else if($filter == "LostUser"){
                 $requestUser = $repository->findOneBy(array('id' => $id));
-                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => '7'));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => 'lost'));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
                     if($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
@@ -726,7 +726,7 @@ class DefaultController extends Controller {
                 $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active'));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
-                    if($opportunity->getStage() !== '6' && $opportunity->getStage() !== '7' &&
+                    if($opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost' &&
                             ($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity))){
                         array_push($tempOpportunities, $opportunity);
                     }
@@ -770,11 +770,11 @@ class DefaultController extends Controller {
                 $opportunity->setChanceofsale($stage->getSalechance());
                 $opportunity->setStage($stage->getName());
             }
-            if ($opportunity->getStage() == '6') {
+            if ($opportunity->getStage() == 'won') {
                 $opportunity->setChanceofsale('100');
                 $opportunity->setStage('Won');
             }
-            if ($opportunity->getStage() == '7') {
+            if ($opportunity->getStage() == 'lost') {
                 $opportunity->setChanceofsale('0');
                 $opportunity->setStage('Lost');
             }
@@ -950,10 +950,10 @@ class DefaultController extends Controller {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if ($opportunity->getStage() == '6') {
+                    if ($opportunity->getStage() == 'won') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if ($opportunity->getStage() == '7') {
+                    if ($opportunity->getStage() == 'lost') {
                         $opportunity->setChanceofsale('0');
                     }
                     $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));
@@ -1086,10 +1086,10 @@ class DefaultController extends Controller {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if ($opportunity->getStage() == '6') {
+                    if ($opportunity->getStage() == 'won') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if ($opportunity->getStage() == '7') {
+                    if ($opportunity->getStage() == 'lost') {
                         $opportunity->setChanceofsale('0');
                     }
                     $accounttype = $repository3->findOneBy(array('id' => $opportunity->getAccounttype()));

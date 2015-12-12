@@ -120,13 +120,21 @@ class StageController extends Controller {
     }
 
     public function validatestageAction(Request $request) {
+        
+        $token = $request->getSession()->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository("LoginLoginBundle:Users");
+        $user = $repository->findOneBy(array('username' => $token->getUsername()));
+         
         $name = $request->get('name');
 
+        if(strtolower($name) == "won" || strtolower($name) == "lost"){
+            return new Response("true");
+        }
+        
+        $repository1 = $em->getRepository("SettingsBundle:Stages");
 
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository("SettingsBundle:Stages");
-
-        $stage = $repository->findOneBy(array('name' => $name));
+        $stage = $repository1->findOneBy(array('name' => $name,'companyname' => $user->getCompanyname(),'status'=>"Active"));
 
         if ($stage) {
             return new Response("true");
@@ -316,9 +324,9 @@ class StageController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("SettingsBundle:Stages");
-        if ($id == '6') {
+        if ($id == 'won') {
             $salechance = '100';
-        } else if ($id == '7') {
+        } else if ($id == 'lost') {
             $salechance = '0';
         } else {
             $stage = $repository->findOneBy(array('id' => $id));

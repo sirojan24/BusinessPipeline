@@ -163,7 +163,7 @@
     function stageModal(commisionoriginator) {
         commisionoriginator = commisionoriginator.substring(0, commisionoriginator.length - 1);
         //get commision originator
-        if (document.getElementById('stage').value == '6') {
+        if (document.getElementById('stage').value == 'won') {
             $('#progress').css('width', '100%');
             $('#progress').html('100%');
             $('#wonModal').modal('show');
@@ -171,7 +171,7 @@
             $('#forecast').number(true, 0);
             //forecastcalculate();
         }
-        else if (document.getElementById('stage').value == '7') {
+        else if (document.getElementById('stage').value == 'lost') {
             $('#progress').css('width', '0%');
             $('#progress').html('0%');
             $('#lostModal').modal('show');

@@ -16,10 +16,10 @@
     var newDate = mdate.getFullYear() + '-' + month + '-' + day;
     $('#closeddate').val(newDate);
     
-    if (document.getElementById('stage').value == '6') {
+    if (document.getElementById('stage').value == 'won') {
             $('#progress').css('width', '100%');
             $('#progress').html('100%');
-    } else if (document.getElementById('stage').value == '7'){
+    } else if (document.getElementById('stage').value == 'lost'){
             $('#progress').css('width', '0%');
             $('#progress').html('0%');
     }else{
@@ -142,10 +142,10 @@
             function (response) {
                 if (response !== "false") {
                     response = response.substring(0, response.length - 1);
-                    if (document.getElementById('stage').value == '6') {
+                    if (document.getElementById('stage').value == 'won') {
                         document.getElementById('forecast').value = (revenue * response * 100) / 10000;
                         $('#forecast').number(true, 0);
-                    } else if (document.getElementById('stage').value == '7') {
+                    } else if (document.getElementById('stage').value == 'lost') {
                         document.getElementById('forecast').value = 0;
                     } else {
                         $.post('{{path('settings_getsale')}}',
@@ -187,7 +187,7 @@
     function stageModal(commisionoriginator) {
         commisionoriginator = commisionoriginator.substring(0, commisionoriginator.length - 1);
         //get commision originator
-        if (document.getElementById('stage').value == '6') {
+        if (document.getElementById('stage').value == 'won') {
             $('#progress').css('width', '100%');
             $('#progress').html('100%');
             $('#wonModal').modal('show');
@@ -195,7 +195,7 @@
             $('#forecast').number(true, 0);
             //forecastcalculate();
         }
-        else if (document.getElementById('stage').value == '7') {
+        else if (document.getElementById('stage').value == 'lost') {
             $('#progress').css('width', '0%');
             $('#progress').html('0%');
             $('#lostModal').modal('show');

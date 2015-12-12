@@ -58,8 +58,8 @@
                                         {%endif%}
                                     {%endfor%}
                                 {%endif%}
-                                <option value = "6" {%if opportunity.getStage == '6' %}selected {%endif%}>Won</option>
-                                <option value = "7" {%if opportunity.getStage == '7' %}selected {%endif%}>Lost</option>
+                                <option value = "won" {%if opportunity.getStage == 'won' %}selected {%endif%}>Won</option>
+                                <option value = "lost" {%if opportunity.getStage == 'lost' %}selected {%endif%}>Lost</option>
                             </select>
                         </div>
                     </div>

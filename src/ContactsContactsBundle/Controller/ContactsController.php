@@ -1157,10 +1157,10 @@ class ContactsController extends Controller {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if ($opportunity->getStage() == '6') {
+                    if ($opportunity->getStage() == 'won') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if ($opportunity->getStage() == '7') {
+                    if ($opportunity->getStage() == 'lost') {
                         $opportunity->setChanceofsale('0');
                     }
 

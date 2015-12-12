@@ -320,12 +320,12 @@ class DashboardController extends Controller {
                 $lossAmount = 0;
                 $originOpportunities = $repository1->findBy(array('username' => $user->getUsername(), 'status' => 'Active'));
                 $ownedOpportunityCount = count($originOpportunities);
-                $wonOpportunities = $repository1->findBy(array('username' => $user->getUsername(), 'status' => 'Active', 'stage' => '6'));
+                $wonOpportunities = $repository1->findBy(array('username' => $user->getUsername(), 'status' => 'Active', 'stage' => 'won'));
                 $wonOpportunityCount = count($wonOpportunities);
                 foreach ($wonOpportunities as $wonOpportunity) {
-                    $wonAmount += intval(str_replace(",", "", $wonOpportunity->getProjectedrevenue()));
+                    $wonAmount += intval(str_replace(",", "", $wonOpportunity->getRevenue()));
                 }
-                $lossOpportunities = $repository1->findBy(array('username' => $user->getUsername(), 'status' => 'Active', 'stage' => '7'));
+                $lossOpportunities = $repository1->findBy(array('username' => $user->getUsername(), 'status' => 'Active', 'stage' => 'lost'));
                 $lossOpportunityCount = count($lossOpportunities);
                 foreach ($lossOpportunities as $lossOpportunity) {
                     $lossAmount += intval(str_replace(",", "", $lossOpportunity->getProjectedrevenue()));
@@ -342,11 +342,11 @@ class DashboardController extends Controller {
                         foreach ($splitedArray as $sharedname) {
                             if (strtolower($user->getUsername()) == strtolower($sharedname)) {
                                 $totalCount++;
-                                if ($opportunity->getStage() == '6') {
+                                if ($opportunity->getStage() == 'won') {
                                     $wonCount++;
                                     $wonAmount += intval(str_replace(",", "", $opportunity->getRevenue()));
                                 }
-                                if ($opportunity->getStage() == '7') {
+                                if ($opportunity->getStage() == 'lost') {
                                     $lossCount++;
                                     $lossAmount += intval(str_replace(",", "", $opportunity->getProjectedrevenue()));
                                 }
@@ -434,12 +434,12 @@ class DashboardController extends Controller {
             $lossAmount = 0;
             $originOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active'));
             $ownedOpportunityCount = count($originOpportunities);
-            $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => '6'));
+            $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => 'won'));
             $wonOpportunityCount = count($wonOpportunities);
             foreach ($wonOpportunities as $wonOpportunity) {
-                $wonAmount += intval(str_replace(",", "", $wonOpportunity->getProjectedrevenue()));
+                $wonAmount += intval(str_replace(",", "", $wonOpportunity->getRevenue()));
             }
-            $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => '7'));
+            $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => 'lost'));
             $lossOpportunityCount = count($lossOpportunities);
             foreach ($lossOpportunities as $lossOpportunity) {
                 $lossAmount += intval(str_replace(",", "", $lossOpportunity->getProjectedrevenue()));
@@ -456,11 +456,11 @@ class DashboardController extends Controller {
                     foreach ($splitedArray as $sharedname) {
                         if (strtolower($tempUser->getUsername()) == strtolower($sharedname)) {
                             $totalCount++;
-                            if ($opportunity->getStage() == '6') {
+                            if ($opportunity->getStage() == 'won') {
                                 $wonCount++;
                                 $wonAmount += intval(str_replace(",", "", $opportunity->getRevenue()));
                             }
-                            if ($opportunity->getStage() == '7') {
+                            if ($opportunity->getStage() == 'lost') {
                                 $lossCount++;
                                 $lossAmount += intval(str_replace(",", "", $opportunity->getProjectedrevenue()));
                             }
@@ -530,12 +530,12 @@ class DashboardController extends Controller {
                 $lossAmount = 0;
                 $originOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active'));
                 $ownedOpportunityCount = count($originOpportunities);
-                $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => '6'));
+                $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => 'won'));
                 $wonOpportunityCount = count($wonOpportunities);
                 foreach ($wonOpportunities as $wonOpportunity) {
-                    $wonAmount += intval(str_replace(",", "", $wonOpportunity->getProjectedrevenue()));
+                    $wonAmount += intval(str_replace(",", "", $wonOpportunity->getRevenue()));
                 }
-                $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => '7'));
+                $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => 'lost'));
                 $lossOpportunityCount = count($lossOpportunities);
                 foreach ($lossOpportunities as $lossOpportunity) {
                     $lossAmount += intval(str_replace(",", "", $lossOpportunity->getProjectedrevenue()));
@@ -552,11 +552,11 @@ class DashboardController extends Controller {
                         foreach ($splitedArray as $sharedname) {
                             if (strtolower($tempUser->getUsername()) == strtolower($sharedname)) {
                                 $totalCount++;
-                                if ($opportunity->getStage() == '6') {
+                                if ($opportunity->getStage() == 'won') {
                                     $wonCount++;
                                     $wonAmount += intval(str_replace(",", "", $opportunity->getRevenue()));
                                 }
-                                if ($opportunity->getStage() == '7') {
+                                if ($opportunity->getStage() == 'lost') {
                                     $lossCount++;
                                     $lossAmount += intval(str_replace(",", "", $opportunity->getProjectedrevenue()));
                                 }
@@ -822,12 +822,12 @@ class DashboardController extends Controller {
                         $lossAmount = 0;
                         $originOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active'));
                         $ownedOpportunityCount = count($originOpportunities);
-                        $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => '6'));
+                        $wonOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => 'won'));
                         $wonOpportunityCount = count($wonOpportunities);
                         foreach ($wonOpportunities as $wonOpportunity) {
-                            $wonAmount += intval(str_replace(",", "", $wonOpportunity->getProjectedrevenue()));
+                            $wonAmount += intval(str_replace(",", "", $wonOpportunity->getRevenue()));
                         }
-                        $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => '7'));
+                        $lossOpportunities = $repository1->findBy(array('username' => $tempUser->getUsername(), 'status' => 'Active', 'stage' => 'lost'));
                         $lossOpportunityCount = count($lossOpportunities);
                         foreach ($lossOpportunities as $lossOpportunity) {
                             $lossAmount += intval(str_replace(",", "", $lossOpportunity->getProjectedrevenue()));
@@ -844,11 +844,11 @@ class DashboardController extends Controller {
                                 foreach ($splitedArray as $sharedname) {
                                     if (strtolower($tempUser->getUsername()) == strtolower($sharedname)) {
                                         $totalCount++;
-                                        if ($opportunity->getStage() == '6') {
+                                        if ($opportunity->getStage() == 'won') {
                                             $wonCount++;
                                             $wonAmount += intval(str_replace(",", "", $opportunity->getRevenue()));
                                         }
-                                        if ($opportunity->getStage() == '7') {
+                                        if ($opportunity->getStage() == 'lost') {
                                             $lossCount++;
                                             $lossAmount += intval(str_replace(",", "", $opportunity->getProjectedrevenue()));
                                         }
@@ -1062,10 +1062,10 @@ class DashboardController extends Controller {
                         $opportunity->setChanceofsale($stage->getSalechance());
                         $opportunity->setStage($stage->getName());
                     }
-                    if ($opportunity->getStage() == '6') {
+                    if ($opportunity->getStage() == 'won') {
                         $opportunity->setChanceofsale('100');
                     }
-                    if ($opportunity->getStage() == '7') {
+                    if ($opportunity->getStage() == 'lost') {
                         $opportunity->setChanceofsale('0');
                     }
 
