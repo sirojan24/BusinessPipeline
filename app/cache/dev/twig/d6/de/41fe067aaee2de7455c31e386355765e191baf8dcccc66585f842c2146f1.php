@@ -26,7 +26,7 @@ class __TwigTemplate_d6de41fe067aaee2de7455c31e386355765e191baf8dcccc66585f842c2
 
 <script type=\"text/javascript\">
     jQuery(function (\$) {
-        \$('#addStageSalechance').number(true, 0);
+       \$(\"#editStageModalSalechance\").mask(\"99\");
     });
 </script>
 <!-- Modal -->

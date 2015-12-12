@@ -51,6 +51,7 @@ class appDevDebugProjectContainer extends Container
                 'TaskBundle' => 'TaskBundle\\TaskBundle',
                 'HelpBundle' => 'HelpBundle\\HelpBundle',
                 'webBundle' => 'webBundle\\webBundle',
+                'PartnersBundle' => 'PartnersBundle\\PartnersBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
@@ -3920,6 +3921,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\src\\TaskBundle/Resources/views'), 'Task');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\src\\HelpBundle/Resources/views'), 'Help');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\src\\webBundle/Resources/views'), 'web');
+        $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\src\\PartnersBundle/Resources/views'), 'Partners');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\DebugBundle/Resources/views'), 'Debug');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\src\\Acme\\DemoBundle/Resources/views'), 'AcmeDemo');
         $instance->addPath((dirname(dirname(dirname(__DIR__))).'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views'), 'WebProfiler');

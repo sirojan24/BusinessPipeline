@@ -667,9 +667,15 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
         echo $this->env->getExtension('routing')->getPath("opportunity_editopportunityV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
+                    
+                    var taskPath = '";
+        // line 592
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_manage_task", array("type" => "opportunity", "id" => 0)), "html", null, true);
+        echo "';
+                    taskPath = taskPath.substring(0, taskPath.length - 1);
 
                     var name = '";
-        // line 592
+        // line 595
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -690,8 +696,8 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                         '</button>' +
                                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' + 
                                             '<li><a href=\"' + editPath + tempOpportunity.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                            '<li><a href=\"#\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
-                                            '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' + 
+                                            '<li><a href=\"#\" onclick=\"notespopup('+ tempOpportunity.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                            '<li><a href=\"'+taskPath + tempOpportunity.id +'\"><i class=\"fa fa-list\"></i> Tasks</a></li>' + 
                                         '</ul>' +
                                     '</div>' +
                                 '</div>';
@@ -846,6 +852,6 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
     public function getDebugInfo()
     {
-        return array (  673 => 592,  667 => 589,  653 => 577,  575 => 500,  339 => 266,  331 => 260,  325 => 256,  323 => 255,  301 => 235,  293 => 229,  287 => 225,  285 => 224,  265 => 206,  257 => 200,  251 => 196,  249 => 195,  216 => 164,  196 => 147,  166 => 119,  147 => 103,  135 => 93,  133 => 92,  130 => 91,  113 => 78,  92 => 65,  90 => 64,  74 => 51,  42 => 22,  19 => 1,);
+        return array (  679 => 595,  673 => 592,  667 => 589,  653 => 577,  575 => 500,  339 => 266,  331 => 260,  325 => 256,  323 => 255,  301 => 235,  293 => 229,  287 => 225,  285 => 224,  265 => 206,  257 => 200,  251 => 196,  249 => 195,  216 => 164,  196 => 147,  166 => 119,  147 => 103,  135 => 93,  133 => 92,  130 => 91,  113 => 78,  92 => 65,  90 => 64,  74 => 51,  42 => 22,  19 => 1,);
     }
 }

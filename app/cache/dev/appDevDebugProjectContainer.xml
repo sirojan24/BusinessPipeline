@@ -25,6 +25,7 @@
       <parameter key="TaskBundle">TaskBundle\TaskBundle</parameter>
       <parameter key="HelpBundle">HelpBundle\HelpBundle</parameter>
       <parameter key="webBundle">webBundle\webBundle</parameter>
+      <parameter key="PartnersBundle">PartnersBundle\PartnersBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -3151,6 +3152,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\BusinessPipeline\src\webBundle/Resources/views</argument>
         <argument>web</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\BusinessPipeline\src\PartnersBundle/Resources/views</argument>
+        <argument>Partners</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\BusinessPipeline\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>

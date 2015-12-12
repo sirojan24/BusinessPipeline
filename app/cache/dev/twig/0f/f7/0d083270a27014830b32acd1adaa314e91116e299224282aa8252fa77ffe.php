@@ -17,18 +17,13 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
     {
         // line 1
         echo "<script src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.maskedinput.js"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.number.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
         // line 2
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.number.js"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.maskedinput.js"), "html", null, true);
         echo "\"></script>
 
-<script type=\"text/javascript\">
-    jQuery(function (\$) {
-        \$('#addStageSalechance').number(true, 0);
-    });
-</script>
 <!-- Modal -->
 <div class=\"modal fade\" id=\"addStageModal\" role=\"dialog\">
     <div class=\"modal-dialog\">
@@ -41,7 +36,7 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
             </div>
             <div class=\"modal-body\">
                 <form action=\"";
-        // line 20
+        // line 15
         echo $this->env->getExtension('routing')->getPath("settings_savestage");
         echo "\" role=\"form\" method=\"post\" enctype=\"multipart/form-data\"
                       onsubmit=\"return saveNewStageInfo()\">
@@ -59,7 +54,7 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
                             <div class=\"form-group\">
                                 <label for=\"Last Name\">Chance of Sale <span style=\"color:#FF0000;\">*</span></label>
                                 <div class=\"input-group\" >
-                                    <input type=\"text\" name=\"salechance\" class=\"form-control\" id=\"addStageSalechance\" autocomplete=\"off\"
+                                    <input type=\"text\" name=\"salechance\" class=\"form-control\" id=\"addStageSalechancenew\" autocomplete=\"off\"
                                            placeholder=\"Chance of sale\" required/>
                                     <span class=\"input-group-addon\">
                                         %
@@ -94,8 +89,14 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
 
     </div>
 </div>
+<script type=\"text/javascript\">
+    jQuery(function (\$) {
+        //\$('#addStageSalechance').number(true, 0);
+        \$(\"#addStageSalechancenew\").mask(\"99\");
+    });
+</script>
 ";
-        // line 71
+        // line 72
         $this->env->loadTemplate("SettingsBundle:Stages:stageformScript.html.twig")->display($context);
     }
 
@@ -111,6 +112,6 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
 
     public function getDebugInfo()
     {
-        return array (  99 => 71,  45 => 20,  24 => 2,  19 => 1,);
+        return array (  100 => 72,  40 => 15,  24 => 2,  19 => 1,);
     }
 }

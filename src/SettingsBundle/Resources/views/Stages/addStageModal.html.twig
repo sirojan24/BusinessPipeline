@@ -1,11 +1,6 @@
-<script src="{{asset('bundles/loginlogin/js/jquery.maskedinput.js')}}"></script>
 <script src="{{asset('bundles/loginlogin/js/jquery.number.js')}}"></script>
+<script src="{{asset('bundles/loginlogin/js/jquery.maskedinput.js')}}"></script>
 
-<script type="text/javascript">
-    jQuery(function ($) {
-        $('#addStageSalechance').number(true, 0);
-    });
-</script>
 <!-- Modal -->
 <div class="modal fade" id="addStageModal" role="dialog">
     <div class="modal-dialog">
@@ -33,7 +28,7 @@
                             <div class="form-group">
                                 <label for="Last Name">Chance of Sale <span style="color:#FF0000;">*</span></label>
                                 <div class="input-group" >
-                                    <input type="text" name="salechance" class="form-control" id="addStageSalechance" autocomplete="off"
+                                    <input type="text" name="salechance" class="form-control" id="addStageSalechancenew" autocomplete="off"
                                            placeholder="Chance of sale" required/>
                                     <span class="input-group-addon">
                                         %
@@ -68,4 +63,10 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    jQuery(function ($) {
+        //$('#addStageSalechance').number(true, 0);
+        $("#addStageSalechancenew").mask("99");
+    });
+</script>
 {% include 'SettingsBundle:Stages:stageformScript.html.twig' %}

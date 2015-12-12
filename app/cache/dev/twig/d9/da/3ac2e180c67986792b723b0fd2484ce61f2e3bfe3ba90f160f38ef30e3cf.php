@@ -70,13 +70,12 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
             \$table.bootstrapTable('append', convertData(initResponse));
             
         }
-        
     }
 
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 51
+        // line 50
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data");
         echo "', null,
                 function (response) {
@@ -85,7 +84,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                         initResponse = response;
                         //\$table.bootstrapTable('append', convertData(response));
                         var username = '";
-        // line 57
+        // line 56
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                         usernameFilter(username);
@@ -122,7 +121,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         \$table.bootstrapTable('removeAll');
         \$table.bootstrapTable('showLoading');
         var path = '";
-        // line 91
+        // line 90
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -141,7 +140,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     function storePageSize(size) {
         \$.post('";
-        // line 107
+        // line 106
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'contactview', value: size},
@@ -206,7 +205,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                 rows = [];
 
     ";
-        // line 171
+        // line 170
         echo "                for (var i = 0; i < jsonString.contacts.length; i++) {
                     var tempContact = jsonString.contacts[i];
 
@@ -217,31 +216,31 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     });
 
                     var editPath = '";
-        // line 180
+        // line 179
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
                     
                     var newDealPath = '";
-        // line 183
+        // line 182
         echo $this->env->getExtension('routing')->getPath("opportunity_addcontactopportunityV2", array("id" => 0));
         echo "';
                     newDealPath = newDealPath.substring(0, newDealPath.length - 1);
 
                     var openDealPath = '";
-        // line 186
+        // line 185
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
         echo "';
                     openDealPath = openDealPath.substring(0, openDealPath.length - 3);
                     
                     var taskPath = '";
-        // line 189
+        // line 188
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_manage_task", array("type" => "contact", "id" => 0)), "html", null, true);
         echo "';
                     taskPath = taskPath.substring(0, taskPath.length - 1);
 
                     var name = '";
-        // line 192
+        // line 191
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -329,6 +328,6 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     public function getDebugInfo()
     {
-        return array (  245 => 192,  239 => 189,  233 => 186,  227 => 183,  221 => 180,  210 => 171,  145 => 107,  126 => 91,  89 => 57,  80 => 51,  63 => 37,  42 => 19,  34 => 14,  19 => 1,);
+        return array (  244 => 191,  238 => 188,  232 => 185,  226 => 182,  220 => 179,  209 => 170,  144 => 106,  125 => 90,  88 => 56,  79 => 50,  63 => 37,  42 => 19,  34 => 14,  19 => 1,);
     }
 }

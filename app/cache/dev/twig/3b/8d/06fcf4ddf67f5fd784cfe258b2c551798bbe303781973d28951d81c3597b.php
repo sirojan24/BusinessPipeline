@@ -37,7 +37,11 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
 
             <!-- Page Content -->\t\t
             <div id=\"page-wrapper\">
-\t\t<div class=\"container-fluid\">
+                ";
+        // line 16
+        $this->env->loadTemplate("NotesBundle:Default:notesModal.html.twig")->display($context);
+        // line 17
+        echo "\t\t<div class=\"container-fluid\">
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
                             <h1 class = \"page-header\">Manage Deals</h1>
@@ -46,39 +50,41 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
                     <div class=\"row\">
                         <div class=\"col-lg-12\">
                             ";
-        // line 24
-        $this->env->loadTemplate("OpportunityBundle:Default:opportunityTable.html.twig")->display($context);
         // line 25
+        $this->env->loadTemplate("OpportunityBundle:Default:opportunityTable.html.twig")->display($context);
+        // line 26
         echo "                        </div>
                     </div>
                 </div>
             </div>
             
     ";
-        // line 30
-        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
         // line 31
+        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
+        // line 32
         echo "
     </div>
     <!-- /#wrapper -->
-
     ";
         // line 35
-        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
+        $this->env->loadTemplate("ContactsContactsBundle:Default:notesModalScript.html.twig")->display($context);
         // line 36
+        echo "    ";
+        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
+        // line 37
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 37
+        // line 38
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 38
+        // line 39
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 39
+        // line 40
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -99,6 +105,6 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
 
     public function getDebugInfo()
     {
-        return array (  82 => 39,  78 => 38,  74 => 37,  69 => 36,  67 => 35,  61 => 31,  59 => 30,  52 => 25,  50 => 24,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  88 => 40,  84 => 39,  80 => 38,  75 => 37,  72 => 36,  70 => 35,  65 => 32,  63 => 31,  56 => 26,  54 => 25,  44 => 17,  42 => 16,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

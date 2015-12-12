@@ -47,16 +47,16 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
         // line 23
         echo $this->env->getExtension('routing')->getPath("settings_savestage");
         echo "',
-                {name: \$(\"#addStageName\").val(), salechance: \$(\"#addStageSalechance\").val(), notes: \$(\"#addStageNotes\").val()},
+                {name: \$(\"#addStageName\").val(), salechance: \$(\"#addStageSalechancenew\").val(), notes: \$(\"#addStageNotes\").val()},
         function (response) {
             if (response != \"false\") {
                 refreshStageTable();
             }
         });
-        \$(\"#addStage\").find(\"input[type=text]\").each(function (i, object) { 
+        \$(\"#addStageModal\").find(\"input[type=text]\").each(function (i, object) { 
             \$(object).val('');
         });
-        \$('#addStage').modal('hide');
+        \$('#addStageModal').modal('hide');
         \$(\"#addStageNotes\").val('');
         document.getElementById('addStageName').style.color = \"\";
         document.getElementById('addStageName').style.backgroundColor = \"\";

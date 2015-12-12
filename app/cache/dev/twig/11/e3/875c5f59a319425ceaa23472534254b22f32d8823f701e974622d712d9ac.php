@@ -25,7 +25,7 @@ class __TwigTemplate_11e3875c5f59a319425ceaa23472534254b22f32d8823f701e974622d71
         // line 6
         echo $this->env->getExtension('routing')->getPath("notes_getnotes");
         echo "',
-                {id: id, type: 'contact'},
+                {id: id, type: 'opportunity'},
         function (response) {
             if (response !== \"false\") {
                 //console.log(\"@@@@@@@@@\",response);
@@ -89,7 +89,7 @@ class __TwigTemplate_11e3875c5f59a319425ceaa23472534254b22f32d8823f701e974622d71
         if (document.getElementById('message').value != '') {
             var note = document.getElementById('message').value;
             document.getElementById('message').value = '';
-            var type = \"contact\";
+            var type = \"opportunity\";
             var type_id = document.getElementById('typeid').value;
             var username = \"";
         // line 64

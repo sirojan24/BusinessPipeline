@@ -4,7 +4,7 @@
         document.getElementById('typeid').value = id;
 
         $.post('{{path('notes_getnotes')}}',
-                {id: id, type: 'contact'},
+                {id: id, type: 'opportunity'},
         function (response) {
             if (response !== "false") {
                 //console.log("@@@@@@@@@",response);
@@ -59,7 +59,7 @@
         if (document.getElementById('message').value != '') {
             var note = document.getElementById('message').value;
             document.getElementById('message').value = '';
-            var type = "contact";
+            var type = "opportunity";
             var type_id = document.getElementById('typeid').value;
             var username = "{{name}}";
             $.post('{{path('notes_savenote')}}',
