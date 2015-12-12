@@ -23,7 +23,9 @@
     <field name="reason" type="string" column="reason" length="500" nullable="true"/>   
      <field name="userrevenue" type="string" column="userrevenue" length="50" nullable="true"/>
      <field name="contactid" type="integer" column="contactid" length="50" nullable="false"/>
-     <field name="wonnotes" type="string" column="wonnotes" length="500" nullable="false"/>
-     <field name="tags" type="string" column="tags" length="1000" nullable="false"/>    
+     <field name="wonnotes" type="string" column="wonnotes" length="500" nullable="true"/>
+     <field name="tags" type="string" column="tags" length="1000" nullable="true"/>   
+     <field name="partnername" type="string" column="partnername" length="50" nullable="true"/>   
+     <field name="partnerpercentage" type="string" column="partnerpercentage" length="50" nullable="true"/>    
   </entity>
 </doctrine-mapping>
