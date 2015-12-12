@@ -669,7 +669,27 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
 
                     var flag = true;
                     if (name.toLowerCase() === tempOpportunity.username.toLowerCase()) {
-                        action = '<div class=\"pull-right\">' +
+                        if(tempOpportunity.sharedUsers !== ''){
+                            action = '<div class=\"pull-right\">' +
+                                '<div class=\"keep-open btn-group\">' +
+                                '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
+                                '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
+                                '</button>' +
+                                '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
+                                '<li><a href=\"' + editPath + tempOpportunity.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
+                                '<li><a href=\"#\" onclick=\"notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"' + taskPath + tempOpportunity.id + '\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
+                                '<li><a href=\"javascript:sharingpopup(' + \"'\" + tempOpportunity.sharedUsers + \"'\" +
+                                                    \",\" + tempOpportunity.projected_revenue  + 
+                                                    \",\" + tempOpportunity.username  + 
+                                                    \",\" + tempOpportunity.partnername  +
+                                                    \",\" + tempOpportunity.partnerpercentage  +
+                                                    ')\"><i class=\"fa fa-user\"></i> Sharing</a></li>' +
+                                '</ul>' +
+                                '</div>' +
+                                '</div>';
+                        }else{
+                            action = '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
@@ -681,11 +701,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                 '</ul>' +
                                 '</div>' +
                                 '</div>';
+                        }
                         flag = false;
                     } else {
 
                         var sharedUsersArr = (tempOpportunity.sharedUsers).split(\":\");
-
+                        var revenue = (tempOpportunity.weighted_revenue_all).replace(/,/g, '');
                         jQuery.each(sharedUsersArr, function (i, val) {
                             if (val.toLowerCase() === name.toLowerCase()) {
                                 action = '<div class=\"pull-right\">' +
@@ -696,6 +717,12 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                         '<li><a href=\"#\" onclick=\"notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                         '<li><a href=\"' + taskPath + tempOpportunity.id + '\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
+                                        '<li><a href=\"javascript:sharingpopup(' + \"'\" + tempOpportunity.sharedUsers + \"'\" +
+                                                    \",\" + revenue  + 
+                                                    \",'\" + tempOpportunity.username  + \"'\" +
+                                                    \",\" + tempOpportunity.partnername  +
+                                                    \",\" + tempOpportunity.partnerpercentage  +
+                                                    ')\"><i class=\"fa fa-user\"></i> Sharing</a></li>' +
                                         '</ul>' +
                                         '</div>' +
                                         '</div>';

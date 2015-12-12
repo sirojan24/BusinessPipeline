@@ -16,8 +16,9 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "
-<div class=\"panel panel-default\">
+        $this->env->loadTemplate("OpportunityBundle:Default:shareUserModal.html.twig")->display($context);
+        // line 2
+        echo "<div class=\"panel panel-default\">
     <div class=\"panel-body\">
         <div style=\"padding:25px\">
             <div class=\"row\">
@@ -119,6 +120,6 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
 
     public function getDebugInfo()
     {
-        return array (  107 => 76,  75 => 47,  65 => 39,  63 => 38,  39 => 16,  33 => 12,  31 => 11,  19 => 1,);
+        return array (  108 => 76,  76 => 47,  66 => 39,  64 => 38,  40 => 16,  34 => 12,  32 => 11,  21 => 2,  19 => 1,);
     }
 }

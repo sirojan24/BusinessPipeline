@@ -7,29 +7,25 @@
                 <h4 class="modal-title smaller lighter blue">Deal Sharing</h4>                                                       
             </div>
             <div class="modal-body">
-                <div id="user-table-div" class="table-responsive" style="min-height: 360px;">
+                <div id="user-table-div" class="table-responsive" style="min-height: 80px;">
                     <table id="sharedUserTable"
                            data-toggle="table"
-                           data-search="true"
-                           data-page-size="10"
-                           data-page-list="[10,25]"
-                           data-pagination="true"
-                           data-show-columns="true"
                            data-row-style="rowStyle">
                         <thead>
                             <tr>
-                                <th data-field="name" data-sortable="true">Name</th>
-                                <th data-field="weightedForecast" data-sortable="true">Weighted Forecast</th>
+                                <th data-field="name">Name</th>
+                                <th data-field="weightedForecast">Weighted Forecast</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
 
     </div>
 </div>
+{% include 'OpportunityBundle:Default:sharingCalculationScript.html.twig' %}
 {% include 'OpportunityBundle:Default:shareUserModalScript.html.twig' %}

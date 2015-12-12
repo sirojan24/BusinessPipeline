@@ -155,7 +155,7 @@ class DefaultController extends Controller {
             foreach ($sharedusers as $shareduser) {
                 $user = $repository->findOneBy(array('username' => $shareduser));
                 $arrElement["fullname"] = $user->getFirstname() . ' ' . $user->getLastname();
-                $arrElement["percentage"] = $user->$user->getCommissionnonoriginator();
+                $arrElement["percentage"] = $user->getCommissionnonoriginator();
                 array_push($sharingArray, $arrElement);
             }
             $dataArray["sharing"] = $sharingArray;

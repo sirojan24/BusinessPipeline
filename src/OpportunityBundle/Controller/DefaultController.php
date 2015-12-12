@@ -865,6 +865,8 @@ class DefaultController extends Controller {
             $arrElement["expected_closed_date"] = $opportunity->getCloseddate();
             $arrElement["owner"] = $opportunity->getOwnerfullname();
             $arrElement["username"] = $opportunity->getUsername();
+            $arrElement["partnername"] = $opportunity->getPartnername();
+            $arrElement["partnerpercentage"] = $opportunity->getPartnerpercentage();
             
 //            $arrElement["email"] = $opportunity->getAnnualdraw();
 //            $arrElement["telephone"] = $opportunity->getEarninggoal();
