@@ -143,6 +143,8 @@ class DefaultController extends Controller {
             $opportunitie->setContactid($request->get('contactid'));
             $opportunitie->setWonnotes($request->get('modalnoteshidden'));
             $opportunitie->setTags($request->get('tags'));
+            $opportunitie->setPartnername($request->get('partnername'));
+            $opportunitie->setPartnerpercentage($request->get('partnerpercentage'));
             $sharingusers = '';
             $colonFlag = true;
             if ($request->get('sharingusers')) {
@@ -918,6 +920,8 @@ class DefaultController extends Controller {
             $opportunitie->setUserrevenue($request->get('userrevenue'));
             $opportunitie->setTags($request->get('tags'));
             $opportunitie->setWonnotes($request->get('modalnoteshidden'));
+            $opportunitie->setPartnername($request->get('partnername'));
+            $opportunitie->setPartnerpercentage($request->get('partnerpercentage'));
             $sharingusers = '';
             $colonFlag = true;
             if ($request->get('sharingusers') != '') {

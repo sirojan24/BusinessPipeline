@@ -126,15 +126,26 @@
                 </div>
                 <div class="row">			
                     <div class="col-xs-3">
-                        <div class="form-group">	
-                            <label for="commorigin">Commission Originator <span style="color:#FF0000;">*</span></label>
-                            <input type="text" class="form-control" name="commisionoriginator" id="commorigin">
+                        <label for="commorigin">Commission Originator <span style="color:#FF0000;">*</span></label>
+
+                        <div class="input-group">	
+                            <input type="text" class="form-control" name="commisionoriginator" id="commorigin"/>
+                            <span class="input-group-addon">
+                                %
+                            </span>
                         </div>
                     </div>
+
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="commnonorigin">Commission Non-Originator <span style="color:#FF0000;">*</span></label>
-                            <input type="text" class="form-control" id="commnonorigin" name="commisionnonoriginator">
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="commnonorigin" name="commisionnonoriginator">
+                                <span class="input-group-addon">
+                                    %
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -294,17 +294,17 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
                 <div class=\"row\">\t\t\t
                     <div class=\"col-xs-6\">
                         <div class=\"form-group\">
-                            <label for=\"duallist\">Partner Sharing <span style=\"color:#FF0000;\">*</span>  </label>
+                            <label for=\"duallist\">Partner Sharing </label>
                             <div class=\"row\">
                                 <div class=\"col-xs-6\">\t\t\t\t
                                     <div class=\"form-group\">
-                                        <input type=\"text\" name=\"forecast\" id=\"forecast\" class=\"form-control\" required />
+                                        <input type=\"text\" name=\"parnername\" id=\"forecast\" class=\"form-control\" />
                                     </div>
                                 </div>
                                 <div class=\"col-xs-6\">\t\t\t\t
                                     <div class=\"input-group\" >
                                         <input type=\"hidden\" id=\"commisionnonoriginator\">
-                                        <input type=\"text\" name=\"modalrevenue\" class=\"form-control\" required />
+                                        <input type=\"text\" name=\"partnerpercentage\" id=\"partnerpercentage\" class=\"form-control\"/>
                                         <span class=\"input-group-addon\">
                                             %
                                         </span>

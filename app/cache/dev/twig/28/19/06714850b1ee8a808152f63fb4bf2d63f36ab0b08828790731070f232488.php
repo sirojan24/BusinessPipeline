@@ -54,49 +54,55 @@ class __TwigTemplate_281906714850b1ee8a808152f63fb4bf2d63f36ab0b08828790731070f2
                     </div>
                 </div>
 
-
-                ";
+                <script src=\"";
+        // line 27
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.maskedinput.js"), "html", null, true);
+        echo "\"></script>
+                <script src=\"";
         // line 28
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.number.js"), "html", null, true);
+        echo "\"></script>
+
+                <script type=\"text/javascript\">
+                    jQuery(function (\$) {
+                        \$(\"#partnerpercentage\").mask(\"99\");
+                    });
+                </script>
+                ";
+        // line 35
         $this->env->loadTemplate("OpportunityBundle:Default:opportunityform.html.twig")->display($context);
-        // line 29
+        // line 36
         echo "            </div>
             <br><br><br>
             ";
-        // line 31
+        // line 38
         $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 32
+        // line 39
         echo "
         </div>
-        <script src=\"";
-        // line 34
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.maskedinput.js"), "html", null, true);
-        echo "\"></script>
-        <script src=\"";
-        // line 35
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/js/jquery.number.js"), "html", null, true);
-        echo "\"></script>
+
         <!-- /#wrapper -->
         ";
-        // line 37
+        // line 43
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 38
+        // line 44
         echo "
         <script src=\"";
-        // line 39
+        // line 45
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
 
 
         <script src=\"";
-        // line 42
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 43
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 44
+        // line 50
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
@@ -117,6 +123,6 @@ class __TwigTemplate_281906714850b1ee8a808152f63fb4bf2d63f36ab0b08828790731070f2
 
     public function getDebugInfo()
     {
-        return array (  100 => 44,  96 => 43,  92 => 42,  86 => 39,  83 => 38,  81 => 37,  76 => 35,  72 => 34,  68 => 32,  66 => 31,  62 => 29,  60 => 28,  46 => 16,  44 => 15,  41 => 14,  39 => 13,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  106 => 50,  102 => 49,  98 => 48,  92 => 45,  89 => 44,  87 => 43,  81 => 39,  79 => 38,  75 => 36,  73 => 35,  63 => 28,  59 => 27,  46 => 16,  44 => 15,  41 => 14,  39 => 13,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

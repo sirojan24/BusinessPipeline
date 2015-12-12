@@ -153,16 +153,26 @@
                 </div>
                 <div class="row">			
                     <div class="col-xs-3">
-                        <div class="form-group">	
-                            <label for="commorigin">Commission Originator <span style="color:#FF0000;">*</span></label>
+                        <label for="commorigin">Commission Originator <span style="color:#FF0000;">*</span></label>
+
+                        <div class="input-group">	
                             <input type="text" class="form-control" name="commisionoriginator" value="{{user.getCommissionoriginator()}}" id="commorigin">
+                            <span class="input-group-addon">
+                                %
+                            </span>
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <div class="form-group">
+                        <div class="form-group">    
                             <label for="commnonorigin">Commission Non-Originator <span style="color:#FF0000;">*</span></label>
-                            <input type="text" class="form-control" id="commnonorigin" value="{{user.getCommissionnonoriginator()}}" name="commisionnonoriginator">
-                        </div>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="commnonorigin" value="{{user.getCommissionnonoriginator()}}" name="commisionnonoriginator">
+                                <span class="input-group-addon">
+                                    %
+                                </span>
+                            </div>
+                        </div>        
                     </div>
                 </div>
                 <div class="row">
@@ -237,15 +247,15 @@
 <script>
     var mdate = new Date('{{user.getDob()}}');
     var month = 1;
-    if((mdate.getMonth() + 1) < 10){
+    if ((mdate.getMonth() + 1) < 10) {
         month = '0' + (mdate.getMonth() + 1);
-    }else{
+    } else {
         month = mdate.getMonth() + 1;
     }
     var day = 1;
-    if((mdate.getDate()) < 10){
+    if ((mdate.getDate()) < 10) {
         day = '0' + (mdate.getDate());
-    }else{
+    } else {
         day = mdate.getDate();
     }
     var newDate = mdate.getFullYear() + '-' + month + '-' + day();
@@ -254,15 +264,15 @@
 <script>
     var mdate = new Date('{{user.getContractstartdate()}}');
     var month = 1;
-    if((mdate.getMonth() + 1) < 10){
+    if ((mdate.getMonth() + 1) < 10) {
         month = '0' + (mdate.getMonth() + 1);
-    }else{
+    } else {
         month = mdate.getMonth() + 1;
     }
     var day = 1;
-    if((mdate.getDate()) < 10){
+    if ((mdate.getDate()) < 10) {
         day = '0' + (mdate.getDate());
-    }else{
+    } else {
         day = mdate.getDate();
     }
     var newDate = mdate.getFullYear() + '-' + month + '-' + day;

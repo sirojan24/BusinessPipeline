@@ -1,0 +1,47 @@
+<script>
+    function sharingpopup(sharing, total, username, partnername, partnersharing) {
+
+        $.post('{{path('login_login_getusers')}}',
+                {sharedusers: sharing, user: username},
+        function (response) {
+            if (response !== "false") {
+                console.log("@@@@@@@@@", response);
+                var shared = response.split(':');
+                var originator = shared[shared.length - 1].split('*');
+
+                var nonoriginators = [];
+                var nonoriginpercentage = 0;
+                for (i = 0; i < shared.length - 1; i++) {
+                    nonoriginators[i] = shared[i].split('*');
+                    nonoriginpercentage += parseInt(nonoriginators[i][1]);
+                }
+                var totalpercentage = nonoriginpercentage + parseInt(originator[1]);
+
+                if (totalpercentage >= 100) {
+                    document.getElementById('sharingtablebody').innerHTML = "<tr><td>" + originator[0] + " (Originator)</td><td> $" + (total * originator[1] / 100).toLocaleString() + "</td></tr>";
+                } else {
+                    document.getElementById('sharingtablebody').innerHTML = "<tr><td>" + originator[0] + " (Originator)</td><td> $" + (((parseFloat(originator[1]) + (100 - totalpercentage)) * total) / 100).toLocaleString() + "</td></tr>";
+                }
+
+
+                for (i = 0; i < shared.length - 1; i++) {
+                    if (totalpercentage > 100) {
+                        document.getElementById('sharingtablebody').innerHTML += "<tr><td>" + nonoriginators[i][0] + "</td><td> $" + ((total * (nonoriginators[i][1] - ((totalpercentage - 100) / (shared.length - 1)))) / 100).toLocaleString() + "</td></tr>"
+                    } else {
+                        document.getElementById('sharingtablebody').innerHTML += "<tr><td>" + nonoriginators[i][0] + "</td><td> $" + ((total * (nonoriginators[i][1])) / 100).toLocaleString() + "</td></tr>"
+                    }
+                }
+
+                $('#sharingModal').modal('show');
+
+                console.log(sharing, nonoriginators, originator, totalpercentage);
+
+            } else {
+                console.log("error occured in the mange opportunity in retriving shared users", response);
+            }
+        });
+
+
+
+    }
+</script>    

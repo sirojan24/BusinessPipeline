@@ -24,15 +24,21 @@
                     </div>
                 </div>
 
+                <script src="{{asset('bundles/loginlogin/js/jquery.maskedinput.js')}}"></script>
+                <script src="{{asset('bundles/loginlogin/js/jquery.number.js')}}"></script>
 
+                <script type="text/javascript">
+                    jQuery(function ($) {
+                        $("#partnerpercentage").mask("99");
+                    });
+                </script>
                 {% include 'OpportunityBundle:Default:editopportunityform.html.twig' %}
             </div>
             <br><br><br>
             {% include 'LoginLoginBundle:Default:footer_v2.html.twig' %}
 
         </div>
-        <script src="{{asset('bundles/loginlogin/js/jquery.maskedinput.js')}}"></script>
-        <script src="{{asset('bundles/loginlogin/js/jquery.number.js')}}"></script>
+
         <!-- /#wrapper -->
         {% include 'AppBundle:Default:scripts.html.twig' %}
 

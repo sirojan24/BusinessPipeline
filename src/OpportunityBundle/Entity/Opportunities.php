@@ -107,6 +107,29 @@ class Opportunities
     
     private $tags;
     
+    private $partnername;
+    
+    private $partnerpercentage;
+    
+    public function getPartnername(){
+        return $this->partnername;
+    }
+    
+    public function setPartnername($partnername){
+        $this->partnername = $partnername;
+        return $this;
+    }
+    
+    public function getPartnerpercentage() {
+        return $this->partnerpercentage;
+    }
+    
+    public function setPartnerpercentage($partnerpercentage) {
+        $this->partnerpercentage = $partnerpercentage;
+        return $this;
+    }
+
+
     public function getWonnotes(){
         return $this->wonnotes;
     }

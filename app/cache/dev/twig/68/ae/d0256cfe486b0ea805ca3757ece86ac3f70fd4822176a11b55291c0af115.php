@@ -26,17 +26,50 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         iniFillStageTableData();
     });
 
+    function addWonLost() {
+        var jsonString = JSON.parse(initStageResponse);
+        var filterStages = [];
+
+        var newDeal = {
+            stage: \"Won\",
+            saleChange: \"100\",
+            notes: \"-\",
+            status: \"Active\"
+        };
+        
+        filterStages.push(newDeal);
+        
+        var newDeal2 = {
+            stage: \"Lost\",
+            saleChange: \"0\",
+            notes: \"-\",
+            status: \"Active\"
+        };
+        
+        filterStages.push(newDeal2);
+        
+        for (var i = 0; i < jsonString.stages.length; i++) {
+            var tempStage = jsonString.stages[i];
+            filterStages.push(tempStage);
+        }
+
+        var filterOpportunitiesArray = {'stages': filterStages};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initStageResponse = jsonStr;
+    }
+
     function iniFillStageTableData() {
         \$stagetable.bootstrapTable('showLoading');
         var data = '";
-        // line 13
+        // line 45
         echo twig_escape_filter($this->env, (isset($context["stagesArray"]) ? $context["stagesArray"] : $this->getContext($context, "stagesArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         initStageResponse = newString;
         //var newString = JSON.parse(data);
         \$stagetable.bootstrapTable('hideLoading');
-        \$stagetable.bootstrapTable('append', convertStageData(newString));
+        addWonLost();
+        \$stagetable.bootstrapTable('append', convertStageData(initStageResponse));
     }
 
     function refreshStageTable() {
@@ -47,14 +80,15 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function fillStageTableData() {
         \$stagetable.bootstrapTable('showLoading');
         \$.post('";
-        // line 28
+        // line 61
         echo $this->env->getExtension('routing')->getPath("settings_table_data");
         echo "', null,
                 function (response) {
                     if (response) {
                         \$stagetable.bootstrapTable('hideLoading');
                         initStageResponse = response;
-                        \$stagetable.bootstrapTable('append', convertStageData(response));
+                        addWonLost();
+                        \$stagetable.bootstrapTable('append', convertStageData(initStageResponse));
                     } else {
 
                     }
@@ -66,7 +100,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$stagetable.bootstrapTable('removeAll');
         \$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 44
+        // line 78
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -75,7 +109,8 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 function (response) {
                     if (response) {
                         \$stagetable.bootstrapTable('hideLoading');
-                        \$stagetable.bootstrapTable('append', convertStageData(response));
+                        addWonLost();
+                        \$stagetable.bootstrapTable('append', convertStageData(initStageResponse));
                     } else {
 
                     }
@@ -128,16 +163,15 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
             var tempStage = jsonString.stages[i];
 
             extendColData.push({
-                
             });
 
             var name = '";
-        // line 107
+        // line 141
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
             var action = '';
             var role = '";
-        // line 109
+        // line 143
         echo twig_escape_filter($this->env, (isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")), "html", null, true);
         echo "';
             if (role === \"Admin\") {
@@ -158,11 +192,14 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
-            }else{
+            } else {
                 \$productTypeTable.bootstrapTable('hideColumn', 'Action');
             }
 
-
+            if(tempStage.stage === 'Won' || tempStage.stage === 'Lost'){
+                action = '';
+            }
+            
             var status = tempStage.status;
 
             rows.push({
@@ -178,7 +215,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         return rows;
     }
 
-    
+
     function deactivateStageId(id) {
         \$stagetable.bootstrapTable('removeAll');
         \$stagetable.bootstrapTable('showLoading');
@@ -196,7 +233,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
-        
+
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initStageResponse = jsonStr;
         \$stagetable.bootstrapTable('hideLoading');
@@ -206,7 +243,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function deleteStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 175
+        // line 212
         echo $this->env->getExtension('routing')->getPath("settings_deletestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -215,7 +252,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
                 function (response) {
                     if (response) {
                         //\$stagetable.bootstrapTable('showLoading');
-                        
+
                     } else {
                         \$stagetable.bootstrapTable('hideLoading');
                     }
@@ -241,7 +278,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
-        
+
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initStageResponse = jsonStr;
         \$stagetable.bootstrapTable('hideLoading');
@@ -251,7 +288,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
     function activateStageCall(id) {
         //\$stagetable.bootstrapTable('showLoading');
         var path = '";
-        // line 217
+        // line 254
         echo $this->env->getExtension('routing')->getPath("settings_activatestage", array("id" => 0));
         echo "';
         path = path.substring(0, path.length - 1);
@@ -259,7 +296,7 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         \$.post(path + id, null,
                 function (response) {
                     if (response) {
-                        
+
                     } else {
                         \$stagetable.bootstrapTable('hideLoading');
                     }
@@ -303,6 +340,6 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
 
     public function getDebugInfo()
     {
-        return array (  255 => 217,  210 => 175,  141 => 109,  136 => 107,  70 => 44,  51 => 28,  33 => 13,  19 => 1,);
+        return array (  292 => 254,  247 => 212,  175 => 143,  170 => 141,  104 => 78,  84 => 61,  65 => 45,  19 => 1,);
     }
 }

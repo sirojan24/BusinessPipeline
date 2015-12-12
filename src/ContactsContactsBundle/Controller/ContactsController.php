@@ -108,10 +108,10 @@ class ContactsController extends Controller {
                         $count++;
                         $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                         $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
-                        if ($opportunity->getStage() == 6) {
+                        if ($opportunity->getStage() == 'won') {
                             $woncount++;
                             $wonRevenue += intval(str_replace(',', '', $opportunity->getRevenue()));
-                        } else if ($opportunity->getStage() == 7) {
+                        } else if ($opportunity->getStage() == 'lost') {
                             $losscount++;
                             $lossRevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                         } else {
@@ -430,10 +430,10 @@ class ContactsController extends Controller {
                             $count++;
                             $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                             $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
-                            if ($opportunity->getStage() == 6) {
+                            if ($opportunity->getStage() == 'won') {
                                 $woncount++;
                                 $wonRevenue += intval(str_replace(',', '', $opportunity->getRevenue()));
-                            } else if ($opportunity->getStage() == 7) {
+                            } else if ($opportunity->getStage() == 'lost') {
                                 $losscount++;
                                 $lossRevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                             } else {
@@ -808,10 +808,10 @@ class ContactsController extends Controller {
                             $count++;
                             $projectedrevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                             $weightedforecast += intval(str_replace(',', '', $opportunity->getForecast()));
-                            if ($opportunity->getStage() == 6) {
+                            if ($opportunity->getStage() == 'won') {
                                 $woncount++;
                                 $wonRevenue += intval(str_replace(',', '', $opportunity->getRevenue()));
-                            } else if ($opportunity->getStage() == 7) {
+                            } else if ($opportunity->getStage() == 'lost') {
                                 $losscount++;
                                 $lossRevenue += intval(str_replace(',', '', $opportunity->getProjectedrevenue()));
                             } else {
