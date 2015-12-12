@@ -818,6 +818,7 @@ class DefaultController extends Controller {
 //            $arrElement["email"] = $opportunity->getAnnualdraw();
 //            $arrElement["telephone"] = $opportunity->getEarninggoal();
 //            $arrElement["tags"] = $opportunity->getOpendealcount();
+            $arrElement["sharedUsers"] = $opportunity->getSharing();
             $arrElement["deal_account_type"] = $opportunity->getAccounttype();
             $arrElement["deal_source"] = $opportunity->getOpportunitysource();
             $arrElement["open_deals"] = $opendealCount.' / $'.number_format($opendealAmout);   //need to check

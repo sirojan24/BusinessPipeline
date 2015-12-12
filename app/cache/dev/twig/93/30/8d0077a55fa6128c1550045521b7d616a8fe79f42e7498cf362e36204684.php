@@ -26,7 +26,17 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
                         <span calss=\"pull-right\">
                             <a href=\"#\" style=\"color: black;\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-search\"></i> Filters</a>
                         </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
+                        ";
+        // line 11
+        if ((!array_key_exists("contactid", $context))) {
+            // line 12
+            echo "                        <span calss=\"pull-right\" style=\"margin-left: 10px; border-left: 2px solid #ddd;\">
+                            <a href=\"javascript:showHideContacts()\" id=\"showHide\" style=\"color: black;margin-left: 5px;\"><i class=\"fa fa-eye-slash\" id=\"showContacttoggle\"></i></a>
+                        </span>
+                        ";
+        }
+        // line 16
+        echo "                        <span calss=\"pull-right\" style=\"margin-left: 2px;border-right: 2px solid #ddd;border-left: 2px solid #ddd;\">
                             <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
@@ -49,9 +59,9 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
             </div>
 
             ";
-        // line 33
+        // line 38
         $this->env->loadTemplate("OpportunityBundle:Default:filterModal.html.twig")->display($context);
-        // line 34
+        // line 39
         echo "            
             <div class=\"row\">
                 <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
@@ -61,7 +71,7 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
                                data-detail-view=\"true\"
                                data-search=\"true\"
                                data-page-size=\"";
-        // line 42
+        // line 47
         echo twig_escape_filter($this->env, (isset($context["manageview"]) ? $context["manageview"] : $this->getContext($context, "manageview")), "html", null, true);
         echo "\"
                                data-page-list=\"[10,25,50]\"
@@ -93,7 +103,7 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
     </div>
 </div>
 ";
-        // line 71
+        // line 76
         $this->env->loadTemplate("OpportunityBundle:Default:opportunityTableScript.html.twig")->display($context);
     }
 
@@ -109,6 +119,6 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
 
     public function getDebugInfo()
     {
-        return array (  97 => 71,  65 => 42,  55 => 34,  53 => 33,  19 => 1,);
+        return array (  107 => 76,  75 => 47,  65 => 39,  63 => 38,  39 => 16,  33 => 12,  31 => 11,  19 => 1,);
     }
 }
