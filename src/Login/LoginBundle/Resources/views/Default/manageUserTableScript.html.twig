@@ -7,13 +7,35 @@
         iniFillTableData();
     });
 
+    function sortMyUsername(initResponse) {
+        var jsonString = JSON.parse(initResponse);
+        var filterUsers = [];
+        
+        var name = '{{name|lower}}';
+        for (var i = 0; i < jsonString.users.length; i++) {
+            var tempUser = jsonString.users[i];
+            if (name.toLowerCase() === tempUser.username.toLowerCase()) {
+                filterUsers.push(tempUser);
+            }
+        }
+        for (var i = 0; i < jsonString.users.length; i++) {
+            var tempUser = jsonString.users[i];
+            if (name.toLowerCase() !== tempUser.username.toLowerCase()) {
+                filterUsers.push(tempUser);
+            }
+        }
+        var filterOpportunitiesArray = {'users': filterUsers};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        return jsonStr;
+    }
+    
     function iniFillTableData() {
         $table.bootstrapTable('showLoading');
         var data = '{{userArray}}';
         var newString = data.replace(/&quot;/g, '"');
         //var newString = JSON.parse(data);
         $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(newString));
+        $table.bootstrapTable('append', convertData(sortMyUsername(newString)));
     }
 
     function refreshTable() {
@@ -27,7 +49,7 @@
                 function (response) {
                     if (response) {
                         $table.bootstrapTable('hideLoading');
-                        $table.bootstrapTable('append', convertData(response));
+                        $table.bootstrapTable('append', convertData(sortMyUsername(response)));
                     } else {
 
                     }
@@ -121,28 +143,55 @@
 
                     extendColData.push({
                     });
-
-                    rows.push({
-                        first_name: tempUser.firstname,
-                        last_name: tempUser.lastname,
-                        username: tempUser.username,
-                        open_deal: '0',
-                        projected_revenue: '$' + tempUser.projectedRevenue,
-                        weighted_forecast: '$' + tempUser.individualForecast,
-                        won_deals: '$' + tempUser.wonDeals,
-                        lost_deals: '$' + tempUser.lossDeals,
-                        action: '<div class="pull-right">' +
+                    
+                    var editPath = '{{ path('login_login_edituserpage',{'id':0} )}}';
+                    editPath = editPath.substring(0, editPath.length - 1);
+                    
+                    var openDealPath = '{{ path('opportunity_opportunitycontactfilterV2',{'id':0, 'filter':0} )}}';
+                    openDealPath = openDealPath.substring(0, openDealPath.length - 3);
+                    
+                    var openDeal = tempUser.openDeals;
+                    if(tempUser.openDeals > 0){
+                        openDeal = '<a href="' + openDealPath + tempUser.id + '/OpenUser' + '">' + tempUser.openDeals + '</a>';
+                    }
+                    
+                    var wonDeal = tempUser.wonDeals;
+                    if(tempUser.wonDeals !== '0'){
+                        wonDeal = '<a href="' + openDealPath + tempUser.id + '/WonUser' + '">$' + tempUser.wonDeals + '</a>';
+                    }
+                    
+                    var lostDeal = tempUser.lossDeals;
+                    if(tempUser.lossDeals !== '0'){
+                        lostDeal = '<a href="' + openDealPath + tempUser.id + '/LostUser' + '">$' + tempUser.lossDeals + '</a>';
+                    }
+                    
+                    var action = '';
+                    var name = '{{name|lower}}';
+                    if (name.toLowerCase() === tempUser.username.toLowerCase()) {
+                        action = '<div class="pull-right">' +
                                 '<div class="keep-open btn-group">' +
                                 '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
                                 '<i class="glyphicon glyphicon-chevron-down"></i>' +
                                 '</button>' +
                                 '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                                '<li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
+                                '<li><a href="' + editPath + tempUser.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
                                 '<li><a href="#" onclick="notespopup(' + tempUser.id + ')"><i class="fa fa-file-o"></i> Notes</a></li>' +
                                 '<li><a href="#"><i class="fa fa-list"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>',
+                                '</div>'
+                    }
+                    
+                    rows.push({
+                        first_name: tempUser.firstname,
+                        last_name: tempUser.lastname,
+                        username: tempUser.username,
+                        open_deal: openDeal,
+                        projected_revenue: '$' + tempUser.projectedRevenue,
+                        weighted_forecast: '$' + tempUser.individualForecast,
+                        won_deals: wonDeal,
+                        lost_deals: lostDeal,
+                        action: action,
                         title: tempUser.title,
                         company: tempUser.company,
                         email: tempUser.email,

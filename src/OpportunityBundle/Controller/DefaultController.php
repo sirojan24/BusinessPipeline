@@ -656,6 +656,24 @@ class DefaultController extends Controller {
         }
     }
 
+    private function checkOwnDeal($username, $opportunity){
+        if($opportunity->getUsername() === $username){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    private function checkSharedDeal($username, $opportunity){
+        $usernames = explode(":", $opportunity->getSharing());
+        foreach ($usernames as $tempUsername) {
+            if($tempUsername === $username){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private function getOpportunityArray($token, $id, $filter) {
         $em = $this->getDoctrine()->getManager();
 
@@ -674,11 +692,42 @@ class DefaultController extends Controller {
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => '6'));
             }else if($filter == "Lost"){
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => '7'));
-            }else{
+            }else if($filter == "Open"){
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
                     if($opportunity->getStage() !== '6' && $opportunity->getStage() !== '7'){
+                        array_push($tempOpportunities, $opportunity);
+                    }
+                }
+                $opportunities = $tempOpportunities;
+            }else if($filter == "WonUser"){
+                $requestUser = $repository->findOneBy(array('id' => $id));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => '6'));
+                $tempOpportunities = array();
+                foreach ($opportunities as $opportunity) {
+                    if($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
+                        array_push($tempOpportunities, $opportunity);
+                    }
+                }
+                $opportunities = $tempOpportunities;
+            }else if($filter == "LostUser"){
+                $requestUser = $repository->findOneBy(array('id' => $id));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => '7'));
+                $tempOpportunities = array();
+                foreach ($opportunities as $opportunity) {
+                    if($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
+                        array_push($tempOpportunities, $opportunity);
+                    }
+                }
+                $opportunities = $tempOpportunities;
+            }else if($filter == "OpenUser"){
+                $requestUser = $repository->findOneBy(array('id' => $id));
+                $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active'));
+                $tempOpportunities = array();
+                foreach ($opportunities as $opportunity) {
+                    if($opportunity->getStage() !== '6' && $opportunity->getStage() !== '7' &&
+                            $this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
                         array_push($tempOpportunities, $opportunity);
                     }
                 }
