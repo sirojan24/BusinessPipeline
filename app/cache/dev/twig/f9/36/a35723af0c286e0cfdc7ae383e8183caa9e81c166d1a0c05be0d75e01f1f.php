@@ -1,7 +1,7 @@
 <?php
 
-/* LoginLoginBundle:Default:adminManageUserTableScript.html.twig */
-class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2be06e extends Twig_Template
+/* SettingsBundle:User:adminManageUserTableScript.html.twig */
+class __TwigTemplate_f936a35723af0c286e0cfdc7ae383e8183caa9e81c166d1a0c05be0d75e01f1f extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -18,65 +18,40 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         // line 1
         echo "<script>
     var \$table = \$('#table');
-    var extendColData = [];
-
+    var userExtendColData = [];
+    
     \$(document).ready(function () {
-        \$(\"#tableDiv\").show();
-        iniFillTableData();
+        \$(\"#userTableDiv\").show();
+        iniFillUserTableData();
     });
-
-    function sortMyUsername(initResponse) {
-        var jsonString = JSON.parse(initResponse);
-        var filterUsers = [];
-        
-        var name = '";
-        // line 14
-        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
-        echo "';
-        for (var i = 0; i < jsonString.users.length; i++) {
-            var tempUser = jsonString.users[i];
-            if (name.toLowerCase() === tempUser.username.toLowerCase()) {
-                filterUsers.push(tempUser);
-            }
-        }
-        for (var i = 0; i < jsonString.users.length; i++) {
-            var tempUser = jsonString.users[i];
-            if (name.toLowerCase() !== tempUser.username.toLowerCase()) {
-                filterUsers.push(tempUser);
-            }
-        }
-        var filterOpportunitiesArray = {'users': filterUsers};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-        return jsonStr;
-    }
-
-    function iniFillTableData() {
+    
+    function iniFillUserTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 34
+        // line 12
         echo twig_escape_filter($this->env, (isset($context["userArray"]) ? $context["userArray"] : $this->getContext($context, "userArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
         //var newString = JSON.parse(data);
         \$table.bootstrapTable('hideLoading');
-        \$table.bootstrapTable('append', convertData(sortMyUsername(newString)));
+        \$table.bootstrapTable('append', convertUserData(newString));
     }
-
+    
     function refreshTable() {
         \$table.bootstrapTable('removeAll');
-        fillTableData();
+        fillUserTableData();
     }
 
-    function fillTableData() {
+    function fillUserTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 48
+        // line 26
         echo $this->env->getExtension('routing')->getPath("login_login_userTableData");
         echo "', null,
                 function (response) {
                     if (response) {
                         \$table.bootstrapTable('hideLoading');
-                        \$table.bootstrapTable('append', convertData(sortMyUsername(response)));
+                        \$table.bootstrapTable('append', convertUserData(response));
                     } else {
 
                     }
@@ -86,7 +61,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     function storePageSize(size) {
         \$.post('";
-        // line 61
+        // line 39
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'userview', value: size},
@@ -99,19 +74,19 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         });
     }
 
-    function checkAndSetValue(value, blankValue, scale, pre) {
-        if (value === '' || value === null) {
+    function checkAndSetValue(value, blankValue, scale, pre){
+        if(value === '' || value === null){
             return blankValue;
-        } else {
-            if (pre === true) {
+        }else{
+            if(pre === true){
                 return scale + '' + value;
-            } else {
+            }else{
                 return value + '' + scale;
             }
         }
     }
-
-    function detailFormatter(index, row) {
+    
+    function detailUserFormatter(index, row) {
 
         var title = checkAndSetValue(row.title, '-', '', true);
         var company = checkAndSetValue(row.company, '-', '', true);
@@ -124,24 +99,24 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         var earningGoals = checkAndSetValue(row.earningGoals, '-', '\$', true);
         var drawAgainstCommission = checkAndSetValue(row.drawAgainstCommission, '-', '\$', true);
         var dob = checkAndSetValue(row.dob, '-', '', true);
-
-        if (dob !== '-') {
+        
+        if(dob !== '-'){
             var mdate = new Date(dob);
             var month = 1;
-            if ((mdate.getMonth() + 1) < 10) {
+            if((mdate.getMonth() + 1) < 10){
                 month = '0' + (mdate.getMonth() + 1);
-            } else {
+            }else{
                 month = mdate.getMonth() + 1;
             }
             var day = 1;
-            if ((mdate.getDate()) < 10) {
+            if((mdate.getDate()) < 10){
                 day = '0' + (mdate.getDate());
-            } else {
+            }else{
                 day = mdate.getDate();
             }
             var dob = month + '/' + day + '/' + mdate.getFullYear();
         }
-
+        
         var html = [];
         html.push('<div class\"row\">' +
                 '<div class=\"col-xs-4\">' +
@@ -200,86 +175,50 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         return html.join('');
     }
 
-    function convertData(response) {
+    function convertUserData(response) {
         var jsonString = JSON.parse(response);
-        extendColData = [];
+        userExtendColData = [];
 
         var startId = 1,
                 rows = [];
 
     ";
-        // line 182
+        // line 160
         echo "                for (var i = 0; i < jsonString.users.length; i++) {
                     var tempUser = jsonString.users[i];
 
-                    extendColData.push({
+                    userExtendColData.push({
+                        
                     });
-                    
                     var editPath = '";
-        // line 188
+        // line 166
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
-
-                    var openDealPath = '";
-        // line 191
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
-        echo "';
-                    openDealPath = openDealPath.substring(0, openDealPath.length - 3);
                     
-                    var taskPath = '";
-        // line 194
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_manage_task", array("type" => "user", "id" => 0)), "html", null, true);
-        echo "';
-                    taskPath = taskPath.substring(0, taskPath.length - 1);
-                    
-                    var openDeal = tempUser.openDeals;
-                    if(tempUser.openDeals > 0){
-                        openDeal = '<a href=\"' + openDealPath + tempUser.id + '/OpenUser' + '\">' + tempUser.openDeals + '</a>';
-                    }
-                    
-                    var wonDeal = tempUser.wonDeals;
-                    if(tempUser.wonDeals !== '0'){
-                        wonDeal = '<a href=\"' + openDealPath + tempUser.id + '/WonUser' + '\">\$' + tempUser.wonDeals + '</a>';
-                    }
-                    
-                    var lostDeal = tempUser.lossDeals;
-                    if(tempUser.lossDeals !== '0'){
-                        lostDeal = '<a href=\"' + openDealPath + tempUser.id + '/LostUser' + '\">\$' + tempUser.lossDeals + '</a>';
-                    }
-                    
-                    var action = '';
-                    var name = '";
-        // line 213
-        echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
-        echo "';
-                    if (name.toLowerCase() === tempUser.username.toLowerCase()) {
-                        action = '<div class=\"pull-right\">' +
+                    rows.push({
+                        first_name: tempUser.firstname,
+                        last_name: tempUser.lastname,
+                        username: tempUser.username,
+                        open_deal:  tempUser.openDeals,
+                        projected_revenue: '\$' + tempUser.projectedRevenue,
+                        weighted_forecast: '\$' + tempUser.individualForecast,
+                        won_deals: '\$' + tempUser.wonDeals,
+                        lost_deals: '\$' + tempUser.lossDeals,
+                        user_status: tempUser.status,
+                        user_level: tempUser.role,
+                        action: '<div class=\"pull-right\">' +
                                 '<div class=\"keep-open btn-group\">' +
                                 '<button class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">' +
                                 '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + editPath + tempUser.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\" onclick=\"notespopup(' + tempUser.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
-                                '<li><a href=\"'+taskPath + tempUser.id +'\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
+                                '<li><a href=\"#\" onclick=\"notespopup('+ tempUser.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"#\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
-                                '</div>'
-                    }
-                    
-                    rows.push({
-                        first_name: tempUser.firstname,
-                        last_name: tempUser.lastname,
-                        username: tempUser.username,
-                        open_deal: openDeal,
-                        projected_revenue: '\$' + tempUser.projectedRevenue,
-                        weighted_forecast: '\$' + tempUser.individualForecast,
-                        won_deals: wonDeal,
-                        lost_deals: lostDeal,
-                        user_status: tempUser.status,
-                        user_level: tempUser.role,
-                        action: action,
+                                '</div>',
                         title: tempUser.title,
                         company: tempUser.company,
                         email: tempUser.email,
@@ -321,7 +260,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getTemplateName()
     {
-        return "LoginLoginBundle:Default:adminManageUserTableScript.html.twig";
+        return "SettingsBundle:User:adminManageUserTableScript.html.twig";
     }
 
     public function isTraitable()
@@ -331,6 +270,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  254 => 213,  232 => 194,  226 => 191,  220 => 188,  212 => 182,  90 => 61,  74 => 48,  57 => 34,  34 => 14,  19 => 1,);
+        return array (  195 => 166,  187 => 160,  65 => 39,  49 => 26,  32 => 12,  19 => 1,);
     }
 }
