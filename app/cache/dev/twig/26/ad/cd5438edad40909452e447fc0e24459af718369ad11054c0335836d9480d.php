@@ -69,6 +69,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                                     <th data-field=\"weighted_forecast\" data-sortable=\"true\">Weighted<br> Forecast</th>
                                     <th data-field=\"won_deals\" data-sortable=\"true\">Won<br> Deals</th>
                                     <th data-field=\"lost_deals\" data-sortable=\"true\">Lost<br> Deals</th>
+                                    <th data-field=\"action\">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -80,7 +81,7 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
     </div>
 </div>
 ";
-        // line 61
+        // line 62
         $this->env->loadTemplate("LoginLoginBundle:Default:adminManageUserTableScript.html.twig")->display($context);
     }
 
@@ -96,6 +97,6 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
 
     public function getDebugInfo()
     {
-        return array (  84 => 61,  54 => 34,  19 => 1,);
+        return array (  85 => 62,  54 => 34,  19 => 1,);
     }
 }

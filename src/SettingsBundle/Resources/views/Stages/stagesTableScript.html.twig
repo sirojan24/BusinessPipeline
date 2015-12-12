@@ -8,6 +8,38 @@
         iniFillStageTableData();
     });
 
+    function addWonLost() {
+        var jsonString = JSON.parse(initStageResponse);
+        var filterStages = [];
+
+        var newDeal = {
+            stage: "Won",
+            saleChange: "100",
+            notes: "-",
+            status: "Active"
+        };
+        
+        filterStages.push(newDeal);
+        
+        var newDeal2 = {
+            stage: "Lost",
+            saleChange: "0",
+            notes: "-",
+            status: "Active"
+        };
+        
+        filterStages.push(newDeal2);
+        
+        for (var i = 0; i < jsonString.stages.length; i++) {
+            var tempStage = jsonString.stages[i];
+            filterStages.push(tempStage);
+        }
+
+        var filterOpportunitiesArray = {'stages': filterStages};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initStageResponse = jsonStr;
+    }
+
     function iniFillStageTableData() {
         $stagetable.bootstrapTable('showLoading');
         var data = '{{stagesArray}}';
@@ -15,7 +47,8 @@
         initStageResponse = newString;
         //var newString = JSON.parse(data);
         $stagetable.bootstrapTable('hideLoading');
-        $stagetable.bootstrapTable('append', convertStageData(newString));
+        addWonLost();
+        $stagetable.bootstrapTable('append', convertStageData(initStageResponse));
     }
 
     function refreshStageTable() {
@@ -30,7 +63,8 @@
                     if (response) {
                         $stagetable.bootstrapTable('hideLoading');
                         initStageResponse = response;
-                        $stagetable.bootstrapTable('append', convertStageData(response));
+                        addWonLost();
+                        $stagetable.bootstrapTable('append', convertStageData(initStageResponse));
                     } else {
 
                     }
@@ -48,7 +82,8 @@
                 function (response) {
                     if (response) {
                         $stagetable.bootstrapTable('hideLoading');
-                        $stagetable.bootstrapTable('append', convertStageData(response));
+                        addWonLost();
+                        $stagetable.bootstrapTable('append', convertStageData(initStageResponse));
                     } else {
 
                     }
@@ -101,7 +136,6 @@
             var tempStage = jsonString.stages[i];
 
             extendColData.push({
-                
             });
 
             var name = '{{name|lower}}';
@@ -125,11 +159,14 @@
                 action += '</ul>' +
                         '</div>' +
                         '</div>';
-            }else{
+            } else {
                 $productTypeTable.bootstrapTable('hideColumn', 'Action');
             }
 
-
+            if(tempStage.stage === 'Won' || tempStage.stage === 'Lost'){
+                action = '';
+            }
+            
             var status = tempStage.status;
 
             rows.push({
@@ -145,7 +182,7 @@
         return rows;
     }
 
-    
+
     function deactivateStageId(id) {
         $stagetable.bootstrapTable('removeAll');
         $stagetable.bootstrapTable('showLoading');
@@ -163,7 +200,7 @@
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
-        
+
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initStageResponse = jsonStr;
         $stagetable.bootstrapTable('hideLoading');
@@ -179,7 +216,7 @@
                 function (response) {
                     if (response) {
                         //$stagetable.bootstrapTable('showLoading');
-                        
+
                     } else {
                         $stagetable.bootstrapTable('hideLoading');
                     }
@@ -205,7 +242,7 @@
 
         }
         var filterOpportunitiesArray = {'stages': filterContact};
-        
+
         var jsonStr = JSON.stringify(filterOpportunitiesArray);
         initStageResponse = jsonStr;
         $stagetable.bootstrapTable('hideLoading');
@@ -220,7 +257,7 @@
         $.post(path + id, null,
                 function (response) {
                     if (response) {
-                        
+
                     } else {
                         $stagetable.bootstrapTable('hideLoading');
                     }
