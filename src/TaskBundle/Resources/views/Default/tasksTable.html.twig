@@ -4,20 +4,29 @@
         <div style="padding:25px">
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="pull-left">
+                            {% if opportunity is defined %}
+                                <a href="{{path('opportunity_manageopportunityV2')}}" style="color: black;"> << Back to Deals</a>
+                            {% elseif contact is defined %}
+                                <a href="{{path('contacts_contacts_contacts')}}" style="color: black;"> << Back to Contacts</a>
+                            {% elseif user is defined %}
+                                <a href="{{path('login_login_users')}}" style="color: black;"> << Back to Users</a>
+                            {% endif %}
+                    </div>
                     <div class="pull-right">  
                         <span calss="pull-right">
                             {% if opportunity is defined %}
-                                <a href="javascript:taskpopup('{{opportunity.getSharing()}}','{{opportunity.getUsername()}}',{{opportunity.getId()}})" 
+                                <a href="javascript:taskpopup('{{opportunity.getSharing()}}','{{opportunity.getUsername()}}',{{opportunity.getId()}}, 'opportunity')" 
                                    style="color: black;">
                                     <i class="fa fa-list"></i> Add Tasks
                                 </a>
                             {% elseif contact is defined %}
-                                <a href="javascript:taskpopup('','{{contact.getUsername()}}',{{contact.getId()}})"
+                                <a href="javascript:taskpopup('','{{contact.getUsername()}}',{{contact.getId()}}, 'contact')"
                                    style="color: black;">
                                     <i class="fa fa-list"></i> Add Tasks
                                 </a>
                             {% elseif user is defined %}
-                                <a href="javascript:taskpopup('','{{user.getUsername()}}','')"
+                                <a href="javascript:taskpopup('','{{user.getUsername()}}',{{user.getId()}}, 'user')"
                                    style="color: black;">
                                     <i class="fa fa-list"></i> Add Tasks
                                 </a>

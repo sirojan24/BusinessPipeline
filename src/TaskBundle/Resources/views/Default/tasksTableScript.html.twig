@@ -203,7 +203,7 @@
         return {};
     }
 
-    function taskpopup(sharing, username, id) {
+    function taskpopup(sharing, username, id, type) {
         if (sharing != '') {
             $.post('{{path('login_login_getusers')}}',
                     {sharedusers: sharing, user: username},
@@ -228,7 +228,7 @@
 
                     $('#addTaskModal').modal('show');
                     document.getElementById('tasktypeid').value = id;
-
+                    document.getElementById('tasktype').value = type;
                 } else {
                     console.log("error occured in the mange opportunity in retriving shared users", response);
                 }
@@ -240,14 +240,11 @@
                     {name: username},
             function (response) {
                 if (response !== "false") {
-
-
                     document.getElementById('shareduserselect').innerHTML = "<option value='" + response + "'>" + response + "</option>";
-
 
                     $('#addTaskModal').modal('show');
                     document.getElementById('tasktypeid').value = id;
-
+                    document.getElementById('tasktype').value = type;
                 } else {
                     console.log("error occured in the mange opportunity in retriving shared users", response);
                 }
@@ -270,9 +267,10 @@
         var tasknotes = document.getElementById('tasknotes').value;
         var tasktags = document.getElementById('tasktags').value;
         var tasktypeid = document.getElementById('tasktypeid').value;
-
+        var tasktype = document.getElementById('tasktype').value;
+        
         $.post('{{path('task_savetask')}}',
-                {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, tasktype: "contact",tasktypeid:tasktypeid},
+                {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, tasktype: tasktype,tasktypeid:tasktypeid},
         function (response) {
             if (response !== false) {
                 $table.bootstrapTable('removeAll');
