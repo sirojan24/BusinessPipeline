@@ -666,7 +666,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                             '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                             '</button>';
                     '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">';
-
+                    var revenue = (tempOpportunity.weighted_revenue_all).replace(/,/g, '');
                     var flag = true;
                     if (name.toLowerCase() === tempOpportunity.username.toLowerCase()) {
                         if(tempOpportunity.sharedUsers !== ''){
@@ -680,9 +680,9 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                 '<li><a href=\"#\" onclick=\"notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"' + taskPath + tempOpportunity.id + '\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '<li><a href=\"javascript:sharingpopup(' + \"'\" + tempOpportunity.sharedUsers + \"'\" +
-                                                    \",\" + tempOpportunity.projected_revenue  + 
-                                                    \",\" + tempOpportunity.username  + 
-                                                    \",\" + tempOpportunity.partnername  +
+                                                    \",\" + revenue  + 
+                                                    \",'\" + tempOpportunity.username  + \"'\" +
+                                                    \",'\" + tempOpportunity.partnername  + \"'\" +
                                                     \",\" + tempOpportunity.partnerpercentage  +
                                                     ')\"><i class=\"fa fa-user\"></i> Sharing</a></li>' +
                                 '</ul>' +
@@ -720,7 +720,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                         '<li><a href=\"javascript:sharingpopup(' + \"'\" + tempOpportunity.sharedUsers + \"'\" +
                                                     \",\" + revenue  + 
                                                     \",'\" + tempOpportunity.username  + \"'\" +
-                                                    \",\" + tempOpportunity.partnername  +
+                                                    \",'\" + tempOpportunity.partnername  + \"'\" +
                                                     \",\" + tempOpportunity.partnerpercentage  +
                                                     ')\"><i class=\"fa fa-user\"></i> Sharing</a></li>' +
                                         '</ul>' +
