@@ -68,7 +68,10 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
             <!-- Top Black Menu -->
             <ul class=\"nav navbar-top-links navbar-right\">
                 <li>
-                    <a href=\"index.php\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Dashboard\"><i class=\"fa fa-tachometer\"></i></a>
+                    <a href=\"";
+        // line 39
+        echo $this->env->getExtension('routing')->getPath("web_dashboard");
+        echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Dashboard\"><i class=\"fa fa-tachometer\"></i></a>
                 </li>
                 <li>
                     <a href=\"";
@@ -114,6 +117,6 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
 
     public function getDebugInfo()
     {
-        return array (  94 => 51,  88 => 48,  82 => 45,  76 => 42,  57 => 26,  53 => 25,  49 => 24,  39 => 19,  19 => 1,);
+        return array (  97 => 51,  91 => 48,  85 => 45,  79 => 42,  73 => 39,  57 => 26,  53 => 25,  49 => 24,  39 => 19,  19 => 1,);
     }
 }

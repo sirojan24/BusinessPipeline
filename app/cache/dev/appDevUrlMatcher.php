@@ -145,6 +145,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'webBundle\\Controller\\DefaultController::supportAction',  '_route' => 'web_support',);
         }
 
+        // web_dashboard
+        if ($pathinfo === '/dashboard') {
+            return array (  '_controller' => 'webBundle\\Controller\\DefaultController::dashboardAction',  '_route' => 'web_dashboard',);
+        }
+
         if (0 === strpos($pathinfo, '/hel')) {
             // help_homepage
             if ($pathinfo === '/help') {

@@ -29,4 +29,22 @@ class DefaultController extends Controller
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
+    
+    public function dashboardAction (Request $request){
+        
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository("LoginLoginBundle:Users");
+            $user = $repository->findOneBy(array('username' => $token->getUsername()));
+            $fullname = $user->getFirstname() . " " . $user->getLastname();
+
+            return $this->render('webBundle:Default:dashboard.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
+       
+        }else{
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+       
+        }
+        
+    }
 }
