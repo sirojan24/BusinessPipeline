@@ -423,8 +423,9 @@
                             <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
                         </div>
                         <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">View Details</a>
+                            <div id="deals-donut-chart"></div>
+                            <a href="javascript:showHideWonLostOnDonutChart()" class="btn btn-default btn-block" id="showHideWonLostOnDonutChartTag">
+                                View Won And Lost Details</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -567,5 +568,67 @@
         <script src="{{asset('bundles_v2.0/js/morris-data.js')}}"></script>
 
 </body>
-
+<script>
+    {#Morris.Donut({
+        element: 'deals-donut-chart',
+        data: [{
+            label: "Download Sales",
+            value: 20
+        }, {
+            label: "In-Store Sales",
+            value: 30
+        }, {
+            label: "Mail-Order Sales",
+            value: 500
+        }],
+        resize: true
+    });#}
+    
+    var dealData = [];
+    {% for deal in deals %} 
+        dealData.push({
+            label: '{{deal.stage}}',
+            value: {{deal.noOfDeals}}
+        });
+    {% endfor %}
+       
+    Morris.Donut({
+        element: 'deals-donut-chart',
+        data: filterWonLost(dealData),
+        resize: true
+    });
+    
+    function filterWonLost(dealData){
+        var returnData = [];
+        $.each(dealData, function( index, value ) {
+            if(value.label !== 'won' && value.label !== 'lost'){
+                returnData.push(value);
+            }
+        });
+        return returnData;
+    }
+    
+    function showHideWonLostOnDonutChart(){
+        $('#deals-donut-chart').html('');
+        
+        var innerText = $('#showHideWonLostOnDonutChartTag').html();
+        
+        if(innerText === 'Hide Won And Lost Details'){
+            $('#showHideWonLostOnDonutChartTag').html('Show Won And Lost Details');
+            Morris.Donut({
+                element: 'deals-donut-chart',
+                data: filterWonLost(dealData),
+                resize: true
+            });
+        }else{
+            $('#showHideWonLostOnDonutChartTag').html('Hide Won And Lost Details');
+                Morris.Donut({
+                    element: 'deals-donut-chart',
+                    data: dealData,
+                    resize: true
+                });
+            }
+    
+    }
+</script>
 </html>

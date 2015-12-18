@@ -453,8 +453,9 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                             <i class=\"fa fa-bar-chart-o fa-fw\"></i> Donut Chart Example
                         </div>
                         <div class=\"panel-body\">
-                            <div id=\"morris-donut-chart\"></div>
-                            <a href=\"#\" class=\"btn btn-default btn-block\">View Details</a>
+                            <div id=\"deals-donut-chart\"></div>
+                            <a href=\"javascript:showHideWonLostOnDonutChart()\" class=\"btn btn-default btn-block\" id=\"showHideWonLostOnDonutChartTag\">
+                                View Won And Lost Details</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -586,35 +587,101 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
         <!-- /#page-wrapper -->
 \t\t
 \t\t ";
-        // line 558
-        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
         // line 559
+        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
+        // line 560
         echo "
     </div>
     <!-- /#wrapper -->
 
 \t";
-        // line 563
-        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
         // line 564
+        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
+        // line 565
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 565
+        // line 566
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 566
+        // line 567
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 567
+        // line 568
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
 </body>
-
+<script>
+    ";
+        // line 586
+        echo "    
+    var dealData = [];
+    ";
+        // line 588
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["deals"]) ? $context["deals"] : $this->getContext($context, "deals")));
+        foreach ($context['_seq'] as $context["_key"] => $context["deal"]) {
+            echo " 
+        dealData.push({
+            label: '";
+            // line 590
+            echo twig_escape_filter($this->env, $this->getAttribute($context["deal"], "stage", array()), "html", null, true);
+            echo "',
+            value: ";
+            // line 591
+            echo twig_escape_filter($this->env, $this->getAttribute($context["deal"], "noOfDeals", array()), "html", null, true);
+            echo "
+        });
+    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['deal'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 594
+        echo "       
+    Morris.Donut({
+        element: 'deals-donut-chart',
+        data: filterWonLost(dealData),
+        resize: true
+    });
+    
+    function filterWonLost(dealData){
+        var returnData = [];
+        \$.each(dealData, function( index, value ) {
+            if(value.label !== 'won' && value.label !== 'lost'){
+                returnData.push(value);
+            }
+        });
+        return returnData;
+    }
+    
+    function showHideWonLostOnDonutChart(){
+        \$('#deals-donut-chart').html('');
+        
+        var innerText = \$('#showHideWonLostOnDonutChartTag').html();
+        
+        if(innerText === 'Hide Won And Lost Details'){
+            \$('#showHideWonLostOnDonutChartTag').html('Show Won And Lost Details');
+            Morris.Donut({
+                element: 'deals-donut-chart',
+                data: filterWonLost(dealData),
+                resize: true
+            });
+        }else{
+            \$('#showHideWonLostOnDonutChartTag').html('Hide Won And Lost Details');
+                Morris.Donut({
+                    element: 'deals-donut-chart',
+                    data: dealData,
+                    resize: true
+                });
+            }
+    
+    }
+</script>
 </html>
 ";
     }
@@ -631,6 +698,6 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
 
     public function getDebugInfo()
     {
-        return array (  613 => 567,  609 => 566,  605 => 565,  600 => 564,  598 => 563,  592 => 559,  590 => 558,  131 => 102,  106 => 80,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  645 => 594,  636 => 591,  632 => 590,  625 => 588,  621 => 586,  614 => 568,  610 => 567,  606 => 566,  601 => 565,  599 => 564,  593 => 560,  591 => 559,  131 => 102,  106 => 80,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }
