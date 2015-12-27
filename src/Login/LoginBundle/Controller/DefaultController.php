@@ -41,8 +41,8 @@ class DefaultController extends Controller {
                     $session->set('token', $login);
 
 
-
-                    return $this->render('webBundle:Default:dashboard.html.twig', array('name' => $user->getUsername(), 'role' => $user->getRole(), 'fullname' => $fullname, 'manageview' => $user->getUserView()));
+                    return $this->redirectToRoute('web_dashboard');
+                   // return $this->render('webBundle:Default:dashboard.html.twig', array('name' => $user->getUsername(), 'role' => $user->getRole(), 'fullname' => $fullname, 'manageview' => $user->getUserView()));
                 } else {
                     return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Oh snap! You are not an active user'));
                 }
