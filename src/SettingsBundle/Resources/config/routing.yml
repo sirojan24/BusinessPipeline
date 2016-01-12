@@ -66,6 +66,14 @@ settings_table_data:
     path:     /tableData
     defaults: { _controller: SettingsBundle:Stage:tableData }
     
+settings_delete_user:
+    path:     /deleteUser
+    defaults: { _controller: SettingsBundle:Users:deleteUser }
+
+settings_activate_user:
+    path:     /activateUser
+    defaults: { _controller: SettingsBundle:Users:activateUser }
+
 settings_savestage:
     path:     /savestage
     defaults: { _controller: SettingsBundle:Stage:savestage }

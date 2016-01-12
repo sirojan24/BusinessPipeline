@@ -427,6 +427,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::tableDataAction',  '_route' => 'settings_table_data',);
         }
 
+        // settings_delete_user
+        if ($pathinfo === '/deleteUser') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\UsersController::deleteUserAction',  '_route' => 'settings_delete_user',);
+        }
+
+        // settings_activate_user
+        if ($pathinfo === '/activateUser') {
+            return array (  '_controller' => 'SettingsBundle\\Controller\\UsersController::activateUserAction',  '_route' => 'settings_activate_user',);
+        }
+
         // settings_savestage
         if ($pathinfo === '/savestage') {
             return array (  '_controller' => 'SettingsBundle\\Controller\\StageController::savestageAction',  '_route' => 'settings_savestage',);

@@ -145,7 +145,7 @@ class DefaultController extends Controller {
 
             $admin_companyName = $admin->getCompanyname();
 
-            $users = $repository->findBy(array('companyname' => $admin_companyName, 'status' => 'Active'));
+            $users = $repository->findBy(array('companyname' => $admin_companyName));
             foreach ($users as $user) {
                 $wonAmount = 0;
                 $lossAmount = 0;

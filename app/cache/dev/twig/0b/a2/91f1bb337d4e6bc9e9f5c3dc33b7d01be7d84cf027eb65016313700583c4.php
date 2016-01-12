@@ -84,6 +84,7 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
                                     <th data-field=\"won_deals\" data-sortable=\"true\">Won<br> Deals</th>
                                     <th data-field=\"lost_deals\" data-sortable=\"true\">Lost<br> Deals</th>
                                     <th data-field=\"owner\" data-sortable=\"true\">Owner</th>
+                                    <th data-field=\"status\" data-sortable=\"true\">Status</th>
                                     <th data-field=\"action\">Action</th>
                                     <th data-field=\"tags\">tags</th>
                                 </tr>
@@ -97,7 +98,7 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
     </div>
 </div>
 ";
-        // line 72
+        // line 73
         $this->env->loadTemplate("ContactsContactsBundle:Default:contactTableScript.html.twig")->display($context);
     }
 
@@ -113,6 +114,6 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
 
     public function getDebugInfo()
     {
-        return array (  101 => 72,  69 => 43,  35 => 12,  29 => 9,  19 => 1,);
+        return array (  102 => 73,  69 => 43,  35 => 12,  29 => 9,  19 => 1,);
     }
 }
