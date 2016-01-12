@@ -190,8 +190,8 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
                     '<div class=\"col-xs-4\">' +
                     '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;\">' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;width:30%\"><small>Message</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + message + '</small></td>' +
+                    '<td style=\"border: none !important;width:30%\"><small>Message</small></td>' +
+                    '<td style=\"border: none !important;\"><small>' + message + '</small></td>' +
                     '</tr>' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>Tags</small></td>' +
