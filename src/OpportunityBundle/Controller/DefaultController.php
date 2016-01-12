@@ -107,7 +107,12 @@ class DefaultController extends Controller {
             $opportunityname = $selectedContact->getName();
             $organizationname = $selectedContact->getCompany();
 
-            return $this->render('OpportunityBundle:Default:addOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 'organizationname' => $organizationname, 'contactid' => $id));
+            return $this->render('OpportunityBundle:Default:addOpportunityV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'accounttypes' => $accounttypes, 'stages' => $stages, 
+                        'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 
+                        'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 
+                        'organizationname' => $organizationname, 'contactid' => $id));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

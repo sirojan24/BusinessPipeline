@@ -101,7 +101,27 @@ class DefaultController extends Controller
             return $this->render('NotesBundle:Default:manageNotes.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'notes'=> $notes,'fullname'=>$fullname));
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
+    
+    public function managenotesV2Action (Request $request){
+        $token = $request->getSession()->get('token');
+        if($token){
+              $em = $this->getDoctrine()->getManager();
+              $repository = $em->getRepository("LoginLoginBundle:Users");
+              $user = $repository->findOneBy(array('username' => $token->getUsername()));
+              
+              $fullname = $user->getFirstname()." ".$user->getLastname();
+              $repository1 = $em->getRepository("NotesBundle:Notes");
+              $notes = $repository1->findBy(array('companyname' => $user->getCompanyname()));
+              
+            return $this->render('NotesBundle:Default:manageNotesV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'notes'=> $notes,'fullname'=>$fullname, 'manageview' => '10', 'notesArray' => ''));
+        }else{
+            
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -143,7 +163,7 @@ class DefaultController extends Controller
             
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
     
