@@ -287,6 +287,7 @@ class DefaultController extends Controller {
                 if ($type == 'opportunity') {
 
                     $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+                    
                     $opportunity = $opportunityRepository->findOneBy(array('id' => $id));
 
                     if ($opportunity) {
@@ -366,7 +367,8 @@ class DefaultController extends Controller {
                 $response = array('tasks' => $taskArray);
                 $response = json_encode($response);
 
-                return $this->render('TaskBundle:Default:manageTasks.html.twig', array('name' => $token->getUsername(), 'fullname' => $fullname,
+                return $this->render('TaskBundle:Default:manageTasks.html.twig', 
+                        array('name' => $token->getUsername(), 'fullname' => $fullname,
                             'tasksArray' => $response, 'manageview' => '10',
                             $responseType => $typeResponse,
                             'typeId' => $id,
@@ -380,6 +382,85 @@ class DefaultController extends Controller {
         }
     }
 
+    public function allOpenDealTasksAction(Request $request){
+        $token = $request->getSession()->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $usersRepository = $em->getRepository("LoginLoginBundle:Users");
+        if ($token) {
+            $currentUser = $usersRepository->findOneBy(array('username' => $token->getUsername()));
+
+            if ($currentUser) {
+                $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+
+                $tasksRepository = $em->getRepository("TaskBundle:Tasks");
+
+                $tasks = $tasksRepository->findBy(array('tasktype' => 'opportunity', 'status' => 'Active'));
+
+                $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+                
+                $taskArray = array();
+                foreach ($tasks as $task) {
+                    
+                    $id = $task->getTaskTypeId();
+                    
+                    $opportunity = $opportunityRepository->findOneBy(array('id' => $id, 'status' => 'Active'));
+                    if ($opportunity) {
+                        
+                        //check user authorization
+                        $flag = false;
+                        if ($opportunity->getUsername() !== $currentUser->getUsername()) {
+
+                            $sharing = $opportunity->getSharing();
+                            $sharedUsers = explode(":", $sharing);
+
+                            foreach ($sharedUsers as $user) {
+                                if ($user === $currentUser->getUsername()) {
+                                    $flag = true;
+                                    break;
+                                }
+                            }
+
+                        }else{
+                            $flag = true;
+                        }
+                        
+                        if ($flag == true && $opportunity->getStage() !== 'won' 
+                                && $opportunity->getStage() !== 'lost') {
+                            
+                            $arrElement["name"] = $opportunity->getPersonname();
+                            $arrElement["company"] = $opportunity->getOrganizationname();
+                            $arrElement["taskName"] = $task->getName();
+                            $arrElement["priority"] = $task->getPriority();
+                            $arrElement["assignedTo"] = $task->getAssignto();
+                            $arrElement["dueDate"] = $task->getDue();
+                            $arrElement["message"] = $task->getNotes();
+                            $arrElement["tags"] = $task->getTags();
+                            $arrElement["id"] = $task->getId();
+                            $arrElement["username"] = $task->getUsername();
+                            $arrElement["visibility"] = $task->getVisibility();
+
+                            array_push($taskArray, $arrElement);
+                        }
+                    }
+                }
+                $response = array('tasks' => $taskArray);
+                $response = json_encode($response);
+  
+                return $this->render('TaskBundle:Default:manageTasks.html.twig', 
+                        array('name' => $token->getUsername(), 'fullname' => $fullname,
+                            'tasksArray' => $response, 'manageview' => '10',
+                            'typeId' => $id,
+                            'type' => 'opportunity'
+                ));
+                
+            } else {
+                return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+            }
+        } else {
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+        }
+    }
+    
     public function getTasksAction(Request $request, $type, $id) {
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();

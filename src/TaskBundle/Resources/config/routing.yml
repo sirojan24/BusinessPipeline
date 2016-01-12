@@ -17,3 +17,7 @@ task_manage_task:
 task_get_task:    
     path:     /getTasks/{type}/{id}
     defaults: { _controller: TaskBundle:Default:getTasks }
+    
+task_all_open_deal_tasks:
+    path:     /allOpenDealTasks
+    defaults: { _controller: TaskBundle:Default:allOpenDealTasks }
