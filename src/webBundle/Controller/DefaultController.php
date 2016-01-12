@@ -37,17 +37,92 @@ class DefaultController extends Controller {
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-
+            
+            
+            $repository1 = $em->getRepository("ContactsContactsBundle:Contacts");
+            $contacts = $repository1->findBy(array('username' => $token->getUsername()));
+            $contactsCount = sizeof($contacts);
+            
             $deals = $this->countDeals($token);
+            $opendealCount = 0;
+            for ($i=0;$i<sizeof($deals);$i++){
+                if($deals[$i]['stage'] != "won" && $deals[$i]['stage'] != "lost"){
+                    $opendealCount += intval($deals[$i]['noOfDeals']);
+                }
+            }
+            
+            $tasksCount = $this->getallOpenDealTasksCount($token);
             $dealSources = $this->countDealSources($token);
             $dealProductTypes = $this->countDealProductTypes($token);
             $wonAndLostDealForBarBarChart = $this->countWonAndLostDealsForBarChart($token);
             
             return $this->render('webBundle:Default:dashboard.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
                         'fullname' => $fullname, 'deals' => $deals, 'dealSources' => $dealSources, 'dealProductTypes' => $dealProductTypes,
-                        'wonAndLostDealForBarBarChart' => $wonAndLostDealForBarBarChart));
+                        'wonAndLostDealForBarBarChart' => $wonAndLostDealForBarBarChart,'contactsCount' => $contactsCount,'opendealCount' => $opendealCount,'tasksCount' => $tasksCount));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+        }
+    }
+    
+      private function getallOpenDealTasksCount($token){
+        
+        $em = $this->getDoctrine()->getManager();
+        $usersRepository = $em->getRepository("LoginLoginBundle:Users");
+        if ($token) {
+            $currentUser = $usersRepository->findOneBy(array('username' => $token->getUsername()));
+
+            if ($currentUser) {
+                $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+
+                $tasksRepository = $em->getRepository("TaskBundle:Tasks");
+
+                $tasks = $tasksRepository->findBy(array('tasktype' => 'opportunity', 'status' => 'Active'));
+
+                $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+                
+                $taskArray = array();
+                $taskCount = 0;
+                foreach ($tasks as $task) {
+                    
+                    $id = $task->getTaskTypeId();
+                    
+                    $opportunity = $opportunityRepository->findOneBy(array('id' => $id, 'status' => 'Active'));
+                    if ($opportunity) {
+                        
+                        //check user authorization
+                        $flag = false;
+                        if ($opportunity->getUsername() !== $currentUser->getUsername()) {
+
+                            $sharing = $opportunity->getSharing();
+                            $sharedUsers = explode(":", $sharing);
+
+                            foreach ($sharedUsers as $user) {
+                                if ($user === $currentUser->getUsername()) {
+                                    $flag = true;
+                                    break;
+                                }
+                            }
+
+                        }else{
+                            $flag = true;
+                        }
+                        
+                        if ($flag == true && $opportunity->getStage() !== 'won' 
+                                && $opportunity->getStage() !== 'lost') {
+                            $taskCount ++;
+                            
+                        }
+                    }
+                }
+                return $taskCount;
+                
+            } else {
+                
+                return $taskCount;
+            }
+        } else {
+            return $taskCount;
+            
         }
     }
 

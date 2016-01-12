@@ -75,11 +75,19 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                                 </div>
                                 <div class=\"col-xs-9 text-right\">
                                     <div class=\"huge\">Tasks</div>
-                                    <div>12</div>
+                                    <div>";
+        // line 54
+        if (array_key_exists("tasksCount", $context)) {
+            echo twig_escape_filter($this->env, (isset($context["tasksCount"]) ? $context["tasksCount"] : $this->getContext($context, "tasksCount")), "html", null, true);
+        }
+        echo "</div>
                                 </div>
                             </div>
                         </div>
-                        <a href=\"#\">
+                        <a href=\"";
+        // line 58
+        echo $this->env->getExtension('routing')->getPath("task_all_open_deal_tasks");
+        echo "\">
                             <div class=\"panel-footer\">
                                 <span class=\"pull-left\">View Tasks</span>
                                 <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
@@ -97,7 +105,12 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                                 </div>
                                 <div class=\"col-xs-9 text-right\">
                                     <div class=\"huge\">Deals</div>
-                                    <div>35</div>
+                                    <div>";
+        // line 76
+        if (array_key_exists("opendealCount", $context)) {
+            echo twig_escape_filter($this->env, (isset($context["opendealCount"]) ? $context["opendealCount"] : $this->getContext($context, "opendealCount")), "html", null, true);
+        }
+        echo "</div>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +135,12 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                                 </div>
                                 <div class=\"col-xs-9 text-right\">
                                     <div class=\"huge\">Contacts</div>
-                                    <div>187</div>
+                                    <div>";
+        // line 98
+        if (array_key_exists("contactsCount", $context)) {
+            echo twig_escape_filter($this->env, (isset($context["contactsCount"]) ? $context["contactsCount"] : $this->getContext($context, "contactsCount")), "html", null, true);
+        }
+        echo "</div>
                                 </div>
                             </div>
                         </div>
@@ -588,6 +606,6 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
 
     public function getDebugInfo()
     {
-        return array (  575 => 524,  573 => 523,  571 => 522,  565 => 519,  561 => 518,  557 => 517,  552 => 516,  550 => 515,  544 => 511,  542 => 510,  131 => 102,  106 => 80,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  593 => 524,  591 => 523,  589 => 522,  583 => 519,  579 => 518,  575 => 517,  570 => 516,  568 => 515,  562 => 511,  560 => 510,  149 => 102,  140 => 98,  119 => 80,  110 => 76,  89 => 58,  80 => 54,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

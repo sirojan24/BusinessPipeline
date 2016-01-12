@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Tasks</div>
-                                    <div>12</div>
+                                    <div>{%if tasksCount is defined%}{{tasksCount}}{%endif%}</div>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Deals</div>
-                                    <div>35</div>
+                                    <div>{%if opendealCount is defined%}{{opendealCount}}{%endif%}</div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">Contacts</div>
-                                    <div>187</div>
+                                    <div>{%if contactsCount is defined%}{{contactsCount}}{%endif%}</div>
                                 </div>
                             </div>
                         </div>
