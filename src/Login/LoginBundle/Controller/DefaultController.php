@@ -110,10 +110,10 @@ class DefaultController extends Controller {
                 return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('successmsg' => 'Registration Success,Login your account.'));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
-                return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Invalid Arguments. Try Again'));
+                return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Invalid Arguments. Try Again'));
             }
         }
-        return $this->render('LoginLoginBundle:Default:signIn.html.twig');
+        return $this->render('LoginLoginBundle:Default:signinV2.html.twig');
     }
 
     public function signupV2Action(Request $request) {

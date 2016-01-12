@@ -13,6 +13,71 @@ class DefaultController extends Controller {
         return $this->render('TaskBundle:Default:index.html.twig', array('name' => $name));
     }
 
+    public function updatetaskAction(Request $request) {
+       
+        $token = $request->getSession()->get('token');
+        
+        $em = $this->getDoctrine()->getManager();
+        if ($token) {
+            $tasksRepository = $em->getRepository("TaskBundle:Tasks");
+
+            $task = $tasksRepository->findOneBy(array('id' => $request->get('id')));
+           // echo $task->getName();
+           // exit;
+            if ($task) {
+                $task->setName($request->get('taskname'));
+                $task->setTags($request->get('tasktags'));
+                $task->setNotes($request->get('tasknotes'));
+                $task->setVisibility($request->get('visibility'));
+                $task->setDue($request->get('due'));
+                $task->setPriority($request->get('priority'));
+                date_default_timezone_set('America/Los_Angeles');
+                $task->setTimestamp(date("Y-m-d h:i:sa"));
+                $task->setAssignto($request->get('shareduserselect'));
+
+
+                $name = '';
+                $company = '';
+                if ($task->getTasktype() == "contact") {
+                    $contactRepository = $em->getRepository("ContactsContactsBundle:Contacts");
+                    $contact = $contactRepository->findOneBy(array("id" => $task->getTasktypeid()));
+
+                    if ($contact) {
+                        $name = $contact->getName();
+                        $company = $contact->getCompany();
+                    }
+                } else if ($task->getTasktype() == "user") {
+                    $repository = $em->getRepository("LoginLoginBundle:Users");
+                    $user = $repository->findOneBy(array("id" => $task->getTasktypeid()));
+
+                    if ($user) {
+
+                        $name = $task->getFullname();
+                        $company = $task->getCompanyname();
+                    }
+                } else {
+                    // need to write for opportunity
+                    $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+                    $opportunity = $opportunityRepository->findOneBy(array('id' => $task->getTasktypeid()));
+                    $name = $opportunity->getPersonname();
+                    $company = $task->getCompanyname();
+                }
+
+
+                try {
+                    $em->flush();
+                    $response = array('name' => $name, 'company' => $company, 'taskName' => $task->getName(), 'priority' => $task->getPriority(), 'assignedTo' => $task->getAssignto(), 'dueDate' => $task->getDue(), 'message' => $task->getNotes(), "tags" => $task->getTags(), "id" => $task->getId(), "username" => $task->getUsername());
+                    $response = json_encode($response);
+
+                    return new Response($response);
+                } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+                    return new Response('false');
+                }
+            }
+        }
+        return new Response('falsaaae');
+    }
+
     public function savetaskAction(Request $request) {
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();
@@ -54,21 +119,24 @@ class DefaultController extends Controller {
                 $contact = $contactRepository->findOneBy(array("id" => $typeid));
 
                 if ($contact) {
-                   
                     $name = $contact->getName();
                     $company = $contact->getCompany();
                 }
-            }else if ($tasks->getTasktype() == "user") {
+            } else if ($tasks->getTasktype() == "user") {
                 $repository = $em->getRepository("LoginLoginBundle:Users");
                 $user = $repository->findOneBy(array("id" => $typeid));
 
                 if ($user) {
-                   
+
                     $name = $tasks->getFullname();
                     $company = $tasks->getCompanyname();
                 }
-            }else{
+            } else {
                 // need to write for opportunity
+                $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+                $opportunity = $opportunityRepository->findOneBy(array('id' => $typeid));
+                $name = $opportunity->getPersonname();
+                $company = $tasks->getCompanyname();
             }
             try {
                 $em->persist($tasks);
@@ -290,6 +358,7 @@ class DefaultController extends Controller {
                     $arrElement["tags"] = $task->getTags();
                     $arrElement["id"] = $task->getId();
                     $arrElement["username"] = $task->getUsername();
+                    $arrElement["visibility"] = $task->getVisibility();
 
                     array_push($taskArray, $arrElement);
                 }
@@ -304,10 +373,10 @@ class DefaultController extends Controller {
                             'type' => $type
                 ));
             } else {
-                return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+                return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
             }
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
 

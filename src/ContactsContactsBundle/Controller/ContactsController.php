@@ -55,7 +55,7 @@ class ContactsController extends Controller {
 
             return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -71,11 +71,11 @@ class ContactsController extends Controller {
             $fullname = $user->getFirstname() . " " . $user->getLastname();
             
             $response = $this->getContactData($token);
-
+            
             return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contactArray' => $response, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -229,7 +229,7 @@ class ContactsController extends Controller {
         if ($token) {
             return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'fullname' => $fullname));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -251,7 +251,7 @@ class ContactsController extends Controller {
         if ($token) {
             return $this->render('ContactsContactsBundle:Default:addContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'fullname' => $fullname));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -501,7 +501,7 @@ class ContactsController extends Controller {
                 return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'errormsg' => 'Oh snap! Something went wrong. Try Again', 'fullname' => $fullname));
             }
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -882,7 +882,7 @@ class ContactsController extends Controller {
                 return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Oh snap ! Something went wrong.Try Again.', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
             }
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 

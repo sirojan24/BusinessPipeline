@@ -32,7 +32,7 @@ class ProductTypeController extends Controller {
              return $this->render('SettingsBundle:Default:addProductType.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'fullname'=>$fullname)); 
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -66,7 +66,7 @@ class ProductTypeController extends Controller {
             
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
         
     }
@@ -83,7 +83,7 @@ class ProductTypeController extends Controller {
             return $this->render('SettingsBundle:Default:manageProductTypes.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'producttypes'=> $producttypes,'fullname'=>$fullname));
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -113,7 +113,7 @@ class ProductTypeController extends Controller {
             
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -134,7 +134,7 @@ class ProductTypeController extends Controller {
             
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -170,7 +170,7 @@ class ProductTypeController extends Controller {
             
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
     
@@ -200,7 +200,7 @@ class ProductTypeController extends Controller {
             
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         } 
     }
     

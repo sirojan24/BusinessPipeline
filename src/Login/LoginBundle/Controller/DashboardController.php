@@ -21,7 +21,7 @@ class DashboardController extends Controller {
             return $this->render('LoginLoginBundle:Default:addusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -36,7 +36,7 @@ class DashboardController extends Controller {
             return $this->render('LoginLoginBundle:Default:importusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -279,7 +279,7 @@ class DashboardController extends Controller {
                 return $this->render('LoginLoginBundle:Default:addUsers.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again'));
             }
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need Admin privillages to do this addition.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need Admin privillages to do this addition.'));
         }
     }
 
@@ -641,7 +641,7 @@ class DashboardController extends Controller {
             //return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users, 'userArray'=> $userArray ,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -688,7 +688,7 @@ class DashboardController extends Controller {
             return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 'mobile' => $mobile, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -910,10 +910,10 @@ class DashboardController extends Controller {
                     return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'users' => $users, 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again', 'manageview' => $adminuser->getUserview()));
                 }
             } else {
-                return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need an Admin login to Proceed'));
+                return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need an Admin login to Proceed'));
             }
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -945,7 +945,7 @@ class DashboardController extends Controller {
                 return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'users' => $users, 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again', 'manageview' => $admin->getUserview()));
             }
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need an Admin login to Proceed'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need an Admin login to Proceed'));
         }
     }
 
@@ -1028,7 +1028,7 @@ class DashboardController extends Controller {
             }
         } else {
             $session->invalidate();
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Only Master Admin is allowed to do this action '));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Only Master Admin is allowed to do this action '));
         }
     }
 

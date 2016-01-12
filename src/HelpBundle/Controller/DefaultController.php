@@ -23,7 +23,7 @@ class DefaultController extends Controller
             return $this->render('HelpBundle:Default:index.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),'fullname'=>$fullname )); 
         }else{
             
-             return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
         
     }

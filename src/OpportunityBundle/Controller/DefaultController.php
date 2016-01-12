@@ -42,7 +42,7 @@ class DefaultController extends Controller {
             return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -75,7 +75,7 @@ class DefaultController extends Controller {
             return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 'organizationname' => $organizationname, 'contactid' => $id));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -110,7 +110,7 @@ class DefaultController extends Controller {
             return $this->render('OpportunityBundle:Default:addOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 'organizationname' => $organizationname, 'contactid' => $id));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -267,7 +267,7 @@ class DefaultController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
 
@@ -300,7 +300,7 @@ class DefaultController extends Controller {
             return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -333,7 +333,7 @@ class DefaultController extends Controller {
             return $this->render('OpportunityBundle:Default:editOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -365,7 +365,7 @@ class DefaultController extends Controller {
             return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname, 'flag' => 'true', 'successmsg' => "You can edit the Notes only! "));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -503,7 +503,7 @@ class DefaultController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -616,7 +616,7 @@ class DefaultController extends Controller {
 
             return $this->render('OpportunityBundle:Default:manageOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunities' => $opportunities, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -634,7 +634,7 @@ class DefaultController extends Controller {
 //return $this->render('OpportunityBundle:Default:test.html.twig');
             return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -654,7 +654,7 @@ class DefaultController extends Controller {
                 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 
                 'manageview' => $user->getOpportunityview(), 'contactid' => $id, 'filter' => $filter));
         } else {
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -1059,7 +1059,7 @@ class DefaultController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
 
@@ -1195,7 +1195,7 @@ class DefaultController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 

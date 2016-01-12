@@ -33,7 +33,7 @@ class StageController extends Controller {
             return $this->render('SettingsBundle:Default:addStage.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -47,7 +47,7 @@ class StageController extends Controller {
             return $this->render('SettingsBundle:Stages:addStageV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -63,7 +63,7 @@ class StageController extends Controller {
             return $this->render('SettingsBundle:Default:manageStages.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'stages' => $stages, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -81,7 +81,7 @@ class StageController extends Controller {
                         'fullname' => $fullname, 'stagesArray' => $stagesArray));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -176,7 +176,7 @@ class StageController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
 
@@ -196,7 +196,7 @@ class StageController extends Controller {
             return $this->render('SettingsBundle:Default:editStage.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'stage' => $stage, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
     
@@ -216,7 +216,7 @@ class StageController extends Controller {
             return $this->render('SettingsBundle:Stages:editStageV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'stage' => $stage, 'fullname' => $fullname));
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -247,7 +247,7 @@ class StageController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -279,7 +279,7 @@ class StageController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
@@ -314,7 +314,7 @@ class StageController extends Controller {
             }
         } else {
 
-            return $this->render('LoginLoginBundle:Default:signIn.html.twig', array('errormsg' => 'You need admin login to proceed.'));
+            return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
 
