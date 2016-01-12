@@ -282,6 +282,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                         weighted_forecast: '\$' + tempContact.weighted_forecast,
                         won_deals: wonDeal,
                         lost_deals: lostDeal,
+                        status: tempContact.status,
                         owner: '<a href=\"javascript:usernameFilter(' + \"'\" + tempContact.username + \"'\" + ')\">' + tempContact.owner + '</a>',
                         action: action,
                         email: tempContact.email,
