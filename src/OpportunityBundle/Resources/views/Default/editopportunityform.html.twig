@@ -6,7 +6,7 @@
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="firstname">Contact Name <span style="color:#FF0000;">*</span></label>
-                            <input type="text" name="personname" id="personname" value="{{opportunity.getPersonname()}}" class="form-control" id="name"  placeholder="" pattern="^[a-zA-Z_ ]*$" data-parsley-pattern="^[a-zA-Z_ ]*$"  data-parsley-trigger="keyup" required/>
+                            <input type="text" name="personname" id="personname" value="{{opportunity.getPersonname()}}" class="form-control" id="name"  placeholder="" pattern="^[a-zA-Z0-9_,.:'; ]*$" data-parsley-pattern="^[a-zA-Z0-9_,.:'; ]*$"  data-parsley-trigger="keyup" required/>
                         </div>
                     </div>
                 </div>

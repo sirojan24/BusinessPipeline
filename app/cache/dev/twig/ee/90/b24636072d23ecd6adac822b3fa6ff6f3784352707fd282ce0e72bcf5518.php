@@ -34,7 +34,7 @@ class __TwigTemplate_ee90b24636072d23ecd6adac822b3fa6ff6f3784352707fd282ce0e72bc
             echo twig_escape_filter($this->env, (isset($context["personname"]) ? $context["personname"] : $this->getContext($context, "personname")), "html", null, true);
             echo "\"";
         }
-        echo " class=\"form-control\" id=\"name\"  placeholder=\"\" pattern=\"^[a-zA-Z_ ]*\$\" data-parsley-pattern=\"^[a-zA-Z_ ]*\$\"  data-parsley-trigger=\"keyup\" required/>
+        echo " class=\"form-control\" id=\"name\"  placeholder=\"\" pattern=\"^[a-zA-Z0-9_,.:'; ]*\$\" data-parsley-pattern=\"^[a-zA-Z0-9_,.:'; ]*\$\"  data-parsley-trigger=\"keyup\" required/>
                         </div>
                     </div>
                 </div>
