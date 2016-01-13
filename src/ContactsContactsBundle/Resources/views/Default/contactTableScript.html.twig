@@ -102,6 +102,55 @@
         );
     }
 
+    function deleteContact(id){
+        $.post('{{path('contacts_delete_contact')}}', { id: id },
+                function (response) {
+                    if (response) {
+                        changeStatus(id, "Inactive");
+                    } else {
+
+                    }
+                }
+        );
+    }
+    
+    function activateContact(id){
+        $.post('{{path('contacts_activate_contact')}}', { id: id },
+                function (response) {
+                    if (response) {
+                        changeStatus(id, "Active");
+                    } else {
+
+                    }
+                }
+        );
+    }
+    
+    function changeStatus(id, status) {
+        $table.bootstrapTable('removeAll');
+        $table.bootstrapTable('showLoading');
+
+        var jsonString = JSON.parse(initResponse);
+        var filterUsers = [];
+
+        for (var i = 0; i < jsonString.contacts.length; i++) {
+            var tempContact = jsonString.contacts[i];
+
+            if (tempContact.id == id) {
+                tempContact.status = status;
+            }
+            
+            filterUsers.push(tempContact);
+        }
+        var filterOpportunitiesArray = {'contacts': filterUsers};
+        var jsonStr = JSON.stringify(filterOpportunitiesArray);
+        initResponse = jsonStr;
+        //$table.bootstrapTable('hideLoading');
+        //$table.bootstrapTable('append', convertData(jsonStr));
+        var username = '{{name|lower}}';
+        usernameFilter(username);
+    }
+    
     function storePageSize(size) {
         $.post('{{path('login_login_saveconfig')}}',
                 {name: 'contactview', value: size},
@@ -191,7 +240,8 @@
                     var name = '{{name|lower}}';
                     var action = '';
                     if (name.toLowerCase() === tempContact.username.toLowerCase()) {
-                        action = '<div class="pull-right">' +
+                        if(tempContact.status == "Active"){
+                            action = '<div class="pull-right">' +
                                 '<div class="keep-open btn-group">' +
                                 '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
                                 '<i class="glyphicon glyphicon-chevron-down"></i>' +
@@ -201,9 +251,27 @@
                                 '<li><a href="' + editPath + tempContact.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
                                 '<li><a href="#" onclick="notespopup('+ tempContact.id +')"><i class="fa fa-file-o"></i> Notes</a></li>' +
                                 '<li><a href="'+taskPath + tempContact.id +'"><i class="fa fa-list"></i> Tasks</a></li>' +
+                                '<li><a href="javascript:deleteContact(' + tempContact.id +')"><i class="fa fa-times"></i> Delete</a></li>' +
                                 '</ul>' +
                                 '</div>' +
                                 '</div>';
+                        }else{
+                            action = '<div class="pull-right">' +
+                                '<div class="keep-open btn-group">' +
+                                '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
+                                '<i class="glyphicon glyphicon-chevron-down"></i>' +
+                                '</button>' +
+                                '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
+                                '<li><a href="' + newDealPath + tempContact.id + '"><i class="fa fa-usd"></i> New Deal</a></li>' +
+                                '<li><a href="' + editPath + tempContact.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
+                                '<li><a href="#" onclick="notespopup('+ tempContact.id +')"><i class="fa fa-file-o"></i> Notes</a></li>' +
+                                '<li><a href="'+taskPath + tempContact.id +'"><i class="fa fa-list"></i> Tasks</a></li>' +
+                                '<li><a href="javascript:activateContact(' + tempContact.id +')"><i class="fa fa-check"></i> Activate</a></li>' +
+                                '</ul>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                        
                     }
                     
                     var openDeal = tempContact.open_deal;

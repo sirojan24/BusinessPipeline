@@ -218,6 +218,67 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                         </div>
                         <!-- /.panel-body -->
                     </div>
+                    
+                    <!-- /.panel -->
+                    <div class=\"panel panel-default\">
+                        <div class=\"panel-heading\">
+                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deals By Contacts
+                            <div class=\"pull-right\">
+                                <div class=\"btn-group\">
+                                    <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">
+                                        Actions
+                                        <span class=\"caret\"></span>
+                                    </button>
+                                    <ul class=\"dropdown-menu pull-right\" id=\"dealsByContactsDropDown\" role=\"menu\">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class=\"panel-body\">
+                            <div class=\"row\">
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class=\"col-lg-8\">
+                                    <div id=\"deals-by-contacts-morris-bar-chart\"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    
+                    <!-- /.panel -->
+                    <div class=\"panel panel-default\">
+                        <div class=\"panel-heading\">
+                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deals By Users
+                            <div class=\"pull-right\">
+                                <div class=\"btn-group\">
+                                    <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">
+                                        Actions
+                                        <span class=\"caret\"></span>
+                                    </button>
+                                    <ul class=\"dropdown-menu pull-right\" id=\"dealsByUsersDropDown\" role=\"menu\">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class=\"panel-body\">
+                            <div class=\"row\">
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class=\"col-lg-8\">
+                                    <div id=\"deals-by-users-morris-bar-chart\"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    
                     <!-- /.panel -->
                     <div class=\"panel panel-default\">
                         <div class=\"panel-heading\">
@@ -556,40 +617,44 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
         <!-- /#page-wrapper -->
 \t\t
 \t\t ";
-        // line 510
+        // line 571
         $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 511
+        // line 572
         echo "
     </div>
     <!-- /#wrapper -->
 
 \t";
-        // line 515
+        // line 576
         $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
-        // line 516
+        // line 577
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 517
+        // line 578
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 518
+        // line 579
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 519
+        // line 580
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
 </body>
 ";
-        // line 522
+        // line 583
         $this->env->loadTemplate("webBundle:Default:donutChartScript.html.twig")->display($context);
-        // line 523
+        // line 584
         $this->env->loadTemplate("webBundle:Default:barChartScript.html.twig")->display($context);
-        // line 524
+        // line 585
+        $this->env->loadTemplate("webBundle:Default:dealsByContactBarChartScript.html.twig")->display($context);
+        // line 586
+        $this->env->loadTemplate("webBundle:Default:dealsByUserBarChartScript.html.twig")->display($context);
+        // line 587
         echo "</html>
 ";
     }
@@ -606,6 +671,6 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
 
     public function getDebugInfo()
     {
-        return array (  593 => 524,  591 => 523,  589 => 522,  583 => 519,  579 => 518,  575 => 517,  570 => 516,  568 => 515,  562 => 511,  560 => 510,  149 => 102,  140 => 98,  119 => 80,  110 => 76,  89 => 58,  80 => 54,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  658 => 587,  656 => 586,  654 => 585,  652 => 584,  650 => 583,  644 => 580,  640 => 579,  636 => 578,  631 => 577,  629 => 576,  623 => 572,  621 => 571,  149 => 102,  140 => 98,  119 => 80,  110 => 76,  89 => 58,  80 => 54,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

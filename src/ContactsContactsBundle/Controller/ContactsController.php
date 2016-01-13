@@ -69,9 +69,9 @@ class ContactsController extends Controller {
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-            
+
             $response = $this->getContactData($token);
-            
+
             return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contactArray' => $response, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
         } else {
 
@@ -79,19 +79,86 @@ class ContactsController extends Controller {
         }
     }
 
-    private function getContactData($token){
+    public function activateContactV2Action(Request $request) {
+        $session = $request->getSession();
+        $token = $session->get('token');
         $em = $this->getDoctrine()->getManager();
-            $repository1 = $em->getRepository("LoginLoginBundle:Users");
-            $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            $fullname = $user->getFirstname() . " " . $user->getLastname();
-            $currentCompany = $user->getCompanyname();
-            $repository = $em->getRepository("ContactsContactsBundle:Contacts");
-            $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
-            $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+        $userRepository = $em->getRepository("LoginLoginBundle:Users");
+        $contactRepository = $em->getRepository("ContactsContactsBundle:Contacts");
 
-            $contactArray = array();
+        if ($token) {
+            $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
+            if($user){
+                $id = $request->get("id");
+                $contact = $contactRepository->findOneBy(array('id' => $id));
+                if($contact){
+                    $contact->setStatus("Active");
+                    try {
 
-            foreach ($contacts as $contact) {
+                        $em->flush();
+                        return new Response("true");
+                    } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+                        return new Response("false");
+                    }
+                }else{
+                    return new Response("false");
+                }
+            }else{
+                return new Response("false");
+            }
+        }else{
+            return new Response("false");
+        }
+    }
+    
+    public function deleteContactV2Action(Request $request) {
+        $session = $request->getSession();
+        $token = $session->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $userRepository = $em->getRepository("LoginLoginBundle:Users");
+        $contactRepository = $em->getRepository("ContactsContactsBundle:Contacts");
+
+        if ($token) {
+            $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
+            if($user){
+                $id = $request->get("id");
+                $contact = $contactRepository->findOneBy(array('id' => $id));
+                if($contact){
+                    $contact->setStatus("Inactive");
+                    try {
+
+                        $em->flush();
+                        return new Response("true");
+                    } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+                        return new Response("false");
+                    }
+                }else{
+                    return new Response("false");
+                }
+            }else{
+                return new Response("false");
+            }
+        }else{
+            return new Response("false");
+        }
+    }
+    
+    private function getContactData($token) {
+        $em = $this->getDoctrine()->getManager();
+        $repository1 = $em->getRepository("LoginLoginBundle:Users");
+        $user = $repository1->findOneBy(array('username' => $token->getUsername()));
+        $fullname = $user->getFirstname() . " " . $user->getLastname();
+        $currentCompany = $user->getCompanyname();
+        $repository = $em->getRepository("ContactsContactsBundle:Contacts");
+        $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
+        $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
+
+        $contactArray = array();
+
+        foreach ($contacts as $contact) {
+            
+            if ($contact->getStatus() == 'Active' || $contact->getUsername() == $user->getUsername()) {
+                
                 $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
                 $opportunities = $repository2->findBy(array('contactid' => $contact->getId(), 'status' => 'Active'));
                 $count = 0;
@@ -141,10 +208,12 @@ class ContactsController extends Controller {
                 $arrElement["telephone"] = $contact->getPhone0();
                 $arrElement["tags"] = $contact->getTags();
                 $arrElement["username"] = $contact->getUsername();
+                $arrElement["status"] = $contact->getStatus();
                 array_push($contactArray, $arrElement);
             }
-            $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $user->getContactview());
-            return json_encode($response);
+        }
+        $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $user->getContactview());
+        return json_encode($response);
     }
 
     public function contactTableDataAction(Request $request) {

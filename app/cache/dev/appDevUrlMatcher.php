@@ -670,6 +670,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // contacts_delete_contact
+        if ($pathinfo === '/deleteV2') {
+            return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::deleteContactV2Action',  '_route' => 'contacts_delete_contact',);
+        }
+
+        // contacts_activate_contact
+        if ($pathinfo === '/activateV2') {
+            return array (  '_controller' => 'ContactsContactsBundle\\Controller\\ContactsController::activateContactV2Action',  '_route' => 'contacts_activate_contact',);
+        }
+
         // home_homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

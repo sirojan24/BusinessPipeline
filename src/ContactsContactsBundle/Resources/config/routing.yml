@@ -70,5 +70,12 @@ contacts_contacts_table_data_username_filter:
    path:     /contactTableDataUsernameFilter/{username}
    defaults: { _controller: ContactsContactsBundle:Contacts:contactTableDataUsernameFilter }
 
+contacts_delete_contact:
+    path:     /deleteV2
+    defaults: { _controller: ContactsContactsBundle:Contacts:deleteContactV2 }
+    
+contacts_activate_contact:
+    path:     /activateV2
+    defaults: { _controller: ContactsContactsBundle:Contacts:activateContactV2 }
     
     

@@ -37,35 +37,39 @@ class DefaultController extends Controller {
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-            
-            
+
+
             $repository1 = $em->getRepository("ContactsContactsBundle:Contacts");
             $contacts = $repository1->findBy(array('username' => $token->getUsername()));
             $contactsCount = sizeof($contacts);
-            
+
             $deals = $this->countDeals($token);
             $opendealCount = 0;
-            for ($i=0;$i<sizeof($deals);$i++){
-                if($deals[$i]['stage'] != "won" && $deals[$i]['stage'] != "lost"){
+            for ($i = 0; $i < sizeof($deals); $i++) {
+                if ($deals[$i]['stage'] != "won" && $deals[$i]['stage'] != "lost") {
                     $opendealCount += intval($deals[$i]['noOfDeals']);
                 }
             }
-            
+
             $tasksCount = $this->getallOpenDealTasksCount($token);
             $dealSources = $this->countDealSources($token);
             $dealProductTypes = $this->countDealProductTypes($token);
             $wonAndLostDealForBarBarChart = $this->countWonAndLostDealsForBarChart($token);
-            
+            $dealsByContactForBarChart = $this->countDealsByContactForBarChart($token);
+            $dealsByUserForBarChart = $this->countDealsByUsersForBarChart($token);
+
             return $this->render('webBundle:Default:dashboard.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
                         'fullname' => $fullname, 'deals' => $deals, 'dealSources' => $dealSources, 'dealProductTypes' => $dealProductTypes,
-                        'wonAndLostDealForBarBarChart' => $wonAndLostDealForBarBarChart,'contactsCount' => $contactsCount,'opendealCount' => $opendealCount,'tasksCount' => $tasksCount));
+                        'wonAndLostDealForBarBarChart' => $wonAndLostDealForBarBarChart,
+                        'contactsCount' => $contactsCount, 'opendealCount' => $opendealCount,
+                        'tasksCount' => $tasksCount, 'dealsByContact' => $dealsByContactForBarChart, 'dealsByUser' => $dealsByUserForBarChart));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
-      private function getallOpenDealTasksCount($token){
-        
+
+    private function getallOpenDealTasksCount($token) {
+
         $em = $this->getDoctrine()->getManager();
         $usersRepository = $em->getRepository("LoginLoginBundle:Users");
         if ($token) {
@@ -79,16 +83,16 @@ class DefaultController extends Controller {
                 $tasks = $tasksRepository->findBy(array('tasktype' => 'opportunity', 'status' => 'Active'));
 
                 $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
-                
+
                 $taskArray = array();
                 $taskCount = 0;
                 foreach ($tasks as $task) {
-                    
+
                     $id = $task->getTaskTypeId();
-                    
+
                     $opportunity = $opportunityRepository->findOneBy(array('id' => $id, 'status' => 'Active'));
                     if ($opportunity) {
-                        
+
                         //check user authorization
                         $flag = false;
                         if ($opportunity->getUsername() !== $currentUser->getUsername()) {
@@ -102,28 +106,143 @@ class DefaultController extends Controller {
                                     break;
                                 }
                             }
-
-                        }else{
+                        } else {
                             $flag = true;
                         }
-                        
-                        if ($flag == true && $opportunity->getStage() !== 'won' 
-                                && $opportunity->getStage() !== 'lost') {
+
+                        if ($flag == true && $opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost') {
                             $taskCount ++;
-                            
                         }
                     }
                 }
                 return $taskCount;
-                
             } else {
-                
+
                 return $taskCount;
             }
         } else {
             return $taskCount;
-            
         }
+    }
+
+    private function countDealsByUsersForBarChart($token) {
+        $em = $this->getDoctrine()->getManager();
+        $userRepository = $em->getRepository("LoginLoginBundle:Users");
+        $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+
+        $deals = $opportunityRepository->findBy(array('status' => 'Active'));
+
+        $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
+        $currentUserCompany = $user->getCompanyName();
+
+        $usersDummyArray = array();
+        $usersArray = array();
+        foreach ($deals as $deal) {
+            if ($deal->getUsername() == $user->getUsername()) {
+                if (!array_key_exists($user->getUsername(), $usersDummyArray)) {
+                    $usersDummyArray[$user->getUsername()] = "a";
+                    $usersArray[$user->getUsername()]['name'] = $user->getUsername();
+                    $usersArray[$user->getUsername()]['won'] = 0;
+                    $usersArray[$user->getUsername()]['lost'] = 0;
+                    $usersArray[$user->getUsername()]['open'] = 0;
+
+                    if ($deal->getStage() == 'won') {
+                        $usersArray[$user->getUsername()]['won'] = 1;
+                    } else if ($deal->getStage() == 'lost') {
+                        $usersArray[$user->getUsername()]['lost'] = 1;
+                    } else {
+                        $usersArray[$user->getUsername()]['open'] = 1;
+                    }
+                } else {
+                    if ($deal->getStage() == 'won') {
+                        $usersArray[$user->getUsername()]['won'] ++;
+                    } else if ($deal->getStage() == 'lost') {
+                        $usersArray[$user->getUsername()]['lost'] ++;
+                    } else {
+                        $usersArray[$user->getUsername()]['open'] ++;
+                    }
+                }
+            } else {
+                $usernames = explode(":", $deal->getSharing());
+                foreach ($usernames as $tempUsername) {
+
+                    $tempUser = $userRepository->findOneBy(array('username' => $tempUsername, 'companyname' => $currentUserCompany));
+                    if ($tempUser) {
+                        if (!array_key_exists($tempUser->getUsername(), $usersDummyArray)) {
+                            $usersDummyArray[$tempUser->getUsername()] = "a";
+                            $usersArray[$tempUser->getUsername()]['name'] = $tempUser->getUsername();
+                            $usersArray[$tempUser->getUsername()]['won'] = 0;
+                            $usersArray[$tempUser->getUsername()]['lost'] = 0;
+                            $usersArray[$tempUser->getUsername()]['open'] = 0;
+
+                            if ($deal->getStage() == 'won') {
+                                $usersArray[$tempUser->getUsername()]['won'] = 1;
+                            } else if ($deal->getStage() == 'lost') {
+                                $usersArray[$tempUser->getUsername()]['lost'] = 1;
+                            } else {
+                                $usersArray[$tempUser->getUsername()]['open'] = 1;
+                            }
+                        } else {
+                            if ($deal->getStage() == 'won') {
+                                $usersArray[$tempUser->getUsername()]['won'] ++;
+                            } else if ($deal->getStage() == 'lost') {
+                                $usersArray[$tempUser->getUsername()]['lost'] ++;
+                            } else {
+                                $usersArray[$tempUser->getUsername()]['open'] ++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $usersArray;
+    }
+
+    private function countDealsByContactForBarChart($token) {
+        $em = $this->getDoctrine()->getManager();
+        $userRepository = $em->getRepository("LoginLoginBundle:Users");
+        $contactRepository = $em->getRepository("ContactsContactsBundle:Contacts");
+        $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+
+        $deals = $opportunityRepository->findBy(array('status' => 'Active'));
+
+        $contactsArray = array();
+        $contactsDummyArray = array();
+        foreach ($deals as $deal) {
+            if (!array_key_exists($deal->getContactId(), $contactsDummyArray)) {
+                $contactsDummyArray[$deal->getContactId()] = "a";
+                $contact = $contactRepository->findOneBy(array('id' => $deal->getContactId(), 'username' => $token->getUsername()));
+                if ($contact) {
+                    $contactsArray[$deal->getContactId()]['name'] = $contact->getName();
+                    $contactsArray[$deal->getContactId()]['won'] = 0;
+                    $contactsArray[$deal->getContactId()]['lost'] = 0;
+                    $contactsArray[$deal->getContactId()]['open'] = 0;
+
+                    if ($deal->getStage() == 'won') {
+                        $contactsArray[$deal->getContactId()]['won'] = 1;
+                    } else if ($deal->getStage() == 'lost') {
+                        $contactsArray[$deal->getContactId()]['lost'] = 1;
+                    } else {
+                        $contactsArray[$deal->getContactId()]['open'] = 1;
+                    }
+                }
+            } else {
+                $contact = $contactRepository->findOneBy(array('id' => $deal->getContactId(), 'username' => $token->getUsername()));
+                if ($contact) {
+                    $contactsArray[$deal->getContactId()]['name'] = $contact->getName();
+                    if ($deal->getStage() == 'won') {
+                        $contactsArray[$deal->getContactId()]['won'] ++;
+                    } else if ($deal->getStage() == 'lost') {
+                        $contactsArray[$deal->getContactId()]['lost'] ++;
+                    } else {
+                        $contactsArray[$deal->getContactId()]['open'] ++;
+                    }
+                }
+            }
+        }
+
+        return $contactsArray;
     }
 
     private function countDeals($token) {
@@ -135,26 +254,26 @@ class DefaultController extends Controller {
         $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
 
         $array = array();
-        
+
         $deals = $opportunityRepository->findBy(array('status' => 'Active'));
-        
+
         $stagesArray = array();
         foreach ($deals as $deal) {
-            if (!array_key_exists($deal->getStage(), $stagesArray)){
+            if (!array_key_exists($deal->getStage(), $stagesArray)) {
                 if ($this->isAssociatedDeal($deal, $user->getUsername()) === true) {
                     $stagesArray[$deal->getStage()] = 1;
                 }
-            }else{
+            } else {
                 if ($this->isAssociatedDeal($deal, $user->getUsername()) === true) {
-                    $stagesArray[$deal->getStage()]++;
+                    $stagesArray[$deal->getStage()] ++;
                 }
             }
         }
-        
+
         foreach ($stagesArray as $stage => $value) {
             array_push($array, array('stage' => $stage, 'noOfDeals' => $value));
         }
-        
+
         $returnArray = array();
         foreach ($array as $value) {
             $stage = $stageRepository->findOneBy(array('id' => $value['stage']));
@@ -165,7 +284,7 @@ class DefaultController extends Controller {
                 array_push($returnArray, array('stage' => $value['stage'], 'noOfDeals' => $value['noOfDeals']));
             }
         }
-        
+
         return $returnArray;
     }
 
@@ -188,22 +307,22 @@ class DefaultController extends Controller {
             $wonDealCount = 0;
             foreach ($deals as $deal) {
                 if ($this->isAssociatedDeal($deal, $user->getUsername()) === true) {
-                    if($deal->getStage() == 'won'){
+                    if ($deal->getStage() == 'won') {
                         $wonDealCount++;
-                    }else if($deal->getStage() == 'lost'){
+                    } else if ($deal->getStage() == 'lost') {
                         $lostDealCount++;
-                    }else{
+                    } else {
                         $openDealCount++;
                     }
                 }
             }
             array_push($returnArray, array('name' => $source->getName(), 'openDeals' => $openDealCount, 'wonDeals' => $wonDealCount,
-                    'lostDeals' => $lostDealCount));
+                'lostDeals' => $lostDealCount));
         }
 
         return $returnArray;
     }
-    
+
     private function countDealProductTypes($token) {
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository("LoginLoginBundle:Users");
@@ -223,36 +342,36 @@ class DefaultController extends Controller {
             $wonDealCount = 0;
             foreach ($deals as $deal) {
                 if ($this->isAssociatedDeal($deal, $user->getUsername()) === true) {
-                    if($deal->getStage() == 'won'){
+                    if ($deal->getStage() == 'won') {
                         $wonDealCount++;
-                    }else if($deal->getStage() == 'lost'){
+                    } else if ($deal->getStage() == 'lost') {
                         $lostDealCount++;
-                    }else{
+                    } else {
                         $openDealCount++;
                     }
                 }
             }
             array_push($returnArray, array('name' => $type->getName(), 'openDeals' => $openDealCount, 'wonDeals' => $wonDealCount,
-                    'lostDeals' => $lostDealCount));
+                'lostDeals' => $lostDealCount));
         }
-        
+
         return $returnArray;
     }
 
-    private function countWonAndLostDealsForBarChart($token){
+    private function countWonAndLostDealsForBarChart($token) {
         // set the default timezone to use.
         date_default_timezone_set('UTC');
-        
+
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository("LoginLoginBundle:Users");
         $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
-        
+
         $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
-        
+
         $deals = $opportunityRepository->findBy(array('status' => 'Active'));
-        
+
         $currentYear = date("Y");
-        
+
         $returnArray = array();
         $returnArray[$currentYear]['year'] = $currentYear;
         $returnArray[$currentYear]['won']['1'] = 0;
@@ -263,7 +382,7 @@ class DefaultController extends Controller {
         $returnArray[$currentYear]['lost']['2'] = 0;
         $returnArray[$currentYear]['lost']['3'] = 0;
         $returnArray[$currentYear]['lost']['4'] = 0;
-        
+
         $returnArray[$currentYear - 1]['year'] = $currentYear - 1;
         $returnArray[$currentYear - 1]['won']['1'] = 0;
         $returnArray[$currentYear - 1]['won']['2'] = 0;
@@ -273,66 +392,66 @@ class DefaultController extends Controller {
         $returnArray[$currentYear - 1]['lost']['2'] = 0;
         $returnArray[$currentYear - 1]['lost']['3'] = 0;
         $returnArray[$currentYear - 1]['lost']['4'] = 0;
-        
+
         foreach ($deals as $deal) {
             if ($this->isAssociatedDeal($deal, $user->getUsername()) === true) {
                 $closedDateMonth = date("m", strtotime($deal->getCloseddate()));
                 $closedDateYear = date("Y", strtotime($deal->getCloseddate()));
-                
-                if($deal->getStage() === 'won'){
-                    
-                    if($currentYear == $closedDateYear){
-                        if($closedDateMonth <= 3){
-                            $returnArray[$currentYear]['won']['1']++;
-                        }elseif($closedDateMonth <= 6){
-                            $returnArray[$currentYear]['won']['2']++;
-                        }elseif($closedDateMonth <= 9){
-                            $returnArray[$currentYear]['won']['3']++;
-                        }elseif($closedDateMonth <= 12){
-                            $returnArray[$currentYear]['won']['4']++;
+
+                if ($deal->getStage() === 'won') {
+
+                    if ($currentYear == $closedDateYear) {
+                        if ($closedDateMonth <= 3) {
+                            $returnArray[$currentYear]['won']['1'] ++;
+                        } elseif ($closedDateMonth <= 6) {
+                            $returnArray[$currentYear]['won']['2'] ++;
+                        } elseif ($closedDateMonth <= 9) {
+                            $returnArray[$currentYear]['won']['3'] ++;
+                        } elseif ($closedDateMonth <= 12) {
+                            $returnArray[$currentYear]['won']['4'] ++;
                         }
                     }
-                    if($currentYear - 1 == $closedDateYear){
-                        if($closedDateMonth <= 3){
-                            $returnArray[$currentYear - 1]['won']['1']++;
-                        }elseif($closedDateMonth <= 6){
-                            $returnArray[$currentYear - 1]['won']['2']++;
-                        }elseif($closedDateMonth <= 9){
-                            $returnArray[$currentYear - 1]['won']['3']++;
-                        }elseif($closedDateMonth <= 12){
-                            $returnArray[$currentYear - 1]['won']['4']++;
+                    if ($currentYear - 1 == $closedDateYear) {
+                        if ($closedDateMonth <= 3) {
+                            $returnArray[$currentYear - 1]['won']['1'] ++;
+                        } elseif ($closedDateMonth <= 6) {
+                            $returnArray[$currentYear - 1]['won']['2'] ++;
+                        } elseif ($closedDateMonth <= 9) {
+                            $returnArray[$currentYear - 1]['won']['3'] ++;
+                        } elseif ($closedDateMonth <= 12) {
+                            $returnArray[$currentYear - 1]['won']['4'] ++;
                         }
                     }
-                }else if($deal->getStage() === 'lost'){
-                    if($currentYear == $closedDateYear){
-                        if($closedDateMonth <= 3){
-                            $returnArray[$currentYear]['lost']['1']++;
-                        }elseif($closedDateMonth <= 6){
-                            $returnArray[$currentYear]['lost']['2']++;
-                        }elseif($closedDateMonth <= 9){
-                            $returnArray[$currentYear]['lost']['3']++;
-                        }elseif($closedDateMonth <= 12){
-                            $returnArray[$currentYear]['lost']['4']++;
+                } else if ($deal->getStage() === 'lost') {
+                    if ($currentYear == $closedDateYear) {
+                        if ($closedDateMonth <= 3) {
+                            $returnArray[$currentYear]['lost']['1'] ++;
+                        } elseif ($closedDateMonth <= 6) {
+                            $returnArray[$currentYear]['lost']['2'] ++;
+                        } elseif ($closedDateMonth <= 9) {
+                            $returnArray[$currentYear]['lost']['3'] ++;
+                        } elseif ($closedDateMonth <= 12) {
+                            $returnArray[$currentYear]['lost']['4'] ++;
                         }
                     }
-                    if($currentYear - 1 == $closedDateYear){
-                        if($closedDateMonth <= 3){
-                            $returnArray[$currentYear - 1]['lost']['1']++;
-                        }elseif($closedDateMonth <= 6){
-                            $returnArray[$currentYear - 1]['lost']['2']++;
-                        }elseif($closedDateMonth <= 9){
-                            $returnArray[$currentYear - 1]['lost']['3']++;
-                        }elseif($closedDateMonth <= 12){
-                            $returnArray[$currentYear - 1]['lost']['4']++;
+                    if ($currentYear - 1 == $closedDateYear) {
+                        if ($closedDateMonth <= 3) {
+                            $returnArray[$currentYear - 1]['lost']['1'] ++;
+                        } elseif ($closedDateMonth <= 6) {
+                            $returnArray[$currentYear - 1]['lost']['2'] ++;
+                        } elseif ($closedDateMonth <= 9) {
+                            $returnArray[$currentYear - 1]['lost']['3'] ++;
+                        } elseif ($closedDateMonth <= 12) {
+                            $returnArray[$currentYear - 1]['lost']['4'] ++;
                         }
                     }
                 }
             }
         }
-        
+
         return $returnArray;
     }
-    
+
     private function isAssociatedDeal($deal, $username) {
         if ($deal->getUsername() === $username) {
             return true;
