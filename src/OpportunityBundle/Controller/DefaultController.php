@@ -920,7 +920,11 @@ class DefaultController extends Controller {
             $opportunitie->setOpportunitysource($request->get('opportunitysource'));
             $opportunitie->setNotes($request->get('notes'));
             $opportunitie->setVisibility($request->get('visibility'));
-            $opportunitie->setCloseddate($request->get('closeddate'));
+            if($request->get('stage') == "won" || $request->get('stage') == "lost"){
+                $opportunitie->setCloseddate(date("Y-m-d"));
+            }else{
+                $opportunitie->setCloseddate($request->get('closeddate'));
+            }
             $opportunitie->setForecast($request->get('forecast'));
             $opportunitie->setRevenue($request->get('revenue'));
             $opportunitie->setReason($request->get('reason'));
