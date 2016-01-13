@@ -14,6 +14,10 @@ notes_managenotesV2:
     path:     /managenotesV2
     defaults: { _controller: NotesBundle:Default:managenotesV2 }
     
+notes_table_data:
+    path:     /notesTableData
+    defaults: { _controller: NotesBundle:Default:getNoteTableData }
+    
 notes_updatenote:
     path:     /updatenote
     defaults: { _controller: NotesBundle:Default:updatenote }

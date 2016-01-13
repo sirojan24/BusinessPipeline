@@ -119,6 +119,17 @@ class DefaultController extends Controller {
         }
     }
 
+    public function getNoteTableDataAction(Request $request){
+        $token = $request->getSession()->get('token');
+        if ($token) {
+            $notesArray = $this->getNotesData($token);
+            
+            return new Response($notesArray);
+        }else{
+            return false;
+        }
+    }
+
     private function getNotesData($token) {
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository("LoginLoginBundle:Users");

@@ -12,12 +12,10 @@
     function iniFillTableData() {
         $table.bootstrapTable('showLoading');
         var data = '{{notesArray}}';
-        var newString = data.replace(/&quot;/g, '"');
-        initResponse = newString;
+        var newString = $.trim(data.replace(/[\t\n]+/g,' '));
+        initResponse = newString.replace(/&quot;/g, '"');
         $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(newString));
-        //var username = '{{name|lower}}';
-        //usernameFilter(username);
+        $table.bootstrapTable('append', convertData(initResponse));
     }
 
     function refreshTable() {
@@ -25,76 +23,15 @@
         fillTableData();
     }
 
-    function showHideContacts() {
-        $table.bootstrapTable('removeAll');
-
-        var showHide = $("#showHide").children();
-
-        if (showHide.hasClass("fa-eye")) {
-            showHide.removeClass("fa-eye");
-            showHide.addClass("fa-eye-slash");
-            showHide.attr("title", "Show Other Contacts");
-            var username = '{{name|lower}}';
-            usernameFilter(username);
-        } else {
-            showHide.addClass("fa-eye");
-            showHide.removeClass("fa-eye-slash");
-            showHide.attr("title", "Hide Other Contacts");
-            $table.bootstrapTable('append', convertData(initResponse));
-
-        }
-    }
-
     function fillTableData() {
         $table.bootstrapTable('showLoading');
-        $.post('{{path('contacts_contacts_table_data')}}', null,
+        $.post('{{path('notes_table_data')}}', null,
                 function (response) {
                     if (response) {
                         $table.bootstrapTable('hideLoading');
-                        initResponse = response;
-                        //$table.bootstrapTable('append', convertData(response));
-                        var username = '{{name|lower}}';
-                        usernameFilter(username);
-                    } else {
-
-                    }
-                }
-        );
-    }
-
-    function usernameFilter(username) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
-
-        var jsonString = JSON.parse(initResponse);
-        var filterContact = [];
-
-        for (var i = 0; i < jsonString.contacts.length; i++) {
-            var tempContact = jsonString.contacts[i];
-
-            if (username.toLowerCase() === tempContact.username.toLowerCase()) {
-                filterContact.push(tempContact);
-            }
-
-        }
-        var filterOpportunitiesArray = {'contacts': filterContact};
-        var jsonStr = JSON.stringify(filterOpportunitiesArray);
-
-        $table.bootstrapTable('hideLoading');
-        $table.bootstrapTable('append', convertData(jsonStr));
-    }
-
-    function fillTableDataWithUsername(username) {
-        $table.bootstrapTable('removeAll');
-        $table.bootstrapTable('showLoading');
-        var path = '{{path('contacts_contacts_table_data_username_filter', {'username': '0'})}}';
-        path = path.substring(0, path.length - 1);
-
-        $.post(path + username, null,
-                function (response) {
-                    if (response) {
-                        $table.bootstrapTable('hideLoading');
-                        $table.bootstrapTable('append', convertData(response));
+                        var newString = $.trim(response.replace(/[\t\n]+/g,' '));
+                        initResponse = newString.replace(/&quot;/g, '"');
+                        $table.bootstrapTable('append', convertData(initResponse));
                     } else {
 
                     }
@@ -103,15 +40,7 @@
     }
 
     function storePageSize(size) {
-        $.post('{{path('login_login_saveconfig')}}',
-                {name: 'contactview', value: size},
-        function (response) {
-            if (response !== "false") {
-
-            } else {
-                console.log("error occured in getting the manage view number in contacts", response);
-            }
-        });
+        
     }
 
     function checkAndSetValue(value, blankValue, scale, pre) {

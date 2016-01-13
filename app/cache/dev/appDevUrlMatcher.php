@@ -211,6 +211,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // notes_table_data
+        if ($pathinfo === '/notesTableData') {
+            return array (  '_controller' => 'NotesBundle\\Controller\\DefaultController::getNoteTableDataAction',  '_route' => 'notes_table_data',);
+        }
+
         // notes_updatenote
         if ($pathinfo === '/updatenote') {
             return array (  '_controller' => 'NotesBundle\\Controller\\DefaultController::updatenoteAction',  '_route' => 'notes_updatenote',);

@@ -52,6 +52,7 @@ class DefaultController extends Controller {
             }
 
             $tasksCount = $this->getallOpenDealTasksCount($token);
+            $notesCount = $this->getallOpenDealNotesCount($token);
             $dealSources = $this->countDealSources($token);
             $dealProductTypes = $this->countDealProductTypes($token);
             $wonAndLostDealForBarBarChart = $this->countWonAndLostDealsForBarChart($token);
@@ -62,7 +63,8 @@ class DefaultController extends Controller {
                         'fullname' => $fullname, 'deals' => $deals, 'dealSources' => $dealSources, 'dealProductTypes' => $dealProductTypes,
                         'wonAndLostDealForBarBarChart' => $wonAndLostDealForBarBarChart,
                         'contactsCount' => $contactsCount, 'opendealCount' => $opendealCount,
-                        'tasksCount' => $tasksCount, 'dealsByContact' => $dealsByContactForBarChart, 'dealsByUser' => $dealsByUserForBarChart));
+                        'tasksCount' => $tasksCount, 'dealsByContact' => $dealsByContactForBarChart, 'dealsByUser' => $dealsByUserForBarChart,
+                        'notesCount' => $notesCount));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
@@ -125,6 +127,47 @@ class DefaultController extends Controller {
         }
     }
 
+    private function getallOpenDealNotesCount($token){
+        $em = $this->getDoctrine()->getManager();
+        $userRepository = $em->getRepository("LoginLoginBundle:Users");
+        $noteRepository = $em->getRepository("NotesBundle:Notes");
+        $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
+
+        $notes = $noteRepository->findBy(array('type' => 'opportunity'));
+        
+        $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
+
+        $count = 0;
+        foreach ($notes as $note) {
+            $opportunity = $opportunityRepository->findOneBy(array('id' => $note->getTypeId()));
+            if ($opportunity) {
+                
+                //check user authorization
+                $flag = false;
+                if ($opportunity->getUsername() !== $user->getUsername()) {
+
+                    $sharing = $opportunity->getSharing();
+                    $sharedUsers = explode(":", $sharing);
+
+                    foreach ($sharedUsers as $username) {
+                        if ($username === $user->getUsername()) {
+                            $flag = true;
+                            break;
+                        }
+                    }
+                } else {
+                    $flag = true;
+                }
+                
+                if($flag === true){
+                    $count++;
+                }
+            }
+        }
+        
+        return $count;
+    }
+    
     private function countDealsByUsersForBarChart($token) {
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository("LoginLoginBundle:Users");

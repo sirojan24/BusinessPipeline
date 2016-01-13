@@ -53,11 +53,19 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                                 </div>
                                 <div class=\"col-xs-9 text-right\">
                                     <div class=\"huge\">Notes</div>
-                                    <div>26</div>
+                                    <div>";
+        // line 32
+        if (array_key_exists("notesCount", $context)) {
+            echo twig_escape_filter($this->env, (isset($context["notesCount"]) ? $context["notesCount"] : $this->getContext($context, "notesCount")), "html", null, true);
+        }
+        echo "</div>
                                 </div>
                             </div>
                         </div>
-                        <a href=\"#\">
+                        <a href=\"";
+        // line 36
+        echo $this->env->getExtension('routing')->getPath("notes_managenotesV2");
+        echo "\">
                             <div class=\"panel-footer\">
                                 <span class=\"pull-left\">View Notes</span>
                                 <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
@@ -671,6 +679,6 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
 
     public function getDebugInfo()
     {
-        return array (  658 => 587,  656 => 586,  654 => 585,  652 => 584,  650 => 583,  644 => 580,  640 => 579,  636 => 578,  631 => 577,  629 => 576,  623 => 572,  621 => 571,  149 => 102,  140 => 98,  119 => 80,  110 => 76,  89 => 58,  80 => 54,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  666 => 587,  664 => 586,  662 => 585,  660 => 584,  658 => 583,  652 => 580,  648 => 579,  644 => 578,  639 => 577,  637 => 576,  631 => 572,  629 => 571,  157 => 102,  148 => 98,  127 => 80,  118 => 76,  97 => 58,  88 => 54,  67 => 36,  58 => 32,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }
