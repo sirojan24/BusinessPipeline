@@ -2,7 +2,7 @@
     var $table = $('#table');
     var extendColData = [];
     var initResponse;
-    
+
     $(document).ready(function () {
         $("#tableDiv").show();
         iniFillTableData();
@@ -15,33 +15,33 @@
         var newString = data.replace(/&quot;/g, '"');
         initResponse = newString;
         $table.bootstrapTable('hideLoading');
-        //$table.bootstrapTable('append', convertData(newString));
-        var username = '{{name|lower}}';
-        usernameFilter(username);
+        $table.bootstrapTable('append', convertData(newString));
+        //var username = '{{name|lower}}';
+        //usernameFilter(username);
     }
 
     function refreshTable() {
         $table.bootstrapTable('removeAll');
         fillTableData();
     }
-    
+
     function showHideContacts() {
         $table.bootstrapTable('removeAll');
-        
-        var showHide = $( "#showHide" ).children();
-        
-        if(showHide.hasClass("fa-eye")){
-            showHide.removeClass( "fa-eye" );
-            showHide.addClass( "fa-eye-slash" );
-            showHide.attr("title","Show Other Contacts");
+
+        var showHide = $("#showHide").children();
+
+        if (showHide.hasClass("fa-eye")) {
+            showHide.removeClass("fa-eye");
+            showHide.addClass("fa-eye-slash");
+            showHide.attr("title", "Show Other Contacts");
             var username = '{{name|lower}}';
             usernameFilter(username);
-        }else{
-            showHide.addClass( "fa-eye" );
-            showHide.removeClass( "fa-eye-slash" );
-            showHide.attr("title","Hide Other Contacts");
+        } else {
+            showHide.addClass("fa-eye");
+            showHide.removeClass("fa-eye-slash");
+            showHide.attr("title", "Hide Other Contacts");
             $table.bootstrapTable('append', convertData(initResponse));
-            
+
         }
     }
 
@@ -160,103 +160,42 @@
 
     function convertData(response) {
         var jsonString = JSON.parse(response);
-        extendColData = [];
 
         var startId = 1,
                 rows = [];
 
-    {#for (var i = 0; i < jsonString.users.length; i++) {
-        var tempUser = jsonString.users[i];#}
-                for (var i = 0; i < jsonString.contacts.length; i++) {
-                    var tempContact = jsonString.contacts[i];
+        for (var i = 0; i < jsonString.notes.length; i++) {
+            var tempNote = jsonString.notes[i];
 
-                    extendColData.push({
-                        email: tempContact.email,
-                        telephone: tempContact.telephone,
-                        tags: tempContact.tags
-                    });
+            rows.push({
+                content: tempNote.content,
+                dateAndTime: tempNote.dateAndTime,
+                owner: tempNote.owner,
+                tags: '$' + tempNote.tags
 
-                    var editPath = '{{ path('contacts_contacts_editcontactpageV2',{'id':0} )}}';
-                    editPath = editPath.substring(0, editPath.length - 1);
-                    
-                    var newDealPath = '{{ path('opportunity_addcontactopportunityV2',{'id':0} )}}';
-                    newDealPath = newDealPath.substring(0, newDealPath.length - 1);
+            });
+        }
+        return rows;
+    }
 
-                    var openDealPath = '{{ path('opportunity_opportunitycontactfilterV2',{'id':0, 'filter':0} )}}';
-                    openDealPath = openDealPath.substring(0, openDealPath.length - 3);
-                    
-                    var taskPath = '{{path('task_manage_task',{'type':'contact', 'id':0} )}}';
-                    taskPath = taskPath.substring(0, taskPath.length - 1);
+    function priceSorter(a, b) {
+        a = +a.substring(1); // remove $
+        b = +b.substring(1);
+        if (a > b)
+            return 1;
+        if (a < b)
+            return -1;
+        return 0;
+    }
 
-                    var name = '{{name|lower}}';
-                    var action = '';
-                    if (name.toLowerCase() === tempContact.username.toLowerCase()) {
-                        action = '<div class="pull-right">' +
-                                '<div class="keep-open btn-group">' +
-                                '<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">' +
-                                '<i class="glyphicon glyphicon-chevron-down"></i>' +
-                                '</button>' +
-                                '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
-                                '<li><a href="' + newDealPath + tempContact.id + '"><i class="fa fa-usd"></i> New Deal</a></li>' +
-                                '<li><a href="' + editPath + tempContact.id + '"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
-                                '<li><a href="#" onclick="notespopup('+ tempContact.id +')"><i class="fa fa-file-o"></i> Notes</a></li>' +
-                                '<li><a href="'+taskPath + tempContact.id +'"><i class="fa fa-list"></i> Tasks</a></li>' +
-                                '</ul>' +
-                                '</div>' +
-                                '</div>';
-                    }
-                    
-                    var openDeal = tempContact.open_deal;
-                    if(tempContact.open_deal > 0){
-                        openDeal = '<a href="' + openDealPath + tempContact.id + '/Open' + '">' + tempContact.open_deal + '</a>';
-                    }
-                    
-                    var wonDeal = tempContact.won_deals;
-                    if(tempContact.won_deals !== '0'){
-                        wonDeal = '<a href="' + openDealPath + tempContact.id + '/Won' + '">$' + tempContact.won_deals + '</a>';
-                    }
-                    
-                    var lostDeal = tempContact.lost_deals;
-                    if(tempContact.lost_deals !== '0'){
-                        lostDeal = '<a href="' + openDealPath + tempContact.id + '/Lost' + '">$' + tempContact.lost_deals + '</a>';
-                    }
-                    rows.push({
-                        name: tempContact.name,
-                        company: tempContact.company,
-                        open_deal: openDeal,
-                        projected_revenue: '$' + tempContact.projected_revenue,
-                        weighted_forecast: '$' + tempContact.weighted_forecast,
-                        won_deals: wonDeal,
-                        lost_deals: lostDeal,
-                        owner: '<a href="javascript:usernameFilter(' + "'" + tempContact.username + "'" + ')">' + tempContact.owner + '</a>',
-                        action: action,
-                        email: tempContact.email,
-                        telephone: tempContact.telephone,
-                        tags: tempContact.tags
+    function rowStyle(row, index) {
+        var classes = ['active'];
 
-                    });
-                }
-                return rows;
-            }
-
-            function priceSorter(a, b) {
-                a = +a.substring(1); // remove $
-                b = +b.substring(1);
-                if (a > b)
-                    return 1;
-                if (a < b)
-                    return -1;
-                return 0;
-            }
-
-            function rowStyle(row, index) {
-                var classes = ['active'];
-
-                if (index % 2 === 0) {
-                    return {
-                        classes: classes[0]
-                    };
-                }
-                return {};
-            }
+        if (index % 2 === 0) {
+            return {
+                classes: classes[0]
+            };
+        }
+        return {};
+    }
 </script>

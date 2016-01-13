@@ -29,7 +29,6 @@
                     <div id="user-table-div" class="table-responsive" style="min-height: 360px;">
                         <table id="table"
                                data-toggle="table"
-                               data-detail-view="true"
                                data-search="true"
                                data-page-size="{{manageview}}"
                                data-page-list="[10,25,50]"
@@ -39,16 +38,9 @@
                                data-row-style="rowStyle">
                             <thead>
                                 <tr>
-                                    <th data-field="state" data-checkbox="true"></th>
-                                    <th data-field="subject" data-sortable="true">Subject</th>
-                                    <th data-field="Company" data-sortable="true">Company</th>
-                                    <th data-field="open_deal" data-sortable="true">Date & Time</th>
-                                    <th data-field="projected_revenue" data-sortable="true">Projected<br> Revenue</th>
-                                    <th data-field="weighted_forecast" data-sortable="true">Weighted<br> Forecast</th>
-                                    <th data-field="won_deals" data-sortable="true">Won<br> Deals</th>
-                                    <th data-field="lost_deals" data-sortable="true">Lost<br> Deals</th>
+                                    <th data-field="content" data-sortable="true">Notes</th>
+                                    <th data-field="dateAndTime" data-sortable="true">Date & Time</th>
                                     <th data-field="owner" data-sortable="true">Owner</th>
-                                    <th data-field="action">Action</th>
                                     <th data-field="tags">tags</th>
                                 </tr>
                             </thead>
