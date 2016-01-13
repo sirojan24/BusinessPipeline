@@ -98,10 +98,16 @@ class __TwigTemplate_4eb2318228dafd83f6dccba00c7d27041ab0ddc29f547437a31697c8b9e
     }
     
     function displayDealsByUserBarChart(data){
+        var filteredData = [];
+        \$.each(data, function( index, value ) {
+            if(value.a > 0){
+                filteredData.push(data[index]);
+            }
+        });
         \$('#deals-by-users-morris-bar-chart').html('');
         Morris.Bar({
             element: 'deals-by-users-morris-bar-chart',
-            data: data,
+            data: filteredData,
             xkey: 'y',
             ykeys: ['a'],
             barColors: function (row, series, type) {

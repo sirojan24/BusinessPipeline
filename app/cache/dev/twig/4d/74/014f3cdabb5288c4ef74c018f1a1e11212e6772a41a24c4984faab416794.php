@@ -98,10 +98,16 @@ class __TwigTemplate_4d74014f3cdabb5288c4ef74c018f1a1e11212e6772a41a24c4984faab4
     }
     
     function displayDealsByContactBarChart(data){
+        var filteredData = [];
+        \$.each(data, function( index, value ) {
+            if(value.a > 0){
+                filteredData.push(data[index]);
+            }
+        });
         \$('#deals-by-contacts-morris-bar-chart').html('');
         Morris.Bar({
             element: 'deals-by-contacts-morris-bar-chart',
-            data: data,
+            data: filteredData,
             xkey: 'y',
             ykeys: ['a'],
             barColors: function (row, series, type) {
@@ -127,8 +133,8 @@ class __TwigTemplate_4d74014f3cdabb5288c4ef74c018f1a1e11212e6772a41a24c4984faab4
             hideHover: 'auto',
             resize: true
         });
-    }
-        
+
+} 
 </script>";
     }
 

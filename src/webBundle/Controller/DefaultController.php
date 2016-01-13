@@ -58,18 +58,30 @@ class DefaultController extends Controller {
             $wonAndLostDealForBarBarChart = $this->countWonAndLostDealsForBarChart($token);
             $dealsByContactForBarChart = $this->countDealsByContactForBarChart($token);
             $dealsByUserForBarChart = $this->countDealsByUsersForBarChart($token);
+            $earningGoalsAndEarningsForAreaChart = "";// = $this->getEarningGoalsAndEarnings($token);
 
             return $this->render('webBundle:Default:dashboard.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
                         'fullname' => $fullname, 'deals' => $deals, 'dealSources' => $dealSources, 'dealProductTypes' => $dealProductTypes,
                         'wonAndLostDealForBarBarChart' => $wonAndLostDealForBarBarChart,
                         'contactsCount' => $contactsCount, 'opendealCount' => $opendealCount,
                         'tasksCount' => $tasksCount, 'dealsByContact' => $dealsByContactForBarChart, 'dealsByUser' => $dealsByUserForBarChart,
-                        'notesCount' => $notesCount));
+                        'notesCount' => $notesCount, 'earningGoals' => $earningGoalsAndEarningsForAreaChart));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
+    private function getEarningGoalsAndEarnings($token) {
+        $em = $this->getDoctrine()->getManager();
+        $usersRepository = $em->getRepository("LoginLoginBundle:Users");
+        
+        $currentUser = $usersRepository->findOneBy(array('username' => $token->getUsername()));
+        $earningGoal = $currentUser->getUserRevenue();
+        
+        $dataArray = array();
+        $dataArray['goal'] = $earningGoal;
+    }
+    
     private function getallOpenDealTasksCount($token) {
 
         $em = $this->getDoctrine()->getManager();

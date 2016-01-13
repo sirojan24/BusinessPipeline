@@ -247,7 +247,7 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                         <div class=\"panel-body\">
                             <div class=\"row\">
                                 <!-- /.col-lg-4 (nested) -->
-                                <div class=\"col-lg-8\">
+                                <div class=\"col-lg-12\">
                                     <div id=\"deals-by-contacts-morris-bar-chart\"></div>
                                 </div>
                                 <!-- /.col-lg-8 (nested) -->
