@@ -21,7 +21,10 @@ class DefaultController extends Controller {
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
             $stagesArray = $this->getStageTableData($token);
             $accountTypesArray = $this->getAccountTypeData($token);
             $productTypesArray = $this->getProductTypeData($token);
@@ -31,7 +34,7 @@ class DefaultController extends Controller {
             return $this->render('SettingsBundle:Default:pipelinesetup.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
                         'fullname' => $fullname, 'stagesArray' => $stagesArray, 'accountTypeArray' => $accountTypesArray,
                         'productTypeArray' => $productTypesArray, 'opportunitySourceArray' => $opportunitySourceArray, 'userArray' => $userArray,
-                        'manageview' => $user->getUserview()));
+                        'manageview' => $user->getUserview(), 'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

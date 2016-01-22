@@ -39,7 +39,7 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
                 <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" style=\"width:300px\">
                     <img src=\"";
         // line 19
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/img/Flobbies75x75/Popie.png"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl((isset($context["image"]) ? $context["image"] : $this->getContext($context, "image"))), "html", null, true);
         echo "\" alt=\"user\" class=\"img-responsive img-user\" /> ";
         echo twig_escape_filter($this->env, (isset($context["fullname"]) ? $context["fullname"] : $this->getContext($context, "fullname")), "html", null, true);
         echo " <i class=\"fa fa-caret-down\"></i>

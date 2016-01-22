@@ -1622,7 +1622,7 @@
             } else {
                 $table.bootstrapTable('collapseAllRows', false);
                 $this.find('i').attr('class', sprintf('%s %s', that.options.iconsPrefix, that.options.icons.detailClose));
-                $tr.after(sprintf('<tr class="detail-view"><td colspan="%s">%s</td></tr>',
+                $tr.after(sprintf('<tr class="detail-view"><td colspan="%s" style = "background-color: #fbfbfb;">%s</td></tr>',
                         $tr.find('td').length, calculateObjectValue(that.options,
                         that.options.detailFormatter, [index, row], '')));
                 that.trigger('expand-row', index, row, $tr.next().find('td'));

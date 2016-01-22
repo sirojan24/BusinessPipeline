@@ -634,10 +634,17 @@ class DefaultController extends Controller {
 
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            
             $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
 //return $this->render('OpportunityBundle:Default:test.html.twig');
-            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
+            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 
+                        'manageview' => $user->getOpportunityview(), 'image' => $image));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }

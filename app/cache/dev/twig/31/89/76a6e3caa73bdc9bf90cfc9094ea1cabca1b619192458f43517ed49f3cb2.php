@@ -587,24 +587,24 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             var html = [];
             html.push('<div class\"row\">' +
                     '<div class=\"col-xs-4\">' +
-                    '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;\">' +
-                    '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
+                    '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;background-color: #fbfbfb;\">' +
+                    '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;line-height: 5px;width:40%\"><small>Deal Account Type</small></td>' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>' + deal_account_type + '</small></td>' +
                     '</tr>' +
-                    '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
+                    '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>Deal Source</small></td>' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>' + deal_source + '</small></td>' +
                     '</tr>' +
-                    '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
+                    '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>Open Deals</small></td>' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>' + open_deals + '</small></td>' +
                     '</tr>' +
-                    '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
+                    '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>Won Deals</small></td>' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>' + won_deals + '</small></td>' +
                     '</tr>' +
-                    '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
+                    '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>Lost Deals</small></td>' +
                     '<td style=\"border: none !important;line-height: 5px;\"><small>' + lost_deals + '</small></td>' +
                     '</tr>' +

@@ -193,7 +193,7 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
                         </div>
                         <!-- /.panel-heading -->
                         <div class=\"panel-body\">
-                            <div id=\"morris-area-chart\"></div>
+                            <div id=\"earning-area-chart\"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -663,6 +663,8 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
         // line 586
         $this->env->loadTemplate("webBundle:Default:dealsByUserBarChartScript.html.twig")->display($context);
         // line 587
+        $this->env->loadTemplate("webBundle:Default:earningAreaChartScript.html.twig")->display($context);
+        // line 588
         echo "</html>
 ";
     }
@@ -679,6 +681,6 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
 
     public function getDebugInfo()
     {
-        return array (  666 => 587,  664 => 586,  662 => 585,  660 => 584,  658 => 583,  652 => 580,  648 => 579,  644 => 578,  639 => 577,  637 => 576,  631 => 572,  629 => 571,  157 => 102,  148 => 98,  127 => 80,  118 => 76,  97 => 58,  88 => 54,  67 => 36,  58 => 32,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  668 => 588,  666 => 587,  664 => 586,  662 => 585,  660 => 584,  658 => 583,  652 => 580,  648 => 579,  644 => 578,  639 => 577,  637 => 576,  631 => 572,  629 => 571,  157 => 102,  148 => 98,  127 => 80,  118 => 76,  97 => 58,  88 => 54,  67 => 36,  58 => 32,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
     }
 }

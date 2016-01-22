@@ -69,10 +69,16 @@ class ContactsController extends Controller {
             $repository1 = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
 
             $response = $this->getContactData($token);
 
-            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contactArray' => $response, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'contactArray' => $response, 'fullname' => $fullname,
+                        'manageview' => $user->getContactview(), 'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -88,10 +94,10 @@ class ContactsController extends Controller {
 
         if ($token) {
             $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
-            if($user){
+            if ($user) {
                 $id = $request->get("id");
                 $contact = $contactRepository->findOneBy(array('id' => $id));
-                if($contact){
+                if ($contact) {
                     $contact->setStatus("Active");
                     try {
 
@@ -100,17 +106,17 @@ class ContactsController extends Controller {
                     } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                         return new Response("false");
                     }
-                }else{
+                } else {
                     return new Response("false");
                 }
-            }else{
+            } else {
                 return new Response("false");
             }
-        }else{
+        } else {
             return new Response("false");
         }
     }
-    
+
     public function deleteContactV2Action(Request $request) {
         $session = $request->getSession();
         $token = $session->get('token');
@@ -120,10 +126,10 @@ class ContactsController extends Controller {
 
         if ($token) {
             $user = $userRepository->findOneBy(array('username' => $token->getUsername()));
-            if($user){
+            if ($user) {
                 $id = $request->get("id");
                 $contact = $contactRepository->findOneBy(array('id' => $id));
-                if($contact){
+                if ($contact) {
                     $contact->setStatus("Inactive");
                     try {
 
@@ -132,17 +138,17 @@ class ContactsController extends Controller {
                     } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                         return new Response("false");
                     }
-                }else{
+                } else {
                     return new Response("false");
                 }
-            }else{
+            } else {
                 return new Response("false");
             }
-        }else{
+        } else {
             return new Response("false");
         }
     }
-    
+
     private function getContactData($token) {
         $em = $this->getDoctrine()->getManager();
         $repository1 = $em->getRepository("LoginLoginBundle:Users");
@@ -156,9 +162,9 @@ class ContactsController extends Controller {
         $contactArray = array();
 
         foreach ($contacts as $contact) {
-            
+
             if ($contact->getStatus() == 'Active' || $contact->getUsername() == $user->getUsername()) {
-                
+
                 $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
                 $opportunities = $repository2->findBy(array('contactid' => $contact->getId(), 'status' => 'Active'));
                 $count = 0;

@@ -48,7 +48,11 @@ class DashboardController extends Controller {
         if ($token) {
             $adminname = $token->getUsername();
             $user = $repository->findOneBy(array('username' => $adminname));
-
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            
             $earn = $user->getEarninggoal();
             if ($earn != null) {
                 $earn = str_replace(',', '', $earn);
@@ -82,7 +86,11 @@ class DashboardController extends Controller {
             }
             $fullname = $user->getFirstname() . " " . $user->getLastname();
 
-            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 'mobile' => $mobile, 'update' => 'true', 'fullname' => $fullname));
+            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 
+                        'mobile' => $mobile, 'update' => 'true', 'fullname' => $fullname,
+                        'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -637,7 +645,15 @@ class DashboardController extends Controller {
         //echo json_encode($response);exit;
         if ($admin) {
             $fullname = $admin->getFirstname() . " " . $admin->getLastname();
-            return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'users' => $users, 'userArray' => json_encode($response), 'fullname' => $fullname, 'manageview' => $admin->getUserview()));
+            $image = $admin->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', 
+                    array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 
+                        'users' => $users, 'userArray' => json_encode($response), 
+                        'fullname' => $fullname, 'manageview' => $admin->getUserview(),
+                     'image' => $image));
             //return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users, 'userArray'=> $userArray ,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
         } else {
 
