@@ -14,16 +14,16 @@ class DefaultController extends Controller {
     }
 
     public function updatetaskAction(Request $request) {
-       
+
         $token = $request->getSession()->get('token');
-        
+
         $em = $this->getDoctrine()->getManager();
         if ($token) {
             $tasksRepository = $em->getRepository("TaskBundle:Tasks");
 
             $task = $tasksRepository->findOneBy(array('id' => $request->get('id')));
-           // echo $task->getName();
-           // exit;
+            // echo $task->getName();
+            // exit;
             if ($task) {
                 $task->setName($request->get('taskname'));
                 $task->setTags($request->get('tasktags'));
@@ -287,7 +287,7 @@ class DefaultController extends Controller {
                 if ($type == 'opportunity') {
 
                     $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
-                    
+
                     $opportunity = $opportunityRepository->findOneBy(array('id' => $id));
 
                     if ($opportunity) {
@@ -367,8 +367,7 @@ class DefaultController extends Controller {
                 $response = array('tasks' => $taskArray);
                 $response = json_encode($response);
 
-                return $this->render('TaskBundle:Default:manageTasks.html.twig', 
-                        array('name' => $token->getUsername(), 'fullname' => $fullname,
+                return $this->render('TaskBundle:Default:manageTasks.html.twig', array('name' => $token->getUsername(), 'fullname' => $fullname,
                             'tasksArray' => $response, 'manageview' => '10',
                             $responseType => $typeResponse,
                             'typeId' => $id,
@@ -382,7 +381,7 @@ class DefaultController extends Controller {
         }
     }
 
-    public function allOpenDealTasksAction(Request $request){
+    public function allOpenDealTasksAction(Request $request) {
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();
         $usersRepository = $em->getRepository("LoginLoginBundle:Users");
@@ -391,21 +390,25 @@ class DefaultController extends Controller {
 
             if ($currentUser) {
                 $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
-
+                $image = $currentUser->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                
                 $tasksRepository = $em->getRepository("TaskBundle:Tasks");
 
                 $tasks = $tasksRepository->findBy(array('tasktype' => 'opportunity', 'status' => 'Active'));
 
                 $opportunityRepository = $em->getRepository("OpportunityBundle:Opportunities");
-                
+
                 $taskArray = array();
                 foreach ($tasks as $task) {
-                    
+
                     $id = $task->getTaskTypeId();
-                    
+
                     $opportunity = $opportunityRepository->findOneBy(array('id' => $id, 'status' => 'Active'));
                     if ($opportunity) {
-                        
+
                         //check user authorization
                         $flag = false;
                         if ($opportunity->getUsername() !== $currentUser->getUsername()) {
@@ -419,14 +422,12 @@ class DefaultController extends Controller {
                                     break;
                                 }
                             }
-
-                        }else{
+                        } else {
                             $flag = true;
                         }
-                        
-                        if ($flag == true && $opportunity->getStage() !== 'won' 
-                                && $opportunity->getStage() !== 'lost') {
-                            
+
+                        if ($flag == true && $opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost') {
+
                             $arrElement["name"] = $opportunity->getPersonname();
                             $arrElement["company"] = $opportunity->getOrganizationname();
                             $arrElement["taskName"] = $task->getName();
@@ -445,14 +446,13 @@ class DefaultController extends Controller {
                 }
                 $response = array('tasks' => $taskArray);
                 $response = json_encode($response);
-  
+
                 return $this->render('TaskBundle:Default:manageTasks.html.twig', 
                         array('name' => $token->getUsername(), 'fullname' => $fullname,
                             'tasksArray' => $response, 'manageview' => '10',
                             'typeId' => $id,
-                            'type' => 'opportunity'
+                            'type' => 'opportunity', 'image' => $image
                 ));
-                
             } else {
                 return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
             }
@@ -460,7 +460,7 @@ class DefaultController extends Controller {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
         }
     }
-    
+
     public function getTasksAction(Request $request, $type, $id) {
         $token = $request->getSession()->get('token');
         $em = $this->getDoctrine()->getManager();

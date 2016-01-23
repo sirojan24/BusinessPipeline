@@ -104,15 +104,21 @@ class DefaultController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
-
+            $image = $user->getImage();
+            if($image == '' || $image == null){
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            
             $fullname = $user->getFirstname() . " " . $user->getLastname();
             $noteRepository = $em->getRepository("NotesBundle:Notes");
             $notes = $noteRepository->findBy(array('companyname' => $user->getCompanyname()));
             
             $notesArray = $this->getNotesData($token); 
 
-            return $this->render('NotesBundle:Default:manageNotesV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
-                        'notes' => $notes, 'fullname' => $fullname, 'manageview' => '10', 'notesArray' => $notesArray));
+            return $this->render('NotesBundle:Default:manageNotesV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'notes' => $notes, 'fullname' => $fullname, 'manageview' => '10', 
+                        'notesArray' => $notesArray, 'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

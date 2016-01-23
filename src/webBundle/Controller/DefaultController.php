@@ -116,7 +116,11 @@ class DefaultController extends Controller {
 
             if ($flag == true) {
                 $closedDateYear = date("Y", strtotime($deal->getCloseddate()));
-                $revenue = str_replace(",", "", $deal->getUserRevenue());
+                if($deal->getUserRevenue() == "" || $deal->getUserRevenue() == null){
+                  $revenue = 0;  
+                }else{
+                  $revenue = str_replace(",", "", $deal->getUserRevenue());  
+                }
                 if (!array_key_exists($closedDateYear, $earning)) {
                     $earning[$closedDateYear]['year'] = $closedDateYear;
                     $earning[$closedDateYear]['earning'] = $revenue;
