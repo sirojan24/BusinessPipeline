@@ -120,20 +120,20 @@ class __TwigTemplate_d83215520ab4b9e3f214492ab87f2b8c2c4ed80263807046f2fd9fc4b26
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bootstrap-table/ga.js"), "html", null, true);
         echo "\"></script>
     
-     <link rel=\"stylesheet\" href=\"";
+    <link rel=\"stylesheet\" href=\"";
         // line 54
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/parsley.css"), "html", null, true);
         echo "\" />
      
-     <link href=\"";
+    <link href=\"";
         // line 56
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/css/bootstrap-notes.css"), "html", null, true);
         echo "\" rel=\"stylesheet\"/>
-     <link rel=\"stylesheet\" href=\"";
+    <link rel=\"stylesheet\" href=\"";
         // line 57
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/loginlogin/css/ace/bootstrap-duallistbox.css"), "html", null, true);
         echo "\" />
-     
+
 </head>";
     }
 

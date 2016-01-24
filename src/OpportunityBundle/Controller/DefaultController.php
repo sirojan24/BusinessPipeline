@@ -99,6 +99,11 @@ class DefaultController extends Controller {
 
 
             $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            
             $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
             $currentCompany = $currentUser->getCompanyname();
             $users = $repository->findBy(array('companyname' => $currentCompany, 'status' => 'Active'));
@@ -112,7 +117,8 @@ class DefaultController extends Controller {
                         'accounttypes' => $accounttypes, 'stages' => $stages, 
                         'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 
                         'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 
-                        'organizationname' => $organizationname, 'contactid' => $id));
+                        'organizationname' => $organizationname, 'contactid' => $id,
+                        'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -172,6 +178,11 @@ class DefaultController extends Controller {
                 $repository5 = $em->getRepository("SettingsBundle:Opportunitysources");
 
                 $user = $repository->findOneBy(array('username' => $token->getUsername()));
+                $image = $user->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                
                 $fullname = $user->getFirstname() . " " . $user->getLastname();
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
                 foreach ($opportunities as $opportunity) {
@@ -264,8 +275,13 @@ class DefaultController extends Controller {
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
                 $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
-
-                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(),'opportunitiesArray'=> $opportunitiesArray,'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully add an Opportunity ", 'opportunities' => $opportunities, 'manageview' => $user->getOpportunityview()));
+                
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
+                        array('name' => $token->getUsername(),'opportunitiesArray'=> $opportunitiesArray,
+                            'role' => $token->getRole(), 'fullname' => $fullname, 
+                            'successmsg' => "Well done ! You successfully add an Opportunity ", 
+                            'opportunities' => $opportunities, 
+                            'manageview' => $user->getOpportunityview(), 'image' => $image));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
                 return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Invalid Arguments. Try Again'));
@@ -322,6 +338,11 @@ class DefaultController extends Controller {
             $repository5 = $em->getRepository("OpportunityBundle:Opportunities");
 
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            
             $accounttypes = $repository1->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
             $stages = $repository2->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
             $producttypes = $repository3->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'), array('name' => 'ASC'));
@@ -335,7 +356,12 @@ class DefaultController extends Controller {
             $currentCompany = $currentUser->getCompanyname();
             $users = $repository->findBy(array('companyname' => $currentCompany, 'status' => 'Active'));
 
-            return $this->render('OpportunityBundle:Default:editOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname));
+            return $this->render('OpportunityBundle:Default:editOpportunityV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'accounttypes' => $accounttypes, 'stages' => $stages, 
+                        'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 
+                        'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname,
+                        'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -965,6 +991,11 @@ class DefaultController extends Controller {
                 $repository5 = $em->getRepository("SettingsBundle:Opportunitysources");
 
                 $user = $repository->findOneBy(array('username' => $token->getUsername()));
+                $image = $user->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                
                 $fullname = $user->getFirstname() . " " . $user->getLastname();
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
                 foreach ($opportunities as $opportunity) {
@@ -1057,7 +1088,11 @@ class DefaultController extends Controller {
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
                 $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
-                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 'manageview' => $user->getOpportunityview()));
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
+                        array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                            'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname,
+                            'successmsg' => 'Well done! You succesfully update your deal.',
+                            'manageview' => $user->getOpportunityview(), 'image' => $image));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                 $repository = $em->getRepository("LoginLoginBundle:Users");
                 $repository5 = $em->getRepository("SettingsBundle:Accounttypes");
@@ -1075,7 +1110,19 @@ class DefaultController extends Controller {
                 $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
                 $currentCompany = $currentUser->getCompanyname();
                 $users = $repository->findBy(array('companyname' => $currentCompany));
-                return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Something went wrong. Try Again', 'opportunity' => $opportunity, 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users));
+                $image = $user->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                
+                return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', 
+                        array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                            'fullname' => $fullname, 
+                            'errormsg' => 'Something went wrong. Try Again', 
+                            'opportunity' => $opportunity, 'accounttypes' => $accounttypes, 
+                            'stages' => $stages, 'producttypes' => $producttypes, 
+                            'opportunitysources' => $opportunitysources, 'users' => $users,
+                            'image' => $image));
             }
         } else {
 

@@ -38,7 +38,32 @@
     <script src="{{asset('bundles_v2.0/bower_components/raphael/raphael-min.js')}}"></script>
     <script src="{{asset('bundles_v2.0/bower_components/morrisjs/morris.js')}}"></script>
     <script src="{{asset('bundles_v2.0/js/morris-data.js')}}"></script>
+    <script src="{{asset('bundles_v2.0/notify/jquery-1.12.0.js')}}"></script>
 
+    <script src="{{asset('bundles_v2.0/notify/bootstrap-notify.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('bundles_v2.0/notify/animate.css')}}">
+    <script>
+            $( document ).ready(function() {
+                {%if errormsg is defined %}
+                    $.notify({
+                            // options
+                            message: '{{errormsg}}'
+                        }, {
+                            // settings
+                            type: 'danger'
+                        });
+                {%endif%}
+                {%if successmsg is defined %}
+                    $.notify({
+                            // options
+                            message: '{{successmsg}}'
+                        }, {
+                            // settings
+                            type: 'success'
+                        });
+                {%endif%}
+            });
+    </script>
 </body>
 
 </html>

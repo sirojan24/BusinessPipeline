@@ -2,6 +2,7 @@
     var $table = $('#table');
     var extendColData = [];
     var initResponse;
+    var isShowInactiveContact = false;
     
     $(document).ready(function () {
         $("#tableDiv").show();
@@ -9,6 +10,38 @@
         $table.bootstrapTable('hideColumn', 'tags');
     });
 
+
+    function showHideInactiveContacts(){
+        $table.bootstrapTable('removeAll');
+        
+        var showHide = $( "#showHide" ).children();
+        
+        if (isShowInactiveContact == false){
+            isShowInactiveContact = true;
+            $("#showHideInactiveContact").html("<i class='fa fa-eye-slash'></i> Hide Inactive Contacts");
+            if(showHide.hasClass("fa-eye")){
+                $table.bootstrapTable('append', convertData(initResponse));
+            }else{
+                var username = '{{name|lower}}';
+                usernameFilter(username);
+
+            }
+        }else{
+            isShowInactiveContact = false;
+            $("#showHideInactiveContact").html("<i class='fa fa-eye'></i> Show Inactive Contacts");
+            if(showHide.hasClass("fa-eye")){
+                $table.bootstrapTable('append', convertData(initResponse));
+            }else{
+                var username = '{{name|lower}}';
+                usernameFilter(username);
+
+            }
+        }
+        
+        
+        
+    }
+    
     function iniFillTableData() {
         $table.bootstrapTable('showLoading');
         var data = '{{contactArray}}';
@@ -288,22 +321,45 @@
                     if(tempContact.lost_deals !== '0'){
                         lostDeal = '<a href="' + openDealPath + tempContact.id + '/Lost' + '">$' + tempContact.lost_deals + '</a>';
                     }
-                    rows.push({
-                        name: tempContact.name,
-                        company: tempContact.company,
-                        open_deal: openDeal,
-                        projected_revenue: '$' + tempContact.projected_revenue,
-                        weighted_forecast: '$' + tempContact.weighted_forecast,
-                        won_deals: wonDeal,
-                        lost_deals: lostDeal,
-                        status: tempContact.status,
-                        owner: '<a href="javascript:usernameFilter(' + "'" + tempContact.username + "'" + ')">' + tempContact.owner + '</a>',
-                        action: action,
-                        email: tempContact.email,
-                        telephone: tempContact.telephone,
-                        tags: tempContact.tags
+                    
+                    if(isShowInactiveContact == false){
+                        if(tempContact.status == "Active"){
+                            rows.push({
+                                name: tempContact.name,
+                                company: tempContact.company,
+                                open_deal: openDeal,
+                                projected_revenue: '$' + tempContact.projected_revenue,
+                                weighted_forecast: '$' + tempContact.weighted_forecast,
+                                won_deals: wonDeal,
+                                lost_deals: lostDeal,
+                                status: tempContact.status,
+                                owner: '<a href="javascript:usernameFilter(' + "'" + tempContact.username + "'" + ')">' + tempContact.owner + '</a>',
+                                action: action,
+                                email: tempContact.email,
+                                telephone: tempContact.telephone,
+                                tags: tempContact.tags
 
-                    });
+                            });
+                        }
+                    }else{
+                            rows.push({
+                                name: tempContact.name,
+                                company: tempContact.company,
+                                open_deal: openDeal,
+                                projected_revenue: '$' + tempContact.projected_revenue,
+                                weighted_forecast: '$' + tempContact.weighted_forecast,
+                                won_deals: wonDeal,
+                                lost_deals: lostDeal,
+                                status: tempContact.status,
+                                owner: '<a href="javascript:usernameFilter(' + "'" + tempContact.username + "'" + ')">' + tempContact.owner + '</a>',
+                                action: action,
+                                email: tempContact.email,
+                                telephone: tempContact.telephone,
+                                tags: tempContact.tags
+
+                            });
+                    }
+                    
                 }
                 return rows;
             }

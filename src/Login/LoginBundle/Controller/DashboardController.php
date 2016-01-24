@@ -52,7 +52,7 @@ class DashboardController extends Controller {
             if ($image == '' || $image == null) {
                 $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
             }
-            
+
             $earn = $user->getEarninggoal();
             if ($earn != null) {
                 $earn = str_replace(',', '', $earn);
@@ -86,9 +86,8 @@ class DashboardController extends Controller {
             }
             $fullname = $user->getFirstname() . " " . $user->getLastname();
 
-            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', 
-                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
-                        'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 
+            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele,
                         'mobile' => $mobile, 'update' => 'true', 'fullname' => $fullname,
                         'image' => $image));
         } else {
@@ -278,7 +277,7 @@ class DashboardController extends Controller {
                 ;
                 $mailer->send($message);
                 $em->flush();
-                
+
                 $userArray = $this->getUserArray($admin);
                 return $this->redirectToRoute('settings_pipelinesetup');
                 //return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'userArray' => $userArray, 'role' => $admin->getRole(), 'fullname' => $fullname, 'manageview' => $adminuser->getUserView(), 'successmsg' => 'Regular User Created'));
@@ -511,7 +510,7 @@ class DashboardController extends Controller {
 
             array_push($userArray, $arrElement);
         }
-        
+
         $response = array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'users' => $userArray, 'manageview' => $admin->getUserview());
         return json_encode($response);
     }
@@ -649,11 +648,10 @@ class DashboardController extends Controller {
             if ($image == '' || $image == null) {
                 $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
             }
-            return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', 
-                    array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 
-                        'users' => $users, 'userArray' => json_encode($response), 
+            return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(),
+                        'users' => $users, 'userArray' => json_encode($response),
                         'fullname' => $fullname, 'manageview' => $admin->getUserview(),
-                     'image' => $image));
+                        'image' => $image));
             //return $this->render('LoginLoginBundle:Default:manageUsers.html.twig', array('name' => $admin->getUsername(),'role' => $admin->getRole(),'users' => $users, 'userArray'=> $userArray ,'fullname'=> $fullname,'manageview'=>$admin->getUserview())); 
         } else {
 
@@ -700,10 +698,17 @@ class DashboardController extends Controller {
 
         if ($token) {
             $currentuser = $repository->findOneBy(array('username' => $token->getUsername()));
-            $fullname = $currentuser->getFirstname() . " " . $currentuser->getLastname();
-            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'user' => $user, 'earn' => $earn, 'annual' => $annual, 'tele' => $tele, 'mobile' => $mobile, 'fullname' => $fullname));
-        } else {
+            $image = $currentuser->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
 
+            $fullname = $currentuser->getFirstname() . " " . $currentuser->getLastname();
+            return $this->render('LoginLoginBundle:Default:editusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'user' => $user, 'earn' => $earn, 'annual' => $annual,
+                        'tele' => $tele, 'mobile' => $mobile, 'fullname' => $fullname,
+                        'image' => $image));
+        } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
@@ -909,8 +914,16 @@ class DashboardController extends Controller {
                     }
                     $response = array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'users' => $userArray, 'manageview' => $adminuser->getUserview());
                     $response = json_encode($response);
-                    return $this->redirectToRoute('settings_pipelinesetup');
-                    //return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(), 'userArray' => $response, 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully updated " . $currentuser->getUsername() . "'s profile", 'manageview' => $adminuser->getUserview()));
+                    //return $this->redirectToRoute('settings_pipelinesetup');
+                    $image = $currentuser->getImage();
+                    if ($image == '' || $image == null) {
+                        $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                    }
+
+                    return $this->render('LoginLoginBundle:Default:manageUsersV2.html.twig', array('name' => $admin->getUsername(), 'role' => $admin->getRole(),
+                                'userArray' => $response, 'fullname' => $fullname,
+                                'successmsg' => "Well done ! You successfully updated " . $currentuser->getUsername() . "'s profile",
+                                'manageview' => $adminuser->getUserview(), 'image' => $image));
                 } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                     if ($admin->getRole() == 'Admin' || $admin->getRole() == 'Regular') {
                         $users = $repository->findBy(array('companyname' => $companyname, 'status' => 'Active'));
@@ -1109,7 +1122,7 @@ class DashboardController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            if($sharingUser){
+                            if ($sharingUser) {
                                 $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                             }
                         }
@@ -1198,7 +1211,7 @@ class DashboardController extends Controller {
                     foreach ($sharedusers as $shareduser) {
 
                         $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                        if($sharingUser){
+                        if ($sharingUser) {
                             $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                         }
                     }

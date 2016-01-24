@@ -76,7 +76,8 @@ class ContactsController extends Controller {
 
             $response = $this->getContactData($token);
 
-            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+            return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(),
                         'contactArray' => $response, 'fullname' => $fullname,
                         'manageview' => $user->getContactview(), 'image' => $image));
         } else {
@@ -298,11 +299,18 @@ class ContactsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository("LoginLoginBundle:Users");
         $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
+        $image = $currentUser->getImage();
+        if ($image == '' || $image == null) {
+            $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+        }
+
         $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
         $currentCompany = $currentUser->getCompanyname();
         $users = $repository->findBy(array('companyname' => $currentCompany));
         if ($token) {
-            return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'fullname' => $fullname));
+            return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'users' => $users, 'companyname' => $currentCompany,
+                        'fullname' => $fullname, 'image' => $image));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
@@ -316,6 +324,10 @@ class ContactsController extends Controller {
         $repository = $em->getRepository("LoginLoginBundle:Users");
 
         $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
+        $image = $currentUser->getImage();
+        if ($image == '' || $image == null) {
+            $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+        }
 
         $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
 
@@ -324,7 +336,9 @@ class ContactsController extends Controller {
         $users = $repository->findBy(array('companyname' => $currentCompany));
 
         if ($token) {
-            return $this->render('ContactsContactsBundle:Default:addContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'fullname' => $fullname));
+            return $this->render('ContactsContactsBundle:Default:addContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'users' => $users, 'companyname' => $currentCompany,
+                        'fullname' => $fullname, 'image' => $image));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
@@ -338,6 +352,11 @@ class ContactsController extends Controller {
         $repository1 = $em->getRepository("LoginLoginBundle:Users");
         $users = $repository1->findAll();
         $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+        $image = $currentUser->getImage();
+        if ($image == '' || $image == null) {
+            $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+        }
+
         $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
 
 
@@ -486,8 +505,6 @@ class ContactsController extends Controller {
                 $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
                 $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
 
-                $contactArray = array();
-
                 foreach ($contacts as $contact) {
                     $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
                     $opportunities = $repository2->findBy(array('contactid' => $contact->getId(), 'status' => 'Active'));
@@ -523,25 +540,8 @@ class ContactsController extends Controller {
                     $contact->setWeightedforecast(number_format($weightedforecast));
                     $contact->setFirstname($currentUser->getFirstname());
                     $contact->setLastname($currentUser->getLastname());
-
-                    //serialize contact obects to array
-                    $arrElement["name"] = $contact->getName();
-                    $arrElement["company"] = $contact->getCompany();
-                    $arrElement["open_deal"] = $opencount;
-                    $arrElement["projected_revenue"] = $contact->getProjectedrevenue();
-                    $arrElement["weighted_forecast"] = $contact->getWeightedforecast();
-                    $arrElement["won_deals"] = number_format($wonRevenue);
-                    $arrElement["lost_deals"] = number_format($lossRevenue);
-                    $arrElement["owner"] = $contact->getFirstname() . " " . $contact->getLastname();
-                    $arrElement["id"] = $contact->getId();
-                    $arrElement["email"] = $contact->getEmail0();
-                    $arrElement["telephone"] = $contact->getPhone0();
-                    $arrElement["tags"] = $contact->getTags();
-                    $arrElement["username"] = $contact->getUsername();
-                    array_push($contactArray, $arrElement);
                 }
-                $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $currentUser->getContactview());
-                $response = json_encode($response);
+                $response = $this->getContactData($token);
 
                 if ($request->get('opportunityflag') == 'true') {
 
@@ -564,16 +564,30 @@ class ContactsController extends Controller {
                     $users = $repository->findBy(array('companyname' => $currentCompany));
 
 
-                    return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users, 'successmsg' => 'Well done! You succesfully add that contact.Continue with the add opportunity', 'personname' => $name, 'organizationname' => $companyname, 'fullname' => $fullname));
+                    return $this->render('OpportunityBundle:Default:addOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                                'accounttypes' => $accounttypes, 'stages' => $stages,
+                                'producttypes' => $producttypes,
+                                'opportunitysources' => $opportunitysources,
+                                'users' => $users,
+                                'successmsg' => 'Well done! You succesfully add that contact.Continue with the add opportunity',
+                                'personname' => $name, 'organizationname' => $companyname,
+                                'fullname' => $fullname, 'image' => $image));
                 }
                 $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-                return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'successmsg' => 'Well done! You succesfully add a contact', 'contacts' => $contacts, 'contactArray' => $response, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+                return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                            'successmsg' => 'Well done! You succesfully add a contact',
+                            'contacts' => $contacts, 'contactArray' => $response,
+                            'fullname' => $fullname, 'manageview' => $user->getContactview(),
+                            'image' => $image));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                 $repository1 = $em->getRepository("LoginLoginBundle:Users");
                 $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
                 $currentCompany = $currentUser->getCompanyname();
                 $users = $repository1->findBy(array('companyname' => $currentCompany));
-                return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'users' => $users, 'companyname' => $currentCompany, 'errormsg' => 'Oh snap! Something went wrong. Try Again', 'fullname' => $fullname));
+                return $this->render('ContactsContactsBundle:Default:addContacts.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                            'users' => $users, 'companyname' => $currentCompany,
+                            'errormsg' => 'Oh snap! Something went wrong. Try Again',
+                            'fullname' => $fullname, 'image' => $image));
             }
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -701,15 +715,27 @@ class ContactsController extends Controller {
         }
         $repository1 = $em->getRepository("LoginLoginBundle:Users");
         $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+        $image = $currentUser->getImage();
+        if ($image == '' || $image == null) {
+            $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+        }
+        
         $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
         $currentCompany = $currentUser->getCompanyname();
         $users = $repository1->findBy(array('companyname' => $currentCompany));
 
         if ($token && strtolower($contact->getUsername()) == strtolower($token->getUsername())) {
-            return $this->render('ContactsContactsBundle:Default:editContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contact' => $contact, 'tele' => $tele, 'users' => $users, 'fullname' => $fullname));
+            return $this->render('ContactsContactsBundle:Default:editContactsV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'contact' => $contact, 'tele' => $tele, 'users' => $users,
+                        'fullname' => $fullname, 'image' => $image));
         } else {
             $repository2 = $em->getRepository("LoginLoginBundle:Users");
             $currentUser = $repository2->findOneBy(array('username' => $token->getUsername()));
+            $image = $currentUser->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+
             $currentCompany = $currentUser->getCompanyname();
 
             $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
@@ -737,7 +763,11 @@ class ContactsController extends Controller {
                 $contact->setLastname($currentUser->getLastname());
             }
             $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'errormsg' => 'You should be the owner of the contact to do this action', 'contacts' => $contacts, 'fullname' => $fullname, 'manageview' => $user->getContactview()));
+            return $this->render('ContactsContactsBundle:Default:manageContact.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'errormsg' => 'You should be the owner of the contact to do this action',
+                        'contacts' => $contacts, 'fullname' => $fullname,
+                        'manageview' => $user->getContactview(), 'image' => $image));
         }
     }
 
@@ -859,12 +889,17 @@ class ContactsController extends Controller {
                 $em->flush();
                 $repository1 = $em->getRepository("LoginLoginBundle:Users");
                 $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
+                $image = $currentUser->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                
                 $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
                 $currentCompany = $currentUser->getCompanyname();
 
                 $contacts = $repository->findBy(array('ownedcompany' => $currentCompany));
                 $repository2 = $em->getRepository("OpportunityBundle:Opportunities");
-                $contactArray = array();
+                
                 foreach ($contacts as $contact) {
 
                     $currentUser = $repository1->findOneBy(array('username' => $contact->getUsername()));
@@ -902,27 +937,17 @@ class ContactsController extends Controller {
                     $contact->setFirstname($currentUser->getFirstname());
                     $contact->setLastname($currentUser->getLastname());
 
-                    //serialize contact obects to array
-                    $arrElement["name"] = $contact->getName();
-                    $arrElement["company"] = $contact->getCompany();
-                    $arrElement["open_deal"] = $opencount;
-                    $arrElement["projected_revenue"] = $contact->getProjectedrevenue();
-                    $arrElement["weighted_forecast"] = $contact->getWeightedforecast();
-                    $arrElement["won_deals"] = number_format($wonRevenue);
-                    $arrElement["lost_deals"] = number_format($lossRevenue);
-                    $arrElement["owner"] = $contact->getFirstname() . " " . $contact->getLastname();
-                    $arrElement["id"] = $contact->getId();
-                    $arrElement["email"] = $contact->getEmail0();
-                    $arrElement["telephone"] = $contact->getPhone0();
-                    $arrElement["tags"] = $contact->getTags();
-                    $arrElement["username"] = $contact->getUsername();
-                    array_push($contactArray, $arrElement);
+                    
                 }
-                $response = array('name' => $token->getUsername(), 'role' => $token->getRole(), 'contacts' => $contactArray, 'fullname' => $fullname, 'manageview' => $currentUser->getContactview());
-                $response = json_encode($response);
+                $response = $this->getContactData($token);
 
                 $user = $repository1->findOneBy(array('username' => $token->getUsername()));
-                return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'contactArray' => $response, 'successmsg' => 'Well done ! you succesfully update your contact', 'contacts' => $contacts, 'manageview' => $user->getContactview()));
+                return $this->render('ContactsContactsBundle:Default:manageContactV2.html.twig', 
+                        array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                            'fullname' => $fullname, 'contactArray' => $response, 
+                            'successmsg' => 'Well done ! you succesfully update your contact', 
+                            'contacts' => $contacts, 'manageview' => $user->getContactview(),
+                            'image' => $image));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                 $repository1 = $em->getRepository("LoginLoginBundle:Users");
                 $currentUser = $repository1->findOneBy(array('username' => $token->getUsername()));
