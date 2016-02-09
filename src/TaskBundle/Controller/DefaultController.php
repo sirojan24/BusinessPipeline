@@ -450,7 +450,7 @@ class DefaultController extends Controller {
                 return $this->render('TaskBundle:Default:manageTasks.html.twig', 
                         array('name' => $token->getUsername(), 'fullname' => $fullname,
                             'tasksArray' => $response, 'manageview' => '10',
-                            'typeId' => $id,
+                            'typeId' => $id, 'role' => $token->getRole(),
                             'type' => 'opportunity', 'image' => $image
                 ));
             } else {

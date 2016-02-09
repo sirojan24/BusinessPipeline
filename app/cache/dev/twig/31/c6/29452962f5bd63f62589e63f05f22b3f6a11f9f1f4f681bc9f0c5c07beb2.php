@@ -51,12 +51,17 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
         // line 24
         echo $this->env->getExtension('routing')->getPath("login_login_updateprofile");
         echo "\">My Profile</a></li>
-                    <li><a href=\"";
+                    ";
         // line 25
-        echo $this->env->getExtension('routing')->getPath("settings_pipelinesetup");
-        echo "\">Pipeline Setup</a></li>
-                    <li><a href=\"";
-        // line 26
+        if ((((isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")) == "Admin") || ((isset($context["role"]) ? $context["role"] : $this->getContext($context, "role")) == "Master Admin"))) {
+            // line 26
+            echo "                    <li><a href=\"";
+            echo $this->env->getExtension('routing')->getPath("settings_pipelinesetup");
+            echo "\">Pipeline Setup</a></li>
+                    ";
+        }
+        // line 28
+        echo "                    <li><a href=\"";
         echo $this->env->getExtension('routing')->getPath("login_login_logout");
         echo "\">Logout</a></li>
                 </ul>
@@ -72,31 +77,31 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
             <ul class=\"nav navbar-top-links navbar-right\">
                 <li>
                     <a href=\"";
-        // line 39
+        // line 41
         echo $this->env->getExtension('routing')->getPath("web_dashboard");
         echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Dashboard\"><i class=\"fa fa-tachometer\"></i></a>
                 </li>
                 <li>
                     <a href=\"";
-        // line 42
+        // line 44
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_contacts");
         echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Contacts\"><i class=\"fa fa-user\"></i></a>
                 </li>
                 <li>
                     <a href=\"";
-        // line 45
+        // line 47
         echo $this->env->getExtension('routing')->getPath("opportunity_manageopportunityV2");
         echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Deals\"><i class=\"fa fa-usd\"></i></a>
                 </li>
                 <li>
                     <a href=\"";
-        // line 48
+        // line 50
         echo $this->env->getExtension('routing')->getPath("login_login_users");
         echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Users\"><i class=\"fa fa-users\"></i></a>
                 </li>
                 <li>
                     <a href=\"";
-        // line 51
+        // line 53
         echo $this->env->getExtension('routing')->getPath("web_support");
         echo "\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Help & Support\"><i class=\"fa fa-question\"></i></a>
                 </li>
@@ -120,6 +125,6 @@ class __TwigTemplate_31c629452962f5bd63f62589e63f05f22b3f6a11f9f1f4f681bc9f0c5c0
 
     public function getDebugInfo()
     {
-        return array (  100 => 51,  94 => 48,  88 => 45,  82 => 42,  76 => 39,  60 => 26,  56 => 25,  52 => 24,  42 => 19,  31 => 11,  19 => 1,);
+        return array (  105 => 53,  99 => 50,  93 => 47,  87 => 44,  81 => 41,  64 => 28,  58 => 26,  56 => 25,  52 => 24,  42 => 19,  31 => 11,  19 => 1,);
     }
 }

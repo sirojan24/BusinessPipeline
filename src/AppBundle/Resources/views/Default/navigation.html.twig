@@ -22,7 +22,9 @@
                 <span class="arrow-up"></span>
                 <ul class="dropdown-messages">
                     <li><a href="{{path('login_login_updateprofile')}}">My Profile</a></li>
+                    {%if(role == "Admin" or role == "Master Admin") %}
                     <li><a href="{{path('settings_pipelinesetup')}}">Pipeline Setup</a></li>
+                    {% endif %}
                     <li><a href="{{path('login_login_logout')}}">Logout</a></li>
                 </ul>
                 <!-- /.dropdown-messages -->

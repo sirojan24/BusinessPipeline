@@ -197,7 +197,6 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
         );
     }
     function stageModal(commisionoriginator) {
-        commisionoriginator = commisionoriginator.substring(0, commisionoriginator.length - 1);
         //get commision originator
         if (document.getElementById('stage').value == 'won') {
             \$('#progress').css('width', '100%');
@@ -220,7 +219,7 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
         else {
 
             \$.post('";
-        // line 186
+        // line 185
         echo $this->env->getExtension('routing')->getPath("settings_getsale");
         echo "',
                     {id: document.getElementById('stage').value},
@@ -284,6 +283,6 @@ class __TwigTemplate_09e3668598a7f968af2eac288b028a6fbed888ebf89bf9ee24f7d4499f0
 
     public function getDebugInfo()
     {
-        return array (  224 => 186,  186 => 151,  182 => 150,  156 => 127,  143 => 117,  139 => 116,  23 => 3,  19 => 1,);
+        return array (  223 => 185,  186 => 151,  182 => 150,  156 => 127,  143 => 117,  139 => 116,  23 => 3,  19 => 1,);
     }
 }
