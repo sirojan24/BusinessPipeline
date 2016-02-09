@@ -62,7 +62,7 @@ class __TwigTemplate_0ba291f1bb337d4e6bc9e9f5c3dc33b7d01be7d84cf027eb65016313700
 
             <div class=\"row\">
                 <div class=\"col-lg-12\" id=\"tableDiv\" style=\"display: none\">
-                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;\">
+                    <div id=\"user-table-div\" class=\"table-responsive\" style=\"min-height: 360px;padding-bottom: 100px\">
                         <table id=\"table\"
                                data-toggle=\"table\"
                                data-detail-view=\"true\"

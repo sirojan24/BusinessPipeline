@@ -213,6 +213,12 @@
         var tags = checkAndSetValue(row.tags, '-', '', true);
         var email = checkAndSetValue(row.email, '-', '', true);
         var telephone = checkAndSetValue(row.telephone, '-', '', true);
+        
+        var emailData = email.split(":");
+        var telephoneData = telephone.split(":");
+        
+        email = emailData[0] + ' : <a href="mailto:' + emailData[1] + '" target="_top">' + emailData[1] + '</a>';
+        telephone = telephoneData[0] + " : " + telephoneData[1];
 
         var html = [];
         html.push('<div class"row">' +

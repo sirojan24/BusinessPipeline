@@ -274,7 +274,11 @@ class DefaultController extends Controller {
 
             if ($currentUser) {
                 $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
-
+                $image = $currentUser->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                $role = $currentUser->getRole();
                 $tasksRepository = $em->getRepository("TaskBundle:Tasks");
 
                 $tasks = $tasksRepository->findBy(array('tasktype' => $type, 'tasktypeid' => $id, 'status' => 'Active'));
@@ -368,8 +372,8 @@ class DefaultController extends Controller {
                 $response = json_encode($response);
 
                 return $this->render('TaskBundle:Default:manageTasks.html.twig', array('name' => $token->getUsername(), 'fullname' => $fullname,
-                            'tasksArray' => $response, 'manageview' => '10',
-                            $responseType => $typeResponse,
+                            'tasksArray' => $response, 'manageview' => '10', 'image' => $image,
+                            $responseType => $typeResponse, 'role' => $role,
                             'typeId' => $id,
                             'type' => $type
                 ));
@@ -394,7 +398,7 @@ class DefaultController extends Controller {
                 if ($image == '' || $image == null) {
                     $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
                 }
-                
+
                 $tasksRepository = $em->getRepository("TaskBundle:Tasks");
 
                 $tasks = $tasksRepository->findBy(array('tasktype' => 'opportunity', 'status' => 'Active'));
@@ -447,8 +451,7 @@ class DefaultController extends Controller {
                 $response = array('tasks' => $taskArray);
                 $response = json_encode($response);
 
-                return $this->render('TaskBundle:Default:manageTasks.html.twig', 
-                        array('name' => $token->getUsername(), 'fullname' => $fullname,
+                return $this->render('TaskBundle:Default:manageTasks.html.twig', array('name' => $token->getUsername(), 'fullname' => $fullname,
                             'tasksArray' => $response, 'manageview' => '10',
                             'typeId' => $id, 'role' => $token->getRole(),
                             'type' => 'opportunity', 'image' => $image

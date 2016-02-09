@@ -15,6 +15,8 @@
         populateFilterForm();
         wonLostAndOwnDealFilter();
         $table.bootstrapTable('hideColumn', 'tags');
+        $table.bootstrapTable('hideColumn', 'deal_account_type');
+        $table.bootstrapTable('hideColumn', 'deal_source');
     });
 
     function iniFillTableData() {
@@ -270,7 +272,10 @@
                     $(checkboxObject).prop('checked', false);
                 }
             });
+            $("#fFromDate").val("");
+            $("#fToDate").val("");
             $("#filterTags").tagsinput('removeAll');
+            
         }
 
         function applyUserDefinedFilter() {

@@ -267,6 +267,12 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         var tags = checkAndSetValue(row.tags, '-', '', true);
         var email = checkAndSetValue(row.email, '-', '', true);
         var telephone = checkAndSetValue(row.telephone, '-', '', true);
+        
+        var emailData = email.split(\":\");
+        var telephoneData = telephone.split(\":\");
+        
+        email = emailData[0] + ' : <a href=\"mailto:' + emailData[1] + '\" target=\"_top\">' + emailData[1] + '</a>';
+        telephone = telephoneData[0] + \" : \" + telephoneData[1];
 
         var html = [];
         html.push('<div class\"row\">' +
@@ -302,7 +308,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                 rows = [];
 
     ";
-        // line 252
+        // line 258
         echo "                for (var i = 0; i < jsonString.contacts.length; i++) {
                     var tempContact = jsonString.contacts[i];
 
@@ -313,31 +319,31 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     });
 
                     var editPath = '";
-        // line 261
+        // line 267
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
                     
                     var newDealPath = '";
-        // line 264
+        // line 270
         echo $this->env->getExtension('routing')->getPath("opportunity_addcontactopportunityV2", array("id" => 0));
         echo "';
                     newDealPath = newDealPath.substring(0, newDealPath.length - 1);
 
                     var openDealPath = '";
-        // line 267
+        // line 273
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
         echo "';
                     openDealPath = openDealPath.substring(0, openDealPath.length - 3);
                     
                     var taskPath = '";
-        // line 270
+        // line 276
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_manage_task", array("type" => "contact", "id" => 0)), "html", null, true);
         echo "';
                     taskPath = taskPath.substring(0, taskPath.length - 1);
 
                     var name = '";
-        // line 273
+        // line 279
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     var action = '';
@@ -468,6 +474,6 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
 
     public function getDebugInfo()
     {
-        return array (  341 => 273,  335 => 270,  329 => 267,  323 => 264,  317 => 261,  306 => 252,  241 => 188,  233 => 183,  198 => 151,  183 => 139,  164 => 123,  127 => 89,  118 => 83,  102 => 70,  81 => 52,  73 => 47,  58 => 35,  45 => 25,  19 => 1,);
+        return array (  347 => 279,  341 => 276,  335 => 273,  329 => 270,  323 => 267,  312 => 258,  241 => 188,  233 => 183,  198 => 151,  183 => 139,  164 => 123,  127 => 89,  118 => 83,  102 => 70,  81 => 52,  73 => 47,  58 => 35,  45 => 25,  19 => 1,);
     }
 }
