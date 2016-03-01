@@ -78,7 +78,7 @@ class DefaultController extends Controller {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
+
     public function addcontactopportunityV2Action(Request $request, $id) {
         $token = $request->getSession()->get('token');
         if ($token) {
@@ -103,7 +103,7 @@ class DefaultController extends Controller {
             if ($image == '' || $image == null) {
                 $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
             }
-            
+
             $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
             $currentCompany = $currentUser->getCompanyname();
             $users = $repository->findBy(array('companyname' => $currentCompany, 'status' => 'Active'));
@@ -112,11 +112,10 @@ class DefaultController extends Controller {
             $opportunityname = $selectedContact->getName();
             $organizationname = $selectedContact->getCompany();
 
-            return $this->render('OpportunityBundle:Default:addOpportunityV2.html.twig', 
-                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
-                        'accounttypes' => $accounttypes, 'stages' => $stages, 
-                        'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 
-                        'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname, 
+            return $this->render('OpportunityBundle:Default:addOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'accounttypes' => $accounttypes, 'stages' => $stages,
+                        'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources,
+                        'users' => $users, 'fullname' => $fullname, 'personname' => $opportunityname,
                         'organizationname' => $organizationname, 'contactid' => $id,
                         'image' => $image));
         } else {
@@ -182,7 +181,7 @@ class DefaultController extends Controller {
                 if ($image == '' || $image == null) {
                     $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
                 }
-                
+
                 $fullname = $user->getFirstname() . " " . $user->getLastname();
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
                 foreach ($opportunities as $opportunity) {
@@ -226,7 +225,7 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            if($sharingUser){
+                            if ($sharingUser) {
                                 $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                             }
                         }
@@ -275,12 +274,11 @@ class DefaultController extends Controller {
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
                 $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
-                
-                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
-                        array('name' => $token->getUsername(),'opportunitiesArray'=> $opportunitiesArray,
-                            'role' => $token->getRole(), 'fullname' => $fullname, 
-                            'successmsg' => "Well done ! You successfully add an Opportunity ", 
-                            'opportunities' => $opportunities, 
+
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'opportunitiesArray' => $opportunitiesArray,
+                            'role' => $token->getRole(), 'fullname' => $fullname,
+                            'successmsg' => "Well done ! You successfully add an Opportunity ",
+                            'opportunities' => $opportunities,
                             'manageview' => $user->getOpportunityview(), 'image' => $image));
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
 
@@ -324,7 +322,7 @@ class DefaultController extends Controller {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
+
     public function editopportunityV2Action(Request $request, $id) {
         $token = $request->getSession()->get('token');
         if ($token) {
@@ -342,7 +340,7 @@ class DefaultController extends Controller {
             if ($image == '' || $image == null) {
                 $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
             }
-            
+
             $accounttypes = $repository1->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
             $stages = $repository2->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'));
             $producttypes = $repository3->findBy(array('companyname' => $user->getCompanyname(), 'status' => 'Active'), array('name' => 'ASC'));
@@ -356,10 +354,9 @@ class DefaultController extends Controller {
             $currentCompany = $currentUser->getCompanyname();
             $users = $repository->findBy(array('companyname' => $currentCompany, 'status' => 'Active'));
 
-            return $this->render('OpportunityBundle:Default:editOpportunityV2.html.twig', 
-                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
-                        'accounttypes' => $accounttypes, 'stages' => $stages, 
-                        'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 
+            return $this->render('OpportunityBundle:Default:editOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'accounttypes' => $accounttypes, 'stages' => $stages,
+                        'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources,
                         'opportunity' => $opportunity, 'users' => $users, 'fullname' => $fullname,
                         'image' => $image));
         } else {
@@ -461,7 +458,7 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            if($sharingUser){
+                            if ($sharingUser) {
                                 $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                             }
                         }
@@ -595,7 +592,7 @@ class DefaultController extends Controller {
                     foreach ($sharedusers as $shareduser) {
 
                         $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                        if($sharingUser){
+                        if ($sharingUser) {
                             $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                         }
                     }
@@ -664,18 +661,17 @@ class DefaultController extends Controller {
             if ($image == '' || $image == null) {
                 $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
             }
-            
+
             $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
 //return $this->render('OpportunityBundle:Default:test.html.twig');
-            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
-                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
-                        'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 
+            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                        'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname,
                         'manageview' => $user->getOpportunityview(), 'image' => $image));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
-    
+
     public function opportunitycontactfilterV2Action(Request $request, $id, $filter) {
         $token = $request->getSession()->get('token');
         if ($token) {
@@ -692,26 +688,26 @@ class DefaultController extends Controller {
 
             $opportunitiesArray = $this->getOpportunityArray($token, $id, $filter);
             //return $this->render('OpportunityBundle:Default:test.html.twig');
-            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 
-                'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 
-                'manageview' => $user->getOpportunityview(), 'contactid' => $id, 'filter' => $filter,'image' => $image));
+            return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(),
+                        'role' => $token->getRole(), 'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname,
+                        'manageview' => $user->getOpportunityview(), 'contactid' => $id, 'filter' => $filter, 'image' => $image));
         } else {
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
         }
     }
 
-    private function checkOwnDeal($username, $opportunity){
-        if($opportunity->getUsername() === $username){
+    private function checkOwnDeal($username, $opportunity) {
+        if ($opportunity->getUsername() === $username) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    private function checkSharedDeal($username, $opportunity){
+
+    private function checkSharedDeal($username, $opportunity) {
         $usernames = explode(":", $opportunity->getSharing());
         foreach ($usernames as $tempUsername) {
-            if($tempUsername === $username){
+            if ($tempUsername === $username) {
                 return true;
             }
         }
@@ -729,80 +725,79 @@ class DefaultController extends Controller {
         $repository = $em->getRepository("LoginLoginBundle:Users");
 
         $user = $repository->findOneBy(array('username' => $token->getUsername()));
-        if($id == '-1'){
+        if ($id == '-1') {
             $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
-        }else{
-            if($filter == "Won"){
+        } else {
+            if ($filter == "Won") {
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => 'won'));
-            }else if($filter == "Lost"){
+            } else if ($filter == "Lost") {
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id, 'stage' => 'lost'));
-            }else if($filter == "Open"){
+            } else if ($filter == "Open") {
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $id));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
-                    if($opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost'){
+                    if ($opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost') {
                         array_push($tempOpportunities, $opportunity);
                     }
                 }
                 $opportunities = $tempOpportunities;
-            }else if($filter == "WonUser"){
+            } else if ($filter == "WonUser") {
                 $requestUser = $repository->findOneBy(array('id' => $id));
                 $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => 'won'));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
-                    if($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
+                    if ($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)) {
                         array_push($tempOpportunities, $opportunity);
                     }
                 }
                 $opportunities = $tempOpportunities;
-            }else if($filter == "LostUser"){
+            } else if ($filter == "LostUser") {
                 $requestUser = $repository->findOneBy(array('id' => $id));
                 $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active', 'stage' => 'lost'));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
-                    if($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)){
+                    if ($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity)) {
                         array_push($tempOpportunities, $opportunity);
                     }
                 }
                 $opportunities = $tempOpportunities;
-            }else if($filter == "OpenUser"){
+            } else if ($filter == "OpenUser") {
                 $requestUser = $repository->findOneBy(array('id' => $id));
                 $opportunities = $repository1->findBy(array('ownedcompany' => $requestUser->getCompanyname(), 'status' => 'Active'));
                 $tempOpportunities = array();
                 foreach ($opportunities as $opportunity) {
-                    if($opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost' &&
-                            ($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity))){
+                    if ($opportunity->getStage() !== 'won' && $opportunity->getStage() !== 'lost' &&
+                            ($this->checkOwnDeal($requestUser->getUsername(), $opportunity) || $this->checkSharedDeal($requestUser->getUsername(), $opportunity))) {
                         array_push($tempOpportunities, $opportunity);
                     }
                 }
                 $opportunities = $tempOpportunities;
             }
         }
-        
+
         $opportunitiesArray = array();
 
         foreach ($opportunities as $opportunity) {
-            
+
             $contactId = $opportunity->getContactid();
-            $contactIdOpportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active','contactid'=>$contactId));
+            $contactIdOpportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active', 'contactid' => $contactId));
             $wondealCount = 0;
             $wondealAmount = 0;
             $lossdealCount = 0;
             $lossdealAmount = 0;
             $opendealCount = 0;
             $opendealAmout = 0;
-            
-            foreach($contactIdOpportunities as $contactOpportunity){
-                if($contactOpportunity->getStage()==6){
+
+            foreach ($contactIdOpportunities as $contactOpportunity) {
+                if ($contactOpportunity->getStage() == 6) {
                     $wondealCount++;
-                    $wondealAmount += str_replace(",","",$contactOpportunity->getRevenue());
-                }else if($contactOpportunity->getStage() == 7){
+                    $wondealAmount += str_replace(",", "", $contactOpportunity->getRevenue());
+                } else if ($contactOpportunity->getStage() == 7) {
                     $lossdealCount++;
-                    $lossdealAmount += str_replace(",","",$contactOpportunity->getProjectedrevenue());
-                    
-                }else{
+                    $lossdealAmount += str_replace(",", "", $contactOpportunity->getProjectedrevenue());
+                } else {
                     $opendealCount++;
-                    $opendealAmout += str_replace(",","",$contactOpportunity->getForecast());
+                    $opendealAmout += str_replace(",", "", $contactOpportunity->getForecast());
                 }
             }
 
@@ -848,7 +843,7 @@ class DefaultController extends Controller {
                 foreach ($sharedusers as $shareduser) {
 
                     $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                    if($sharingUser){
+                    if ($sharingUser) {
                         $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                     }
                 }
@@ -909,32 +904,31 @@ class DefaultController extends Controller {
             $arrElement["username"] = $opportunity->getUsername();
             $arrElement["partnername"] = $opportunity->getPartnername();
             $arrElement["partnerpercentage"] = $opportunity->getPartnerpercentage();
-            
+
 //            $arrElement["email"] = $opportunity->getAnnualdraw();
 //            $arrElement["telephone"] = $opportunity->getEarninggoal();
 //            $arrElement["tags"] = $opportunity->getOpendealcount();
             $arrElement["sharedUsers"] = $opportunity->getSharing();
             $arrElement["deal_account_type"] = $opportunity->getAccounttype();
             $arrElement["deal_source"] = $opportunity->getOpportunitysource();
-            $arrElement["open_deals"] = $opendealCount.' / $'.number_format($opendealAmout);   //need to check
-            $arrElement["won_deals"] = $wondealCount.' / $'.number_format($wondealAmount);   //need to check
-            $arrElement["lost_deals"] = $lossdealCount.' / $'.number_format($lossdealAmount);   //need to check
+            $arrElement["open_deals"] = $opendealCount . ' / $' . number_format($opendealAmout);   //need to check
+            $arrElement["won_deals"] = $wondealCount . ' / $' . number_format($wondealAmount);   //need to check
+            $arrElement["lost_deals"] = $lossdealCount . ' / $' . number_format($lossdealAmount);   //need to check
             $arrElement["tags"] = $opportunity->getTags();   //need to check
             array_push($opportunitiesArray, $arrElement);
-            
         }
         $opportunitiesArray = array('opportunities' => $opportunitiesArray);
-        
+
         return json_encode($opportunitiesArray);
     }
 
-    public function getOpportunityTableDataAction(Request $request){
+    public function getOpportunityTableDataAction(Request $request) {
         $token = $request->getSession()->get('token');
         if ($token) {
             $id = $request->get('id');
             $filter = $request->get('filter');
             return new Response($this->getOpportunityArray($token, $id, $filter));
-        }else{
+        } else {
             return new Response("error!!");
         }
     }
@@ -957,9 +951,9 @@ class DefaultController extends Controller {
             $opportunitie->setOpportunitysource($request->get('opportunitysource'));
             $opportunitie->setNotes($request->get('notes'));
             $opportunitie->setVisibility($request->get('visibility'));
-            if($request->get('stage') == "won" || $request->get('stage') == "lost"){
+            if ($request->get('stage') == "won" || $request->get('stage') == "lost") {
                 $opportunitie->setCloseddate(date("Y-m-d"));
-            }else{
+            } else {
                 $opportunitie->setCloseddate($request->get('closeddate'));
             }
             $opportunitie->setForecast($request->get('forecast'));
@@ -995,7 +989,7 @@ class DefaultController extends Controller {
                 if ($image == '' || $image == null) {
                     $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
                 }
-                
+
                 $fullname = $user->getFirstname() . " " . $user->getLastname();
                 $opportunities = $repository1->findBy(array('ownedcompany' => $user->getCompanyname(), 'status' => 'Active'));
                 foreach ($opportunities as $opportunity) {
@@ -1039,7 +1033,7 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            if($sharingUser){
+                            if ($sharingUser) {
                                 $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                             }
                         }
@@ -1088,8 +1082,7 @@ class DefaultController extends Controller {
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
                 $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
-                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
-                        array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
                             'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname,
                             'successmsg' => 'Well done! You succesfully update your deal.',
                             'manageview' => $user->getOpportunityview(), 'image' => $image));
@@ -1114,13 +1107,12 @@ class DefaultController extends Controller {
                 if ($image == '' || $image == null) {
                     $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
                 }
-                
-                return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', 
-                        array('name' => $token->getUsername(), 'role' => $token->getRole(), 
-                            'fullname' => $fullname, 
-                            'errormsg' => 'Something went wrong. Try Again', 
-                            'opportunity' => $opportunity, 'accounttypes' => $accounttypes, 
-                            'stages' => $stages, 'producttypes' => $producttypes, 
+
+                return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                            'fullname' => $fullname,
+                            'errormsg' => 'Something went wrong. Try Again',
+                            'opportunity' => $opportunity, 'accounttypes' => $accounttypes,
+                            'stages' => $stages, 'producttypes' => $producttypes,
                             'opportunitysources' => $opportunitysources, 'users' => $users,
                             'image' => $image));
             }
@@ -1191,7 +1183,7 @@ class DefaultController extends Controller {
                         foreach ($sharedusers as $shareduser) {
 
                             $sharingUser = $repository->findOneBy(array('username' => $shareduser));
-                            if($sharingUser){
+                            if ($sharingUser) {
                                 $sharedPercentage += $sharingUser->getCommissionnonoriginator();
                             }
                         }
@@ -1239,8 +1231,22 @@ class DefaultController extends Controller {
                     }
                     $opportunity->setCurrentuserforecast($individualforecast);
                 }
-
-                return $this->render('OpportunityBundle:Default:manageOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'successmsg' => "Well done ! You successfully delete an Opportunity ", 'opportunities' => $opportunities, 'manageview' => $user->getOpportunityview()));
+                $image = $user->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+                
+                $user = $repository->findOneBy(array('username' => $token->getUsername()));
+                $fullname = $user->getFirstname() . " " . $user->getLastname();
+                
+                $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
+                //return $this->render('OpportunityBundle:Default:test.html.twig');
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname, 
+                        'successmsg' => 'You succesfully delete your deal.',
+                        'manageview' => $user->getOpportunityview(), 'image' => $image));
+                
             } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
                 $repository = $em->getRepository("LoginLoginBundle:Users");
                 $repository5 = $em->getRepository("SettingsBundle:Accounttypes");
@@ -1258,7 +1264,18 @@ class DefaultController extends Controller {
                 $currentUser = $repository->findOneBy(array('username' => $token->getUsername()));
                 $currentCompany = $currentUser->getCompanyname();
                 $users = $repository->findBy(array('companyname' => $currentCompany));
-                return $this->render('OpportunityBundle:Default:editOpportunity.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname, 'errormsg' => 'Something went wrong. Try Again', 'opportunity' => $opportunity, 'accounttypes' => $accounttypes, 'stages' => $stages, 'producttypes' => $producttypes, 'opportunitysources' => $opportunitysources, 'users' => $users));
+
+                $image = $user->getImage();
+                if ($image == '' || $image == null) {
+                    $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+                }
+
+                $opportunitiesArray = $this->getOpportunityArray($token, '-1', '');
+                //return $this->render('OpportunityBundle:Default:test.html.twig');
+                return $this->render('OpportunityBundle:Default:manageOpportunityV2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(),
+                            'opportunitiesArray' => $opportunitiesArray, 'fullname' => $fullname,
+                            'errormsg' => 'You succesfully delete your deal.',
+                            'manageview' => $user->getOpportunityview(), 'image' => $image));
             }
         } else {
 

@@ -434,6 +434,9 @@ class DefaultController extends Controller {
 
                             $arrElement["name"] = $opportunity->getPersonname();
                             $arrElement["company"] = $opportunity->getOrganizationname();
+                            $arrElement["typeSharing"] = $opportunity->getSharing();
+                            $arrElement["typeUsername"] = $opportunity->getUsername();
+                            $arrElement["typeId"] = $opportunity->getId();
                             $arrElement["taskName"] = $task->getName();
                             $arrElement["priority"] = $task->getPriority();
                             $arrElement["assignedTo"] = $task->getAssignto();
@@ -451,10 +454,12 @@ class DefaultController extends Controller {
                 $response = array('tasks' => $taskArray);
                 $response = json_encode($response);
 
-                return $this->render('TaskBundle:Default:manageTasks.html.twig', array('name' => $token->getUsername(), 'fullname' => $fullname,
+                return $this->render('TaskBundle:Default:manageTasks.html.twig', 
+                        array('name' => $token->getUsername(), 'fullname' => $fullname,
                             'tasksArray' => $response, 'manageview' => '10',
                             'typeId' => $id, 'role' => $token->getRole(),
-                            'type' => 'opportunity', 'image' => $image
+                            'type' => 'opportunity', 'image' => $image,
+                            'allOpedeal' => '1'
                 ));
             } else {
                 return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'You need admin login to proceed.'));
@@ -565,6 +570,68 @@ class DefaultController extends Controller {
                     $response = array('tasks' => $taskArray);
                     $response = json_encode($response);
                     return new Response($response);
+                } else {
+                    return new Response("false");
+                }
+            }
+        }
+    }
+
+    public function completeTaskAction(Request $request, $id) {
+        $token = $request->getSession()->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $usersRepository = $em->getRepository("LoginLoginBundle:Users");
+        if ($token) {
+            $currentUser = $usersRepository->findOneBy(array('username' => $token->getUsername()));
+
+            if ($currentUser) {
+                $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+
+
+                $tasksRepository = $em->getRepository("TaskBundle:Tasks");
+
+                $task = $tasksRepository->findOneBy(array('id' => $id));
+
+                if ($task) {
+                    $task->setStatus('Complete');
+                    try {
+                        $em->persist($task);
+                        $em->flush();
+                        return new Response('true');
+                    } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+                        return new Response('false');
+                    }
+                } else {
+                    return new Response("false");
+                }
+            }
+        }
+    }
+    
+    public function deleteTaskAction(Request $request, $id) {
+        $token = $request->getSession()->get('token');
+        $em = $this->getDoctrine()->getManager();
+        $usersRepository = $em->getRepository("LoginLoginBundle:Users");
+        if ($token) {
+            $currentUser = $usersRepository->findOneBy(array('username' => $token->getUsername()));
+
+            if ($currentUser) {
+                $fullname = $currentUser->getFirstname() . " " . $currentUser->getLastname();
+
+
+                $tasksRepository = $em->getRepository("TaskBundle:Tasks");
+
+                $task = $tasksRepository->findOneBy(array('id' => $id));
+
+                if ($task) {
+                    $task->setStatus('Inactive');
+                    try {
+                        $em->persist($task);
+                        $em->flush();
+                        return new Response('true');
+                    } catch (Doctrine\ORM\ORMInvalidArgumentException $e) {
+                        return new Response('false');
+                    }
                 } else {
                     return new Response("false");
                 }

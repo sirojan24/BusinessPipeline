@@ -3,19 +3,23 @@
     var extendColData = [];
     var initResponse;
 
+    var typeSharing;
+    var typeUsername;
+    var typeId;
+    
     {% if opportunity is defined %}
 
-        var typeSharing = '{{opportunity.getSharing()}}';
-        var typeUsername = '{{opportunity.getUsername()}}';
-        var typeId = {{opportunity.getId()}};
+        typeSharing = '{{opportunity.getSharing()}}';
+        typeUsername = '{{opportunity.getUsername()}}';
+        typeId = {{opportunity.getId()}};
     {% elseif contact is defined %}
-        var typeSharing = '';
-        var typeUsername = '{{contact.getUsername()}}';
-        var typeId = {{contact.getId()}};
+        typeSharing = '';
+        typeUsername = '{{contact.getUsername()}}';
+        typeId = {{contact.getId()}};
     {% elseif user is defined %}
-        var typeSharing = '';
-        var typeUsername = '{{user.getUsername()}}';
-        var typeId = {{user.getId()}};
+        typeSharing = '';
+        typeUsername = '{{user.getUsername()}}';
+        typeId = {{user.getId()}};
     {% endif %}
     
     $(document).ready(function () {
@@ -128,7 +132,7 @@
             var html = [];
             html.push('<div class"row">' +
                     '<div class="col-xs-4">' +
-                    '<table class="table" style="margin-left:42px; border: none !important;line-height: 5px;">' +
+                    '<table class="table" style="margin-left:42px; border: none !important;line-height: 5px;background-color: #fbfbfb;">' +
                     '<tr style="padding:0px;margin:0px;">' +
                     '<td style="border: none !important;width:30%"><small>Message</small></td>' +
                     '<td style="border: none !important;"><small>' + message + '</small></td>' +
@@ -172,9 +176,14 @@
                             '<i class="glyphicon glyphicon-chevron-down"></i>' +
                             '</button>' +
                             '<ul class="dropdown-menu" role="menu" style="min-width: 0px !important;">' +
+                {% if allOpedeal is defined %}
+                            '<li><a href="javascript:editTaskPopupInt(' + tempTask.id + ",'" + tempTask.typeSharing + "','" + tempTask.typeUsername + "'" + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
+                {% endif %}
+                {% if allOpedeal is not defined %}
                             '<li><a href="javascript:editTaskPopup(' + tempTask.id + ')"><i class="fa fa-pencil-square-o"></i> Edit</a></li>' +
-                            '<li><a href="#"><i class="fa fa-chevron-down"></i> Complete</a></li>' +
-                            '<li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>' +
+                {% endif %}            
+                            '<li><a href="javascript:completeTask(' + tempTask.id + ')"><i class="fa fa-chevron-down"></i> Complete</a></li>' +
+                            '<li><a href="javascript:deleteTask(' + tempTask.id + ')"><i class="fa fa-trash-o"></i> Delete</a></li>' +
                             '</ul>' +
                             '</div>' +
                             '</div>';
@@ -259,6 +268,13 @@
             }
         }
 
+        function editTaskPopupInt(id,sharing,username){
+            typeId = id;
+            typeSharing = sharing;
+            typeUsername = username;
+            editTaskPopup(id);
+        }
+        
         function editTaskPopup(taskId) {
             if (typeSharing != '') {
                 $.post('{{path('login_login_getusers')}}',
@@ -434,5 +450,55 @@
                     console.log("error occured in saving tasks", response);
                 }
             });
+        }
+        
+        function deleteTask (id){
+            var deletePath = '{{ path('task_delete_task',{'id':0} )}}';
+            deletePath = deletePath.substring(0, deletePath.length - 1);
+            $.post(deletePath + id,
+                        null,
+                function (response) {
+                    if (response !== "false") {
+                        removeEntryFromTable (id);
+                    } else {
+                        console.log("error occured in the mange opportunity in retriving shared users", response);
+                    }
+                });
+        }
+        
+        function completeTask (id){
+            var completePath = '{{ path('task_complete_task',{'id':0} )}}';
+            completePath = completePath.substring(0, completePath.length - 1);
+            $.post(completePath + id,
+                        null,
+                function (response) {
+                    if (response !== "false") {
+                        removeEntryFromTable (id);
+                    } else {
+                        console.log("error occured in the mange opportunity in retriving shared users", response);
+                    }
+                });
+        }
+        
+        function removeEntryFromTable (id){
+            $table.bootstrapTable('removeAll');
+            $table.bootstrapTable('showLoading');
+
+            var jsonString = JSON.parse(initResponse);
+            var filterContact = [];
+
+            for (var i = 0; i < jsonString.tasks.length; i++) {
+                var tempContact = jsonString.tasks[i];
+
+                if (id !== tempContact.id) {
+                    filterContact.push(tempContact);
+                }
+
+            }
+            var filterOpportunitiesArray = {'tasks': filterContact};
+            var jsonStr = JSON.stringify(filterOpportunitiesArray);
+            initResponse = jsonStr;
+            $table.bootstrapTable('hideLoading');
+            $table.bootstrapTable('append', convertData(jsonStr));
         }
     </script>

@@ -21,50 +21,54 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
     var extendColData = [];
     var initResponse;
 
+    var typeSharing;
+    var typeUsername;
+    var typeId;
+    
     ";
-        // line 6
+        // line 10
         if (array_key_exists("opportunity", $context)) {
-            // line 7
+            // line 11
             echo "
-        var typeSharing = '";
-            // line 8
+        typeSharing = '";
+            // line 12
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getSharing", array(), "method"), "html", null, true);
             echo "';
-        var typeUsername = '";
-            // line 9
+        typeUsername = '";
+            // line 13
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getUsername", array(), "method"), "html", null, true);
             echo "';
-        var typeId = ";
-            // line 10
+        typeId = ";
+            // line 14
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["opportunity"]) ? $context["opportunity"] : $this->getContext($context, "opportunity")), "getId", array(), "method"), "html", null, true);
             echo ";
     ";
         } elseif (array_key_exists("contact", $context)) {
-            // line 12
-            echo "        var typeSharing = '';
-        var typeUsername = '";
-            // line 13
+            // line 16
+            echo "        typeSharing = '';
+        typeUsername = '";
+            // line 17
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getUsername", array(), "method"), "html", null, true);
             echo "';
-        var typeId = ";
-            // line 14
+        typeId = ";
+            // line 18
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["contact"]) ? $context["contact"] : $this->getContext($context, "contact")), "getId", array(), "method"), "html", null, true);
             echo ";
     ";
         } elseif (array_key_exists("user", $context)) {
-            // line 16
-            echo "        var typeSharing = '';
-        var typeUsername = '";
-            // line 17
+            // line 20
+            echo "        typeSharing = '';
+        typeUsername = '";
+            // line 21
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "getUsername", array(), "method"), "html", null, true);
             echo "';
-        var typeId = ";
-            // line 18
+        typeId = ";
+            // line 22
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "getId", array(), "method"), "html", null, true);
             echo ";
     ";
         }
-        // line 20
+        // line 24
         echo "    
     \$(document).ready(function () {
             \$(\"#tableDiv\").show();
@@ -75,7 +79,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         function iniFillTableData() {
             \$table.bootstrapTable('showLoading');
             var data = '";
-        // line 29
+        // line 33
         echo twig_escape_filter($this->env, (isset($context["tasksArray"]) ? $context["tasksArray"] : $this->getContext($context, "tasksArray")), "html", null, true);
         echo "';
             var newString = data.replace(/&quot;/g, '\"');
@@ -93,7 +97,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         function fillTableData() {
             \$table.bootstrapTable('showLoading');
             var taskpath = '";
-        // line 44
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_get_task", array("type" => (isset($context["type"]) ? $context["type"] : $this->getContext($context, "type")), "id" => (isset($context["typeId"]) ? $context["typeId"] : $this->getContext($context, "typeId")))), "html", null, true);
         echo "';
             \$.post(taskpath, null,
@@ -135,7 +139,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             \$table.bootstrapTable('removeAll');
             \$table.bootstrapTable('showLoading');
             var path = '";
-        // line 83
+        // line 87
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_table_data_username_filter", array("username" => "0"));
         echo "';
             path = path.substring(0, path.length - 1);
@@ -154,7 +158,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
         function storePageSize(size) {
             \$.post('";
-        // line 99
+        // line 103
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                     {name: 'contactview', value: size},
@@ -188,7 +192,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             var html = [];
             html.push('<div class\"row\">' +
                     '<div class=\"col-xs-4\">' +
-                    '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;\">' +
+                    '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;background-color: #fbfbfb;\">' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
                     '<td style=\"border: none !important;width:30%\"><small>Message</small></td>' +
                     '<td style=\"border: none !important;\"><small>' + message + '</small></td>' +
@@ -221,13 +225,13 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
                 });
 
                 var editPath = '";
-        // line 163
+        // line 167
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_editcontactpageV2", array("id" => 0));
         echo "';
                 editPath = editPath.substring(0, editPath.length - 1);
 
                 var name = '";
-        // line 166
+        // line 170
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                 var action = '';
@@ -238,9 +242,24 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
                             '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                             '</button>' +
                             '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                            '<li><a href=\"javascript:editTaskPopup(' + tempTask.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                            '<li><a href=\"#\"><i class=\"fa fa-chevron-down\"></i> Complete</a></li>' +
-                            '<li><a href=\"#\"><i class=\"fa fa-trash-o\"></i> Delete</a></li>' +
+                ";
+        // line 179
+        if (array_key_exists("allOpedeal", $context)) {
+            // line 180
+            echo "                            '<li><a href=\"javascript:editTaskPopupInt(' + tempTask.id + \",'\" + tempTask.typeSharing + \"','\" + tempTask.typeUsername + \"'\" + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
+                ";
+        }
+        // line 182
+        echo "                ";
+        if ((!array_key_exists("allOpedeal", $context))) {
+            // line 183
+            echo "                            '<li><a href=\"javascript:editTaskPopup(' + tempTask.id + ')\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
+                ";
+        }
+        // line 184
+        echo "            
+                            '<li><a href=\"javascript:completeTask(' + tempTask.id + ')\"><i class=\"fa fa-chevron-down\"></i> Complete</a></li>' +
+                            '<li><a href=\"javascript:deleteTask(' + tempTask.id + ')\"><i class=\"fa fa-trash-o\"></i> Delete</a></li>' +
                             '</ul>' +
                             '</div>' +
                             '</div>';
@@ -286,7 +305,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
         function taskpopup(sharing, username, id, type) {
             if (sharing != '') {
                 \$.post('";
-        // line 222
+        // line 231
         echo $this->env->getExtension('routing')->getPath("login_login_getusers");
         echo "',
                         {sharedusers: sharing, user: username},
@@ -313,7 +332,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             } else {
 
                 \$.post('";
-        // line 246
+        // line 255
         echo $this->env->getExtension('routing')->getPath("login_login_getFullname");
         echo "',
                         {name: username},
@@ -331,10 +350,17 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             }
         }
 
+        function editTaskPopupInt(id,sharing,username){
+            typeId = id;
+            typeSharing = sharing;
+            typeUsername = username;
+            editTaskPopup(id);
+        }
+        
         function editTaskPopup(taskId) {
             if (typeSharing != '') {
                 \$.post('";
-        // line 264
+        // line 280
         echo $this->env->getExtension('routing')->getPath("login_login_getusers");
         echo "',
                         {sharedusers: typeSharing, user: typeUsername},
@@ -379,7 +405,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             } else {
 
                 \$.post('";
-        // line 306
+        // line 322
         echo $this->env->getExtension('routing')->getPath("login_login_getFullname");
         echo "',
                         {name: typeUsername},
@@ -428,7 +454,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             var tasktype = document.getElementById('tasktype').value;
 
             \$.post('";
-        // line 352
+        // line 368
         echo $this->env->getExtension('routing')->getPath("task_savetask");
         echo "',
                     {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, tasktype: tasktype, tasktypeid: tasktypeid},
@@ -483,7 +509,7 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             var taskid = document.getElementById('editTaskid').value;
             
             \$.post('";
-        // line 404
+        // line 420
         echo $this->env->getExtension('routing')->getPath("task_updatetask");
         echo "',
                     {priority: priority, due: due, shareduserselect: shareduserselect, visibility: visibility, taskname: taskname, tasknotes: tasknotes, tasktags: tasktags, id: taskid},
@@ -519,6 +545,62 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
                 }
             });
         }
+        
+        function deleteTask (id){
+            var deletePath = '";
+        // line 456
+        echo $this->env->getExtension('routing')->getPath("task_delete_task", array("id" => 0));
+        echo "';
+            deletePath = deletePath.substring(0, deletePath.length - 1);
+            \$.post(deletePath + id,
+                        null,
+                function (response) {
+                    if (response !== \"false\") {
+                        removeEntryFromTable (id);
+                    } else {
+                        console.log(\"error occured in the mange opportunity in retriving shared users\", response);
+                    }
+                });
+        }
+        
+        function completeTask (id){
+            var completePath = '";
+        // line 470
+        echo $this->env->getExtension('routing')->getPath("task_complete_task", array("id" => 0));
+        echo "';
+            completePath = completePath.substring(0, completePath.length - 1);
+            \$.post(completePath + id,
+                        null,
+                function (response) {
+                    if (response !== \"false\") {
+                        removeEntryFromTable (id);
+                    } else {
+                        console.log(\"error occured in the mange opportunity in retriving shared users\", response);
+                    }
+                });
+        }
+        
+        function removeEntryFromTable (id){
+            \$table.bootstrapTable('removeAll');
+            \$table.bootstrapTable('showLoading');
+
+            var jsonString = JSON.parse(initResponse);
+            var filterContact = [];
+
+            for (var i = 0; i < jsonString.tasks.length; i++) {
+                var tempContact = jsonString.tasks[i];
+
+                if (id !== tempContact.id) {
+                    filterContact.push(tempContact);
+                }
+
+            }
+            var filterOpportunitiesArray = {'tasks': filterContact};
+            var jsonStr = JSON.stringify(filterOpportunitiesArray);
+            initResponse = jsonStr;
+            \$table.bootstrapTable('hideLoading');
+            \$table.bootstrapTable('append', convertData(jsonStr));
+        }
     </script>";
     }
 
@@ -534,6 +616,6 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
 
     public function getDebugInfo()
     {
-        return array (  487 => 404,  432 => 352,  383 => 306,  338 => 264,  317 => 246,  290 => 222,  231 => 166,  225 => 163,  158 => 99,  139 => 83,  97 => 44,  79 => 29,  68 => 20,  63 => 18,  59 => 17,  56 => 16,  51 => 14,  47 => 13,  44 => 12,  39 => 10,  35 => 9,  31 => 8,  28 => 7,  26 => 6,  19 => 1,);
+        return array (  569 => 470,  552 => 456,  513 => 420,  458 => 368,  409 => 322,  364 => 280,  336 => 255,  309 => 231,  260 => 184,  256 => 183,  253 => 182,  249 => 180,  247 => 179,  235 => 170,  229 => 167,  162 => 103,  143 => 87,  101 => 48,  83 => 33,  72 => 24,  67 => 22,  63 => 21,  60 => 20,  55 => 18,  51 => 17,  48 => 16,  43 => 14,  39 => 13,  35 => 12,  32 => 11,  30 => 10,  19 => 1,);
     }
 }

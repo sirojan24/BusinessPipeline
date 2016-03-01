@@ -18,6 +18,14 @@ task_get_task:
     path:     /getTasks/{type}/{id}
     defaults: { _controller: TaskBundle:Default:getTasks }
     
+task_complete_task:    
+    path:     /completeTask/{id}
+    defaults: { _controller: TaskBundle:Default:completeTask }
+    
+task_delete_task:    
+    path:     /deleteTask/{id}
+    defaults: { _controller: TaskBundle:Default:deleteTask }
+    
 task_all_open_deal_tasks:
     path:     /allOpenDealTasks
     defaults: { _controller: TaskBundle:Default:allOpenDealTasks }

@@ -183,6 +183,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'task_get_task')), array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::getTasksAction',));
         }
 
+        // task_complete_task
+        if (0 === strpos($pathinfo, '/completeTask') && preg_match('#^/completeTask/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'task_complete_task')), array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::completeTaskAction',));
+        }
+
+        // task_delete_task
+        if (0 === strpos($pathinfo, '/deleteTask') && preg_match('#^/deleteTask/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'task_delete_task')), array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::deleteTaskAction',));
+        }
+
         // task_all_open_deal_tasks
         if ($pathinfo === '/allOpenDealTasks') {
             return array (  '_controller' => 'TaskBundle\\Controller\\DefaultController::allOpenDealTasksAction',  '_route' => 'task_all_open_deal_tasks',);
