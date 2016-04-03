@@ -34,16 +34,15 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
                             <a href=\"javascript:refreshProductTypeTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                            <a href=\"javascript:window.print()\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                        </span>
+                        ";
+        // line 22
+        echo "                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"javascript:exportProductTableDataToCSV()\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-text-o fa-lg\"></i></a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
+                            <a href=\"javascript:exportProductTableDataToPDF()\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
                         </span>
                     </div>
                 </div>
@@ -95,6 +94,6 @@ class __TwigTemplate_0457a3878ddadb9663fe392931d999ffda996135502fb29f4892bc14cdc
 
     public function getDebugInfo()
     {
-        return array (  83 => 61,  23 => 3,  21 => 2,  19 => 1,);
+        return array (  82 => 61,  41 => 22,  23 => 3,  21 => 2,  19 => 1,);
     }
 }

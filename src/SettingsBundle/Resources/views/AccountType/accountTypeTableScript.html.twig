@@ -241,4 +241,16 @@
         }
         return {};
     }
+    
+    function exportAccountTypeTableDataToPDF() {
+        var data = JSON.parse(initResponse);
+                
+        var userTablePDF = new exportPDF(data.accountTypes, "accountTypes.pdf", ["accountType", "notes", "status"], "Manage Products");
+    }
+    
+    function exportAccountTypeTableDataToCSV() {
+        var data = JSON.parse(initResponse);
+                
+        exportToCSV(data.accountTypes, "accountTypes.csv", ["accountType", "notes", "status"]);
+    }
 </script>

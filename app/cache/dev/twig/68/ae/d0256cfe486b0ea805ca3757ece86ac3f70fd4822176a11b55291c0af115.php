@@ -325,6 +325,18 @@ class __TwigTemplate_68aed0256cfe486b0ea805ca3757ece86ac3f70fd4822176a11b55291c0
         }
         return {};
     }
+    
+    function exportStageTableDataToPDF() {
+        var data = JSON.parse(initStageResponse);
+                
+        var userTablePDF = new exportPDF(data.stages, \"stages.pdf\", [\"stage\", \"saleChange\", \"notes\", \"status\"], \"Manage Stages\");
+    }
+    
+    function exportStageTableDataToCSV() {
+        var data = JSON.parse(initStageResponse);
+                
+        exportToCSV(data.stages, \"stages.csv\", [\"stage\", \"saleChange\", \"notes\", \"status\"]);
+    }
 </script>";
     }
 

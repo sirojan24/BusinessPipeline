@@ -286,4 +286,16 @@
         }
         return {};
     }
+    
+    function exportStageTableDataToPDF() {
+        var data = JSON.parse(initStageResponse);
+                
+        var userTablePDF = new exportPDF(data.stages, "stages.pdf", ["stage", "saleChange", "notes", "status"], "Manage Stages");
+    }
+    
+    function exportStageTableDataToCSV() {
+        var data = JSON.parse(initStageResponse);
+                
+        exportToCSV(data.stages, "stages.csv", ["stage", "saleChange", "notes", "status"]);
+    }
 </script>

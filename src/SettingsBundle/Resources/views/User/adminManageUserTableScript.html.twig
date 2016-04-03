@@ -297,4 +297,18 @@
                 }
                 return {};
             }
+            
+            function exportUserTableDataToPDF() {
+                var data = JSON.parse(userInitData);
+
+                var userTablePDF = new exportPDF(data.users, "users.pdf", ["firstname", "lastname", "username", "openDeals", "projectedRevenue", 
+                    "individualForecast", "wonDeals", "lossDeals"], "Manage Users");
+            }
+
+            function exportUserTableDataToCSV() {
+                var data = JSON.parse(userInitData);
+
+                exportToCSV(data.users, "users.csv", ["firstname", "lastname", "username", "openDeals", "projectedRevenue", 
+                    "individualForecast", "wonDeals", "lossDeals"]);
+            }
 </script>

@@ -280,6 +280,18 @@ class __TwigTemplate_69611d84ee98170315a5db3278406eb62cb9810aed02773ad996745f538
         }
         return {};
     }
+    
+    function exportAccountTypeTableDataToPDF() {
+        var data = JSON.parse(initResponse);
+                
+        var userTablePDF = new exportPDF(data.accountTypes, \"accountTypes.pdf\", [\"accountType\", \"notes\", \"status\"], \"Manage Products\");
+    }
+    
+    function exportAccountTypeTableDataToCSV() {
+        var data = JSON.parse(initResponse);
+                
+        exportToCSV(data.accountTypes, \"accountTypes.csv\", [\"accountType\", \"notes\", \"status\"]);
+    }
 </script>";
     }
 

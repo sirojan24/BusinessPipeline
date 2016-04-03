@@ -103,6 +103,8 @@ class __TwigTemplate_3c6e89ba57494634d819351a56f2e1b9e05c111868009b705323262804f
 
         return false;
     }
+    
+    
 </script>";
     }
 

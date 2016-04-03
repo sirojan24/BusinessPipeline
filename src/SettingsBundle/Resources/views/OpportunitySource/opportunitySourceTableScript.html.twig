@@ -238,4 +238,16 @@
         }
         return {};
     }
+    
+    function exportOpportunitySourceTableDataToPDF() {
+        var data = JSON.parse(initOpportunitySourceResponse);
+                
+        var userTablePDF = new exportPDF(data.opportunitySources, "opportunitySources.pdf", ["opportunitySource", "notes", "status"], "Manage Products");
+    }
+    
+    function exportOpportunitySourceTableDataToCSV() {
+        var data = JSON.parse(initOpportunitySourceResponse);
+                
+        exportToCSV(data.opportunitySources, "opportunitySources.csv", ["opportunitySource", "notes", "status"]);
+    }
 </script>

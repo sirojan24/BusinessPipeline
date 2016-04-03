@@ -277,6 +277,18 @@ class __TwigTemplate_a4369d8dc22f4ac13ca40af41564164fd05cdb0558d92f8e652a444c8f8
         }
         return {};
     }
+    
+    function exportOpportunitySourceTableDataToPDF() {
+        var data = JSON.parse(initOpportunitySourceResponse);
+                
+        var userTablePDF = new exportPDF(data.opportunitySources, \"opportunitySources.pdf\", [\"opportunitySource\", \"notes\", \"status\"], \"Manage Products\");
+    }
+    
+    function exportOpportunitySourceTableDataToCSV() {
+        var data = JSON.parse(initOpportunitySourceResponse);
+                
+        exportToCSV(data.opportunitySources, \"opportunitySources.csv\", [\"opportunitySource\", \"notes\", \"status\"]);
+    }
 </script>";
     }
 

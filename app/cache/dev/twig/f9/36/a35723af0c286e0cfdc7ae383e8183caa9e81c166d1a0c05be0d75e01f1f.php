@@ -336,6 +336,20 @@ class __TwigTemplate_f936a35723af0c286e0cfdc7ae383e8183caa9e81c166d1a0c05be0d75e
                 }
                 return {};
             }
+            
+            function exportUserTableDataToPDF() {
+                var data = JSON.parse(userInitData);
+
+                var userTablePDF = new exportPDF(data.users, \"users.pdf\", [\"firstname\", \"lastname\", \"username\", \"openDeals\", \"projectedRevenue\", 
+                    \"individualForecast\", \"wonDeals\", \"lossDeals\"], \"Manage Users\");
+            }
+
+            function exportUserTableDataToCSV() {
+                var data = JSON.parse(userInitData);
+
+                exportToCSV(data.users, \"users.csv\", [\"firstname\", \"lastname\", \"username\", \"openDeals\", \"projectedRevenue\", 
+                    \"individualForecast\", \"wonDeals\", \"lossDeals\"]);
+            }
 </script>";
     }
 

@@ -241,4 +241,16 @@
         }
         return {};
     }
+    
+    function exportProductTableDataToPDF() {
+        var data = JSON.parse(initProductTypeResponse);
+                
+        var userTablePDF = new exportPDF(data.productTypes, "products.pdf", ["productType", "notes", "status"], "Manage Products");
+    }
+    
+    function exportProductTableDataToCSV() {
+        var data = JSON.parse(initProductTypeResponse);
+                
+        exportToCSV(data.productTypes, "products.csv", ["productType", "notes", "status"]);
+    }
 </script>
