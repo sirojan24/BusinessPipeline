@@ -66,8 +66,26 @@
 </div>
 <script type="text/javascript">
     jQuery(function ($) {
-        //$('#addStageSalechance').number(true, 0);
-        $("#addStageSalechancenew").mask("99");
+        $('#addStageSalechancenew').number(true, 0);
+{#        $("#addStageSalechancenew").mask("99");#}
+    });
+    
+    $("#addStageSalechancenew").on('keydown', function(e){
+        //96 105 48 57#}
+        if ((48 <= e.keyCode && e.keyCode <= 57)) {
+            var value = $("#addStageSalechancenew").val();
+            if (parseInt($("#addStageSalechancenew").val() + (e.keyCode - 48), 10) > 100) {
+                e.preventDefault();
+            }
+        }
+        
+        if ((96 <= e.keyCode && e.keyCode <= 105)) {
+            var value = $("#addStageSalechancenew").val();
+            if (parseInt($("#addStageSalechancenew").val() + (e.keyCode - 97), 10) > 100) {
+                e.preventDefault();
+            }
+        }
+        
     });
 </script>
 {% include 'SettingsBundle:Stages:stageformScript.html.twig' %}

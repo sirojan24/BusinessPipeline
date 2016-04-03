@@ -17,8 +17,14 @@ class DashboardController extends Controller {
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
-
-            return $this->render('LoginLoginBundle:Default:addusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
+            
+            return $this->render('LoginLoginBundle:Default:addusers_v2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'fullname' => $fullname, 'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));
@@ -32,8 +38,14 @@ class DashboardController extends Controller {
             $repository = $em->getRepository("LoginLoginBundle:Users");
             $user = $repository->findOneBy(array('username' => $token->getUsername()));
             $fullname = $user->getFirstname() . " " . $user->getLastname();
+            $image = $user->getImage();
+            if ($image == '' || $image == null) {
+                $image = 'bundles_v2.0/img/Flobbies75x75/Popie.png';
+            }
 
-            return $this->render('LoginLoginBundle:Default:importusers_v2.html.twig', array('name' => $token->getUsername(), 'role' => $token->getRole(), 'fullname' => $fullname));
+            return $this->render('LoginLoginBundle:Default:importusers_v2.html.twig', 
+                    array('name' => $token->getUsername(), 'role' => $token->getRole(), 
+                        'fullname' => $fullname, 'image' => $image));
         } else {
 
             return $this->render('LoginLoginBundle:Default:signinV2.html.twig', array('errormsg' => 'Please Login your account before you proceed.'));

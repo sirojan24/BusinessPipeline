@@ -92,12 +92,31 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
 </div>
 <script type=\"text/javascript\">
     jQuery(function (\$) {
-        //\$('#addStageSalechance').number(true, 0);
-        \$(\"#addStageSalechancenew\").mask(\"99\");
+        \$('#addStageSalechancenew').number(true, 0);
+";
+        // line 71
+        echo "    });
+    
+    \$(\"#addStageSalechancenew\").on('keydown', function(e){
+        //96 105 48 57#}
+        if ((48 <= e.keyCode && e.keyCode <= 57)) {
+            var value = \$(\"#addStageSalechancenew\").val();
+            if (parseInt(\$(\"#addStageSalechancenew\").val() + (e.keyCode - 48), 10) > 100) {
+                e.preventDefault();
+            }
+        }
+        
+        if ((96 <= e.keyCode && e.keyCode <= 105)) {
+            var value = \$(\"#addStageSalechancenew\").val();
+            if (parseInt(\$(\"#addStageSalechancenew\").val() + (e.keyCode - 97), 10) > 100) {
+                e.preventDefault();
+            }
+        }
+        
     });
 </script>
 ";
-        // line 73
+        // line 91
         $this->env->loadTemplate("SettingsBundle:Stages:stageformScript.html.twig")->display($context);
     }
 
@@ -113,6 +132,6 @@ class __TwigTemplate_0ff70d083270a27014830b32acd1adaa314e91116e299224282aa8252fa
 
     public function getDebugInfo()
     {
-        return array (  101 => 73,  40 => 15,  24 => 2,  19 => 1,);
+        return array (  120 => 91,  98 => 71,  40 => 15,  24 => 2,  19 => 1,);
     }
 }

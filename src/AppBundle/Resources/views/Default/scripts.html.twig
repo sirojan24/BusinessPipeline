@@ -18,15 +18,26 @@
 <script src="{{asset('bundles_v2.0/dist/js/dropzone.js')}}"></script>
 
 <script>
+    var username = "";
+    {%if(user.getUsername() is defined)%}
+        username = '{{user.getUsername()}}';
+    {%endif%}
     function usernameAvailability() {
         $.post('{{path('login_login_uservalidateajax')}}',
                 {username: document.getElementById('username').value},
         function (response) {
             if (response == "true") {
-                document.getElementById('username').style.color = "#B94A48";
-                document.getElementById('username').style.backgroundColor = "#F2DEDE";
-                document.getElementById('username').style.border = "1px solid #EED3D7";
-                document.getElementById('usernameerror').innerHTML = "<font color = '#B94A48'>username already exists. try a different one.</font>";
+                if(username !== "" && document.getElementById('username').value === username){
+                    document.getElementById('username').style.color = "#468847";
+                    document.getElementById('username').style.backgroundColor = "#DFF0D8";
+                    document.getElementById('username').style.border = "1px solid #D6E9C6";
+                    document.getElementById('usernameerror').innerHTML = "";
+                } else {
+                    document.getElementById('username').style.color = "#B94A48";
+                    document.getElementById('username').style.backgroundColor = "#F2DEDE";
+                    document.getElementById('username').style.border = "1px solid #EED3D7";
+                    document.getElementById('usernameerror').innerHTML = "<font color = '#B94A48'>username already exists. try a different one.</font>";
+                }
             } else {
                 document.getElementById('username').style.color = "#468847";
                 document.getElementById('username').style.backgroundColor = "#DFF0D8";

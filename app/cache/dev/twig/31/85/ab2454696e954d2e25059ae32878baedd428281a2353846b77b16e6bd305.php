@@ -56,18 +56,36 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
         echo "\"></script>
 
 <script>
-    function usernameAvailability() {
-        \$.post('";
+    var username = \"\";
+    ";
         // line 22
+        if ($this->getAttribute((isset($context["user"]) ? $context["user"] : null), "getUsername", array(), "method", true, true)) {
+            // line 23
+            echo "        username = '";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "getUsername", array(), "method"), "html", null, true);
+            echo "';
+    ";
+        }
+        // line 25
+        echo "    function usernameAvailability() {
+        \$.post('";
+        // line 26
         echo $this->env->getExtension('routing')->getPath("login_login_uservalidateajax");
         echo "',
                 {username: document.getElementById('username').value},
         function (response) {
             if (response == \"true\") {
-                document.getElementById('username').style.color = \"#B94A48\";
-                document.getElementById('username').style.backgroundColor = \"#F2DEDE\";
-                document.getElementById('username').style.border = \"1px solid #EED3D7\";
-                document.getElementById('usernameerror').innerHTML = \"<font color = '#B94A48'>username already exists. try a different one.</font>\";
+                if(username !== \"\" && document.getElementById('username').value === username){
+                    document.getElementById('username').style.color = \"#468847\";
+                    document.getElementById('username').style.backgroundColor = \"#DFF0D8\";
+                    document.getElementById('username').style.border = \"1px solid #D6E9C6\";
+                    document.getElementById('usernameerror').innerHTML = \"\";
+                } else {
+                    document.getElementById('username').style.color = \"#B94A48\";
+                    document.getElementById('username').style.backgroundColor = \"#F2DEDE\";
+                    document.getElementById('username').style.border = \"1px solid #EED3D7\";
+                    document.getElementById('usernameerror').innerHTML = \"<font color = '#B94A48'>username already exists. try a different one.</font>\";
+                }
             } else {
                 document.getElementById('username').style.color = \"#468847\";
                 document.getElementById('username').style.backgroundColor = \"#DFF0D8\";
@@ -79,7 +97,7 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
     
     function fill(){
                         \$.post('";
-        // line 40
+        // line 51
         echo $this->env->getExtension('routing')->getPath("login_login_getcompanyajax");
         echo "',null, 
                     function(response){
@@ -133,6 +151,6 @@ class __TwigTemplate_3185ab2454696e954d2e25059ae32878baedd428281a2353846b77b16e6
 
     public function getDebugInfo()
     {
-        return array (  83 => 40,  62 => 22,  55 => 18,  50 => 16,  45 => 14,  32 => 4,  28 => 3,  24 => 2,  19 => 1,);
+        return array (  101 => 51,  73 => 26,  70 => 25,  64 => 23,  62 => 22,  55 => 18,  50 => 16,  45 => 14,  32 => 4,  28 => 3,  24 => 2,  19 => 1,);
     }
 }
