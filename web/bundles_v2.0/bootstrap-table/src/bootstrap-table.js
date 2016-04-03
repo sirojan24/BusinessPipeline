@@ -315,8 +315,8 @@
             refresh: 'glyphicon-refresh icon-refresh',
             toggle: 'glyphicon-list-alt icon-list-alt',
             columns: 'glyphicon-th icon-th',
-            detailOpen: 'glyphicon-chevron-right',
-            detailClose: 'glyphicon-chevron-down'
+            detailOpen: 'glyphicon-plus',
+            detailClose: 'glyphicon-minus'
         },
         rowStyle: function (row, index) {
             return {};

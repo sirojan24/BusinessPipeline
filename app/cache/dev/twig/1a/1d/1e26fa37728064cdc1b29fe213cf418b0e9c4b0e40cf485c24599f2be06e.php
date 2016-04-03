@@ -19,6 +19,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         echo "<script>
     var \$table = \$('#table');
     var extendColData = [];
+    var initResponse;
 
     \$(document).ready(function () {
         \$(\"#tableDiv\").show();
@@ -30,7 +31,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
         var filterUsers = [];
         
         var name = '";
-        // line 14
+        // line 15
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
         for (var i = 0; i < jsonString.users.length; i++) {
@@ -53,10 +54,11 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
     function iniFillTableData() {
         \$table.bootstrapTable('showLoading');
         var data = '";
-        // line 34
+        // line 35
         echo twig_escape_filter($this->env, (isset($context["userArray"]) ? $context["userArray"] : $this->getContext($context, "userArray")), "html", null, true);
         echo "';
         var newString = data.replace(/&quot;/g, '\"');
+        initResponse = newString;
         //var newString = JSON.parse(data);
         \$table.bootstrapTable('hideLoading');
         \$table.bootstrapTable('append', convertData(sortMyUsername(newString)));
@@ -70,7 +72,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
     function fillTableData() {
         \$table.bootstrapTable('showLoading');
         \$.post('";
-        // line 48
+        // line 50
         echo $this->env->getExtension('routing')->getPath("login_login_userTableData");
         echo "', null,
                 function (response) {
@@ -86,7 +88,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
     
     function storePageSize(size) {
         \$.post('";
-        // line 61
+        // line 63
         echo $this->env->getExtension('routing')->getPath("login_login_saveconfig");
         echo "',
                 {name: 'userview', value: size},
@@ -208,7 +210,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 rows = [];
 
     ";
-        // line 182
+        // line 184
         echo "                for (var i = 0; i < jsonString.users.length; i++) {
                     var tempUser = jsonString.users[i];
 
@@ -216,19 +218,19 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                     });
                     
                     var editPath = '";
-        // line 188
+        // line 190
         echo $this->env->getExtension('routing')->getPath("login_login_edituserpage", array("id" => 0));
         echo "';
                     editPath = editPath.substring(0, editPath.length - 1);
 
                     var openDealPath = '";
-        // line 191
+        // line 193
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("opportunity_opportunitycontactfilterV2", array("id" => 0, "filter" => 0)), "html", null, true);
         echo "';
                     openDealPath = openDealPath.substring(0, openDealPath.length - 3);
                     
                     var taskPath = '";
-        // line 194
+        // line 196
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("task_manage_task", array("type" => "user", "id" => 0)), "html", null, true);
         echo "';
                     taskPath = taskPath.substring(0, taskPath.length - 1);
@@ -250,7 +252,7 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                     
                     var action = '';
                     var name = '";
-        // line 213
+        // line 215
         echo twig_escape_filter($this->env, twig_lower_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))), "html", null, true);
         echo "';
                     if (name.toLowerCase() === tempUser.username.toLowerCase()) {
@@ -316,6 +318,20 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
                 }
                 return {};
             }
+            
+            function exportTableDataToCSV() {
+                var data = JSON.parse(initResponse);
+                
+                exportToCSV(data.users, \"users.csv\", [\"firstname\", \"lastname\", \"username\", \"openDeals\", \"projectedRevenue\", 
+                    \"individualForecast\", \"wonDeals\", \"lossDeals\"]);
+            }
+            
+            function exportTableDataToPDF() {
+                var data = JSON.parse(initResponse);
+                
+                var userTablePDF = new exportPDF(data.users, \"users.pdf\", [\"firstname\", \"lastname\", \"username\", \"openDeals\", \"projectedRevenue\", 
+                    \"individualForecast\", \"wonDeals\", \"lossDeals\"], \"Manage Users\");
+            }
 </script>";
     }
 
@@ -331,6 +347,6 @@ class __TwigTemplate_1a1d1e26fa37728064cdc1b29fe213cf418b0e9c4b0e40cf485c24599f2
 
     public function getDebugInfo()
     {
-        return array (  254 => 213,  232 => 194,  226 => 191,  220 => 188,  212 => 182,  90 => 61,  74 => 48,  57 => 34,  34 => 14,  19 => 1,);
+        return array (  256 => 215,  234 => 196,  228 => 193,  222 => 190,  214 => 184,  92 => 63,  76 => 50,  58 => 35,  35 => 15,  19 => 1,);
     }
 }

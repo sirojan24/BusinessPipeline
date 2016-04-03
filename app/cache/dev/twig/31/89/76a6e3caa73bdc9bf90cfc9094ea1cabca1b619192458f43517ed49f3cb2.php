@@ -592,30 +592,30 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
             var html = [];
             html.push('<div class\"row\">' +
                     '<div class=\"col-xs-4\">' +
-                    '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;background-color: #fbfbfb;\">' +
+                    '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 10px;background-color: #fbfbfb;\">' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;width:40%\"><small>Deal Account Type</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + deal_account_type + '</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;width:40%\"><small>Deal Account Type</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>' + deal_account_type + '</small></td>' +
                     '</tr>' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>Deal Source</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + deal_source + '</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>Deal Source</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>' + deal_source + '</small></td>' +
                     '</tr>' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>Open Deals</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + open_deals + '</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>Open Deals</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>' + open_deals + '</small></td>' +
                     '</tr>' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>Won Deals</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + won_deals + '</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>Won Deals</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>' + won_deals + '</small></td>' +
                     '</tr>' +
                     '<tr style=\"padding:0px;margin:0px;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>Lost Deals</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + lost_deals + '</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>Lost Deals</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>' + lost_deals + '</small></td>' +
                     '</tr>' +
                     '<tr style=\"padding:0px;margin:0px;border-bottom: 1px solid #DCDCDC;\">' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>Tags</small></td>' +
-                    '<td style=\"border: none !important;line-height: 5px;\"><small>' + tags + '</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>Tags</small></td>' +
+                    '<td style=\"border: none !important;line-height: 10px;\"><small>' + tags + '</small></td>' +
                     '</tr>' +
                     '</table>' +
                     '</div>' +
@@ -682,13 +682,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + editPath + tempOpportunity.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\" onclick=\"notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"javascript:notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"' + taskPath + tempOpportunity.id + '\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '<li><a href=\"javascript:sharingpopup(' + \"'\" + tempOpportunity.sharedUsers + \"'\" +
                                                     \",\" + revenue  + 
                                                     \",'\" + tempOpportunity.username  + \"'\" +
                                                     \",'\" + tempOpportunity.partnername  + \"'\" +
-                                                    \",\" + tempOpportunity.partnerpercentage  +
+                                                    \",'\" + tempOpportunity.partnerpercentage  + \"'\" +
                                                     ')\"><i class=\"fa fa-user\"></i> Sharing</a></li>' +
                                 '</ul>' +
                                 '</div>' +
@@ -701,7 +701,7 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                 '</button>' +
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + editPath + tempOpportunity.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\" onclick=\"notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"javascript:notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"' + taskPath + tempOpportunity.id + '\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '</ul>' +
                                 '</div>' +
@@ -720,13 +720,13 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                                         '<i class=\"glyphicon glyphicon-chevron-down\"></i>' +
                                         '</button>' +
                                         '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
-                                        '<li><a href=\"#\" onclick=\"notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                        '<li><a href=\"javascript:notespopup(' + tempOpportunity.id + ')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                         '<li><a href=\"' + taskPath + tempOpportunity.id + '\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                         '<li><a href=\"javascript:sharingpopup(' + \"'\" + tempOpportunity.sharedUsers + \"'\" +
                                                     \",\" + revenue  + 
                                                     \",'\" + tempOpportunity.username  + \"'\" +
                                                     \",'\" + tempOpportunity.partnername  + \"'\" +
-                                                    \",\" + tempOpportunity.partnerpercentage  +
+                                                    \",'\" + tempOpportunity.partnerpercentage  + \"'\" +
                                                     ')\"><i class=\"fa fa-user\"></i> Sharing</a></li>' +
                                         '</ul>' +
                                         '</div>' +
@@ -848,6 +848,76 @@ class __TwigTemplate_318976a6e3caa73bdc9bf90cfc9094ea1cabca1b619192458f43517ed49
                             );
                     style = '';
                 }
+            }
+            
+            function exportTableDataToPDF() {
+                var data = JSON.parse(initResponse);
+                var opportunities = [];
+                
+                \$.each(data.opportunities, function (index, tmp) {
+                    if (tmp.weighted_revenue == '-1') {
+                        tmp.weighted_revenue = tmp.weighted_revenue_all;
+                    }
+                    
+                    var mdate = new Date(tmp.expected_closed_date);
+                    if (tmp.expected_closed_date !== '') {
+                        var month = 1;
+                        if ((mdate.getMonth() + 1) < 10) {
+                            month = '0' + (mdate.getMonth() + 1);
+                        } else {
+                            month = mdate.getMonth() + 1;
+                        }
+                        var day = 1;
+                        if ((mdate.getDate()) < 10) {
+                            day = '0' + (mdate.getDate());
+                        } else {
+                            day = mdate.getDate();
+                        }
+                        tmp.expected_closed_date = month + '/' + day + '/' + mdate.getFullYear();
+                    } else {
+                        tmp.expected_closed_date = '';
+                    }
+                    
+                    opportunities.push(tmp);
+                });
+                
+                var dealTablePDF = new exportPDF(opportunities, \"deals.pdf\", 
+                [\"name\", \"company\", \"stage\", \"weighted_revenue\", \"projected_revenue\", 
+                    \"expected_closed_date\", \"owner\"], \"Manage Deals\");
+            }
+            
+            function exportTableDataToCSV() {
+                var data = JSON.parse(initResponse);
+                var opportunities = [];
+                
+                \$.each(data.opportunities, function (index, tmp) {
+                    if (tmp.weighted_revenue == '-1') {
+                        tmp.weighted_revenue = tmp.weighted_revenue_all;
+                    }
+                    
+                    var mdate = new Date(tmp.expected_closed_date);
+                    if (tmp.expected_closed_date !== '') {
+                        var month = 1;
+                        if ((mdate.getMonth() + 1) < 10) {
+                            month = '0' + (mdate.getMonth() + 1);
+                        } else {
+                            month = mdate.getMonth() + 1;
+                        }
+                        var day = 1;
+                        if ((mdate.getDate()) < 10) {
+                            day = '0' + (mdate.getDate());
+                        } else {
+                            day = mdate.getDate();
+                        }
+                        tmp.expected_closed_date = month + '/' + day + '/' + mdate.getFullYear();
+                    } else {
+                        tmp.expected_closed_date = '';
+                    }
+                    
+                    opportunities.push(tmp);
+                });
+                
+                exportToCSV(opportunities, \"deals.csv\", [\"name\", \"company\", \"stage\", \"weighted_revenue\", \"projected_revenue\", \"expected_closed_date\", \"owner\"]);
             }
 </script>";
     }

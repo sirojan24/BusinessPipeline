@@ -55,7 +55,7 @@ class __TwigTemplate_85084332a179264c92dd5fff9b48759fa532f2204081d92c19ea6c09c15
                         <div class=\"col-xs-3\">
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Due <span style=\"color:#FF0000;\">*</span></label>
-                                <input type=\"date\" class=\"form-control\" name=\"due\" id=\"editDue\">
+                                <input type=\"text\" class=\"form-control\" name=\"due\" id=\"editDue\">
                             </div>
                         </div>
                         <div class=\"col-xs-3\">
@@ -109,16 +109,18 @@ class __TwigTemplate_85084332a179264c92dd5fff9b48759fa532f2204081d92c19ea6c09c15
                 </form>
             </div>
             <div class=\"modal-footer\">
-                <a class=\"btn btn-default\" href=\"javascript:clearFilter()\">Cancel</a>
+                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>
                 <button id=\"savebutton\" class=\"btn btn-primary\" onclick=\"updateTask()\" data-dismiss=\"modal\">Save</button>
             </div>
         </div>
 
     </div>
 </div>
-
+<script>
+    \$('#editDue').datepicker({});
+</script>
 <script src=\"";
-        // line 97
+        // line 99
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
         echo "\"></script>";
     }
@@ -135,6 +137,6 @@ class __TwigTemplate_85084332a179264c92dd5fff9b48759fa532f2204081d92c19ea6c09c15
 
     public function getDebugInfo()
     {
-        return array (  122 => 97,  24 => 2,  19 => 1,);
+        return array (  124 => 99,  24 => 2,  19 => 1,);
     }
 }

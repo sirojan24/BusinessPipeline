@@ -89,34 +89,26 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
         // line 45
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
-        <script src=\"";
-        // line 46
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
-        echo "\"></script>
         
-        <script src=\"";
-        // line 48
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/notify/jquery-1.12.0.js"), "html", null, true);
-        echo "\"></script>
 
         <script src=\"";
-        // line 50
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/notify/bootstrap-notify.js"), "html", null, true);
         echo "\"></script>
         <link rel=\"stylesheet\" href=\"";
-        // line 51
+        // line 49
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/notify/animate.css"), "html", null, true);
         echo "\">
         <script>
             \$( document ).ready(function() {
                 ";
-        // line 54
+        // line 52
         if (array_key_exists("errormsg", $context)) {
-            // line 55
+            // line 53
             echo "                    \$.notify({
                             // options
                             message: '";
-            // line 57
+            // line 55
             echo twig_escape_filter($this->env, (isset($context["errormsg"]) ? $context["errormsg"] : $this->getContext($context, "errormsg")), "html", null, true);
             echo "'
                         }, {
@@ -125,14 +117,14 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
                         });
                 ";
         }
-        // line 63
+        // line 61
         echo "                ";
         if (array_key_exists("successmsg", $context)) {
-            // line 64
+            // line 62
             echo "                    \$.notify({
                             // options
                             message: '";
-            // line 66
+            // line 64
             echo twig_escape_filter($this->env, (isset($context["successmsg"]) ? $context["successmsg"] : $this->getContext($context, "successmsg")), "html", null, true);
             echo "'
                         }, {
@@ -141,7 +133,7 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
                         });
                 ";
         }
-        // line 72
+        // line 70
         echo "            });
         </script>
 
@@ -162,6 +154,6 @@ class __TwigTemplate_f327715fbfa9c5441ba7b74b3af379fb84a35b44af8fcc42cada569eb53
 
     public function getDebugInfo()
     {
-        return array (  145 => 72,  136 => 66,  132 => 64,  129 => 63,  120 => 57,  116 => 55,  114 => 54,  108 => 51,  104 => 50,  99 => 48,  94 => 46,  90 => 45,  86 => 44,  81 => 43,  78 => 42,  76 => 41,  71 => 38,  69 => 37,  62 => 32,  60 => 31,  44 => 17,  42 => 16,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  137 => 70,  128 => 64,  124 => 62,  121 => 61,  112 => 55,  108 => 53,  106 => 52,  100 => 49,  96 => 48,  90 => 45,  86 => 44,  81 => 43,  78 => 42,  76 => 41,  71 => 38,  69 => 37,  62 => 32,  60 => 31,  44 => 17,  42 => 16,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

@@ -1,0 +1,27 @@
+.note-tile .panel-footer{
+    background-color: #337AB7;
+    border-top: 1px solid #337AB7;
+    color: white;
+}
+
+.task-tile .panel-footer{
+    background-color: #F0AD4E;
+    border-top: 1px solid #F0AD4E;
+    color: white;
+}
+
+.deal-tile .panel-footer{
+    background-color: #5CB85C;
+    border-top: 1px solid #5CB85C;
+    color: white;
+}
+
+.contact-tile .panel-footer{
+    background-color: #D9EDF7;
+    border-top: 1px solid #D9EDF7;
+    color: white;
+}
+
+.panel-info .panel-heading{
+    border-color: #D9EDF7;
+}

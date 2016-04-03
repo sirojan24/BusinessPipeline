@@ -30,7 +30,7 @@
                         <div class="col-xs-8">
                             <div class="col-xs-5" style="padding-right:0px;padding-left:0px">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" id="fFromDate" name="fFromDate">
+                                    <input type="text" class="form-control" id="fFromDate" name="fFromDate">
                                 </div>
                             </div>
                             <div class="col-xs-2" style="padding-right:2px;padding-left: 22px;padding-top: 5px;">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-xs-5" style="padding-right:0px;padding-left:0px">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" id="fToDate" name="fToDate">
+                                    <input type="text" class="form-control" id="fToDate" name="fToDate">
                                 </div>
                             </div>
                         </div>
@@ -58,13 +58,13 @@
                                 </div>
                                 <div class="input-group">
                                     <label class="radio-inline">
-                                        <input type="radio" name="amountRadioOptions" id="less"/> <= S
+                                        <input type="radio" name="amountRadioOptions" id="less"/> <= $
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="amountRadioOptions" id="equal" checked="true"/> = S
+                                        <input type="radio" name="amountRadioOptions" id="equal" checked="true"/> = $
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="amountRadioOptions" id="great"/> => S
+                                        <input type="radio" name="amountRadioOptions" id="great"/> => $
                                     </label>
                                 </div>
                             </div>
@@ -135,4 +135,7 @@
     </div>
 </div>
 
-<script src="{{asset('bundles_v2.0/dist/js/bootstrap-tagsinput.js')}}"></script>
+<script>
+    $('#fFromDate').datepicker({});
+    $('#fToDate').datepicker({});
+</script>

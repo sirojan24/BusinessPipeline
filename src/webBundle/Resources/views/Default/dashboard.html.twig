@@ -1,300 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include 'AppBundle:Default:head.html.twig' %}		
+    {% include 'AppBundle:Default:head.html.twig' %}		
+    <link href="{{asset('bundles_v2.0/businessPipeline/css/dashboard.css')}}" rel="stylesheet">
+    <body>
 
-<body>
+        <div id="wrapper">
 
-    <div id="wrapper">
+            {% include 'AppBundle:Default:navigation.html.twig' %}
 
-        {% include 'AppBundle:Default:navigation.html.twig' %}
+            <!-- Page Content -->		
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Dashboard</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <a href="{{path('notes_managenotesV2')}}">
+                                <div class="panel panel-primary note-tile">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-comments fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">Notes</div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-     <!-- Page Content -->		
-	<div id="page-wrapper">
-		<div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                                    <div class="panel-footer">
+                                        {%if notesCount is defined%}
+                                            <span class="pull-left">You have {{notesCount}} Notes</span>
+                                        {%else%}
+                                            <span class="pull-left">You have no Note</span>
+                                        {%endif%}
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <a href="{{path('task_all_open_deal_tasks')}}">
+                                <div class="panel panel-yellow task-tile">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-tasks fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">Tasks</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        {%if tasksCount is defined%}
+                                            <span class="pull-left">You have {{tasksCount}} Tasks</span>
+                                        {%else%}
+                                            <span class="pull-left">You have no Task</span>
+                                        {%endif%}
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <a href="{{path('opportunity_manageopportunityV2')}}">
+                                <div class="panel panel-green deal-tile">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-usd fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">Deals</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        {%if opendealCount is defined%}
+                                            <span class="pull-left">You have {{opendealCount}} Deals</span>
+                                        {%else%}
+                                            <span class="pull-left">You have no Deal</span>
+                                        {%endif%}
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <a href="{{path('contacts_contacts_contacts')}}">
+                                <div class="panel panel-info contact-tile">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-user fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">Contacts</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        {%if contactsCount is defined%}
+                                            <span class="pull-left">You have {{contactsCount}} Contacts</span>
+                                        {%else%}
+                                            <span class="pull-left">You have no Contact</span>
+                                        {%endif%}
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    {#<div class="row">
+                        <div class="col-lg-8">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Earning goals & Earings
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right" role="menu">
+                                                <li><a href="#">Action</a>
+                                                </li>
+                                                <li><a href="#">Another action</a>
+                                                </li>
+                                                <li><a href="#">Something else here</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Separated link</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div id="earning-area-chart"></div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Won Vs Lost Deals
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right" id="wonLostDealsYearDropDown" role="menu">
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!-- /.col-lg-4 (nested) -->
+                                        <div class="col-lg-8">
+                                            <div id="won-lost-morris-bar-chart"></div>
+                                        </div>
+                                        <!-- /.col-lg-8 (nested) -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Deals By Contacts
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right" id="dealsByContactsDropDown" role="menu">
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!-- /.col-lg-4 (nested) -->
+                                        <div class="col-lg-12">
+                                            <div id="deals-by-contacts-morris-bar-chart"></div>
+                                        </div>
+                                        <!-- /.col-lg-8 (nested) -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Deals By Users
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right" id="dealsByUsersDropDown" role="menu">
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!-- /.col-lg-4 (nested) -->
+                                        <div class="col-lg-8">
+                                            <div id="deals-by-users-morris-bar-chart"></div>
+                                        </div>
+                                        <!-- /.col-lg-8 (nested) -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            
+                        </div>
+                        <!-- /.col-lg-8 -->
+                        <div class="col-lg-4">
+                            
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Deal By Stages
+                                </div>
+                                <div class="panel-body">
+                                    <div id="deals-donut-chart"></div>
+                                    <a href="javascript:showHideWonLostOnDonutChart()" class="btn btn-default btn-block" id="showHideWonLostOnDonutChartTag">
+                                        View Won And Lost Details</a>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Deal By Sources
+                                </div>
+                                <div class="panel-body">
+                                    <div id="deal-sources-donut-chart"></div>
+                                    <a href="javascript:showHideWonLostOnDealSourcesDonutChart()" class="btn btn-default btn-block" 
+                                       id="showHideWonLostOnDealSourcesDonutChartTag">View Won And Lost Details</a>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Deal By Product Types
+                                </div>
+                                <div class="panel-body">
+                                    <div id="deal-product-types-donut-chart"></div>
+                                    <a href="javascript:showHideWonLostOnDealProductTypesDonutChart()" class="btn btn-default btn-block" 
+                                       id="showHideWonLostOnDealProductTypesDonutChartTag">View Won And Lost Details</a>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            
+                        </div>
+                        <!-- /.col-lg-4 -->
+                    </div>#}
+                    <!-- /.row -->
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Notes</div>
-                                    <div>{%if notesCount is defined%}{{notesCount}}{%endif%}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{path('notes_managenotesV2')}}">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Notes</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Tasks</div>
-                                    <div>{%if tasksCount is defined%}{{tasksCount}}{%endif%}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{path('task_all_open_deal_tasks')}}">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Tasks</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-usd fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Deals</div>
-                                    <div>{%if opendealCount is defined%}{{opendealCount}}{%endif%}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{path('opportunity_manageopportunityV2')}}">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Deals</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Contacts</div>
-                                    <div>{%if contactsCount is defined%}{{contactsCount}}{%endif%}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{path('contacts_contacts_contacts')}}">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Earning goals & Earings
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="earning-area-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Won Vs Lost Deals
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" id="wonLostDealsYearDropDown" role="menu">
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="won-lost-morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Deals By Contacts
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" id="dealsByContactsDropDown" role="menu">
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-12">
-                                    <div id="deals-by-contacts-morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Deals By Users
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" id="dealsByUsersDropDown" role="menu">
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="deals-by-users-morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Deal By Stages
-                        </div>
-                        <div class="panel-body">
-                            <div id="deals-donut-chart"></div>
-                            <a href="javascript:showHideWonLostOnDonutChart()" class="btn btn-default btn-block" id="showHideWonLostOnDonutChartTag">
-                                View Won And Lost Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Deal By Sources
-                        </div>
-                        <div class="panel-body">
-                            <div id="deal-sources-donut-chart"></div>
-                            <a href="javascript:showHideWonLostOnDealSourcesDonutChart()" class="btn btn-default btn-block" 
-                               id="showHideWonLostOnDealSourcesDonutChartTag">View Won And Lost Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Deal By Product Types
-                        </div>
-                        <div class="panel-body">
-                            <div id="deal-product-types-donut-chart"></div>
-                            <a href="javascript:showHideWonLostOnDealProductTypesDonutChart()" class="btn btn-default btn-block" 
-                               id="showHideWonLostOnDealProductTypesDonutChartTag">View Won And Lost Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
-		</div>
+            <!-- /#page-wrapper -->
+
+            {% include 'LoginLoginBundle:Default:footer_v2.html.twig' %}
+
         </div>
-        <!-- /#page-wrapper -->
-		
-		 {% include 'LoginLoginBundle:Default:footer_v2.html.twig' %}
+        <!-- /#wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
-
-	{% include 'AppBundle:Default:scripts.html.twig' %}
+        {% include 'AppBundle:Default:scripts.html.twig' %}
         <script src="{{asset('bundles_v2.0/dist/js/sb-admin-2.js')}}"></script>
         <script src="{{asset('bundles_v2.0/bower_components/raphael/raphael-min.js')}}"></script>
         <script src="{{asset('bundles_v2.0/bower_components/morrisjs/morris.js')}}"></script>
         <script src="{{asset('bundles_v2.0/js/morris-data.js')}}"></script>
 
-</body>
-{% include 'webBundle:Default:donutChartScript.html.twig' %}
-{% include 'webBundle:Default:barChartScript.html.twig' %}
-{% include 'webBundle:Default:dealsByContactBarChartScript.html.twig' %}
-{% include 'webBundle:Default:dealsByUserBarChartScript.html.twig' %}
-{% include 'webBundle:Default:earningAreaChartScript.html.twig' %}
+    </body>
+    {% include 'webBundle:Default:donutChartScript.html.twig' %}
+    {% include 'webBundle:Default:barChartScript.html.twig' %}
+    {% include 'webBundle:Default:dealsByContactBarChartScript.html.twig' %}
+    {% include 'webBundle:Default:dealsByUserBarChartScript.html.twig' %}
+    {% include 'webBundle:Default:earningAreaChartScript.html.twig' %}
 </html>

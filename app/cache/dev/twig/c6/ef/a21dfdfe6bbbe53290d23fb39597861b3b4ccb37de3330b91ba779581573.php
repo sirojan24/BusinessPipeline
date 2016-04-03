@@ -29,19 +29,19 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
             // line 9
             echo "                                <a href=\"";
             echo $this->env->getExtension('routing')->getPath("opportunity_manageopportunityV2");
-            echo "\" style=\"color: black;\"> << Back to Deals</a>
+            echo "\" style=\"color: black;\"><i class=\"fa fa-reply\"></i></a>
                             ";
         } elseif (array_key_exists("contact", $context)) {
             // line 11
             echo "                                <a href=\"";
             echo $this->env->getExtension('routing')->getPath("contacts_contacts_contacts");
-            echo "\" style=\"color: black;\"> << Back to Contacts</a>
+            echo "\" style=\"color: black;\"><i class=\"fa fa-reply\"></i></a>
                             ";
         } elseif (array_key_exists("user", $context)) {
             // line 13
             echo "                                <a href=\"";
             echo $this->env->getExtension('routing')->getPath("login_login_users");
-            echo "\" style=\"color: black;\"> << Back to Users</a>
+            echo "\" style=\"color: black;\"><i class=\"fa fa-reply\"></i></a>
                             ";
         }
         // line 15
@@ -98,10 +98,10 @@ class __TwigTemplate_c6efa21dfdfe6bbbe53290d23fb39597861b3b4ccb37de3330b91ba7795
                             <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-text-o fa-lg\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
+                            <a href=\"javascript:exportTableDataToCSV()\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
+                            <a href=\"javascript:exportTableDataToPDF()\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
                         </span>
                     </div>
                 </div>

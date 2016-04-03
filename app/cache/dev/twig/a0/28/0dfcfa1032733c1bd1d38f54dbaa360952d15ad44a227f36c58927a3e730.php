@@ -55,7 +55,7 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                         <div class=\"col-xs-3\">
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Due <span style=\"color:#FF0000;\">*</span></label>
-                                <input type=\"date\" class=\"form-control\" name=\"due\" id=\"due\">
+                                <input type=\"text\" class=\"form-control\" name=\"due\" id=\"due\">
                             </div>
                         </div>
                         <div class=\"col-xs-3\">
@@ -82,7 +82,7 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Task Name <span style=\"color:#FF0000;\">*</span></label>
                                 <input type=\"text\" id=\"taskname\" placeholder=\"Task name\" class=\"form-control\" 
-                                       name=\"notename\" data-parsley-trigger=\"keyup\" required/>
+                                       name=\"notename\" id=\"notename\" data-parsley-trigger=\"keyup\" required/>
                             </div>
                         </div>
                     </div>
@@ -91,8 +91,8 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
                         <div class=\"col-xs-12\">
                             <div class=\"form-group\" id=\"filterStageDiv\">
                                 <label for=\"firstname\">Description</label>
-                                <textarea  id=\"tasknotes\" placeholder=\"Notes\"  name=\"notes\" class=\"form-control\" 
-                                           data-parsley-trigger=\"keyup\" rows=\"4\"></textarea>
+                                <textarea  id=\"tasknotes\" placeholder=\"Notes\" name=\"notes\" class=\"form-control\" 
+                                           id=\"notes\" data-parsley-trigger=\"keyup\" rows=\"4\"></textarea>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,14 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
 <script src=\"";
         // line 98
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
-        echo "\"></script>";
+        echo "\"></script>
+";
+        // line 99
+        $this->env->loadTemplate("TaskBundle:Default:taskModalScript.html.twig")->display($context);
+        // line 100
+        echo "<script>
+\$('#due').datepicker({});
+</script>";
     }
 
     public function getTemplateName()
@@ -136,6 +143,6 @@ class __TwigTemplate_a0280dfcfa1032733c1bd1d38f54dbaa360952d15ad44a227f36c58927a
 
     public function getDebugInfo()
     {
-        return array (  123 => 98,  24 => 2,  19 => 1,);
+        return array (  129 => 100,  127 => 99,  123 => 98,  24 => 2,  19 => 1,);
     }
 }

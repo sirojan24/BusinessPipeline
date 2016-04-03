@@ -1,6 +1,7 @@
 <script>
     var $table = $('#table');
     var extendColData = [];
+    var initResponse;
 
     $(document).ready(function () {
         $("#tableDiv").show();
@@ -33,6 +34,7 @@
         $table.bootstrapTable('showLoading');
         var data = '{{userArray}}';
         var newString = data.replace(/&quot;/g, '"');
+        initResponse = newString;
         //var newString = JSON.parse(data);
         $table.bootstrapTable('hideLoading');
         $table.bootstrapTable('append', convertData(sortMyUsername(newString)));
@@ -273,5 +275,19 @@
                     };
                 }
                 return {};
+            }
+            
+            function exportTableDataToCSV() {
+                var data = JSON.parse(initResponse);
+                
+                exportToCSV(data.users, "users.csv", ["firstname", "lastname", "username", "openDeals", "projectedRevenue", 
+                    "individualForecast", "wonDeals", "lossDeals"]);
+            }
+            
+            function exportTableDataToPDF() {
+                var data = JSON.parse(initResponse);
+                
+                var userTablePDF = new exportPDF(data.users, "users.pdf", ["firstname", "lastname", "username", "openDeals", "projectedRevenue", 
+                    "individualForecast", "wonDeals", "lossDeals"], "Manage Users");
             }
 </script>

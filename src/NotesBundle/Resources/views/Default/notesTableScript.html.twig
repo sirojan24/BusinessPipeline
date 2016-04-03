@@ -127,4 +127,17 @@
         }
         return {};
     }
+    
+    function exportTableDataToCSV() {
+        var data = JSON.parse(initResponse);
+                
+        exportToCSV(data.notes, "notes.csv", ["content", "dateAndTime", "owner"]);
+    }
+    
+    function exportTableDataToPDF() {
+        var data = JSON.parse(initResponse);
+                
+        var userTablePDF = new exportPDF(data.notes, "notes.pdf", 
+                ["content", "dateAndTime", "owner"], "Manage Notes");
+    }
 </script>

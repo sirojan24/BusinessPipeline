@@ -203,7 +203,7 @@
     function updateUserRevenue() {
         amount = $('#modalrevenue').val();
         var commision = document.getElementById('commisionnonoriginator').value;
-        commision = commision.substring(0, commision.length - 1);
+        //commision = commision.substring(0, commision.length - 1);
         document.getElementById('individualrevenue').value = ((amount * commision) / 100).toLocaleString();
     }
 

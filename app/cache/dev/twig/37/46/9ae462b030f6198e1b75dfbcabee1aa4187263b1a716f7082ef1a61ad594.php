@@ -151,6 +151,19 @@ class __TwigTemplate_37469ae462b030f6198e1b75dfbcabee1aa4187263b1a716f7082ef1a61
         }
         return {};
     }
+    
+    function exportTableDataToCSV() {
+        var data = JSON.parse(initResponse);
+                
+        exportToCSV(data.notes, \"notes.csv\", [\"content\", \"dateAndTime\", \"owner\"]);
+    }
+    
+    function exportTableDataToPDF() {
+        var data = JSON.parse(initResponse);
+                
+        var userTablePDF = new exportPDF(data.notes, \"notes.pdf\", 
+                [\"content\", \"dateAndTime\", \"owner\"], \"Manage Notes\");
+    }
 </script>";
     }
 

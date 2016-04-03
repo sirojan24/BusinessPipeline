@@ -26,7 +26,6 @@ class __TwigTemplate_747e8d75672471c05acc11062c1a6a1009f350e041ccd36b46c4212a522
                 {sharedusers: sharing, user: username},
         function (response) {
             if (response !== \"false\") {
-                console.log(\"@@@@@@@@@\", response);
                 var responseData = JSON.parse(response);
                 var nonoriginpercentage = 0;
                 for (i = 0; i < responseData.sharing.length; i++) {
@@ -107,11 +106,9 @@ class __TwigTemplate_747e8d75672471c05acc11062c1a6a1009f350e041ccd36b46c4212a522
                 }
 
                ";
-        // line 102
+        // line 101
         echo "
                 showSharedUserModal(dataArray);
-
-                console.log(sharing, nonoriginators, originator, totalpercentage);
 
             } else {
                 console.log(\"error occured in the mange opportunity in retriving shared users\", response);
@@ -133,6 +130,6 @@ class __TwigTemplate_747e8d75672471c05acc11062c1a6a1009f350e041ccd36b46c4212a522
 
     public function getDebugInfo()
     {
-        return array (  111 => 102,  24 => 4,  19 => 1,);
+        return array (  110 => 101,  24 => 4,  19 => 1,);
     }
 }

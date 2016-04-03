@@ -19,364 +19,235 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
         echo "<!DOCTYPE html>
 <html lang=\"en\">
 
-";
+    ";
         // line 4
         $this->env->loadTemplate("AppBundle:Default:head.html.twig")->display($context);
         echo "\t\t
+    <link href=\"";
+        // line 5
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/businessPipeline/css/dashboard.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\">
+    <body>
 
-<body>
+        <div id=\"wrapper\">
 
-    <div id=\"wrapper\">
-
-        ";
+            ";
         // line 10
         $this->env->loadTemplate("AppBundle:Default:navigation.html.twig")->display($context);
         // line 11
         echo "
-     <!-- Page Content -->\t\t
-\t<div id=\"page-wrapper\">
-\t\t<div class=\"container-fluid\">
-            <div class=\"row\">
-                <div class=\"col-lg-12\">
-                    <h1 class=\"page-header\">Dashboard</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class=\"row\">
-                <div class=\"col-lg-3 col-md-6\">
-                    <div class=\"panel panel-primary\">
-                        <div class=\"panel-heading\">
-                            <div class=\"row\">
-                                <div class=\"col-xs-3\">
-                                    <i class=\"fa fa-comments fa-5x\"></i>
-                                </div>
-                                <div class=\"col-xs-9 text-right\">
-                                    <div class=\"huge\">Notes</div>
-                                    <div>";
-        // line 32
-        if (array_key_exists("notesCount", $context)) {
-            echo twig_escape_filter($this->env, (isset($context["notesCount"]) ? $context["notesCount"] : $this->getContext($context, "notesCount")), "html", null, true);
-        }
-        echo "</div>
-                                </div>
-                            </div>
+            <!-- Page Content -->\t\t
+            <div id=\"page-wrapper\">
+                <div class=\"container-fluid\">
+                    <div class=\"row\">
+                        <div class=\"col-lg-12\">
+                            <h1 class=\"page-header\">Dashboard</h1>
                         </div>
-                        <a href=\"";
-        // line 36
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class=\"row\">
+                        <div class=\"col-lg-3 col-md-6\">
+                            <a href=\"";
+        // line 24
         echo $this->env->getExtension('routing')->getPath("notes_managenotesV2");
         echo "\">
-                            <div class=\"panel-footer\">
-                                <span class=\"pull-left\">View Notes</span>
-                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                                <div class=\"clearfix\"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class=\"col-lg-3 col-md-6\">
-                    <div class=\"panel panel-yellow\">
-                        <div class=\"panel-heading\">
-                            <div class=\"row\">
-                                <div class=\"col-xs-3\">
-                                    <i class=\"fa fa-tasks fa-5x\"></i>
-                                </div>
-                                <div class=\"col-xs-9 text-right\">
-                                    <div class=\"huge\">Tasks</div>
-                                    <div>";
-        // line 54
-        if (array_key_exists("tasksCount", $context)) {
-            echo twig_escape_filter($this->env, (isset($context["tasksCount"]) ? $context["tasksCount"] : $this->getContext($context, "tasksCount")), "html", null, true);
+                                <div class=\"panel panel-primary note-tile\">
+                                    <div class=\"panel-heading\">
+                                        <div class=\"row\">
+                                            <div class=\"col-xs-3\">
+                                                <i class=\"fa fa-comments fa-5x\"></i>
+                                            </div>
+                                            <div class=\"col-xs-9 text-right\">
+                                                <div class=\"huge\">Notes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"panel-footer\">
+                                        ";
+        // line 38
+        if (array_key_exists("notesCount", $context)) {
+            // line 39
+            echo "                                            <span class=\"pull-left\">You have ";
+            echo twig_escape_filter($this->env, (isset($context["notesCount"]) ? $context["notesCount"] : $this->getContext($context, "notesCount")), "html", null, true);
+            echo " Notes</span>
+                                        ";
+        } else {
+            // line 41
+            echo "                                            <span class=\"pull-left\">You have no Note</span>
+                                        ";
         }
-        echo "</div>
+        // line 43
+        echo "                                        <div class=\"clearfix\"></div>
+                                    </div>
+
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <a href=\"";
-        // line 58
+                        <div class=\"col-lg-3 col-md-6\">
+                            <a href=\"";
+        // line 50
         echo $this->env->getExtension('routing')->getPath("task_all_open_deal_tasks");
         echo "\">
-                            <div class=\"panel-footer\">
-                                <span class=\"pull-left\">View Tasks</span>
-                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                                <div class=\"clearfix\"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class=\"col-lg-3 col-md-6\">
-                    <div class=\"panel panel-green\">
-                        <div class=\"panel-heading\">
-                            <div class=\"row\">
-                                <div class=\"col-xs-3\">
-                                    <i class=\"fa fa-usd fa-5x\"></i>
-                                </div>
-                                <div class=\"col-xs-9 text-right\">
-                                    <div class=\"huge\">Deals</div>
-                                    <div>";
-        // line 76
-        if (array_key_exists("opendealCount", $context)) {
-            echo twig_escape_filter($this->env, (isset($context["opendealCount"]) ? $context["opendealCount"] : $this->getContext($context, "opendealCount")), "html", null, true);
+                                <div class=\"panel panel-yellow task-tile\">
+                                    <div class=\"panel-heading\">
+                                        <div class=\"row\">
+                                            <div class=\"col-xs-3\">
+                                                <i class=\"fa fa-tasks fa-5x\"></i>
+                                            </div>
+                                            <div class=\"col-xs-9 text-right\">
+                                                <div class=\"huge\">Tasks</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=\"panel-footer\">
+                                        ";
+        // line 63
+        if (array_key_exists("tasksCount", $context)) {
+            // line 64
+            echo "                                            <span class=\"pull-left\">You have ";
+            echo twig_escape_filter($this->env, (isset($context["tasksCount"]) ? $context["tasksCount"] : $this->getContext($context, "tasksCount")), "html", null, true);
+            echo " Tasks</span>
+                                        ";
+        } else {
+            // line 66
+            echo "                                            <span class=\"pull-left\">You have no Task</span>
+                                        ";
         }
-        echo "</div>
+        // line 68
+        echo "                                        <div class=\"clearfix\"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <a href=\"";
-        // line 80
+                        <div class=\"col-lg-3 col-md-6\">
+                            <a href=\"";
+        // line 74
         echo $this->env->getExtension('routing')->getPath("opportunity_manageopportunityV2");
         echo "\">
-                            <div class=\"panel-footer\">
-                                <span class=\"pull-left\">View Deals</span>
-                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                                <div class=\"clearfix\"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class=\"col-lg-3 col-md-6\">
-                    <div class=\"panel panel-info\">
-                        <div class=\"panel-heading\">
-                            <div class=\"row\">
-                                <div class=\"col-xs-3\">
-                                    <i class=\"fa fa-user fa-5x\"></i>
-                                </div>
-                                <div class=\"col-xs-9 text-right\">
-                                    <div class=\"huge\">Contacts</div>
-                                    <div>";
-        // line 98
-        if (array_key_exists("contactsCount", $context)) {
-            echo twig_escape_filter($this->env, (isset($context["contactsCount"]) ? $context["contactsCount"] : $this->getContext($context, "contactsCount")), "html", null, true);
+                                <div class=\"panel panel-green deal-tile\">
+                                    <div class=\"panel-heading\">
+                                        <div class=\"row\">
+                                            <div class=\"col-xs-3\">
+                                                <i class=\"fa fa-usd fa-5x\"></i>
+                                            </div>
+                                            <div class=\"col-xs-9 text-right\">
+                                                <div class=\"huge\">Deals</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=\"panel-footer\">
+                                        ";
+        // line 87
+        if (array_key_exists("opendealCount", $context)) {
+            // line 88
+            echo "                                            <span class=\"pull-left\">You have ";
+            echo twig_escape_filter($this->env, (isset($context["opendealCount"]) ? $context["opendealCount"] : $this->getContext($context, "opendealCount")), "html", null, true);
+            echo " Deals</span>
+                                        ";
+        } else {
+            // line 90
+            echo "                                            <span class=\"pull-left\">You have no Deal</span>
+                                        ";
         }
-        echo "</div>
+        // line 92
+        echo "
+                                        <div class=\"clearfix\"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <a href=\"";
-        // line 102
+                        <div class=\"col-lg-3 col-md-6\">
+                            <a href=\"";
+        // line 99
         echo $this->env->getExtension('routing')->getPath("contacts_contacts_contacts");
         echo "\">
-                            <div class=\"panel-footer\">
-                                <span class=\"pull-left\">View Details</span>
-                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>
-                                <div class=\"clearfix\"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class=\"row\">
-                <div class=\"col-lg-8\">
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Earning goals & Earings
-                            <div class=\"pull-right\">
-                                <div class=\"btn-group\">
-                                    <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">
-                                        Actions
-                                        <span class=\"caret\"></span>
-                                    </button>
-                                    <ul class=\"dropdown-menu pull-right\" role=\"menu\">
-                                        <li><a href=\"#\">Action</a>
-                                        </li>
-                                        <li><a href=\"#\">Another action</a>
-                                        </li>
-                                        <li><a href=\"#\">Something else here</a>
-                                        </li>
-                                        <li class=\"divider\"></li>
-                                        <li><a href=\"#\">Separated link</a>
-                                        </li>
-                                    </ul>
+                                <div class=\"panel panel-info contact-tile\">
+                                    <div class=\"panel-heading\">
+                                        <div class=\"row\">
+                                            <div class=\"col-xs-3\">
+                                                <i class=\"fa fa-user fa-5x\"></i>
+                                            </div>
+                                            <div class=\"col-xs-9 text-right\">
+                                                <div class=\"huge\">Contacts</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=\"panel-footer\">
+                                        ";
+        // line 112
+        if (array_key_exists("contactsCount", $context)) {
+            // line 113
+            echo "                                            <span class=\"pull-left\">You have ";
+            echo twig_escape_filter($this->env, (isset($context["contactsCount"]) ? $context["contactsCount"] : $this->getContext($context, "contactsCount")), "html", null, true);
+            echo " Contacts</span>
+                                        ";
+        } else {
+            // line 115
+            echo "                                            <span class=\"pull-left\">You have no Contact</span>
+                                        ";
+        }
+        // line 117
+        echo "                                        <div class=\"clearfix\"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class=\"panel-body\">
-                            <div id=\"earning-area-chart\"></div>
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Won Vs Lost Deals
-                            <div class=\"pull-right\">
-                                <div class=\"btn-group\">
-                                    <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">
-                                        Actions
-                                        <span class=\"caret\"></span>
-                                    </button>
-                                    <ul class=\"dropdown-menu pull-right\" id=\"wonLostDealsYearDropDown\" role=\"menu\">
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class=\"panel-body\">
-                            <div class=\"row\">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class=\"col-lg-8\">
-                                    <div id=\"won-lost-morris-bar-chart\"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                    <!-- /.panel -->
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deals By Contacts
-                            <div class=\"pull-right\">
-                                <div class=\"btn-group\">
-                                    <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">
-                                        Actions
-                                        <span class=\"caret\"></span>
-                                    </button>
-                                    <ul class=\"dropdown-menu pull-right\" id=\"dealsByContactsDropDown\" role=\"menu\">
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class=\"panel-body\">
-                            <div class=\"row\">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class=\"col-lg-12\">
-                                    <div id=\"deals-by-contacts-morris-bar-chart\"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                    <!-- /.panel -->
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deals By Users
-                            <div class=\"pull-right\">
-                                <div class=\"btn-group\">
-                                    <button type=\"button\" class=\"btn btn-default btn-xs dropdown-toggle\" data-toggle=\"dropdown\">
-                                        Actions
-                                        <span class=\"caret\"></span>
-                                    </button>
-                                    <ul class=\"dropdown-menu pull-right\" id=\"dealsByUsersDropDown\" role=\"menu\">
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class=\"panel-body\">
-                            <div class=\"row\">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class=\"col-lg-8\">
-                                    <div id=\"deals-by-users-morris-bar-chart\"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class=\"col-lg-4\">
-                    
-                    <!-- /.panel -->
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deal By Stages
-                        </div>
-                        <div class=\"panel-body\">
-                            <div id=\"deals-donut-chart\"></div>
-                            <a href=\"javascript:showHideWonLostOnDonutChart()\" class=\"btn btn-default btn-block\" id=\"showHideWonLostOnDonutChartTag\">
-                                View Won And Lost Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deal By Sources
-                        </div>
-                        <div class=\"panel-body\">
-                            <div id=\"deal-sources-donut-chart\"></div>
-                            <a href=\"javascript:showHideWonLostOnDealSourcesDonutChart()\" class=\"btn btn-default btn-block\" 
-                               id=\"showHideWonLostOnDealSourcesDonutChartTag\">View Won And Lost Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class=\"panel panel-default\">
-                        <div class=\"panel-heading\">
-                            <i class=\"fa fa-bar-chart-o fa-fw\"></i> Deal By Product Types
-                        </div>
-                        <div class=\"panel-body\">
-                            <div id=\"deal-product-types-donut-chart\"></div>
-                            <a href=\"javascript:showHideWonLostOnDealProductTypesDonutChart()\" class=\"btn btn-default btn-block\" 
-                               id=\"showHideWonLostOnDealProductTypesDonutChartTag\">View Won And Lost Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
-\t\t</div>
-        </div>
-        <!-- /#page-wrapper -->
-\t\t
-\t\t ";
-        // line 283
-        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
-        // line 284
-        echo "
-    </div>
-    <!-- /#wrapper -->
-
-\t";
-        // line 288
-        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
+                    <!-- /.row -->
+                    ";
         // line 289
+        echo "                    <!-- /.row -->
+                </div>
+            </div>
+            <!-- /#page-wrapper -->
+
+            ";
+        // line 294
+        $this->env->loadTemplate("LoginLoginBundle:Default:footer_v2.html.twig")->display($context);
+        // line 295
+        echo "
+        </div>
+        <!-- /#wrapper -->
+
+        ";
+        // line 299
+        $this->env->loadTemplate("AppBundle:Default:scripts.html.twig")->display($context);
+        // line 300
         echo "        <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/sb-admin-2.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 290
+        // line 301
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 291
+        // line 302
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 292
+        // line 303
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
         echo "\"></script>
 
-</body>
-";
-        // line 295
+    </body>
+    ";
+        // line 306
         $this->env->loadTemplate("webBundle:Default:donutChartScript.html.twig")->display($context);
-        // line 296
+        // line 307
+        echo "    ";
         $this->env->loadTemplate("webBundle:Default:barChartScript.html.twig")->display($context);
-        // line 297
+        // line 308
+        echo "    ";
         $this->env->loadTemplate("webBundle:Default:dealsByContactBarChartScript.html.twig")->display($context);
-        // line 298
+        // line 309
+        echo "    ";
         $this->env->loadTemplate("webBundle:Default:dealsByUserBarChartScript.html.twig")->display($context);
-        // line 299
+        // line 310
+        echo "    ";
         $this->env->loadTemplate("webBundle:Default:earningAreaChartScript.html.twig")->display($context);
-        // line 300
+        // line 311
         echo "</html>
 ";
     }
@@ -393,6 +264,6 @@ class __TwigTemplate_0056b4187ad1baeed04a680e8a2ccf2c6a35a5e861e5e3dc7b62ab35e6d
 
     public function getDebugInfo()
     {
-        return array (  380 => 300,  378 => 299,  376 => 298,  374 => 297,  372 => 296,  370 => 295,  364 => 292,  360 => 291,  356 => 290,  351 => 289,  349 => 288,  343 => 284,  341 => 283,  157 => 102,  148 => 98,  127 => 80,  118 => 76,  97 => 58,  88 => 54,  67 => 36,  58 => 32,  35 => 11,  33 => 10,  24 => 4,  19 => 1,);
+        return array (  251 => 311,  248 => 310,  245 => 309,  242 => 308,  239 => 307,  237 => 306,  231 => 303,  227 => 302,  223 => 301,  218 => 300,  216 => 299,  210 => 295,  208 => 294,  201 => 289,  192 => 117,  188 => 115,  182 => 113,  180 => 112,  164 => 99,  155 => 92,  151 => 90,  145 => 88,  143 => 87,  127 => 74,  119 => 68,  115 => 66,  109 => 64,  107 => 63,  91 => 50,  82 => 43,  78 => 41,  72 => 39,  70 => 38,  53 => 24,  38 => 11,  36 => 10,  28 => 5,  24 => 4,  19 => 1,);
     }
 }

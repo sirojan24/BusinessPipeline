@@ -501,4 +501,17 @@
             $table.bootstrapTable('hideLoading');
             $table.bootstrapTable('append', convertData(jsonStr));
         }
+        
+        function exportTableDataToCSV() {
+                var data = JSON.parse(initResponse);
+                
+                exportToCSV(data.tasks, "tasks.csv", ["name", "company", "priority", "assignedTo", "dueDate"]);
+        }
+        
+        function exportTableDataToPDF() {
+                var data = JSON.parse(initResponse);
+                
+                var userTablePDF = new exportPDF(data.tasks, "tasks.pdf", 
+                ["name", "company", "priority", "assignedTo", "dueDate"], "Manage Tasks");
+        }
     </script>

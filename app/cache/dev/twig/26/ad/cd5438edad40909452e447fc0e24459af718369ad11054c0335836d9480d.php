@@ -27,16 +27,15 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
                             <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                            <a href=\"javascript:window.print()\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                        </span>
+                        ";
+        // line 17
+        echo "                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"javascript:exportTableDataToCSV()\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-text-o fa-lg\"></i></a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
+                            <a href=\"javascript:exportTableDataToPDF()\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
                         </span>
                     </div>
                 </div>
@@ -97,6 +96,6 @@ class __TwigTemplate_26adcd5438edad40909452e447fc0e24459af718369ad11054c0335836d
 
     public function getDebugInfo()
     {
-        return array (  85 => 62,  54 => 34,  19 => 1,);
+        return array (  84 => 62,  53 => 34,  34 => 17,  19 => 1,);
     }
 }

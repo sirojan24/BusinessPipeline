@@ -601,6 +601,19 @@ class __TwigTemplate_e70c4f7f54451f199bee06c5ea971c5ab13cb022d797eb502bc06048d48
             \$table.bootstrapTable('hideLoading');
             \$table.bootstrapTable('append', convertData(jsonStr));
         }
+        
+        function exportTableDataToCSV() {
+                var data = JSON.parse(initResponse);
+                
+                exportToCSV(data.tasks, \"tasks.csv\", [\"name\", \"company\", \"priority\", \"assignedTo\", \"dueDate\"]);
+        }
+        
+        function exportTableDataToPDF() {
+                var data = JSON.parse(initResponse);
+                
+                var userTablePDF = new exportPDF(data.tasks, \"tasks.pdf\", 
+                [\"name\", \"company\", \"priority\", \"assignedTo\", \"dueDate\"], \"Manage Tasks\");
+            }
     </script>";
     }
 

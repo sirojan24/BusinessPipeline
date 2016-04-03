@@ -18,12 +18,12 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
         // line 1
         echo "<!DOCTYPE html>
 <html lang=\"en\">
-
+    
     ";
         // line 4
         $this->env->loadTemplate("AppBundle:Default:head.html.twig")->display($context);
         // line 5
-        echo "
+        echo "    
 <body>
 
     <div id=\"wrapper\">
@@ -79,37 +79,30 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
         // line 38
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/raphael/raphael-min.js"), "html", null, true);
         echo "\"></script>
-    <script src=\"";
-        // line 39
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
-        echo "\"></script>
+    
     <script src=\"";
         // line 40
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/js/morris-data.js"), "html", null, true);
-        echo "\"></script>
-    <script src=\"";
-        // line 41
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/notify/jquery-1.12.0.js"), "html", null, true);
-        echo "\"></script>
-
-    <script src=\"";
-        // line 43
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/notify/bootstrap-notify.js"), "html", null, true);
         echo "\"></script>
     <link rel=\"stylesheet\" href=\"";
-        // line 44
+        // line 41
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/notify/animate.css"), "html", null, true);
         echo "\">
+    <script src=\"";
+        // line 42
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/bower_components/morrisjs/morris.js"), "html", null, true);
+        echo "\"></script>
+    
     <script>
             \$( document ).ready(function() {
                 ";
-        // line 47
+        // line 46
         if (array_key_exists("errormsg", $context)) {
-            // line 48
+            // line 47
             echo "                    \$.notify({
                             // options
                             message: '";
-            // line 50
+            // line 49
             echo twig_escape_filter($this->env, (isset($context["errormsg"]) ? $context["errormsg"] : $this->getContext($context, "errormsg")), "html", null, true);
             echo "'
                         }, {
@@ -118,14 +111,14 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
                         });
                 ";
         }
-        // line 56
+        // line 55
         echo "                ";
         if (array_key_exists("successmsg", $context)) {
-            // line 57
+            // line 56
             echo "                    \$.notify({
                             // options
                             message: '";
-            // line 59
+            // line 58
             echo twig_escape_filter($this->env, (isset($context["successmsg"]) ? $context["successmsg"] : $this->getContext($context, "successmsg")), "html", null, true);
             echo "'
                         }, {
@@ -134,7 +127,7 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
                         });
                 ";
         }
-        // line 65
+        // line 64
         echo "            });
     </script>
 </body>
@@ -154,6 +147,6 @@ class __TwigTemplate_3b8d06fcf4ddf67f5fd784cfe258b2c551798bbe303781973d28951d81c
 
     public function getDebugInfo()
     {
-        return array (  138 => 65,  129 => 59,  125 => 57,  122 => 56,  113 => 50,  109 => 48,  107 => 47,  101 => 44,  97 => 43,  92 => 41,  88 => 40,  84 => 39,  80 => 38,  75 => 37,  72 => 36,  70 => 35,  65 => 32,  63 => 31,  56 => 26,  54 => 25,  44 => 17,  42 => 16,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
+        return array (  131 => 64,  122 => 58,  118 => 56,  115 => 55,  106 => 49,  102 => 47,  100 => 46,  93 => 42,  89 => 41,  85 => 40,  80 => 38,  75 => 37,  72 => 36,  70 => 35,  65 => 32,  63 => 31,  56 => 26,  54 => 25,  44 => 17,  42 => 16,  36 => 12,  34 => 11,  26 => 5,  24 => 4,  19 => 1,);
     }
 }

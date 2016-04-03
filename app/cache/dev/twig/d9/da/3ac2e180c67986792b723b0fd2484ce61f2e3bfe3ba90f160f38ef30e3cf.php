@@ -277,18 +277,18 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
         var html = [];
         html.push('<div class\"row\">' +
                 '<div class=\"col-xs-4\">' +
-                '<table class=\"table\" style=\"margin-left:42px; border: none !important;line-height: 5px;background-color: #fbfbfb;\">' +
+                '<table class=\"table\" style=\"margin-left:42px; border: none !important;background-color: #fbfbfb;\">' +
                 '<tr style=\"padding:0px;margin:0px;\">' +
-                '<td style=\"border: none !important;line-height: 5px;width:30%\"><small>Email</small></td>' +
-                '<td style=\"border: none !important;line-height: 5px;\"><small>' + email + '</small></td>' +
+                '<td style=\"border: none !important;width:30%;important;line-height: 10px;\"><small>Email</small></td>' +
+                '<td style=\"border: none !important;important;line-height: 10px;\"><small>' + email + '</small></td>' +
                 '</tr>' +
                 '<tr style=\"padding:0px;margin:0px;\">' +
-                '<td style=\"border: none !important;line-height: 5px;\"><small>Telephone</small></td>' +
-                '<td style=\"border: none !important;line-height: 5px;\"><small>' + telephone + '</small></td>' +
+                '<td style=\"border: none !important;important;line-height: 10px;\"><small>Telephone</small></td>' +
+                '<td style=\"border: none !important;important;line-height: 10px;\"><small>' + telephone + '</small></td>' +
                 '</tr>' +
                 '<tr style=\"padding:0px;margin:0px;\">' +
-                '<td style=\"border: none !important;line-height: 5px;\"><small>Tags</small></td>' +
-                '<td style=\"border: none !important;line-height: 5px;\"><small>' + tags + '</small></td>' +
+                '<td style=\"border: none !important;important;line-height: 10px;\"><small>Tags</small></td>' +
+                '<td style=\"border: none !important;important;line-height: 10px;\"><small>' + tags + '</small></td>' +
                 '</tr>' +
                 '</table>' +
                 '</div>' +
@@ -357,7 +357,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + newDealPath + tempContact.id + '\"><i class=\"fa fa-usd\"></i> New Deal</a></li>' +
                                 '<li><a href=\"' + editPath + tempContact.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\" onclick=\"notespopup('+ tempContact.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"javascript:notespopup('+ tempContact.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"'+taskPath + tempContact.id +'\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '<li><a href=\"javascript:deleteContact(' + tempContact.id +')\"><i class=\"fa fa-times\"></i> Delete</a></li>' +
                                 '</ul>' +
@@ -372,7 +372,7 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                                 '<ul class=\"dropdown-menu\" role=\"menu\" style=\"min-width: 0px !important;\">' +
                                 '<li><a href=\"' + newDealPath + tempContact.id + '\"><i class=\"fa fa-usd\"></i> New Deal</a></li>' +
                                 '<li><a href=\"' + editPath + tempContact.id + '\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a></li>' +
-                                '<li><a href=\"#\" onclick=\"notespopup('+ tempContact.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
+                                '<li><a href=\"javascript:notespopup('+ tempContact.id +')\"><i class=\"fa fa-file-o\"></i> Notes</a></li>' +
                                 '<li><a href=\"'+taskPath + tempContact.id +'\"><i class=\"fa fa-list\"></i> Tasks</a></li>' +
                                 '<li><a href=\"javascript:activateContact(' + tempContact.id +')\"><i class=\"fa fa-check\"></i> Activate</a></li>' +
                                 '</ul>' +
@@ -458,6 +458,20 @@ class __TwigTemplate_d9da3ac2e180c67986792b723b0fd2484ce61f2e3bfe3ba90f160f38ef3
                     };
                 }
                 return {};
+            }
+            
+            function exportTableDataToCSV() {
+                var data = JSON.parse(initResponse);
+                
+                exportToCSV(data.contacts, \"contacts.csv\", [\"name\", \"company\", \"open_deal\", \"projected_revenue\", \"weighted_forecast\", 
+                    \"won_deals\", \"lost_deals\", \"owner\", \"status\"]);
+            }
+            
+            function exportTableDataToPDF() {
+                var data = JSON.parse(initResponse);
+                
+                var userTablePDF = new exportPDF(data.contacts, \"contacts.pdf\", [\"name\", \"company\", \"open_deal\", \"projected_revenue\", \"weighted_forecast\", 
+                    \"won_deals\", \"lost_deals\", \"owner\", \"status\"], \"Manage Contacts\");
             }
 </script>";
     }

@@ -53,7 +53,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                         <div class=\"col-xs-8\">
                             <div class=\"col-xs-5\" style=\"padding-right:0px;padding-left:0px\">
                                 <div class=\"form-group\">
-                                    <input type=\"date\" class=\"form-control\" id=\"fFromDate\" name=\"fFromDate\">
+                                    <input type=\"text\" class=\"form-control\" id=\"fFromDate\" name=\"fFromDate\">
                                 </div>
                             </div>
                             <div class=\"col-xs-2\" style=\"padding-right:2px;padding-left: 22px;padding-top: 5px;\">
@@ -63,7 +63,7 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                             </div>
                             <div class=\"col-xs-5\" style=\"padding-right:0px;padding-left:0px\">
                                 <div class=\"form-group\">
-                                    <input type=\"date\" class=\"form-control\" id=\"fToDate\" name=\"fToDate\">
+                                    <input type=\"text\" class=\"form-control\" id=\"fToDate\" name=\"fToDate\">
                                 </div>
                             </div>
                         </div>
@@ -81,13 +81,13 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
                                 </div>
                                 <div class=\"input-group\">
                                     <label class=\"radio-inline\">
-                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"less\"/> <= S
+                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"less\"/> <= \$
                                     </label>
                                     <label class=\"radio-inline\">
-                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"equal\" checked=\"true\"/> = S
+                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"equal\" checked=\"true\"/> = \$
                                     </label>
                                     <label class=\"radio-inline\">
-                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"great\"/> => S
+                                        <input type=\"radio\" name=\"amountRadioOptions\" id=\"great\"/> => \$
                                     </label>
                                 </div>
                             </div>
@@ -158,10 +158,10 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
     </div>
 </div>
 
-<script src=\"";
-        // line 138
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles_v2.0/dist/js/bootstrap-tagsinput.js"), "html", null, true);
-        echo "\"></script>";
+<script>
+    \$('#fFromDate').datepicker({});
+    \$('#fToDate').datepicker({});
+</script>";
     }
 
     public function getTemplateName()
@@ -176,6 +176,6 @@ class __TwigTemplate_21ed753aa0f40c6407e65a7df9d54c44252ae6af26d1c061db5a5f65149
 
     public function getDebugInfo()
     {
-        return array (  163 => 138,  24 => 2,  19 => 1,);
+        return array (  24 => 2,  19 => 1,);
     }
 }

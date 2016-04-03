@@ -41,16 +41,15 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
                             <a href=\"javascript:refreshTable()\" style=\"color: black;\"><i class=\"fa fa-refresh fa-lg\" style=\"margin-left: 5px;margin-right: 2px;\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                            <a href=\"javascript:window.print()\" style=\"color: black;\"><i class=\"fa fa-print fa-lg\"></i></a>
+                        </span>
+                        ";
+        // line 25
+        echo "                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
+                            <a href=\"javascript:exportTableDataToCSV()\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-text-o fa-lg\"></i></a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-excel-o fa-lg\"></i></a>
-                        </span>
-                        <span calss=\"pull-right\" style=\"margin-left: 10px\">
-                            <a href=\"#\" style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
+                            <a href=\"javascript:exportTableDataToPDF()\" id='pdfexport' style=\"color: black;\"><i class=\"fa fa-file-pdf-o fa-lg\"></i></a>
                         </span>
                         <span calss=\"pull-right\" style=\"margin-left: 10px\">
                             <a href=\"javascript:resetTable()\" style=\"color: black;\"><i class=\"fa fa-times fa-lg\"></i></a>
@@ -122,6 +121,6 @@ class __TwigTemplate_93308d0077a55fa6128c1550045521b7d616a8fe79f42e7498cf362e362
 
     public function getDebugInfo()
     {
-        return array (  110 => 78,  76 => 47,  66 => 39,  64 => 38,  40 => 16,  34 => 12,  32 => 11,  21 => 2,  19 => 1,);
+        return array (  109 => 78,  75 => 47,  65 => 39,  63 => 38,  48 => 25,  40 => 16,  34 => 12,  32 => 11,  21 => 2,  19 => 1,);
     }
 }
